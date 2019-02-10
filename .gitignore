@@ -9,3 +9,13 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+
+### Vagrant ###
+# General
+.vagrant/
+
+# Log files (if you are creating logs in debug mode, uncomment this)
+# *.logs
+
+### Vagrant Patch ###
+*.box
