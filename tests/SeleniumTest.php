@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Selenium;
+namespace Tests;
 
 use Modelizer\Selenium\SeleniumTestCase;
 
