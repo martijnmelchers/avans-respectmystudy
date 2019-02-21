@@ -13,7 +13,7 @@ class SeleniumExampleTest extends SeleniumTest
     {
         // This is a sample code you can change as per your current scenario
         $this->visit('/')
-             ->see('NEWS')
+             ->see('Laravel')
              ->hold(3);
     }
 }
