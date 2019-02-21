@@ -1,6 +1,7 @@
 <?php
 
 namespace Tests\Selenium;
+use Tests\SeleniumTest;
 
 class SeleniumExampleTest extends SeleniumTest
 {
