@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::get('/surf/login', function() {
     return Saml2::login(URL::full());
 });

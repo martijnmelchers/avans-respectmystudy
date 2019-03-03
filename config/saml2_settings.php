@@ -199,12 +199,12 @@ return $settings = array(
     // Contact information template, it is recommended to suply a technical and support contacts
     'contactPerson' => array(
         'technical' => array(
-            'givenName' => 'name',
-            'emailAddress' => 'no@reply.com'
+            'givenName' => 'Sascha Mendel',
+            'emailAddress' => 'saschamendel2016@gmail.com'
         ),
         'support' => array(
-            'givenName' => 'Support',
-            'emailAddress' => 'no@reply.com'
+            'givenName' => 'Sascha Mendel',
+            'emailAddress' => 'saschamendel2016@gmail.com'
         ),
     ),
 
