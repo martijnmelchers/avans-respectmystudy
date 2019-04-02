@@ -1,12 +1,16 @@
 @extends('layouts/default')
 
-@section("title", "Home")
+@section("title", "Filter Minors")
 
 @section('content')
-    <div class="content">
+    <div class="sidebar">
+        <h3>Filter</h3>
+    </div>
+
+    <div class="content right">
         <div class="wrapper wrap">
             <article>
-                <h1>Welkom</h1>
+                <h1>Minoren</h1>
             </article>
         </div>
     </div>
