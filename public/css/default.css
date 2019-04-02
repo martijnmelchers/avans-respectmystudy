@@ -41,7 +41,7 @@ a {
 
 .nav .title {
     font-size: 20px;
-    padding: 7px 0 7px 20px;
+    padding: 12px 0 12px 20px;
     margin: 0;
     font-weight: bold;
 }
@@ -49,17 +49,70 @@ a {
 .nav .nav-buttons {
     display: flex;
     justify-content: space-between;
-    padding: 10px 10px 8px 10px;
+    padding: 14px 10px 14px 0;
     font-size: 15px;
 }
 
-.nav .nav-buttons a {
+.nav .divider {
+    width: 1px;
+    height: 100%;
+    background: #ECF0F1;
+}
+
+.nav .nav-buttons a, .nav .nav-buttons .item {
     margin: 0 7px;
     border-bottom: 2px solid transparent;
+    cursor: pointer;
 }
 
 .nav .nav-buttons a.active {
     border-bottom: 2px solid #F64646;
+}
+
+.nav .dropdown {
+    position: relative;
+}
+
+.nav .dropdown .drop {
+    position: absolute;
+    background: #ced2d3;
+    width: 100%;
+    border-radius: 3px;
+    padding: 2px;
+
+    -webkit-transition: top 0.2s, opacity 0.2s, visibility 0.2s;
+    -moz-transition: top 0.2s, opacity 0.2s, visibility 0.2s;
+    -ms-transition: top 0.2s, opacity 0.2s, visibility 0.2s;
+    -o-transition: top 0.2s, opacity 0.2s, visibility 0.2s;
+    transition: top 0.2s, opacity 0.2s, visibility 0.2s;
+    visibility: hidden;
+    opacity: 0;
+    top: 90%;
+}
+
+.nav .dropdown .drop::after {
+    display: block;
+    content: '';
+    border-bottom: 4px solid #ced2d3;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    position: absolute;
+    top: -4px;
+    left: 40%;
+}
+
+.nav .dropdown .flag {
+    width: 30px;
+    display: block;
+    padding: 2px 0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.nav .dropdown:hover > .drop {
+    visibility: visible;
+    top: 110%;
+    opacity: 1;
 }
 
 /* Content */

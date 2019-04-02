@@ -19,21 +19,27 @@
     <div class="nav-buttons">
         <a href="/">Home</a>
         <a href="/minors">Minoren</a>
-    </div>
-</div>
-@if (Route::has('login'))
-    <div class="top-right links">
+
+        <div class="divider"></div>
         @auth
-            <a href="{{ url('/home') }}">Home</a>
+            <a href="{{ url('/account') }}">Home</a>
         @else
-            <a href="{{ route('login') }}">Login</a>
+            <a href="{{ route('home') }}">Login</a>
 
             @if (Route::has('register'))
-                <a href="{{ route('register') }}">Register</a>
+                <a href="{{ route('home') }}">Register</a>
             @endif
         @endauth
+
+        <div class="dropdown">
+            <div class="item">Taal</div>
+            <div class="drop">
+                <img class="item flag" src="https://cdn.wordquest.nl/flags/medium/fr.png" alt="Nederlands">
+                <img class="item flag" src="https://cdn.wordquest.nl/flags/medium/nl.png" alt="English">
+            </div>
+        </div>
     </div>
-@endif
+</div>
 
 @yield('content')
 </body>
