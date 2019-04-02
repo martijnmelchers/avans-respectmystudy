@@ -1,6 +1,6 @@
 body, html {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     background-color: #ECF0F1;
     font-family: 'Source Sans Pro', sans-serif;
 
@@ -12,8 +12,16 @@ body, html {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    padding: 5px;
+    margin: 5px;
+    padding: 0;
+}
+
+.underline {
+    border-bottom: 2px solid #ECF0F1;
+}
+
+.center {
+    text-align: center;
 }
 
 a {
@@ -35,6 +43,7 @@ a {
     font-size: 20px;
     padding: 7px 0 7px 20px;
     margin: 0;
+    font-weight: bold;
 }
 
 .nav .nav-buttons {
@@ -60,12 +69,30 @@ a {
     position: absolute;
     left: 15%;
     display: flex;
+    /*flex-direction: column;*/
+    align-items: flex-start;
+}
+
+.sidebarwrapper .content {
+    position: relative;
+}
+
+.content.wide {
+    width: 100%;
+    left: 0;
+}
+
+.wrapper {
+    display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    margin: 0 20px;
 }
 
 .content article {
     background: white;
     padding: 10px;
+    flex-grow: 1;
 }
 
 .content.right {
@@ -73,12 +100,72 @@ a {
 }
 
 /* Sidebar */
+.sidebarwrapper {
+    display: flex;
+    flex-grow: 1;
+}
+
 .sidebar {
-    margin-top: 40px;
     display: flex;
     flex-direction: column;
     background: white;
     width: calc(20% - 20px);
-    flex-grow: 1;
     padding: 10px;
+    min-width: 150px;
+}
+
+/* Lists */
+.list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.list .item {
+    background: white;
+    padding: 3px;
+    margin: 2px;
+}
+
+
+.minorlist {
+    flex-direction: column;
+    align-content: center;
+}
+
+.minorlist .info {
+    display: flex;
+}
+
+.minorlist .info .text {
+    flex-grow: 1;
+}
+
+.minorlist .item {
+    margin: 0 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+}
+
+.minorlist .item p {
+    font-size: 12px;
+    color: #848484;
+    margin: 5px;
+}
+
+.minorlist .info .media {
+    max-width: 100px;
+}
+
+.minorlist .info .media img {
+    width: 100px;
+}
+
+.minorlist .info .media .points {
+    text-align: center;
+    color: gray;
+}
+
+.minorlist .info .media .points .ec {
+    color: black;
 }

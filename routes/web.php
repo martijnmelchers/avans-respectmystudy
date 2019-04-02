@@ -15,6 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/minors', function () {
-    return view('minors/list');
-})->name('minors');
+Route::get('/minors', 'MinorController@List')->name('minors');

@@ -9,12 +9,13 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro:400,700" rel="stylesheet">
     <link href="/css/default.css" type="text/css" rel="stylesheet">
+    <link href="/css/form.css" type="text/css" rel="stylesheet">
 
     {{--<link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">--}}
 </head>
 <body>
 <div class="nav">
-    <h1 class="title">RespectMyStudy</h1>
+    <a href="/" class="title">RespectMyStudy</a>
     <div class="nav-buttons">
         <a href="/">Home</a>
         <a href="/minors">Minoren</a>
