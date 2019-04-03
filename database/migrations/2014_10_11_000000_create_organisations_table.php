@@ -14,11 +14,11 @@ class CreateOrganisationsTable extends Migration
     public function up()
     {
         Schema::create('organisations', function (Blueprint $table) {
-            $table->increments('id')->primary();
-            $table->string('organisation_name', 'max:45');
-            $table->string('email', 'max:45');
-            $table->string('phonenumber', 'max:45');
-            $table->string('location', 'max:45');
+            $table->increments('id');
+            $table->string('organisation_name', '45');
+            $table->string('email', '45');
+            $table->string('phonenumber', '45');
+            $table->string('location', '45');
         });
     }
 

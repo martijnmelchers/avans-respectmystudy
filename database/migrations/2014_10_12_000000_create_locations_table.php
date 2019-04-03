@@ -14,19 +14,20 @@ class CreateLocationsTable extends Migration
     public function up()
     {
         Schema::create('locations', function (Blueprint $table) {
-            $table->increments('id')->primary();
-            $table->string('name', 'max:100');
+            $table->increments('id');
+            $table->string('name', '100');
             $table->tinyInteger('primarylocation');
             $table->integer('establishment');
-            $table->string('mailaddress', 'max:45');
-            $table->string('mailzip', 'max:15');
-            $table->string('mailcity', 'max:100');
-            $table->string('visitingaddress', 'max:100');
-            $table->string('visitingzip', 'max:15');
-            $table->string('visitingcity', 'max:100');
-            $table->integer('organisation_id')->unique();
+            $table->string('mailaddress', '45');
+            $table->string('mailzip', '15');
+            $table->string('mailcity', '100');
+            $table->string('visitingaddress', 100);
+            $table->string('visitingzip', '15');
+            $table->string('visitingcity', '100');
+            $table->integer('organisation_id');
 
             $table->foreign('organisation_id')->references('id')->on('organisations');
+//            $table->foreign('organisation_id')->
         });
     }
 

@@ -14,10 +14,10 @@ class CreateEducationPeriodsTable extends Migration
     public function up()
     {
         Schema::create('education_periods', function (Blueprint $table) {
-            $table->increments('id')->primary();
-            $table->string('period_name', 'max:45');
-            $table->timestamp('begin');
-            $table->timestamp('end');
+            $table->increments('id');
+            $table->string('name', '45');
+            $table->dateTime('begin');
+            $table->dateTime('end');
         });
     }
 
