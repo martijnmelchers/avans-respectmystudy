@@ -17,9 +17,9 @@ class CreateMinorsTable extends Migration
             $table->integer('id');
             $table->double('version', 8, 2);
 
-            $table->string('name', '45');
-            $table->string('phonenumber', '45');
-            $table->string('email', '45');
+            $table->string('name', '255');
+            $table->string('phonenumber', '16');
+            $table->string('email', '100');
             $table->integer('kiesopmaat');
             $table->string('place', '45');
             $table->double('ects', 8, 2);
