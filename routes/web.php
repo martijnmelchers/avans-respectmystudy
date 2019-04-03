@@ -16,3 +16,5 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/minors', 'MinorController@List')->name('minors');
+
+Route::get('/minor/{id}', 'MinorController@Minor')->name('minor');

@@ -13,4 +13,11 @@ class MinorController extends Controller
 
         return view('minors/list', ["minors" => $minors]);
     }
+
+    public function Minor($id)
+    {
+        $minor = new Minor(["id" => $id, "name" => "Minor 1"]);
+
+        return view('minors/minor', ["minor" => $minor]);
+    }
 }

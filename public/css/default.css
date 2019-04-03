@@ -146,6 +146,7 @@ a {
     background: white;
     padding: 10px;
     flex-grow: 1;
+    margin: 10px 0px;
 }
 
 .content.right {
@@ -164,14 +165,14 @@ a {
     display: flex;
     flex-direction: column;
     background: white;
-    width: calc(15% - 20px);
+    width: calc(18% - 20px);
     padding: 20px;
     min-width: 150px;
     margin-left: 20px;
     border-radius: 3px;
-    -webkit-box-shadow: 5px 5px 20px #ECF0F1;
-    -moz-box-shadow: 5px 5px 20px #ECF0F1;
-    box-shadow: 5px 5px 20px #ECF0F1;
+    -webkit-box-shadow: 0 0 20px #c3c3c3;
+    -moz-box-shadow: 0 0 20px #c3c3c3;
+    box-shadow: 0 0 20px #c3c3c3;
 }
 
 /* Lists */
@@ -184,6 +185,23 @@ a {
     background: white;
     padding: 3px;
     margin: 2px;
+    -webkit-transition: box-shadow 0.2s;
+    -moz-transition: box-shadow 0.2s;
+    -ms-transition: box-shadow 0.2s;
+    -o-transition: box-shadow 0.2s;
+    transition: box-shadow 0.2s;
+}
+
+.list .item:hover {
+    -webkit-box-shadow: 10px 10px 20px #c3c3c3;
+    -moz-box-shadow: 10px 10px 20px #c3c3c3;
+    box-shadow: 10px 10px 20px #c3c3c3;
+}
+
+.list .item:active {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }
 
 
@@ -211,10 +229,12 @@ a {
 }
 
 .minorlist .item {
-    margin: 0 0 20px 0;
+    margin: 0 0 40px 0;
     display: flex;
     flex-direction: column;
     max-width: 600px;
+
+    border-radius: 3px;
 }
 
 .minorlist .item p, .minorlist .reviews .text {
@@ -290,4 +310,69 @@ a {
 .minorlist .reviews .review .stars .row {
     display: flex;
     margin: 0px auto;
+}
+
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
+.buttons a, .button {
+    flex-grow: 1;
+    background: #F64646;
+    border-radius: 3px;
+    color: white;
+    padding: 8px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+
+    transition: box-shadow 0.2s;
+}
+
+.buttons a:hover, .button:hover {
+    -webkit-box-shadow: 5px 5px 10px #ced2d3;
+    -moz-box-shadow: 5px 5px 10px #ced2d3;
+    box-shadow: 5px 5px 10px #ced2d3;
+}
+
+.buttons a, .buttons .button {
+    margin-right: 20px;
+}
+
+.buttons a:last-child, .buttons .button:last-child {
+    margin-right: 0px;
+}
+
+/* Button Colors */
+.button.blue {
+    border-color: #4D648D;
+    background-color: #4D648D;
+}
+
+/* Button Colors */
+.button.aqua {
+    border-color: #66BFB3;
+    background-color: #66BFB3;
+}
+
+/* Button Colors */
+.button.gray {
+    border-color: #CACDD3;
+    background-color: #CACDD3;
+}
+
+/* Mobile friendly */
+@media all and (max-width: 800px) {
+    .content {
+        flex-wrap: wrap;
+    }
+    .sidebar {
+        position: relative;
+        width: 100%;
+        margin: 0 40px 40px 40px;
+    }
 }
