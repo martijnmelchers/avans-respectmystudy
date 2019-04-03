@@ -41,6 +41,8 @@
 
                 if (o.next != null) {
                     importSchools(page + 1, progress);
+                } else {
+                    document.getElementsByClassName("text")[0].innerHTML = "Scholen geïmporteerd";
                 }
             });
         }

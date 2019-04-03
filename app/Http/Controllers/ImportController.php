@@ -45,43 +45,9 @@ class ImportController extends Controller
         $errors = array();
 
         foreach ($php_result->results as $r) {
-//            $conn = new mysqli("localhost", "wordques_v3", "CHCrachman", "wordques_kom");
-//            $conn->set_charset("utf8");
-//
-//            if ($conn->query("SELECT * FROM modules WHERE id = $r->id")->num_rows == 0) {
-//                $stmt = $conn->prepare("INSERT INTO modules (id, status, name, subject, goals, contacthours, ects, roster, requirements, language, is_commercial, costs, is_published, is_enrollable, organisation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-//                $stmt->bind_param("iisssddssssdssi", $r->id, $r->status, $r->name, $r->subject, $r->goals, $r->contacthours, $r->ects, $r->roster, $r->requirements, $r->language, $r->is_commercial, $r->costs, $r->is_published, $r->is_enrollable, $r->ownedby_organisation);
-//
-//                if ($stmt->execute()) {
-//                    foreach ($r->locations as $location) {
-//                        if ($conn->query("INSERT INTO modules_locations (module_id, location_id) VALUES ($r->id, $location)")) {
-////                    echo "IMPORTED";
-//                        } else {
-//                            $errors[] = json_decode('{"error":"' . $conn->error . '","module_id":' . $r->id . ',"location_id":' . $location . '}');
-//                        }
-//                    }
-//                } else {
-//                    $errors[] = json_decode('{"error":"' . $conn->error . '","organization_id":' . $r->ownedby_organisation . ',"name":"' . $r->name . '"}');
-//                }
-//            } else {
-//                $conn->query("DELETE FROM modules_locations WHERE module_id = $r->id");
-//
-//                foreach ($r->locations as $location) {
-//                    if ($conn->query("INSERT INTO modules_locations (module_id, location_id) VALUES ($r->id, $location)")) {
-////                echo "IMPORTED";
-//                    } else {
-////                echo "ERROR: " . $conn->error;
-//                    }
-//                }
-//            }
-//
-//            if (sizeof($errors) > 0) {
-//                $php_result->errors = $errors;
-//            }
-
             $minor = Minor::all()->where('id', $r->id)->first();
             if (isset($minor)) {
-
+                // Minor staat al in de database
             } else {
                 $minor = new Minor([
                     "id" => $r->id,
@@ -103,12 +69,12 @@ class ImportController extends Controller
                     "organisation_id" => $r->ownedby_organisation,
                 ]);
                 $minor->save();
-                echo json_encode($r, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
             }
         }
 
         curl_close($ch);
-        echo json_encode($php_result);
+        return response($result, 200)
+            ->header('Content-Type', 'text/json');
     }
 
     public function Organisations()
@@ -145,25 +111,25 @@ class ImportController extends Controller
             die();
         }
 
-        $errors = array();
-
         foreach ($php_result->results as $r) {
-            $organization = Minor::all()->where('id', $r->id)->first();
+            $organization = Organisation::all()->where('id', $r->id)->first();
             if (isset($organization)) {
-
+                // Organisatie staat al in de database
             } else {
                 $organization = new Organisation([
-                    "name"=>$r->name,
-                    "email"=>"",
-                    "phonenumber"=> "",
-                    "location" =>"",
+                    "id"=>$r->id,
+                    "name" => $r->name,
+                    "abbreviation" => $r->abbreviation,
+                    "type" => $r->type,
+                    "participates" => $r->participates,
                 ]);
                 $organization->save();
             }
         }
 
         curl_close($ch);
-        echo $result;
+        return response($result, 200)
+            ->header('Content-Type', 'text/json');
     }
 
     public function Locations()
