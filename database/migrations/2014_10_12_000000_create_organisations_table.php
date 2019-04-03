@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMediaTypesTable extends Migration
+class CreateOrganisationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateMediaTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('media_types', function (Blueprint $table) {
+        Schema::create('organisations', function (Blueprint $table) {
             $table->increments('id')->primary();
-            $table->string('media_type_name', 'max:45');
-            $table->text('media_type_description')->nullable();
-            $table->timestamps();
+            $table->string('organisation_name', 'max:45');
+            $table->string('email', 'max:45');
+            $table->string('phonenumber', 'max:45');
+            $table->string('location', 'max:45');
         });
     }
 
@@ -28,6 +29,6 @@ class CreateMediaTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('media_types');
+        Schema::dropIfExists('organisations');
     }
 }

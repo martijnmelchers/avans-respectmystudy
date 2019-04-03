@@ -19,7 +19,8 @@ class CreateNewsitemsTable extends Migration
             $table->longText('description');
             $table->date('publishing_date');
             $table->timestamps();
-            $table->foreign('id')->references('newsitem_id')->on('media');
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
