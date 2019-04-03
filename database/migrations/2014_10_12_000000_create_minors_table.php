@@ -17,11 +17,11 @@ class CreateMinorsTable extends Migration
             $table->integer('id');
             $table->double('version', 8, 2);
 
-            $table->string('name', '255');
-            $table->string('phonenumber', '16');
-            $table->string('email', '100');
+            $table->string('name', 255);
+            $table->string('phonenumber', 16);
+            $table->string('email', 100);
             $table->integer('kiesopmaat');
-            $table->string('place', '45');
+//            $table->string('place', 45);
             $table->double('ects', 8, 2);
             $table->text('subject');
             $table->text('goals');
@@ -36,12 +36,9 @@ class CreateMinorsTable extends Migration
             $table->tinyInteger('is_published');
             $table->tinyInteger('is_enrollable');
             $table->unsignedInteger('organisation_id');
-            $table->unsignedInteger('location_id');
-            $table->unsignedInteger('education_period_id');
             $table->timestamps();
 
             $table->foreign('organisation_id')->references('id')->on('organisations');
-            $table->foreign('education_period_id')->references('id')->on('education_periods');
 
             $table->primary(["id", "version"]);
         });
