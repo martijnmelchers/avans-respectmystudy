@@ -39,7 +39,55 @@
                             </div>
                         </div>
                         <div class="reviews">
-
+                            <div class="period">
+                                <p><b>Onderwijsperiodes</b></p>
+                                <p>26 aug 2019 t/m 24 jan 2020</p>
+                                <p>Tot 10 augustus</p>
+                                <p>1 andere onderwijsperiode</p>
+                            </div>
+                            <div class="review">
+                                <div class="text">
+                                    <b>Beoordelingen door studenten</b>
+                                    <div class="amount">
+                                        <i class="fas fa-comments"></i>&nbsp;{{ rand(1, 15) }} reviews
+                                    </div>
+                                </div>
+                                <div class="stars">
+                                    <p>
+                                        <span class="row">
+                                            <i class="fas fa-star star"></i>
+                                            <i class="fas fa-star star"></i>
+                                            <i class="fas fa-star star"></i>
+                                            <i class="fas fa-star-half-alt star"></i>
+                                            <i class="far fa-star star"></i>
+                                        </span>
+                                        <b>Inhoud en kwaliteit</b>
+                                        <span class="description">4,7 gemiddeld</span>
+                                    </p>
+                                    <p>
+                                        <span class="row">
+                                            <i class="fas fa-star star"></i>
+                                            <i class="fas fa-star star"></i>
+                                            <i class="far fa-star star"></i>
+                                            <i class="far fa-star star"></i>
+                                            <i class="far fa-star star"></i>
+                                        </span>
+                                        <b>Docenten</b>
+                                        <span class="description">4,7 gemiddeld</span>
+                                    </p>
+                                    <p>
+                                        <span class="row">
+                                            <i class="fas fa-star star"></i>
+                                            <i class="fas fa-star star"></i>
+                                            <i class="fas fa-star star"></i>
+                                            <i class="fas fa-star star"></i>
+                                            <i class="fas fa-star star"></i>
+                                        </span>
+                                        <b>Studeerbaarheid</b>
+                                        <span class="description">4,7 gemiddeld</span>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 @endforeach

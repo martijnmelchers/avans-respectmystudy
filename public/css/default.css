@@ -159,6 +159,8 @@ a {
 }
 
 .sidebar {
+    position: sticky;
+    top: 20px;
     display: flex;
     flex-direction: column;
     background: white;
@@ -167,9 +169,9 @@ a {
     min-width: 150px;
     margin-left: 20px;
     border-radius: 3px;
-    -webkit-box-shadow: 5px 5px 20px  #ECF0F1;
-    -moz-box-shadow: 5px 5px 20px  #ECF0F1;
-    box-shadow: 5px 5px 20px  #ECF0F1;
+    -webkit-box-shadow: 5px 5px 20px #ECF0F1;
+    -moz-box-shadow: 5px 5px 20px #ECF0F1;
+    box-shadow: 5px 5px 20px #ECF0F1;
 }
 
 /* Lists */
@@ -190,12 +192,22 @@ a {
     align-content: center;
 }
 
-.minorlist .info {
+.minorlist .info, .minorlist .reviews {
     display: flex;
+    margin: 4px;
+}
+
+.minorlist .reviews {
+    margin: 0 9px 5px 9px;
 }
 
 .minorlist .info .text {
     flex-grow: 1;
+}
+
+.minorlist .info .text p {
+    padding-bottom: 5px;
+    border-bottom: 2px solid #ECF0F1;
 }
 
 .minorlist .item {
@@ -205,7 +217,7 @@ a {
     max-width: 600px;
 }
 
-.minorlist .item p {
+.minorlist .item p, .minorlist .reviews .text {
     font-size: 12px;
     color: #848484;
     margin: 5px;
@@ -226,4 +238,56 @@ a {
 
 .minorlist .info .media .points .ec {
     color: black;
+}
+
+.minorlist .reviews .period {
+    display: flex;
+    flex-direction: column;
+}
+
+.minorlist .reviews p, .minorlist .reviews .text {
+    margin: 1px;
+}
+
+.minorlist .reviews b {
+    color: black;
+}
+
+.minorlist .reviews .review {
+    margin: 0 5px 0 15px;
+    flex-grow: 1;
+}
+
+.minorlist .reviews .review .text {
+    display: flex;
+    justify-content: space-between;
+}
+
+.minorlist .reviews .review .text .amount {
+    background: #248aa7;
+    padding: 1px 3px;
+    border-radius: 3px;
+    color: white;
+}
+
+.minorlist .reviews .review .stars {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5px;
+}
+
+.minorlist .reviews .stars p {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.minorlist .reviews .review .star {
+    color: #fff01a;
+    font-size: 17px;
+}
+
+.minorlist .reviews .review .stars .row {
+    display: flex;
+    margin: 0px auto;
 }
