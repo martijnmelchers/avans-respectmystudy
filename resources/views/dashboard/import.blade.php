@@ -7,6 +7,11 @@
         <div class="wrapper">
             <article>
                 <h1>Importeer minors</h1>
+
+                <div class="bar">
+                    <div class="inner"></div>
+                    <div class="text"></div>
+                </div>
             </article>
 
             <div class="buttons">
@@ -24,7 +29,7 @@
         var errors = [];
 
         function importSchools(page = 1, progress = 0) {
-            $.getJSON("organisations/?page=" + page, function (o) {
+            $.getJSON("/import/organizations/?page=" + page, function (o) {
                 console.log(o);
                 console.log("Pagina " + page + "; Progress: " + progress);
 

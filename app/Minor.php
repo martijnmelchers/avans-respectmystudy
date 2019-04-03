@@ -14,7 +14,6 @@ class Minor extends Model
         "phonenumber",
         "email",
         "kiesopmaat",
-        "place",
         "ects",
         "subject",
         "goals",

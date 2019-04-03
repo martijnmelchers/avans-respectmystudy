@@ -26,3 +26,5 @@ Route::get('/import', function() {
 })->name('organisation');
 
 Route::get('/import/minors', 'ImportController@Minors');
+
+Route::get('/import/organizations', 'ImportController@Organisations');
