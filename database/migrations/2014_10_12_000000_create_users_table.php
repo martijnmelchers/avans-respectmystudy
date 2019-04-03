@@ -22,8 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('password', 'max:100');
             $table->rememberToken();
             $table->timestamps();
-            $table->foreign('id')->references('user_id')->on('newsitems');
-            $table->foreign('id')->references('id')->on('personal_informations');
+
+            $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('minor_id')->references('id')->on('minors');
         });
     }
 
