@@ -16,6 +16,7 @@ class CreateNewsitemsTable extends Migration
         Schema::create('newsitems', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->unique();
+            $table->string('title', 255);
             $table->longText('description');
             $table->date('publishing_date');
             $table->timestamps();
