@@ -18,6 +18,7 @@ class CreateEducationPeriodsTable extends Migration
             $table->string('name', '45');
             $table->dateTime('begin');
             $table->dateTime('end');
+            $table->timestamps();
         });
     }
 

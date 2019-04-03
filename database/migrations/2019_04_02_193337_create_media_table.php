@@ -14,11 +14,11 @@ class CreateMediaTable extends Migration
     public function up()
     {
         Schema::create('media', function (Blueprint $table) {
-            $table->increments('id')->primary();
-            $table->integer('media_type_id');
+            $table->increments('id');
+            $table->unsignedInteger('media_type_id');
             $table->integer('minor_id');
-            $table->integer('newsitem_id')->nullable();
-            $table->string('media_link', 'max:250')->nullable();
+            $table->unsignedInteger('newsitem_id')->nullable();
+            $table->string('media_link', '250')->nullable();
             $table->timestamps();
 
             $table->foreign('media_type_id')->references('id')->on('media_types');

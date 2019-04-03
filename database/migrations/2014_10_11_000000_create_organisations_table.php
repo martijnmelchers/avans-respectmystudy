@@ -19,6 +19,7 @@ class CreateOrganisationsTable extends Migration
             $table->string('email', '45');
             $table->string('phonenumber', '45');
             $table->string('location', '45');
+            $table->timestamps();
         });
     }
 

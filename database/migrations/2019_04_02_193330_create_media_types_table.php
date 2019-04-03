@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRolesTable extends Migration
+class CreateMediaTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
-            $table->increments('id', 'max:45')->primary();
-            $table->string('role_name', 'max:45')->unique();
-            $table->string('role_description', 'max:45')->nullable();
+        Schema::create('media_types', function (Blueprint $table) {
+            $table->increments("id");
+            $table->string('media_type', '45');
+            $table->text('media_type_description')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('media_types');
     }
 }

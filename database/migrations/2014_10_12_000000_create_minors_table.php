@@ -14,15 +14,14 @@ class CreateMinorsTable extends Migration
     public function up()
     {
         Schema::create('minors', function (Blueprint $table) {
-            $table->increments('id')->primary();
-            $table->string('minor_name', 'max:45');
+            $table->integer('id');
             $table->double('version', 8, 2);
-            $table->string('phonenumber', 'max:45');
-            $table->string('email', 'max:45');
+
+            $table->string('minor_name', '45');
+            $table->string('phonenumber', '45');
+            $table->string('email', '45');
             $table->integer('kiesopmaat');
-            $table->string('place', 'max:45');
-            $table->timestamp('created');
-            $table->timestamp('modified');
+            $table->string('place', '45');
             $table->double('ects', 8, 2);
             $table->text('subject');
             $table->text('goals');
@@ -30,19 +29,22 @@ class CreateMinorsTable extends Migration
             $table->text('examination');
             $table->double('contact_hours', 8, 2)->nullable();
             $table->integer('costs')->nullable();
-            $table->string('level', 'max:45');
-            $table->string('education_type', 'max:45')->nullable();
-            $table->string('language', 'max:45');
+            $table->string('level', '45');
+            $table->string('education_type', '45')->nullable();
+            $table->string('language', '45');
             $table->text('extra_information')->nullable();
             $table->tinyInteger('is_published');
             $table->tinyInteger('is_enrollable');
-            $table->integer('organisation_id')->unique();
-            $table->integer('location_id')->unique();
-            $table->integer('education_period_id')->unique();
+            $table->unsignedInteger('organisation_id');
+            $table->unsignedInteger('location_id');
+            $table->unsignedInteger('education_period_id');
+            $table->timestamps();
 
             $table->foreign('organisation_id')->references('id')->on('organisations');
             $table->foreign('location_id')->references('id')->on('locations');
             $table->foreign('education_period_id')->references('id')->on('education_periods');
+
+            $table->primary(["id", "version"]);
         });
     }
 

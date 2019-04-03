@@ -14,15 +14,17 @@ class CreatePersonalInformationsTable extends Migration
     public function up()
     {
         Schema::create('personal_informations', function (Blueprint $table) {
-            $table->increments('id')->primary();
-            $table->string('email', 'max:45')->unique();
-            $table->string('phonenumber', 'max:15');
+            $table->unsignedInteger('user_id');
+            $table->string('email', '45')->unique();
+            $table->string('phonenumber', '15');
             $table->string('zipcode');
             $table->integer('housenumber');
-            $table->string('firstname', 'max:45');
-            $table->string('infix', 'max:25');
-            $table->string('surname', 'max:45');
+            $table->string('firstname', '45');
+            $table->string('infix', '25');
+            $table->string('surname', '45');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
