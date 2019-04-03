@@ -41,7 +41,6 @@ class CreateMinorsTable extends Migration
             $table->timestamps();
 
             $table->foreign('organisation_id')->references('id')->on('organisations');
-            $table->foreign('location_id')->references('id')->on('locations');
             $table->foreign('education_period_id')->references('id')->on('education_periods');
 
             $table->primary(["id", "version"]);
