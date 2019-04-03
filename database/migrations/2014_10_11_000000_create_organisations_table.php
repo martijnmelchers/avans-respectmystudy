@@ -15,10 +15,10 @@ class CreateOrganisationsTable extends Migration
     {
         Schema::create('organisations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', '45');
-            $table->string('email', '45');
-            $table->string('phonenumber', '45');
-            $table->string('location', '45');
+            $table->string('name', 255);
+            $table->string('abbreviation', 20);
+            $table->string("type", 5);
+            $table->boolean("participates");
             $table->timestamps();
         });
     }
