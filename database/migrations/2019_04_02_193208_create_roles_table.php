@@ -18,7 +18,6 @@ class CreateRolesTable extends Migration
             $table->string('role_name', 'max:45')->unique();
             $table->string('role_description', 'max:45')->nullable();
             $table->timestamps();
-            $table->foreign('id')->references('role_id')->on('users');
         });
     }
 

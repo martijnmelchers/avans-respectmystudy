@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
 
+            $table->foreign('id')->references('id')->on('personal_informations');
             $table->foreign('role_id')->references('id')->on('roles');
             $table->foreign('minor_id')->references('id')->on('minors');
         });

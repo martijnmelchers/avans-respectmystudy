@@ -20,6 +20,10 @@ class CreateMediaTable extends Migration
             $table->integer('newsitem_id')->nullable();
             $table->string('media_link', 'max:250')->nullable();
             $table->timestamps();
+
+            $table->foreign('media_type_id')->references('id')->on('media_types');
+            $table->foreign('minor_id')->references('id')->on('minors');
+            $table->foreign('newsitem_id')->references('id')->on('newsitems');
         });
     }
 

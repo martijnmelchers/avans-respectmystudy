@@ -25,6 +25,8 @@ class CreateLocationsTable extends Migration
             $table->string('visitingzip', 'max:15');
             $table->string('visitingcity', 'max:100');
             $table->integer('organisation_id')->unique();
+
+            $table->foreign('organisation_id')->references('id')->on('organisations');
         });
     }
 

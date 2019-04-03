@@ -18,8 +18,6 @@ class CreateMediaTypesTable extends Migration
             $table->string('media_type_name', 'max:45');
             $table->text('media_type_description')->nullable();
             $table->timestamps();
-            $table->foreign('id')->references('media_type_id')->on('medias');
-
         });
     }
 
