@@ -15,7 +15,7 @@ class CreateMediaTypesTable extends Migration
     {
         Schema::create('media_types', function (Blueprint $table) {
             $table->increments("id");
-            $table->string('media_type', '45');
+            $table->string('mediaType', '45');
             $table->text('media_type_description')->nullable();
             $table->timestamps();
         });
