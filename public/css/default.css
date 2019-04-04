@@ -192,6 +192,11 @@ a {
     transition: box-shadow 0.2s;
 }
 
+.list.stretch .item {
+    flex-grow: 1;
+    text-align: center;
+}
+
 .list .item:hover {
     -webkit-box-shadow: 10px 10px 20px #c3c3c3;
     -moz-box-shadow: 10px 10px 20px #c3c3c3;
@@ -316,7 +321,8 @@ a {
 .buttons {
     display: flex;
     flex-wrap: wrap;
-    margin: 10px 0;
+    margin: 5px 0 5px -10px;
+    width: calc(100% + 20px);
 }
 
 .buttons a, .button {
@@ -340,12 +346,12 @@ a {
 }
 
 .buttons a, .buttons .button {
-    margin-right: 20px;
+    margin: 10px;
 }
 
-.buttons a:last-child, .buttons .button:last-child {
-    margin-right: 0px;
-}
+/*.buttons a:last-child, .buttons .button:last-child {*/
+    /*margin-right: 0px;*/
+/*}*/
 
 /* Button Colors */
 .button.blue {

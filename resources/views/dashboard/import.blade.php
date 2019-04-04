@@ -12,6 +12,10 @@
                     <div class="inner"></div>
                     <div class="text"></div>
                 </div>
+
+                <div id="errors">
+
+                </div>
             </article>
 
             <div class="buttons">
@@ -48,7 +52,7 @@
         }
 
         function importLocations(page = 1, progress = 0) {
-            $.getJSON("locations/?page=" + page, function (o) {
+            $.getJSON("/import/locations/?page=" + page, function (o) {
                 console.log(o);
 
                 total = o.count;
@@ -86,7 +90,7 @@
                 document.getElementById('errors').innerHTML = "";
                 errors.forEach(function (e) {
                     document.getElementById("errors").innerHTML += "<div class='alert red'>" + e.error + "</div>";
-                })
+                });
 
                 if (o.next != null) {
                     importProgrammes(page + 1, progress);

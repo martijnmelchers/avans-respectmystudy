@@ -38,18 +38,25 @@ class Minor extends Model
         parent::__construct($attributes);
     }
 
-    // Return reviews
-
+    // Return organisation
     public function organisation()
     {
         return $this->belongsTo('App\Organisation');
     }
 
+    // Return locaties
+    public function locations()
+    {
+        return $this->belongsToMany('App\Location', 'minors_locations');
+    }
+
+    // Return reviews
     public function reviews()
     {
         return $this->belongsTo('App\Review');
     }
 
+    // Return average stars (not done)
     /** @return array[float] */
     public function averageStars()
     {

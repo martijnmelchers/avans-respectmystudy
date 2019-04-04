@@ -48,6 +48,12 @@ class ImportController extends Controller
             $minor = Minor::all()->where('id', $r->id)->first();
             if (isset($minor)) {
                 // Minor staat al in de database
+
+                // Update locations
+                foreach ($r->locations as $l) {
+                    $location = Location::find($l);
+                    $minor->locations()->attach($location);
+                }
             } else {
                 $minor = new Minor([
                     "id" => $r->id,
@@ -69,6 +75,14 @@ class ImportController extends Controller
                     "organisation_id" => $r->ownedby_organisation,
                 ]);
                 $minor->save();
+
+                // Insert locations
+                foreach ($r->locations as $l) {
+                    $location = Location::find($l);
+                    $minor = Minor::all()->where("id", $r->id)->first();
+
+                    $minor->locations()->attach($location);
+                }
             }
         }
 
@@ -117,7 +131,7 @@ class ImportController extends Controller
                 // Organisatie staat al in de database
             } else {
                 $organization = new Organisation([
-                    "id"=>$r->id,
+                    "id" => $r->id,
                     "name" => $r->name,
                     "abbreviation" => $r->abbreviation,
                     "type" => $r->type,
@@ -152,7 +166,7 @@ class ImportController extends Controller
             $page = "";
         }
 
-        curl_setopt($ch, CURLOPT_URL, "https://www.kiesopmaat.nl/api/public/module/$i$page");
+        curl_setopt($ch, CURLOPT_URL, "https://www.kiesopmaat.nl/api/public/location/$i$page");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 
@@ -181,15 +195,24 @@ class ImportController extends Controller
 
             } else {
                 $location = new Location([
+                    "id" => $r->id,
+                    "name" => $r->name,
+                    "primarylocation" => $r->primarylocation,
+                    "mailaddress" => $r->mailaddress,
+                    "mailcity" => $r->mailcity,
+                    "mailzip" => $r->mailzip,
+                    "establishment" => 0,
+                    "visitingaddress" => $r->visitingaddress,
+                    "visitingzip" => $r->visitingzip,
+                    "visitingcity" => $r->visitingcity,
+                    "organisation_id" => $r->ownedby_organisation,
                 ]);
                 $location->save();
-                echo json_encode($r, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
             }
         }
 
         curl_close($ch);
-
-        header("Content-type: text/json");
-//        echo json_encode($php_result);
+        return response($result, 200)
+            ->header('Content-Type', 'text/json');
     }
 }
