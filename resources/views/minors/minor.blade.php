@@ -31,6 +31,10 @@
                 <p>{!! $minor->examination !!}</p>
             </article>
 
+            <article>
+                <h3>Locaties waar deze minor wordt gegeven:</h3>
+                <p>Klik op een locatie om er meer over te zien.</p>
+            </article>
             <div class="buttons">
                 @foreach ($minor->locations as $location)
                     <a href="{{route('location', $location->id)}}">{{$location->name}}</a>
@@ -40,7 +44,6 @@
             <div class="buttons" style="margin-bottom: 50px;">
                 <a href="{{route('organisation', $minor->organisation->id)}}" class="button blue">Alle minors
                     van {{$minor->organisation->name}}</a>
-                <a href="/" class="button blue">Alle minors in [PLAATS]</a>
             </div>
         </div>
     </div>

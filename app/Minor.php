@@ -30,12 +30,20 @@ class Minor extends Model
         "organisation_id",
         "location_id"
     ];
+    private $avg_quality;
+    private $avg_studiability;
+    private $avg_content;
 
     // Return organisation
 
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
+
+        global $avg_content, $avg_studiability, $avg_quality;
+        $avg_quality = rand(1, 5);
+        $avg_studiability = rand(1, 5);
+        $avg_content = rand(1, 5);
     }
 
     // Return organisation
@@ -57,12 +65,11 @@ class Minor extends Model
     }
 
     // Return average stars (not done)
+
     /** @return array[float] */
     public function averageStars()
     {
-        $avg_quality = $avg_studiability = $avg_content = 0;
-
-
+        global $avg_content, $avg_studiability, $avg_quality;
         return [$avg_quality, $avg_studiability, $avg_content];
     }
 }

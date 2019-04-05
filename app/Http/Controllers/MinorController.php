@@ -14,9 +14,12 @@ class MinorController extends Controller
 //        $minors = array(new Minor(["id" => 1, "name" => "Minor 1"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]));
 
         $search_name = $search_ects = "";
+        $selected_organisations = array();
 
         if (isset($_GET['name'])) $search_name = $_GET['name'];
         if (isset($_GET['ects'])) $search_ects = $_GET['ects'];
+
+        if (isset($_GET['organisations']) && is_array($_GET['organisations'])) $selected_organisations = $_GET['organisations'];
 
         $per_page = 10;
         $offset = 0;
@@ -35,13 +38,33 @@ class MinorController extends Controller
             ->where("name", "like", "%${search_name}%")
             ->where("ects", "like", "%${search_ects}%")
             ->count();
+        $total_minor_amount = $pages;
         $pages = round($pages / $per_page);
 
+        if (isset($selected_organisations) && sizeof($selected_organisations) > 0) {
+            $selected_minors = $minors;
+            $minors = array();
+
+            foreach ($selected_minors as $minor) {
+                if (in_array($minor->organisation_id, $selected_organisations))
+                    $minors[] = $minor;
+            }
+        }
 
         $organisations = Organisation::all();
 
 //        echo $minors[0]->reviews();
-        return view('minors/list', ["minors" => $minors, "organisations" => $organisations, "pages" => $pages, "page" => $offset, "request" => $request, "name" => $search_name, "ects" => $search_ects]);
+        return view('minors/list', [
+            "minors" => $minors,
+            "organisations" => $organisations,
+            "selected_organisations" => $selected_organisations,
+            "pages" => $pages,
+            "page" => $offset,
+            "request" => $request,
+            "name" => $search_name,
+            "ects" => $search_ects,
+            "total_minor_amount" => $total_minor_amount
+        ]);
     }
 
     public function Minor($id)

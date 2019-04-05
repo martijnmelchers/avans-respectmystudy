@@ -26,6 +26,19 @@
                     <a href="/location/{{$location->id}}">{{$location->name}}</a>
                 @endforeach
             </div>
+
+            <article>
+                <h3>Alle minors van {{$organisation->name}}</h3>
+            </article>
+            @if (sizeof($organisation->minors) > 0)
+                <div class="buttons">
+                    @foreach ($organisation->minors as $minor)
+                        <a href="/location/{{$minor->id}}">{{$minor->name}}</a>
+                    @endforeach
+                </div>
+            @else
+                <article>We hebben geen minors gevonden voor {{$organisation->name}}</article>
+            @endif
         </div>
     </div>
 @endsection

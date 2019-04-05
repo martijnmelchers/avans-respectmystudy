@@ -54,11 +54,43 @@
         .pagenav .block.previous:hover, .pagenav .block.next:hover {
             box-shadow: 10px 10px 20px #c3c3c3;
         }
+
+        .collapse {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            padding: 3px;
+            border-radius: 3px;
+            margin: 5px 0;
+            background: #ECF0F1;
+            border: 2px solid #dee2e3;
+        }
+
+        .collapse .drop {
+            max-height: 0px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            /*justify-content: flex-start;*/
+            font-size: 13px;
+
+            -webkit-transition: max-height 0.5s;
+            -moz-transition: max-height 0.5s;
+            -ms-transition: max-height 0.5s;
+            -o-transition: max-height 0.5s;
+            transition: max-height 0.5s;
+        }
+
+        .collapse:hover .drop {
+            max-height: 300px;
+            overflow-y: scroll;
+        }
     </style>
 
     <div class="content wide">
         <div class="sidebar">
             <h3 class="center">Filter minors</h3>
+            <p>{{$total_minor_amount}} minors gevonden</p>
 
             <form method="get" class="form" autocomplete="off">
                 <div class="formline wrap">
@@ -68,11 +100,17 @@
                     <label for="ects" class="wide">Studiepunten</label>
                     <input type="text" id="ecs" name="ects" value="{{$ects}}" placeholder="Studiepunten"></div>
 
-                {{--<ul>--}}
-                {{--@foreach($organisations as $organisation)--}}
-                {{--<li>{{$organisation->name}}</li>--}}
-                {{--@endforeach--}}
-                {{--</ul>--}}
+                <div class="collapse">
+                    <div class="title">Organisaties ({{sizeof($selected_organisations)}} geselecteerd)</div>
+                    <div class="drop">
+                        @foreach($organisations as $organisation)
+                            <div class="formline">
+                                <input name="organisations[]" <?php if (in_array($organisation['id'], $selected_organisations)) echo "checked"; ?> type="checkbox" id="{{$organisation->id}}" value="{{$organisation->id}}"><label
+                                        for="{{$organisation->id}}">{{$organisation->name}}</label>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
                 <input type="submit">
             </form>
         </div>
@@ -100,7 +138,6 @@
                                     <p>1 andere onderwijsperiode</p>
                                 </div>
                                 <div class="review">
-                                    B:{{$minor->reviews}}
                                     {{--@if (sizeof($minor->reviews) > 0)--}}
                                     <div class="text">
                                         <b>Beoordelingen door studenten</b>
