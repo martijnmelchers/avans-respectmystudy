@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>@yield('title', "RespectMyStudy")</title>
+    <title>@yield('title', "RespectMyStudy") - RespectMyStudy</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro:400,700" rel="stylesheet">
@@ -28,6 +28,7 @@
     <div class="nav-buttons">
         <a href="/">Home</a>
         <a href="/minors">Minoren</a>
+        <a href="{{route('map')}}">Kaart</a>
         <a href="{{route('organisations')}}">Organisaties</a>
 
         <div class="divider"></div>

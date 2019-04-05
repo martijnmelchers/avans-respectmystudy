@@ -37,60 +37,20 @@
             top: 80px;
             z-index: 100;
         }
+
+        @media all and (max-width: 800px){
+            .sidebar {
+                top: 40px;
+                margin: 0 20px;
+            }
+        }
     </style>
 @endsection
 
 @section('content')
     <style>
-        .pagenav {
-            justify-self: center;
-            display: flex;
-            flex-direction: column;
-            width: 200px;
-            justify-content: center;
-            margin: 5px auto 30px auto;
-            text-align: center;
-        }
-
-        .pagenav .text {
-            background: white;
-            border-radius: 5px;
-            padding: 4px;
-            margin: 5px auto;
-        }
-
-        .pagenav .pages {
-            display: flex;
-            justify-content: center;
-        }
-
-        .pagenav .block {
-            background: white;
-            border-radius: 5px;
-            padding: 5px;
-            margin: 0 5px;
-        }
-
-        .pagenav .block i {
-            font-size: 10px;
-            margin-bottom: 3px;
-        }
-
-        .pagenav .block.current {
-            opacity: 0.5;
-        }
-
-        .pagenav .block.previous, .pagenav .block.next {
-            cursor: pointer;
-            -webkit-transition: box-shadow 0.2s;
-            -moz-transition: box-shadow 0.2s;
-            -ms-transition: box-shadow 0.2s;
-            -o-transition: box-shadow 0.2s;
-            transition: box-shadow 0.2s;
-        }
-
-        .pagenav .block.previous:hover, .pagenav .block.next:hover {
-            box-shadow: 10px 10px 20px #c3c3c3;
+        .sidebar.wide {
+            min-width: 250px;
         }
 
         .collapse {
@@ -130,9 +90,9 @@
     </style>
 
     <div class="content wide">
-        <div class="sidebar">
+        <div class="sidebar wide">
             <h3 class="center">Filter minors</h3>
-            <p>{{$total_minor_amount}} minors gevonden</p>
+            <p>{{sizeof($locations)}} locaties gevonden</p>
 
             <form method="get" class="form" autocomplete="off">
                 <div class="formline wrap">
@@ -178,26 +138,6 @@
                 {{--<div id="marker" style="width: 10px; height: 10px; background: black;"></div>--}}
             </div>
             <script type="text/javascript">
-                // var map = new ol.Map({
-                //     target: 'map',
-                //     layers: [
-                //         new ol.layer.Tile({
-                //             source: new ol.source.OSM()
-                //         })
-                //     ],
-                //     view: new ol.View({
-                //         center: ol.proj.fromLonLat([5.159, 52.221]),
-                //         zoom: 7
-                //     })
-                // });
-                //
-                // var marker = new ol.Overlay({
-                //     position: ol.proj.fromLonLat([5.159, 52.221]),
-                //     positioning: 'center-center',
-                //     element: document.getElementById('marker'),
-                //     stopEvent: false
-                // });
-                // map.addOverlay(marker);
                 var mymap = L.map('map', {
                     zoomControl: false
                 }).setView([52, 3.9], 7);
@@ -205,6 +145,20 @@
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 }).addTo(mymap);
+
+                navigator.geolocation.getCurrentPosition(function(location) {
+                    var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
+
+                    var m = L.circle(latlng, {
+                        color: 'red',
+                        fillColor: '#f03',
+                        fillOpacity: 0.5,
+                        radius: 500
+                    });
+
+                    m.bindPopup('Jouw locatie');
+                    m.addTo(mymap);
+                });
 
 
                 @foreach ($locations as $location)

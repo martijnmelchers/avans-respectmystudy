@@ -61,13 +61,6 @@ class MapController extends Controller
         // Calculate the total minor amount
         $total_minor_amount = sizeof($all_minors);
 
-        // Select the right amount of minors
-        $minors = array();
-        for ($i = $offset * $per_page; $i < ($offset * $per_page) + $per_page; $i++) {
-            if (isset($all_minors[$i]))
-                $minors[] = $all_minors[$i];
-        }
-
         // Calculate the amount of pages
         $pages = round($total_minor_amount / $per_page);
 
@@ -75,20 +68,28 @@ class MapController extends Controller
         $organisations = Organisation::orderBy('name')->get();
 
         // Select all locations
-//        $locations = array();
-//
-//        foreach ($minors as $minor) {
-//            echo strip_tags($minor->locations);
-//            foreach ($minor->locations as $location)
-//                if (!in_array($location, $locations))
-//                    $locations[] = $location;
-//        }
-        $locations = Location::all();
+        $locations = array();
+
+        foreach ($all_minors as $minor) {
+            foreach ($minor->locations as $location) {
+                $in_array = false;
+
+                foreach ($locations as $l) {
+                    if ($location->id == $l->id) {
+                        $in_array = true;
+                        break;
+                    }
+                }
+
+                if (!$in_array)
+                    $locations[] = $location;
+            }
+        }
 
 //        echo $minors[0]->reviews();
         // Return view with all variables
         return view('minors/map', [
-            "minors" => $minors,
+            "minors" => $all_minors,
             "locations" => $locations,
             "organisations" => $organisations,
             "selected_organisations" => $selected_organisations,

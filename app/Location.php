@@ -23,7 +23,7 @@ class Location extends Model
     ];
 
     public function Minors() {
-        return $this->belongsToMany("App\Minor", "minors_locations");
+        return $this->belongsToMany("App\Minor", "minors_locations", "location_id", "minor_id");
     }
 
     public function organisation() {
