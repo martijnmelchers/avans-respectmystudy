@@ -14,26 +14,31 @@ class MinorController extends Controller
 //        $minors = array(new Minor(["id" => 1, "name" => "Minor 1"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]));
 
         $search_name = $search_ects = "";
-        $selected_organisations = array();
+        $selected_organisations = $selected_languages = array();
 
         if (isset($_GET['name'])) $search_name = $_GET['name'];
         if (isset($_GET['ects'])) $search_ects = $_GET['ects'];
 
         if (isset($_GET['organisations']) && is_array($_GET['organisations'])) $selected_organisations = $_GET['organisations'];
+        if (isset($_GET['languages']) && is_array($_GET['languages'])) $selected_languages = $_GET['languages'];
 
+        // Default settings
         $per_page = 10;
         $offset = 0;
         if (isset($_GET['page']))
             $offset = intval($_GET['page']);
 
+        // Set allowed languages
+        $languages = array('nl', 'de', 'en', 'es');
+
+        // Get all minors with base search parameters
         $all_minors = Minor::where([
             ["name", "like", "%${search_name}%"],
             ["ects", "like", "%${search_ects}%"],
 //            ["is_enrollable", "=", true]
         ])->get();
 
-        $total_minor_amount = sizeof($all_minors);
-
+        // Filter organisations
         if (isset($selected_organisations) && sizeof($selected_organisations) > 0) {
             $selected_minors = $all_minors;
             $all_minors = array();
@@ -44,21 +49,41 @@ class MinorController extends Controller
             }
         }
 
+        // Filter languages
+        if (isset($selected_languages) && sizeof($selected_languages) > 0) {
+            $selected_minors = $all_minors;
+            $all_minors = array();
+
+            foreach ($selected_minors as $minor) {
+                if (in_array($minor->language, $selected_languages))
+                    $all_minors[] = $minor;
+            }
+        }
+
+        // Calculate the total minor amount
+        $total_minor_amount = sizeof($all_minors);
+
+        // Select the right amount of minors
         $minors = array();
         for ($i = $offset * $per_page; $i < ($offset * $per_page) + $per_page; $i++) {
             if (isset($all_minors[$i]))
             $minors[] = $all_minors[$i];
         }
 
-        $organisations = Organisation::orderBy('name')->get();
-
+        // Calculate the amount of pages
         $pages = round($total_minor_amount / $per_page);
 
+        // Select all organisations
+        $organisations = Organisation::orderBy('name')->get();
+
 //        echo $minors[0]->reviews();
+        // Return view with all variables
         return view('minors/list', [
             "minors" => $minors,
             "organisations" => $organisations,
             "selected_organisations" => $selected_organisations,
+            "languages" => $languages,
+            "selected_languages" => $selected_languages,
             "pages" => $pages,
             "page" => $offset,
             "request" => $request,

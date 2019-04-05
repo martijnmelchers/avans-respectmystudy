@@ -61,13 +61,13 @@
             flex-grow: 1;
             padding: 3px;
             border-radius: 3px;
-            margin: 5px 0;
+            margin: 13px 0;
             background: #ECF0F1;
             border: 2px solid #dee2e3;
         }
 
         .collapse .drop {
-            max-height: 0px;
+            max-height: 0;
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -82,12 +82,12 @@
         }
 
         .collapse:hover .drop {
-            max-height: 300px;
+            max-height: 200px;
             overflow-y: scroll;
         }
 
         .collapse .drop .formline {
-            margin: 5px 0;
+            margin: 2px 0;
         }
     </style>
 
@@ -111,6 +111,18 @@
                             <div class="formline">
                                 <input name="organisations[]" <?php if (in_array($organisation['id'], $selected_organisations)) echo "checked"; ?> type="checkbox" id="{{$organisation->id}}" value="{{$organisation->id}}"><label
                                         for="{{$organisation->id}}">{{$organisation->name}}</label>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="collapse">
+                    <div class="title">Talen ({{sizeof($selected_languages)}} geselecteerd)</div>
+                    <div class="drop">
+                        @foreach($languages as $language)
+                            <div class="formline">
+                                <input name="languages[]" <?php if (in_array($language, $selected_languages)) echo "checked"; ?> type="checkbox" id="{{$language}}" value="{{$language}}"><label
+                                        for="{{$language}}">{{$language}}</label>
                             </div>
                         @endforeach
                     </div>
