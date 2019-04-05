@@ -49,6 +49,7 @@ class ImportController extends Controller
             if (isset($minor)) {
                 // Minor staat al in de database
 
+                $minor->locations()->detach();
                 // Update locations
                 foreach ($r->locations as $l) {
                     $location = Location::find($l);

@@ -26,32 +26,33 @@ class MinorController extends Controller
         if (isset($_GET['page']))
             $offset = intval($_GET['page']);
 
-        $minors = Minor::limit($per_page)
-            ->where("name", "like", "%${search_name}%")
-            ->where("ects", "like", "%${search_ects}%")
-            ->offset($offset * $per_page)
-            ->get();
+        $all_minors = Minor::where([
+            ["name", "like", "%${search_name}%"],
+            ["ects", "like", "%${search_ects}%"],
+//            ["is_enrollable", "=", true]
+        ])->get();
 
-        $pages = round(sizeof($minors) / $per_page);
-
-        $pages = Minor::limit($per_page)
-            ->where("name", "like", "%${search_name}%")
-            ->where("ects", "like", "%${search_ects}%")
-            ->count();
-        $total_minor_amount = $pages;
-        $pages = round($pages / $per_page);
+        $total_minor_amount = sizeof($all_minors);
 
         if (isset($selected_organisations) && sizeof($selected_organisations) > 0) {
-            $selected_minors = $minors;
-            $minors = array();
+            $selected_minors = $all_minors;
+            $all_minors = array();
 
             foreach ($selected_minors as $minor) {
                 if (in_array($minor->organisation_id, $selected_organisations))
-                    $minors[] = $minor;
+                    $all_minors[] = $minor;
             }
         }
 
-        $organisations = Organisation::all();
+        $minors = array();
+        for ($i = $offset * $per_page; $i < ($offset * $per_page) + $per_page; $i++) {
+            if (isset($all_minors[$i]))
+            $minors[] = $all_minors[$i];
+        }
+
+        $organisations = Organisation::orderBy('name')->get();
+
+        $pages = round($total_minor_amount / $per_page);
 
 //        echo $minors[0]->reviews();
         return view('minors/list', [

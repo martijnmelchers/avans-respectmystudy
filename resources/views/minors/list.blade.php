@@ -85,6 +85,10 @@
             max-height: 300px;
             overflow-y: scroll;
         }
+
+        .collapse .drop .formline {
+            margin: 5px 0;
+        }
     </style>
 
     <div class="content wide">
