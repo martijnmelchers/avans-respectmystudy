@@ -19,6 +19,9 @@ Route::get('/', function () {
 Route::get('/minors', 'MinorController@List')->name('minors');
 Route::get('/minor/{id}', 'MinorController@Minor')->name('minor');
 
+// Kaart
+Route::get('/map', 'MapController@Map')->name('map');
+
 
 // Organisaties
 Route::get('/organisations', "OrganisationController@list")->name('organisations');

@@ -17,7 +17,9 @@ class Location extends Model
         "visitingaddress",
         "visitingzip",
         "visitingcity",
-        "organisation_id"
+        "organisation_id",
+        "lat",
+        "lon",
     ];
 
     public function Minors() {

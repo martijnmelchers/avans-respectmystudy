@@ -172,7 +172,8 @@ class ImportController extends Controller
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 
         $headers = array();
-        $headers[] = 'Authorization: Token Be6060c3147a74aaec4c15f3531fcc0dcadebe50';
+        $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
+        $headers[] = "Authorization: Token $kiesopmaat_token";
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($ch);
@@ -193,7 +194,32 @@ class ImportController extends Controller
         foreach ($php_result->results as $r) {
             $location = Location::all()->where('id', $r->id)->first();
             if (isset($location)) {
+                $curl = curl_init();
 
+                $postalcode = str_replace(" ", "", $r->visitingzip);
+                $key = env("GOOGLEMAPS_API_KEY", null);
+
+                // Get location from Google Maps API if key is set in .env and there isn't already a lat
+                if (isset($key) && !isset($location->lat)) {
+                    // Google maps API voor alle locaties
+                    curl_setopt($ch, CURLOPT_URL, "https://maps.googleapis.com/maps/api/geocode/json?address=$postalcode&key=$key");
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+
+                    $google_result = curl_exec($ch);
+                    $php_result = json_decode($google_result);
+
+                    if (sizeof($php_result->results) > 0) {
+                        foreach ($php_result->results as $r) {
+                            $lat = floatval($r->geometry->location->lat);
+                            $lon = floatval($r->geometry->location->lng);
+
+                            $location->lat = $lat;
+                            $location->lon = $lon;
+                            $location->save();
+                        }
+                    }
+                }
             } else {
                 $location = new Location([
                     "id" => $r->id,
@@ -209,6 +235,34 @@ class ImportController extends Controller
                     "organisation_id" => $r->ownedby_organisation,
                 ]);
                 $location->save();
+
+                // Google Maps latlong interpretor
+                $curl = curl_init();
+
+                $postalcode = str_replace(" ", "", $r->visitingzip);
+                $key = env("GOOGLEMAPS_API_KEY", null);
+
+                // Get location from Google Maps API if key is set in .env and there isn't already a lat
+                if (isset($key) && !isset($location->lat)) {
+                    // Google maps API voor alle locaties
+                    curl_setopt($ch, CURLOPT_URL, "https://maps.googleapis.com/maps/api/geocode/json?address=$postalcode&key=$key");
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+
+                    $google_result = curl_exec($ch);
+                    $php_result = json_decode($google_result);
+
+                    if (sizeof($php_result->results) > 0) {
+                        foreach ($php_result->results as $r) {
+                            $lat = floatval($r->geometry->location->lat);
+                            $lon = floatval($r->geometry->location->lng);
+
+                            $location->lat = $lat;
+                            $location->lon = $lon;
+                            $location->save();
+                        }
+                    }
+                }
             }
         }
 
