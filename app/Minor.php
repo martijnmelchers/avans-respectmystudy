@@ -32,20 +32,20 @@ class Minor extends Model
         "location_id"
     ];
 
-    // Return organisation
+
 
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
     }
 
-    // Return reviews
-
+    // Return organisation
     public function organisation()
     {
         return $this->belongsTo('App\Organisation');
     }
 
+    // Return reviews
     public function reviews()
     {
         return $this->belongsTo('App\Review');
