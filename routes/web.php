@@ -11,10 +11,15 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function () {   
     return view('welcome');
 });
 
-Route::get('/surf/login', function() {
-    return Saml2::login(URL::full());
-});
+Route::get('/surf/login', 'SurfController@linkSurf')->middleware(['auth']);
+ 
+Route::get('/account', 'AccountController@index')->middleware(['auth']);
+Route::get('/account/linked', 'AccountController@linked');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth']);

@@ -1,7 +1,7 @@
 <?php
 
 //This is variable is an example - Just make sure that the urls in the 'idp' config are ok.
-$idp_host = env('SAML2_IDP_HOST', 'http://localhost:8000/simplesaml');
+$idp_host = env('SAML2_IDP_HOST', 'https://engine.test.surfconext.nl/authentication/idp/single-sign-on/key:20181213');
 
 return $settings = array(
 
@@ -24,7 +24,7 @@ return $settings = array(
      * which middleware group to use for the saml routes
      * Laravel 5.2 will need a group which includes StartSession
      */
-    'routesMiddleware' => [],
+    'routesMiddleware' => ['saml'],
 
     /**
      * Indicates how the parameters will be
@@ -61,7 +61,7 @@ return $settings = array(
     // or unencrypted messages if it expects them signed or encrypted
     // Also will reject the messages if not strictly follow the SAML
     // standard: Destination, NameId, Conditions ... are validated too.
-    'strict' => true, //@todo: make this depend on laravel config
+    'strict' => false, //@todo: make this depend on laravel config
 
     // Enable debug mode (to print errors)
     'debug' => env('APP_DEBUG', true),
@@ -82,12 +82,12 @@ return $settings = array(
 
         // Usually x509cert and privateKey of the SP are provided by files placed at
         // the certs folder. But we can also provide them with the following parameters
-        'x509cert' => env('SAML2_SP_x509',''),
-        'privateKey' => env('SAML2_SP_PRIVATEKEY',''),
+        'x509cert' =>   "file://".config_path("saml.crt"),
+        'privateKey' => "file://".config_path("saml.key"),
 
         // Identifier (URI) of the SP entity.
         // Leave blank to use the 'saml_metadata' route.
-        'entityId' => env('SAML2_SP_ENTITYID',''),
+        'entityId' => env('SAML2_SP_ENTITYID','https://caste.serveo.net/saml2/metadata'),
 
         // Specifies info about where and how the <AuthnResponse> message MUST be
         // returned to the requester, in this case our SP.
@@ -95,7 +95,7 @@ return $settings = array(
             // URL Location where the <Response> from the IdP will be returned,
             // using HTTP-POST binding.
             // Leave blank to use the 'saml_acs' route
-            'url' => '',
+            'url' => 'https://caste.serveo.net/saml2/acs',
         ),
         // Specifies info about where and how the <Logout Response> message MUST be
         // returned to the requester, in this case our SP.
@@ -117,24 +117,24 @@ return $settings = array(
         'singleSignOnService' => array(
             // URL Target of the IdP where the SP will send the Authentication Request Message,
             // using HTTP-Redirect binding.
-            'url' => 'https://engine.surfconext.nl/authentication/idp/single-sign-on/key:20181213',
+            'url' => 'https://engine.test.surfconext.nl/authentication/idp/single-sign-on/key:20190208',
         ),
-
-
 
         // SLO endpoint info of the IdP.
         'singleLogoutService' => array(
             // URL Location of the IdP where the SP will send the SLO Request,
             // using HTTP-Redirect binding.
-            'url' => $idp_host . '/saml2/idp/SingleLogoutService.php',
+            'url' => 'https://engine.test.surfconext.nl/authentication/idp/SingleLogoutService.php',
         ),
         // Public x509 certificate of the IdP
-        'x509cert' => env('SAML2_IDP_x509', 'MIID/TCCAuWgAwIBAgIJAI4R3WyjjmB1MA0GCSqGSIb3DQEBCwUAMIGUMQswCQYDVQQGEwJBUjEVMBMGA1UECAwMQnVlbm9zIEFpcmVzMRUwEwYDVQQHDAxCdWVub3MgQWlyZXMxDDAKBgNVBAoMA1NJVTERMA8GA1UECwwIU2lzdGVtYXMxFDASBgNVBAMMC09yZy5TaXUuQ29tMSAwHgYJKoZIhvcNAQkBFhFhZG1pbmlAc2l1LmVkdS5hcjAeFw0xNDEyMDExNDM2MjVaFw0yNDExMzAxNDM2MjVaMIGUMQswCQYDVQQGEwJBUjEVMBMGA1UECAwMQnVlbm9zIEFpcmVzMRUwEwYDVQQHDAxCdWVub3MgQWlyZXMxDDAKBgNVBAoMA1NJVTERMA8GA1UECwwIU2lzdGVtYXMxFDASBgNVBAMMC09yZy5TaXUuQ29tMSAwHgYJKoZIhvcNAQkBFhFhZG1pbmlAc2l1LmVkdS5hcjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMbzW/EpEv+qqZzfT1Buwjg9nnNNVrxkCfuR9fQiQw2tSouS5X37W5h7RmchRt54wsm046PDKtbSz1NpZT2GkmHN37yALW2lY7MyVUC7itv9vDAUsFr0EfKIdCKgxCKjrzkZ5ImbNvjxf7eA77PPGJnQ/UwXY7W+cvLkirp0K5uWpDk+nac5W0JXOCFR1BpPUJRbz2jFIEHyChRt7nsJZH6ejzNqK9lABEC76htNy1Ll/D3tUoPaqo8VlKW3N3MZE0DB9O7g65DmZIIlFqkaMH3ALd8adodJtOvqfDU/A6SxuwMfwDYPjoucykGDu1etRZ7dF2gd+W+1Pn7yizPT1q8CAwEAAaNQME4wHQYDVR0OBBYEFPsn8tUHN8XXf23ig5Qro3beP8BuMB8GA1UdIwQYMBaAFPsn8tUHN8XXf23ig5Qro3beP8BuMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBAGu60odWFiK+DkQekozGnlpNBQz5lQ/bwmOWdktnQj6HYXu43e7sh9oZWArLYHEOyMUekKQAxOK51vbTHzzw66BZU91/nqvaOBfkJyZKGfluHbD0/hfOl/D5kONqI9kyTu4wkLQcYGyuIi75CJs15uA03FSuULQdY/Liv+czS/XYDyvtSLnu43VuAQWN321PQNhuGueIaLJANb2C5qq5ilTBUw6PxY9Z+vtMjAjTJGKEkE/tQs7CvzLPKXX3KTD9lIILmX5yUC3dLgjVKi1KGDqNApYGOMtjr5eoxPQrqDBmyx3flcy0dQTdLXud3UjWVW3N0PYgJtw5yBsS74QTGD4='),
+        // 'x509cert' => env('SAML2_IDP_x509', "file://".config_path("surfconexttest.pem")),
+    
+        'x509cert'=> "",
         /*
          *  Instead of use the whole x509cert you can use a fingerprint
          *  (openssl x509 -noout -fingerprint -in "idp.crt" to generate it)
          */
-        // 'certFingerprint' => '',
+        'certFingerprint' => 'B7:D7:CD:4B:24:5B:B9:6E:C1:D6:47:81:80:67:15:08:34:1F:3A:2C',
     ),
 
 
@@ -173,7 +173,6 @@ return $settings = array(
                                                 )
         */
         'signMetadata' => false,
-
 
         /** signatures and encryptions required **/
 
@@ -220,7 +219,11 @@ return $settings = array(
 /* Interoperable SAML 2.0 Web Browser SSO Profile [saml2int]   http://saml2int.org/profile/current
 
    'authnRequestsSigned' => false,    // SP SHOULD NOT sign the <samlp:AuthnRequest>,
-                                      // MUST NOT assume that the IdP validates the sign
+          
+   
+   
+   // MUST NOT assume that the IdP validates the sign
+   
    'wantAssertionsSigned' => true,
    'wantAssertionsEncrypted' => true, // MUST be enabled if SSL/HTTPs is disabled
    'wantNameIdEncrypted' => false,
