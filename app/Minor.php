@@ -67,9 +67,22 @@ class Minor extends Model
     // Return average stars (not done)
 
     /** @return array[float] */
-    public function averageStars()
+    public function averageReviews()
     {
-        global $avg_content, $avg_studiability, $avg_quality;
-        return [$avg_quality, $avg_studiability, $avg_content];
+//        global $avg_content, $avg_studiability, $avg_quality;
+//        return [$avg_quality, $avg_studiability, $avg_content];
+        $reviews = Review::all()->where('minor_id', $this->id);
+
+        if (sizeof($reviews) > 0) {
+            $avg_content = $avg_teachers = $avg_studiability = 0;
+
+            $avg_content = $reviews->avg("grade_quality");
+            $avg_teachers = $reviews->avg("grade_content");
+            $avg_studiability = $reviews->avg("grade_studiability");
+
+            return [$avg_content, $avg_teachers, $avg_studiability, sizeof($reviews)];
+        } else {
+            return [];
+        }
     }
 }
