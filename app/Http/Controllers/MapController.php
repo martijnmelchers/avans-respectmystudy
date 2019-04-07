@@ -76,17 +76,20 @@ class MapController extends Controller
 
                 foreach ($locations as $l) {
                     if ($location->id == $l->id) {
+
                         $in_array = true;
                         break;
                     }
                 }
 
-                if (!$in_array)
+                if (!$in_array) {
                     $locations[] = $location;
+                }
             }
         }
 
-//        echo $minors[0]->reviews();
+//        $locations = Location::all();
+
         // Return view with all variables
         return view('minors/map', [
             "minors" => $all_minors,

@@ -6,6 +6,7 @@
     <style>
         .bar {
             width: 80%;
+            min-height: 17px;
             position: relative;
             background: white;
             -webkit-border-radius: 5px;
@@ -37,6 +38,9 @@
             left: 0;
             top: 0;
             z-index: 2;
+            width: 100%;
+            height: 100%;
+            color: black;;
         }
     </style>
     <div class="content">

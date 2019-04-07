@@ -196,13 +196,14 @@ class ImportController extends Controller
             if (isset($location)) {
                 $curl = curl_init();
 
+                $address = urlencode($r->visitingaddress);
                 $postalcode = str_replace(" ", "", $r->visitingzip);
                 $key = env("GOOGLEMAPS_API_KEY", null);
 
                 // Get location from Google Maps API if key is set in .env and there isn't already a lat
-                if (isset($key) && !isset($location->lat)) {
+                if (isset($key)) {
                     // Google maps API voor alle locaties
-                    curl_setopt($ch, CURLOPT_URL, "https://maps.googleapis.com/maps/api/geocode/json?address=$postalcode&key=$key");
+                    curl_setopt($ch, CURLOPT_URL, "https://maps.googleapis.com/maps/api/geocode/json?address=$address%20$postalcode&key=$key");
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
                     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 

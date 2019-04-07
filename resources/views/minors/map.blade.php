@@ -14,6 +14,8 @@
             integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
             crossorigin=""></script>
 
+    <script src="/js/leaflet-mouseposition.js"></script>
+
     <style>
         .nav {
             z-index: 10000;
@@ -87,6 +89,15 @@
         .collapse .drop .formline {
             margin: 2px 0;
         }
+
+        .leaflet-container .leaflet-control-mouseposition {
+            background-color: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 0 5px #bbb;
+            padding: 0 5px;
+            margin:0;
+            color: #333;
+            font: 11px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+        }
     </style>
 
     <div class="content wide">
@@ -146,6 +157,8 @@
                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 }).addTo(mymap);
 
+                L.control.mousePosition().addTo(mymap);
+
                 navigator.geolocation.getCurrentPosition(function(location) {
                     var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
 
@@ -166,6 +179,7 @@
                         var marker = L.marker([{{$location->lat}}, {{$location->lon}}]);
                         marker.bindPopup("<b>{{$location->name}}</b><br><a target='_blank' href='/location/{{$location->id}}'>Meer info</a>");
                         marker.addTo(mymap);
+                        console.log("{{$location->name}} toegevoegd op {{$location->lat}}, {{$location->lon}}");
                     @endif
                 @endforeach
             </script>
