@@ -1,12 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.default')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Mijn Account</div>
-                <div class="card-body">
+<div class="content">
+        <div class="wrapper wrap">
+            <article>
+                <h1>Welkom</h1>
+
                     @if ($surfUser == null)
                         <p>Heb je je account nog niet gelinked aan surf?</p>
 
@@ -32,9 +31,7 @@
 
                     @endif
        
-                </div>
-            </div>
+            </article>
         </div>
     </div>
-</div>
 @endsection

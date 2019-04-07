@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.default')
 
 @section('content')
 <div class="container">
@@ -14,7 +14,7 @@
                         </div>
                     @endif
                     Je bent ingelogd.
-                    
+
                     <a href="/account">Ga naar de mijn account pagina.</a>
                 </div>
             </div>

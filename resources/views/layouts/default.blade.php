@@ -22,12 +22,22 @@
 <div class="nav">
     <a href="/" class="title">RespectMyStudy</a>
     <div class="nav-buttons">
-        <a href="/">Home</a>
         <a href="/minors">Minoren</a>
 
         <div class="divider"></div>
         @auth
             <a href="{{ url('/account') }}">Home</a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </div>
         @else
             <a href="{{ route('home') }}">Login</a>
 
