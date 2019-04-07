@@ -32,9 +32,10 @@
         
         <a href="{{route('organisations')}}">Organisaties</a>
 
+        {{--Gray stripe--}}
         <div class="divider"></div>
         @auth
-            <a href="{{ url('/account') }}">Home</a>
+            <a href="{{ route('home') }}">Home</a>
         @else
             <a href="{{ route('home') }}">Login</a>
 

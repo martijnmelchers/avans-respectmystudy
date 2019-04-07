@@ -114,6 +114,7 @@ class MinorController extends Controller
     {
 //        $minor = Minor::all()->where("id", $id)->where("is_published", 1)->first();
         $minor = Minor::all()->where("id", $id)->first();
+        $reviews = Review::all()->where('minor_id', $id);
 
         if (isset($minor)) return view('minors/minor', compact('minor', 'reviews'));
         else return "Minor niet gevonden";
