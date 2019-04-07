@@ -30,22 +30,14 @@ class Minor extends Model
         "organisation_id",
         "location_id"
     ];
-    private $avg_quality;
-    private $avg_studiability;
-    private $avg_content;
 
-    // Return organisation
+
 
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-
-        global $avg_content, $avg_studiability, $avg_quality;
-        $avg_quality = rand(1, 5);
-        $avg_studiability = rand(1, 5);
-        $avg_content = rand(1, 5);
     }
-
+  
     // Return organisation
     public function organisation()
     {
@@ -57,7 +49,7 @@ class Minor extends Model
     {
         return $this->belongsToMany('App\Location', 'minors_locations');
     }
-
+  
     // Return reviews
     public function reviews()
     {

@@ -18,6 +18,7 @@ Route::get('/', function () {
 // Minors
 Route::get('/minors', 'MinorController@List')->name('minors');
 Route::get('/minor/{id}', 'MinorController@Minor')->name('minor');
+Route::post('/minor/{id}', 'MinorController@InsertReview')->name('minor');
 
 
 // Organisaties
