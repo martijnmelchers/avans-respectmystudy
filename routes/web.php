@@ -23,3 +23,16 @@ Route::get('/account/linked', 'AccountController@linked');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth']);
+
+Route::get('/minors', 'MinorController@List')->name('minors');
+
+Route::get('/minor/{id}', 'MinorController@Minor')->name('minor');
+Route::post('/minor/{id}', 'MinorController@InsertReview')->name('minor');
+
+Route::get('/organisation/{id}', 'MinorController@Minor')->name('organisation');
+
+Route::get('/import', function() {
+    return view('dashboard/import');
+})->name('organisation');
+
+Route::get('/import/minors', 'ImportController@Minors');

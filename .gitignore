@@ -21,3 +21,12 @@ yarn-error.log
 *.box
 
 logs/
+.idea/avans-respectmystudy.iml
+.idea/deployment.xml
+.idea/dictionaries/tjmar.xml
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/php.xml
+.idea/vcs.xml
+.idea/workspace.xml
