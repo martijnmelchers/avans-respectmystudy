@@ -18,13 +18,16 @@ class MinorController extends Controller
         $organisations = Organisation::all();
 
 //        echo $minors[0]->reviews();
-        return view('minors/list', ["minors" => $minors, "organisations"=>$organisations]);
+        return view('minors/list', ["minors" => $minors, "organisations" => $organisations]);
     }
 
     public function Minor($id)
     {
         $reviews = Review::all()->where("minor_id", $id);
-        $minor = Minor::all()->where("id", $id)->where("is_published", 1)->first();
+        $minor = Minor::all()
+            ->where("id", $id)
+//            ->where("is_published", 1)
+            ->first();
 
         if (isset($minor)) return view('minors/minor', compact('minor', 'reviews'));
         else return "Minor niet gevonden";
@@ -32,9 +35,17 @@ class MinorController extends Controller
 
     public function InsertReview(Request $request, $id)
     {
-        Review::create(['description' => $request->get('title'), 'minor_id'=> $id, 'user_id'=>1, 'grade_quality'=>$request->get('rating_1'),
-            'grade_studiability'=>$request->get('rating_2'), 'grade_content'=>$request->get('rating_3'), 'comment'=>$request->get('message'),
-            'created_at'=>now(), 'updated_at'=>now()]);
+        Review::create([
+            'description' => $request->get('title'),
+            'minor_id' => $id,
+            'user_id' => 1,
+            'grade_quality' => $request->get('rating_1'),
+            'grade_studiability' => $request->get('rating_2'),
+            'grade_content' => $request->get('rating_3'),
+            'comment' => $request->get('message'),
+            'created_at' => now(), 'updated_at' => now()
+        ]);
+
         return redirect()->back()->with('flash_message', 'Uw review is geplaatst!');
     }
 
