@@ -30,7 +30,7 @@
                 <h3>Toetsing</h3>
                 <p>{!! $minor->examination !!}</p>
             </article>
-            
+
             @if ($minor->locations->count() > 0)
                 <article>
                     <h3>Locaties waar deze minor wordt gegeven:</h3>
@@ -54,6 +54,7 @@
                     van {{$minor->organisation->name}}</a>
             </div>
             <article>
+                <h3>Voeg een nieuwe review toe</h3>
                 @if (Session::has('flash_message'))
                     <div class="alert">{{ Session::get('flash_message') }}
                         <span class="closebutton" onclick="this.parentElement.style.display='none';">&times;</span>
@@ -61,8 +62,12 @@
                 @endif
                 <form method="post">
                     {{ csrf_field() }}
-                    <input class="titlefield" type="text" name="title" placeholder="Vul hier de titel in...">
-                    <textarea name="message" required placeholder="Typ hier uw review..." type="message"></textarea>
+                    <div class="formline">
+                        <input class="titlefield" type="text" name="title" placeholder="Vul hier de titel in...">
+                    </div>
+                    <div class="formline">
+                        <textarea name="message" required placeholder="Typ hier uw review..." type="message"></textarea>
+                    </div>
                     <div class="stars">
                         <div class="rating">
                             <input type="radio" id="star5_1" name="rating_1" value="5"/>

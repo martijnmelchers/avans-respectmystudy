@@ -142,7 +142,7 @@ a {
     margin: 0 20px;
 }
 
-.content article{
+.content article {
     -webkit-box-shadow: 0 0 20px #c3c3c3;
     -moz-box-shadow: 0 0 20px #c3c3c3;
     box-shadow: 0 0 20px #c3c3c3;
@@ -153,7 +153,7 @@ a {
     margin: 10px 0px;
 }
 
-.content article  h1,h2,h3,h4,h5,h6{
+.content article h1, h2, h3, h4, h5, h6 {
     margin: 0;
     padding: 0;
 }
@@ -168,11 +168,12 @@ a {
     padding: 10px;
     margin: 10px 0px;
 }
-.content article .review_detail p{
+
+.content article .review_detail p {
     margin-top: 0;
 }
 
-.content article .review_detail .stars .yellow{
+.content article .review_detail .stars .yellow {
     color: yellow;
 }
 
@@ -344,6 +345,7 @@ a {
     margin: 0px auto;
     color: yellow;
 }
+
 .buttons {
     display: flex;
     flex-wrap: wrap;
@@ -376,7 +378,7 @@ a {
 }
 
 /*.buttons a:last-child, .buttons .button:last-child {*/
-    /*margin-right: 0px;*/
+/*margin-right: 0px;*/
 /*}*/
 
 /* Button Colors */
@@ -402,6 +404,7 @@ a {
     .content {
         flex-wrap: wrap;
     }
+
     .sidebar {
         position: relative;
         width: 100%;
@@ -433,12 +436,16 @@ a {
 .closebutton:hover {
     color: black;
 }
+
 .rating {
     border: none;
     text-align: center;
 }
 
-.rating > input { display: none; }
+.rating > input {
+    display: none;
+}
+
 .rating > label:before {
     margin: 5px;
     font-size: 1.25em;
@@ -456,24 +463,33 @@ a {
     color: #ddd;
     float: right;
 }
+
 .rating > input:checked ~ label,
 .rating:not(:checked) > label:hover,
-.rating:not(:checked) > label:hover ~ label { color: #FFD700;  }
+.rating:not(:checked) > label:hover ~ label {
+    color: #FFD700;
+}
 
 .rating > input:checked + label:hover,
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label,
-.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
-
-article form textarea{
-    width: 99%;
-    height: 300px;
+.rating > input:checked ~ label:hover ~ label {
+    color: #FFED85;
 }
 
-article form .titlefield{
+article form textarea {
+    flex-grow: 1;
+    border-radius: 5px;
+    display: block;
+    min-height: 50px;
+    border: 2px solid #dee2e3;
+    resize: vertical;
+}
+
+article form .titlefield {
     margin-bottom: 5px;
 }
 
-.rating b{
+.rating b {
     display: block;
 }
