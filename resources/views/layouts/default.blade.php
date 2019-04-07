@@ -11,6 +11,8 @@
     <link href="/css/default.css" type="text/css" rel="stylesheet">
     <link href="/css/form.css" type="text/css" rel="stylesheet">
 
+    {{--<link href="https://cdn.wordquest.nl/style/wordstrap-gen.css" type="text/css" rel="stylesheet">--}}
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
@@ -24,6 +26,7 @@
     <div class="nav-buttons">
         <a href="/">Home</a>
         <a href="/minors">Minoren</a>
+        <a href="{{route('organisations')}}">Organisaties</a>
 
         <div class="divider"></div>
         @auth

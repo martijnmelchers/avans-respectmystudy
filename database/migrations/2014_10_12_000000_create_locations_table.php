@@ -24,7 +24,7 @@ class CreateLocationsTable extends Migration
             $table->string('visitingaddress', 100);
             $table->string('visitingzip', '15');
             $table->string('visitingcity', '100');
-            $table->unsignedInteger('organisation_id');
+            $table->string('organisation_id', 10);
             $table->timestamps();
 
             $table->foreign('organisation_id')->references('id')->on('organisations');

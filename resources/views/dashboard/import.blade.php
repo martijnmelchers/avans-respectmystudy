@@ -7,6 +7,15 @@
         <div class="wrapper">
             <article>
                 <h1>Importeer minors</h1>
+
+                <div class="bar">
+                    <div class="inner"></div>
+                    <div class="text"></div>
+                </div>
+
+                <div id="errors">
+
+                </div>
             </article>
 
             <div class="buttons">
@@ -24,7 +33,7 @@
         var errors = [];
 
         function importSchools(page = 1, progress = 0) {
-            $.getJSON("organisations/?page=" + page, function (o) {
+            $.getJSON("/import/organizations/?page=" + page, function (o) {
                 console.log(o);
                 console.log("Pagina " + page + "; Progress: " + progress);
 
@@ -36,12 +45,14 @@
 
                 if (o.next != null) {
                     importSchools(page + 1, progress);
+                } else {
+                    document.getElementsByClassName("text")[0].innerHTML = "Scholen geïmporteerd";
                 }
             });
         }
 
         function importLocations(page = 1, progress = 0) {
-            $.getJSON("locations/?page=" + page, function (o) {
+            $.getJSON("/import/locations/?page=" + page, function (o) {
                 console.log(o);
 
                 total = o.count;
@@ -79,7 +90,7 @@
                 document.getElementById('errors').innerHTML = "";
                 errors.forEach(function (e) {
                     document.getElementById("errors").innerHTML += "<div class='alert red'>" + e.error + "</div>";
-                })
+                });
 
                 if (o.next != null) {
                     importProgrammes(page + 1, progress);

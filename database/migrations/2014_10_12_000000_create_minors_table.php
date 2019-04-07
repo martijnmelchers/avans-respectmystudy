@@ -35,7 +35,7 @@ class CreateMinorsTable extends Migration
             $table->text('extra_information')->nullable();
             $table->tinyInteger('is_published');
             $table->tinyInteger('is_enrollable');
-            $table->unsignedInteger('organisation_id');
+            $table->string('organisation_id', 10);
             $table->timestamps();
 
             $table->foreign('organisation_id')->references('id')->on('organisations');

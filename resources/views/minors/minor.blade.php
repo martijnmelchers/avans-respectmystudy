@@ -7,7 +7,7 @@
         <div class="wrapper wrap">
             <article>
                 <h1>{{$minor->name}}</h1>
-                <p>{{$minor->subject}}
+                <p>{!! $minor->subject !!}
                 </p>
             </article>
 
@@ -18,23 +18,40 @@
 
             <article>
                 <h3>Doelen</h3>
-                <p>{{$minor->goals}}</p>
+                <p>{!! $minor->goals !!}</p>
             </article>
 
             <article>
                 <h3>Requirements</h3>
-                <p>{{$minor->requirements}}</p>
+                <p>{!! $minor->requirements !!}</p>
             </article>
 
             <article>
                 <h3>Toetsing</h3>
-                <p>{{$minor->examination}}</p>
+                <p>{!! $minor->examination !!}</p>
             </article>
 
-            <div class="buttons">
-                <a href="{{route('organisation', $minor->organisation->id)}}" class="button blue">Alle minors
+            @if ($minor->locations->count() > 0)
+                <article>
+                    <h3>Locaties waar deze minor wordt gegeven:</h3>
+                    <p>Klik op een locatie om er meer over te zien.</p>
+                </article>
+                <div class="buttons">
+                    @foreach ($minor->locations as $location)
+                        <a href="{{route('location', $location->id)}}">{{$location->name}}</a>
+                    @endforeach
+                </div>
+            @else
+                <article>
+                    <h3>Locaties waar deze minor wordt geven:</h3>
+                    <p>We hebben geen locaties gevonden waar deze minor wordt gegeven.</p>
+                </article>
+            @endif
+
+            <div class="buttons" style="margin-bottom: 50px;">
+                <a href="{{route('minors', ["organisations"=>[$minor->organisation->id]])}}" class="button blue">Alle
+                    minors
                     van {{$minor->organisation->name}}</a>
-                <a href="/" class="button blue">Alle minors in [PLAATS]</a>
             </div>
             <article>
                 @if (Session::has('flash_message'))
