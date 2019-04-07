@@ -14,6 +14,12 @@ class OrganisationController extends Controller
     }
     public function List()
     {
+        $name = "";
+
+        if (isset($_GET['name'])) $name = $_GET['name'];
+
+        $organisations = Organisation::where([["name", "like", "$name"]])->get();
+
         $organisations = Organisation::all();
 
         return view('organisations/list', ["organisations" => $organisations]);
