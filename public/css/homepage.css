@@ -115,7 +115,7 @@ a {
     opacity: 1;
 }
 
-.content{
+.content {
     width: 100%;
     top: 50px;
     position: absolute;
@@ -124,7 +124,7 @@ a {
     align-items: flex-start;
 }
 
-.mainpagecontent{
+.mainpagecontent {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -132,39 +132,40 @@ a {
     background: white;
 }
 
-.mainpagesearch{
-    background: linear-gradient(to left,#89216B, #DA4453  );
-    padding:  68px 50px 98px 50px;
+.mainpagesearch {
+    background: linear-gradient(to left, #89216B, #DA4453);
+    padding: 68px 50px 98px 50px;
     display: flex;
     flex-direction: row;
     flex-grow: 1;
+    align-items: center;
 }
 
-.mainpagesearch h1{
+.mainpagesearch h1 {
     font-weight: bold;
     font-size: 32px;
     color: white;
 }
 
-.mainpagesearch h2{
+.mainpagesearch h2 {
     font-weight: bold;
     font-size: 24px;
 }
 
-.mainpagesearch p{
+.mainpagesearch p {
     font-size: 20px;
     color: white;
     font-weight: lighter;
 }
 
-.searcharticle{
+.searcharticle {
     width: 50%;
     margin-right: 80px;
     padding-top: 40px;
     padding-bottom: 40px;
 }
 
-.searcharticlewhite{
+.searcharticlewhite {
     display: flex;
     flex-direction: column;
     width: 50%;
@@ -173,15 +174,21 @@ a {
     border-radius: 3px;
     padding-top: 40px;
     padding-bottom: 40px;
-
 }
 
 .searcharticlewhite h2 {
-    font-size: 44px;
+    font-size: 2em;
     font-weight: 500;
     text-align: center;
     color: #434D53;
     padding: 8px;
+}
+
+.searcharticlewhite .info {
+    color: black;
+    font-size: 14px;
+    padding: 0;
+    margin: 0 30px;
 }
 
 .searcharticlefilter {
@@ -190,27 +197,29 @@ a {
     align-content: center;
 }
 
-.searcharticlefilter h3{
+.searcharticlefilter h3 {
     color: #434D53;
 }
 
-.searcharticlefilter span{
+.searcharticlefilter span {
     color: #434D53;
 }
 
-.searcharticlewhite input[type=text]{
+.searcharticlewhite input[type=text] {
     font-size: 20px;
     padding: 10px;
-    margin: 30px;
+    border-radius: 3px;
+    border: 2px solid #dee2e3;
+    margin: 15px 30px;
 }
 
-.articlebutton{
+.articlebutton {
     float: right;
     margin: 10px 30px;
 }
 
-.articlefill{
-    width:75%;
+.articlefill {
+    width: 75%;
 }
 
 .infogroup {
@@ -219,51 +228,53 @@ a {
     flex-direction: row;
     flex-grow: 1;
     flex-wrap: wrap;
-    padding:  58px 58px;
+    padding: 58px 58px;
     justify-content: space-between;
 }
 
-.infogroup article{
+.infogroup article {
     max-width: 30%;
 }
 
-.infogroup article a{
+.infogroup article a {
     width: 100%;
 }
 
-.infogroup h3{
+.infogroup h3 {
     font-weight: 600;
     text-align: left;
     font-size: 42px;
     color: #434D53;
 }
 
-.infogroup img{
+.infogroup img {
     display: block;
     width: 80px;
     height: 80px;
 }
 
-.infogroup p{
+.infogroup p {
     color: #848484;
 }
 
-.infogroup span{
+.infogroup span {
     color: #4D648D;
     padding: 20px;
+    font-size: 3em;
 }
 
-.infobutton{
+.infobutton {
     float: right;
     margin: 5px 20px;
 }
 
-.infopoint{
- display: flex;
+.infopoint {
+    display: flex;
+    align-items: center;
     flex-direction: row;
 }
 
-.infopointtext{
+.infopointtext {
     align-content: center;
     display: flex;
     flex-direction: column;
@@ -317,10 +328,24 @@ a {
 }
 
 @media all and (max-width: 1200px) {
-    .infogroup h3{
+    .infopoint {
+        justify-content: center;
+    }
+    .mainpagesearch {
+        flex-wrap: wrap;
+        align-items: stretch;
+    }
+
+    .searcharticle, .searcharticlewhite {
+        width: initial;
+        flex-grow: 1;
+        margin: 0;
+    }
+
+    .infogroup h3 {
         font-weight: 600;
         text-align: left;
-        font-size: 30px;
+        font-size: 25px;
         color: #434D53;
     }
 }
@@ -328,28 +353,29 @@ a {
 
 @media all and (max-width: 1000px) {
 
-    .mainpagesearch{
-        background: linear-gradient(to left,#89216B, #DA4453  );
-        padding:  58px 48px;
+    .mainpagesearch {
+        background: linear-gradient(to left, #89216B, #DA4453);
+        padding: 58px 48px;
         display: flex;
         flex-direction: column;
         flex-grow: 1;
     }
 
-    .searcharticle{
-        width: auto;
-    }
-    .searcharticlewhite{
+    .searcharticle {
         width: auto;
     }
 
-    .infogroup{
+    .searcharticlewhite {
+        width: auto;
+    }
+
+    .infogroup {
         flex-direction: column;
         flex-wrap: wrap;
         justify-content: center;
     }
 
-    .infogroup article{
+    .infogroup article {
         max-width: initial;
     }
 }
