@@ -143,10 +143,38 @@ a {
 }
 
 .content article {
+    -webkit-box-shadow: 0 0 20px #c3c3c3;
+    -moz-box-shadow: 0 0 20px #c3c3c3;
+    box-shadow: 0 0 20px #c3c3c3;
+    border-radius: 3px;
     background: white;
     padding: 10px;
     flex-grow: 1;
     margin: 10px 0px;
+}
+
+.content article h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+.content article .review_detail {
+    -webkit-box-shadow: 0 0 5px #c3c3c3;
+    -moz-box-shadow: 0 0 5px #c3c3c3;
+    box-shadow: 0 0 5px #c3c3c3;
+    border-radius: 3px;
+    background: #F6F6F6;
+    flex-grow: 1;
+    padding: 10px;
+    margin: 10px 0px;
+}
+
+.content article .review_detail p {
+    margin-top: 0;
+}
+
+.content article .review_detail .stars .yellow {
+    color: yellow;
 }
 
 .content.right {
@@ -167,7 +195,7 @@ a {
     background: white;
     width: calc(18% - 20px);
     padding: 20px;
-    min-width: 150px;
+    min-width: 200px;
     margin-left: 20px;
     border-radius: 3px;
     -webkit-box-shadow: 0 0 20px #c3c3c3;
@@ -190,6 +218,11 @@ a {
     -ms-transition: box-shadow 0.2s;
     -o-transition: box-shadow 0.2s;
     transition: box-shadow 0.2s;
+}
+
+.list.stretch .item {
+    flex-grow: 1;
+    text-align: center;
 }
 
 .list .item:hover {
@@ -290,33 +323,34 @@ a {
     color: white;
 }
 
-.minorlist .reviews .review .stars {
+.stars {
     display: flex;
     justify-content: space-around;
     margin-top: 5px;
 }
 
-.minorlist .reviews .stars p {
+.stars p {
     display: flex;
     flex-direction: column;
     text-align: center;
 }
 
-.minorlist .reviews .review .star {
+.review .star {
     color: #fff01a;
     font-size: 17px;
 }
 
-.minorlist .reviews .review .stars .row {
+.stars .row {
     display: flex;
     margin: 0px auto;
+    color: yellow;
 }
-
 
 .buttons {
     display: flex;
     flex-wrap: wrap;
-    margin: 10px 0;
+    margin: 5px 0 5px -10px;
+    width: calc(100% + 20px);
 }
 
 .buttons a, .button {
@@ -340,12 +374,12 @@ a {
 }
 
 .buttons a, .buttons .button {
-    margin-right: 20px;
+    margin: 10px;
 }
 
-.buttons a:last-child, .buttons .button:last-child {
-    margin-right: 0px;
-}
+/*.buttons a:last-child, .buttons .button:last-child {*/
+/*margin-right: 0px;*/
+/*}*/
 
 /* Button Colors */
 .button.blue {
@@ -370,9 +404,92 @@ a {
     .content {
         flex-wrap: wrap;
     }
+
     .sidebar {
         position: relative;
         width: 100%;
         margin: 0 40px 40px 40px;
     }
+}
+
+
+.alert {
+    padding: 15px;
+    background-color: limegreen;
+    color: white;
+    margin-bottom: 15px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.closebutton {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebutton:hover {
+    color: black;
+}
+
+.rating {
+    border: none;
+    text-align: center;
+}
+
+.rating > input {
+    display: none;
+}
+
+.rating > label:before {
+    margin: 5px;
+    font-size: 1.25em;
+    font-family: "Font Awesome 5 free";
+    display: inline-block;
+    content: "\f005";
+}
+
+.rating > .half:before {
+    content: "\f089";
+    position: absolute;
+}
+
+.rating > label {
+    color: #ddd;
+    float: right;
+}
+
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: #FFD700;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label {
+    color: #FFED85;
+}
+
+article form textarea {
+    flex-grow: 1;
+    border-radius: 5px;
+    display: block;
+    min-height: 50px;
+    border: 2px solid #dee2e3;
+    resize: vertical;
+}
+
+article form .titlefield {
+    margin-bottom: 5px;
+}
+
+.rating b {
+    display: block;
 }

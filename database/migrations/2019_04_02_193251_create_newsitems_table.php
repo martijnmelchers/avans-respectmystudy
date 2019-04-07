@@ -14,12 +14,14 @@ class CreateNewsitemsTable extends Migration
     public function up()
     {
         Schema::create('newsitems', function (Blueprint $table) {
-            $table->increments('id')->primary();
-            $table->integer('user_id')->unique();
+            $table->increments('id');
+            $table->unsignedInteger('user_id')->unique();
+            $table->string('title', 255);
             $table->longText('description');
             $table->date('publishing_date');
             $table->timestamps();
-            $table->foreign('id')->references('newsitem_id')->on('media');
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

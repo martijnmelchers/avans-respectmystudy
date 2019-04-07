@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMediaTable extends Migration
+class CreateReviewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,19 @@ class CreateMediaTable extends Migration
      */
     public function up()
     {
-        Schema::create('media', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('media_type_id');
+            $table->text('description');
             $table->integer('minor_id');
-            $table->unsignedInteger('newsitem_id')->nullable();
-            $table->string('media_link', '250')->nullable();
+            $table->unsignedInteger('user_id');
+            $table->float('grade_quality', 8, 2);
+            $table->float('grade_studiability', 8, 2);
+            $table->float('grade_content', 8, 2);
+            $table->text('comment')->nullable();
             $table->timestamps();
 
-            $table->foreign('media_type_id')->references('id')->on('media_types');
             $table->foreign('minor_id')->references('id')->on('minors');
-            $table->foreign('newsitem_id')->references('id')->on('newsitems');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -34,6 +36,6 @@ class CreateMediaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('media');
+        Schema::dropIfExists('reviews');
     }
 }

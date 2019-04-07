@@ -14,12 +14,10 @@ class CreateMediaTypesTable extends Migration
     public function up()
     {
         Schema::create('media_types', function (Blueprint $table) {
-            $table->increments('id')->primary();
-            $table->string('media_type_name', 'max:45');
+            $table->increments("id");
+            $table->string('mediaType', '45');
             $table->text('media_type_description')->nullable();
             $table->timestamps();
-            $table->foreign('id')->references('media_type_id')->on('medias');
-
         });
     }
 
