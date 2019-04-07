@@ -29,6 +29,7 @@
         <a href="/">Home</a>
         <a href="/minors">Minoren</a>
         <a href="{{route('map')}}">Kaart</a>
+        
         <a href="{{route('organisations')}}">Organisaties</a>
 
         <div class="divider"></div>

@@ -1,5 +1,6 @@
 @extends('layouts/default')
 
+
 @section("title", "Locatie $location->name")
 
 @section('content')

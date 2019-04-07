@@ -30,19 +30,27 @@
                 <h3>Toetsing</h3>
                 <p>{!! $minor->examination !!}</p>
             </article>
-
-            <article>
-                <h3>Locaties waar deze minor wordt gegeven:</h3>
-                <p>Klik op een locatie om er meer over te zien.</p>
-            </article>
-            <div class="buttons">
-                @foreach ($minor->locations as $location)
-                    <a href="{{route('location', $location->id)}}">{{$location->name}}</a>
-                @endforeach
-            </div>
+            
+            @if ($minor->locations->count() > 0)
+                <article>
+                    <h3>Locaties waar deze minor wordt gegeven:</h3>
+                    <p>Klik op een locatie om er meer over te zien.</p>
+                </article>
+                <div class="buttons">
+                    @foreach ($minor->locations as $location)
+                        <a href="{{route('location', $location->id)}}">{{$location->name}}</a>
+                    @endforeach
+                </div>
+            @else
+                <article>
+                    <h3>Locaties waar deze minor wordt geven:</h3>
+                    <p>We hebben geen locaties gevonden waar deze minor wordt gegeven.</p>
+                </article>
+            @endif
 
             <div class="buttons" style="margin-bottom: 50px;">
-                <a href="{{route('organisation', $minor->organisation->id)}}" class="button blue">Alle minors
+                <a href="{{route('minors', ["organisations"=>[$minor->organisation->id]])}}" class="button blue">Alle
+                    minors
                     van {{$minor->organisation->name}}</a>
             </div>
             <article>

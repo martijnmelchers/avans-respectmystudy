@@ -194,7 +194,7 @@ a {
     background: white;
     width: calc(18% - 20px);
     padding: 20px;
-    min-width: 150px;
+    min-width: 200px;
     margin-left: 20px;
     border-radius: 3px;
     -webkit-box-shadow: 0 0 20px #c3c3c3;

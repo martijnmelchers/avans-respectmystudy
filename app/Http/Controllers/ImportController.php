@@ -146,7 +146,7 @@ class ImportController extends Controller
         return response($result, 200)
             ->header('Content-Type', 'text/json');
     }
-
+  
     public function Locations()
     {
         // KiesOpMaat API format: https://hastebin.com/egiyatugam.xml
@@ -172,8 +172,10 @@ class ImportController extends Controller
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 
         $headers = array();
-        $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
+
+      $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
         $headers[] = "Authorization: Token $kiesopmaat_token";
+      
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($ch);

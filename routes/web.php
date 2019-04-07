@@ -28,7 +28,6 @@ Route::get('/map', 'MapController@Map')->name('map');
 Route::get('/organisations', "OrganisationController@list")->name('organisations');
 Route::get('/organisation/{id}', 'OrganisationController@Organisation')->name('organisation');
 
-
 // Locaties
 Route::get('/locations', "LocationController@list")->name('locations');
 Route::get('/location/{id}', 'LocationController@Location')->name('location');
