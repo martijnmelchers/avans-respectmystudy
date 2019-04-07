@@ -13,11 +13,12 @@ class MinorController extends Controller
     {
 //        $minors = array(new Minor(["id" => 1, "name" => "Minor 1"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]));
 
-        $search_name = $search_ects = "";
+        $search_name = $search_ects = $orderby = "";
         $selected_organisations = $selected_languages = array();
 
         if (isset($_GET['name'])) $search_name = $_GET['name'];
         if (isset($_GET['ects'])) $search_ects = $_GET['ects'];
+        if (isset($_GET['orderby'])) $orderby = $_GET['orderby'];
 
         if (isset($_GET['organisations']) && is_array($_GET['organisations'])) $selected_organisations = $_GET['organisations'];
         if (isset($_GET['languages']) && is_array($_GET['languages'])) $selected_languages = $_GET['languages'];
@@ -31,12 +32,23 @@ class MinorController extends Controller
         // Set allowed languages
         $languages = array('nl', 'de', 'en', 'es');
 
+        if (isset($orderby)) {
+            switch ($orderby) {
+                case "name":
+                    $orderby = "name";
+                    break;
+                default:
+                    $orderby = "id";
+            }
+        }
+
         // Get all minors with base search parameters
         $all_minors = Minor::where([
             ["name", "like", "%${search_name}%"],
-            ["ects", "like", "%${search_ects}%"],
-//            ["is_enrollable", "=", true]
-        ])->get();
+            ["ects", "like", "%${search_ects}%"]])
+//            ["is_enrollable", "=", true]])
+            ->orderBy($orderby)
+            ->get();
 
         // Filter organisations
         if (isset($selected_organisations) && sizeof($selected_organisations) > 0) {
@@ -67,7 +79,7 @@ class MinorController extends Controller
         $minors = array();
         for ($i = $offset * $per_page; $i < ($offset * $per_page) + $per_page; $i++) {
             if (isset($all_minors[$i]))
-            $minors[] = $all_minors[$i];
+                $minors[] = $all_minors[$i];
         }
 
         // Calculate the amount of pages
@@ -89,7 +101,8 @@ class MinorController extends Controller
             "request" => $request,
             "name" => $search_name,
             "ects" => $search_ects,
-            "total_minor_amount" => $total_minor_amount
+            "total_minor_amount" => $total_minor_amount,
+            "orderby" => $orderby,
         ]);
     }
 

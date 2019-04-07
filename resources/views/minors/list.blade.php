@@ -148,6 +148,15 @@
                         @endforeach
                     </div>
                 </div>
+
+                <div class="formline wrap">
+                    <label class="wide">Sorteren</label>
+                    <select name="orderby">
+                        <option value="">Geen volgorde</option>
+                        <option <?php if ($orderby == "name") echo "selected"; ?> value="name">Naam</option>
+                    </select>
+                </div>
+
                 <input type="submit">
             </form>
         </div>
@@ -170,9 +179,9 @@
                             <div class="reviews">
                                 <div class="period">
                                     <p><b>Onderwijsperiodes</b></p>
-                                    <p><i class="far fa-calendar-alt"></i> 26 aug 2019 t/m 24 jan 2020</p>
-                                    <p><i class="far fa-edit"></i> Tot 10 augustus</p>
-                                    <p>1 andere onderwijsperiode</p>
+                                    <p><i class="far fa-calendar-alt"></i> Geen onderwijsperiode</p>
+                                    <p><i class="far fa-edit"></i> Geen inschrijfdatum</p>
+                                    <p>Geen andere info</p>
                                 </div>
                                 <div class="review">
                                     @if (sizeof($minor->averageReviews()) > 0)
