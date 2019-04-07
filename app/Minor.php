@@ -32,7 +32,6 @@ class Minor extends Model
     ];
 
 
-
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
@@ -43,7 +42,7 @@ class Minor extends Model
     {
         return $this->belongsTo('App\Organisation');
     }
-
+  
     // Return locaties
     public function locations()
     {

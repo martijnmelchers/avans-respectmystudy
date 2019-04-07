@@ -1,6 +1,7 @@
 @extends('layouts/default')
 
-@section("title", "Locatie")
+
+@section("title", "Locatie $location->name")
 
 @section('content')
     <div class="content">
@@ -19,7 +20,7 @@
             </article>
             <div class="buttons">
                 @foreach ($location->minors as $minor)
-                    <a href="/location/{{$minor->id}}">{{$minor->name}}</a>
+                    <a href="{{route('minor', $minor->id)}}">{{$minor->name}}</a>
                 @endforeach
             </div>
 

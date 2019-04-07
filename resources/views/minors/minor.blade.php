@@ -30,7 +30,7 @@
                 <h3>Toetsing</h3>
                 <p>{!! $minor->examination !!}</p>
             </article>
-
+            
             @if ($minor->locations->count() > 0)
                 <article>
                     <h3>Locaties waar deze minor wordt gegeven:</h3>

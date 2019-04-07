@@ -17,11 +17,13 @@ class Location extends Model
         "visitingaddress",
         "visitingzip",
         "visitingcity",
-        "organisation_id"
+        "organisation_id",
+        "lat",
+        "lon",
     ];
 
     public function Minors() {
-        return $this->belongsToMany("App\Minor", "minors_locations");
+        return $this->belongsToMany("App\Minor", "minors_locations", "location_id", "minor_id");
     }
 
     public function organisation() {

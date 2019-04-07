@@ -156,7 +156,6 @@
                         <option <?php if ($orderby == "name") echo "selected"; ?> value="name">Naam</option>
                     </select>
                 </div>
-
                 <input type="submit">
             </form>
         </div>

@@ -20,11 +20,13 @@ Route::get('/minors', 'MinorController@List')->name('minors');
 Route::get('/minor/{id}', 'MinorController@Minor')->name('minor');
 Route::post('/minor/{id}', 'MinorController@InsertReview')->name('minor');
 
+// Kaart
+Route::get('/map', 'MapController@Map')->name('map');
+
 
 // Organisaties
 Route::get('/organisations', "OrganisationController@list")->name('organisations');
 Route::get('/organisation/{id}', 'OrganisationController@Organisation')->name('organisation');
-
 
 // Locaties
 Route::get('/locations', "LocationController@list")->name('locations');

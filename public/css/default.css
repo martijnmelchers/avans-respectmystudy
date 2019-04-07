@@ -348,7 +348,7 @@ a {
     display: flex;
     flex-wrap: wrap;
     margin: 5px 0 5px -10px;
-    width: calc(100% + 20px)
+    width: calc(100% + 20px);
 }
 
 .buttons a, .button {

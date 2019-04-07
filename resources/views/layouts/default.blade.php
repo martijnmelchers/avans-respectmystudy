@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>@yield('title', "RespectMyStudy")</title>
+    <title>@yield('title', "RespectMyStudy") - RespectMyStudy</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro:400,700" rel="stylesheet">
@@ -19,6 +19,8 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     {{--<link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">--}}
+
+    @yield('head')
 </head>
 <body>
 <div class="nav">
@@ -26,6 +28,8 @@
     <div class="nav-buttons">
         <a href="/">Home</a>
         <a href="/minors">Minoren</a>
+        <a href="{{route('map')}}">Kaart</a>
+        
         <a href="{{route('organisations')}}">Organisaties</a>
 
         <div class="divider"></div>
