@@ -26,7 +26,7 @@
                     </div>
                     <div class="searcharticlewhite">
                         <h2>Zoek in onze 1687 minors</h2>
-                        <form method="get" autocomplete="off" action="minors">
+                        <form id="minor_zoek" method="get" autocomplete="off" action="minors">
                             <p class="info">Zoek hier in onze database met minors.</p>
                             <div class="formline">
                                 <input name="name" placeholder="vul een zoekopdracht in.." type="text">
@@ -38,9 +38,16 @@
                             {{--</div>--}}
                             <div class="articlebutton">
                                 <div class="buttons">
-                                    <a href="/" class="button blue">Zoeken</a>
+                                    <a id="minor_zoek_btn" class="button blue">Zoeken</a>
                                 </div>
+                            </div>
                         </form>
+                        <script>
+                            // TODO Later misschien zoek button naar input submit veranderen
+                            document.getElementById("minor_zoek_btn").addEventListener("click", function() {
+                                document.getElementById("minor_zoek").submit();
+                            });
+                        </script>
                     </div>
                 </div>
             </div>
