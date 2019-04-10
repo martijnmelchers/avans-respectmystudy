@@ -48,11 +48,17 @@ class Minor extends Model
     {
         return $this->belongsToMany('App\Location', 'minors_locations');
     }
-  
+
     // Return reviews
     public function reviews()
     {
         return $this->belongsTo('App\Review');
+    }
+
+    // Return themes
+    public function themes()
+    {
+        return $this->belongsToMany('App\Theme', 'minors_themes');
     }
 
     // Return average stars (not done)

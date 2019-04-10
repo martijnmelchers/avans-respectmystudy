@@ -47,16 +47,27 @@ class ImportController extends Controller
 
         foreach ($php_result->results as $r) {
             $minor = Minor::all()->where('id', $r->id)->first();
+
+            // Check if minor exists
             if (isset($minor)) {
-                // Minor staat al in de database
+                // Minor already exists
 
                 $minor->locations()->detach();
+                $minor->themes()->detach();
+
                 // Update locations
                 foreach ($r->locations as $l) {
                     $location = Location::find($l);
                     $minor->locations()->attach($location);
                 }
+
+                // Update themes
+                foreach ($r->choicethemes as $t) {
+                    $theme = Theme::find($t);
+                    $minor->themes()->attach($theme);
+                }
             } else {
+                // Create a new minor
                 $minor = new Minor([
                     "id" => $r->id,
                     "version" => 1,

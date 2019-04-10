@@ -13,7 +13,9 @@
 
             <h3>Thema's:</h3>
             <ul>
-                <li>Geen thema's</li>
+                @foreach ($minor->themes as $theme)
+                    <li>{{$theme->name}}</li>
+                @endforeach
             </ul>
         </div>
         <div class="wrapper wrap">
