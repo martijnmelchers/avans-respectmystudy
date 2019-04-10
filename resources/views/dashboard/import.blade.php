@@ -119,7 +119,7 @@
 
                 console.log("Pagina " + page + "; Progress: " + progress);
 
-                document.getElementsByClassName("text")[0].innerHTML = "Locaties importeren";
+                document.getElementsByClassName("text")[0].innerHTML = "Minors importeren";
                 document.getElementsByClassName("inner")[0].style.width = ((100 * progress) / total) + "%";
 
                 if (o.errors != null && o.errors.length > 0) {
@@ -148,7 +148,7 @@
 
                 console.log("Pagina " + page + "; Progress: " + progress);
 
-                document.getElementsByClassName("text")[0].innerHTML = "Locaties importeren";
+                document.getElementsByClassName("text")[0].innerHTML = "Thema's importeren";
                 document.getElementsByClassName("inner")[0].style.width = ((100 * progress) / total) + "%";
 
                 if (o.errors != null && o.errors.length > 0) {

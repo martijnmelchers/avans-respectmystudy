@@ -96,6 +96,13 @@ class ImportController extends Controller
 
                     $minor->locations()->attach($location);
                 }
+
+                // Insert themes
+                foreach ($r->choicethemes as $t) {
+                    $theme = Theme::find($t);
+                    $minor = Minor::all()->where("id", $r->id)->first();
+                    $minor->themes()->attach($theme);
+                }
             }
         }
 

@@ -24,6 +24,7 @@ class MinorController extends Controller
 
         if (isset($_GET['organisations']) && is_array($_GET['organisations'])) $selected_organisations = $_GET['organisations'];
         if (isset($_GET['languages']) && is_array($_GET['languages'])) $selected_languages = $_GET['languages'];
+        if (isset($_GET['themes']) && is_array($_GET['themes'])) $selected_themes = $_GET['themes'];
 
         // Default settings
         $per_page = 10;
@@ -71,6 +72,20 @@ class MinorController extends Controller
             foreach ($selected_minors as $minor) {
                 if (in_array($minor->language, $selected_languages))
                     $all_minors[] = $minor;
+            }
+        }
+
+        // Filter themes
+        if (isset($selected_themes) && sizeof($selected_themes) > 0) {
+            $selected_minors = $all_minors;
+            $all_minors = array();
+
+            foreach ($selected_minors as $minor) {
+                foreach ($minor->themes as $theme) {
+//                    echo $theme->name;
+                    if (in_array($theme->id, $selected_themes))
+                        $all_minors[] = $minor;
+                }
             }
         }
 

@@ -185,7 +185,7 @@
                                     <p>{{Strip_tags(substr($minor->subject, 0, 550))}}...</p>
                                 </div>
                                 <div class="media">
-                                    <img src="https://wordquest.nl/items/images/avatars/PixelAstronaut.gif">
+                                    <img src="https://wordquest.nl/media/avatars/PixelAstronaut.gif">
                                     <h2 class="points"><span class="ec">{{$minor->ects}}</span> EC</h2>
                                 </div>
                             </div>
