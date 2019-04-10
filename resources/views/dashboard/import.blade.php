@@ -62,6 +62,7 @@
                 <div class="button" onclick="importProgrammes()">Importeer minors</div>
                 <div class="button" onclick="importLocations()">Importeer Locaties</div>
                 <div class="button" onclick="importSchools()">Importeer Organisaties</div>
+                <div class="button" onclick="importThemes()">Importeer Thema's</div>
             </div>
         </div>
     </div>
@@ -134,6 +135,35 @@
 
                 if (o.next != null) {
                     importProgrammes(page + 1, progress);
+                }
+            });
+        }
+
+        function importThemes(page = 1, progress = 0) {
+            $.getJSON("/import/themes/?page=" + page, function (o) {
+                console.log(o);
+
+                total = o.count;
+                progress += o.results.length;
+
+                console.log("Pagina " + page + "; Progress: " + progress);
+
+                document.getElementsByClassName("text")[0].innerHTML = "Locaties importeren";
+                document.getElementsByClassName("inner")[0].style.width = ((100 * progress) / total) + "%";
+
+                if (o.errors != null && o.errors.length > 0) {
+                    o.errors.forEach(function (e) {
+                        errors.push(e);
+                    })
+                }
+
+                document.getElementById('errors').innerHTML = "";
+                errors.forEach(function (e) {
+                    document.getElementById("errors").innerHTML += "<div class='alert red'>" + e.error + "</div>";
+                });
+
+                if (o.next != null) {
+                    importThemes(page + 1, progress);
                 }
             });
         }

@@ -136,6 +136,20 @@
                 </div>
 
                 <div class="collapse">
+                    <div class="title">Thema's ({{sizeof($selected_themes)}} geselecteerd)</div>
+                    <div class="drop">
+                        @foreach($themes as $theme)
+                            <div class="formline">
+                                <input name="themes[]"
+                                       <?php if (in_array($theme['id'], $selected_themes)) echo "checked"; ?> type="checkbox"
+                                       id="{{$theme->id}}" value="{{$theme->id}}"><label
+                                        for="{{$theme->id}}">{{$theme->name}}</label>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="collapse">
                     <div class="title">Talen ({{sizeof($selected_languages)}} geselecteerd)</div>
                     <div class="drop">
                         @foreach($languages as $language)

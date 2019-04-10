@@ -40,3 +40,4 @@ Route::get('/import', function() {
 Route::get('/import/minors', 'ImportController@Minors');
 Route::get('/import/organizations', 'ImportController@Organisations');
 Route::get('/import/locations', 'ImportController@Locations');
+Route::get('/import/themes', 'ImportController@Themes');

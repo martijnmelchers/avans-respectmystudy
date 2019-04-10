@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Minor;
 use App\Organisation;
-
 use App\Review;
-
+use App\Theme;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 
@@ -17,7 +16,7 @@ class MinorController extends Controller
 //        $minors = array(new Minor(["id" => 1, "name" => "Minor 1"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]));
 
         $search_name = $search_ects = $orderby = "";
-        $selected_organisations = $selected_languages = array();
+        $selected_organisations = $selected_languages = $selected_themes = array();
 
         if (isset($_GET['name'])) $search_name = $_GET['name'];
         if (isset($_GET['ects'])) $search_ects = $_GET['ects'];
@@ -82,7 +81,7 @@ class MinorController extends Controller
         $minors = array();
         for ($i = $offset * $per_page; $i < ($offset * $per_page) + $per_page; $i++) {
             if (isset($all_minors[$i]))
-            $minors[] = $all_minors[$i];
+                $minors[] = $all_minors[$i];
         }
 
         // Calculate the amount of pages
@@ -90,6 +89,9 @@ class MinorController extends Controller
 
         // Select all organisations
         $organisations = Organisation::orderBy('name')->get();
+
+        // Select all themes
+        $themes = Theme::orderBy('name')->get();
 
 //        echo $minors[0]->reviews();
         // Return view with all variables
@@ -99,12 +101,14 @@ class MinorController extends Controller
             "selected_organisations" => $selected_organisations,
             "languages" => $languages,
             "selected_languages" => $selected_languages,
+            "selected_themes" => $selected_themes,
+            "themes" => $themes,
             "pages" => $pages,
             "page" => $offset,
             "request" => $request,
             "name" => $search_name,
             "ects" => $search_ects,
-          
+
             "total_minor_amount" => $total_minor_amount,
             "orderby" => $orderby,
         ]);
