@@ -3,7 +3,19 @@
 @section("title", "Minor")
 
 @section('content')
-    <div class="content">
+    <div class="content sub-wide">
+        <div class="sidebar wide hide">
+            <h3>{{$minor->name}}</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li>{{$minor->organisation->name}}</li>
+                <li>{{sizeof($minor->locations)}} locaties</li>
+            </ul>
+
+            <h3>Thema's:</h3>
+            <ul>
+                <li>Geen thema's</li>
+            </ul>
+        </div>
         <div class="wrapper wrap">
             <article>
                 <h1>{{$minor->name}}</h1>

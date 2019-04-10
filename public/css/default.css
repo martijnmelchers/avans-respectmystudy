@@ -126,8 +126,9 @@ a {
     align-items: flex-start;
 }
 
-.sidebarwrapper .content {
-    position: relative;
+.content.sub-wide {
+    width: 90%;
+    left: 5%;
 }
 
 .content.wide {
@@ -182,11 +183,6 @@ a {
 }
 
 /* Sidebar */
-.sidebarwrapper {
-    display: flex;
-    flex-grow: 1;
-}
-
 .sidebar {
     position: sticky;
     top: 20px;
@@ -409,6 +405,10 @@ a {
         position: relative;
         width: 100%;
         margin: 0 40px 40px 40px;
+    }
+    
+    .sidebar.hide {
+        display: none;
     }
 }
 
