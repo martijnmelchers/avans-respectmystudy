@@ -1,4 +1,4 @@
-@extends('layouts/default')
+@extends('layouts/dashboard')
 
 @section("title", "Importeer Data")
 
@@ -43,7 +43,7 @@
             color: black;;
         }
     </style>
-    <div class="content">
+    <div class="content wide top">
         <div class="wrapper">
             <article>
                 <h1>Importeer minors</h1>
@@ -67,7 +67,7 @@
     </div>
 
     <script>
-        document.getElementsByClassName("inner")[0].style.width = "20%";
+        document.getElementsByClassName("inner")[0].style.width = "0%";
         document.getElementsByClassName("text")[0].innerHTML = "Nog niks aan het importeren";
 
         var errors = [];

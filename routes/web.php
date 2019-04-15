@@ -33,10 +33,23 @@ Route::get('/locations', "LocationController@list")->name('locations');
 Route::get('/location/{id}', 'LocationController@Location')->name('location');
 
 
+// Dashboard
+Route::get('/dashboard', 'DashboardController@Home')->name('dashboard');
+Route::get('/dashboard/minors', 'DashboardController@Minors')->name('dashboard-minors');
+
+Route::get('/dashboard/locations', 'DashboardController@Locations')->name('dashboard-locations');
+Route::get('/dashboard/locations/{id}', 'DashboardController@Location')->name('dashboard-location');
+
+Route::get('/dashboard/organisations', 'DashboardController@Organisations')->name('dashboard-organisations');
+Route::get('/dashboard/organisations/{id}', 'DashboardController@Organisation')->name('dashboard-organisation');
+
+Route::get('/dashboard/reviews', 'DashboardController@Reviews')->name('dashboard-reviews');
+
 // Temporary Importing
-Route::get('/import', function() {
+Route::get('/dashboard/import', function() {
     return view('dashboard/import');
-});
+})->name('import');
+
 Route::get('/import/minors', 'ImportController@Minors');
 Route::get('/import/organizations', 'ImportController@Organisations');
 Route::get('/import/locations', 'ImportController@Locations');

@@ -1,6 +1,7 @@
 .formline {
     margin: 5px auto;
     display: flex;
+    align-items: center;
 }
 
 .formline.wrap {
@@ -35,17 +36,21 @@ input[type='text'], input[type='tel'], input[type='password'], input[type='numbe
 input[type='submit'] {
     -webkit-appearance: none;
     -moz-appearance: none;
-
     flex-grow: 1;
     width: 100%;
-    padding: 3px;
-    border: 2px solid #dee2e3;
-    background: #ECF0F1;
-    background-color: #ECF0F1;
+    padding: 5px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
     margin: 5px 0;
+    font-size: 17px;
+    border: none;
+}
+
+input[type='submit']:not(.button) {
+    border: 2px solid #dee2e3;
+    background: #ECF0F1;
+    background-color: #ECF0F1;
     cursor: pointer;
 
     -webkit-transition: background 0.2s;
@@ -55,6 +60,6 @@ input[type='submit'] {
     transition: background 0.2s;
 }
 
-input[type='submit']:hover {
+input[type='submit']:not(.button):hover {
     background: #dee2e3;
 }
