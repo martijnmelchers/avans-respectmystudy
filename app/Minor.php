@@ -55,6 +55,11 @@ class Minor extends Model
         return $this->belongsTo('App\Review');
     }
 
+    // Return all versions
+    public function versions() {
+        return Minor::all()->where("id", $this->id);
+    }
+
     // Return average stars (not done)
 
     /** @return array[float] */

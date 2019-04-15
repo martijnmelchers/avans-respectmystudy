@@ -17,38 +17,6 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function Minors()
-    {
-        $minor_name = "";
-        if (isset($_GET['name'])) $minor_name = $_GET['name'];
-
-        $minors = Minor::where('name', 'like', "%$minor_name%")->get();
-
-        return view('dashboard/minors/list', ['minors' => $minors, 'search' => ['name' => $minor_name]]);
-    }
-
-    public function Minor($id)
-    {
-        return view('dashboard/minors/minor', ['minor' => Minor::where('id', $id)->first()]);
-    }
-
-    public function Locations()
-    {
-        $locations = null;
-
-        $location_name = "";
-        if (isset($_GET['name'])) $location_name = $_GET['name'];
-
-        $locations = Location::where("name", "like", "%$location_name%")->get();
-
-        return view('dashboard/locations/list', ['locations' => $locations, 'search' => ['name' => $location_name]]);
-    }
-
-    public function Location($id)
-    {
-        return view('dashboard/locations/location', ['location' => Location::where('id', $id)->first()]);
-    }
-
     public function Organisation($id)
     {
         return view('dashboard/organisations/organisation', ['organisation' => Organisation::where('id', $id)->first()]);

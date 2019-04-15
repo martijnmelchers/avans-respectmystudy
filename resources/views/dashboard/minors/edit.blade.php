@@ -1,6 +1,6 @@
 @extends('layouts/dashboard')
 
-@section("title", "Minor " . $minor->name)
+@section("title", "Edit minor " . $minor->name)
 
 @section('content')
     <article>
@@ -13,6 +13,12 @@
             <li>Gepubliceerd: {{$minor->is_published ? "ja" : "nee"}}</li>
             <li>Inschrijfbaar: {{$minor->is_enrollable ? "ja" : "nee"}}</li>
         </ul>
+
+        <div class="buttons">
+            @foreach ($minor->versions() as $version)
+                <a href="{{route('dashboard-minor-edit', ['id'=>$version->id, 'v'=>$version->version])}}">Versie {{$version->version}}</a>
+            @endforeach
+        </div>
     </article>
 
     <article>
@@ -31,8 +37,7 @@
     </article>
 
     <div class="buttons">
-        <a href="{{route('dashboard-minors')}}">Alle minors</a>
-        <a href="{{route('dashboard-organisation', $minor->organisation->id)}}" class="">Meer over {{$minor->organisation->name}}</a>
-        <a href="{{route('dashboard-minor-edit', $minor->id)}}" class="button blue">Editen</a>
+        <a href="{{route('dashboard-minor', $minor->id)}}">Annuleren</a>
+        <a href="{{route('dashboard-minor-edit', $minor->id)}}" class="button blue">Opslaan</a>
     </div>
 @endsection

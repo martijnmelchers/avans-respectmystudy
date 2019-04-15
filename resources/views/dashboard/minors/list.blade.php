@@ -22,7 +22,13 @@
     @if (sizeof($minors) > 0)
         <div class="blocks">
             @foreach ($minors as $minor)
-                <a href="{{route('dashboard-minor', $minor->id)}}" class="item">{{$minor->name}}</a>
+                <a href="{{route('dashboard-minor', $minor->id)}}" class="item">
+                    <h4>{{$minor->name}}</h4>
+                    <div class="description">
+                        <p>Versie {{$minor->version}}</p>
+                        <p>Gepubliceerd {{$minor->is_published ? "Ja" : "Nee"}}</p>
+                    </div>
+                </a>
             @endforeach
         </div>
     @else

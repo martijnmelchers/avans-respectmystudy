@@ -286,6 +286,15 @@ a {
     background: #dee2e3;
 }
 
+.blocks .description {
+    margin: 3px auto;
+}
+
+.blocks .description p {
+    padding: 0;
+    margin: 0;
+}
+
 /* Lists */
 .list {
     display: flex;
