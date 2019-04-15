@@ -35,7 +35,9 @@ Route::get('/location/{id}', 'LocationController@Location')->name('location');
 
 // Dashboard
 Route::get('/dashboard', 'DashboardController@Home')->name('dashboard');
+
 Route::get('/dashboard/minors', 'DashboardController@Minors')->name('dashboard-minors');
+Route::get('/dashboard/minors/{id}', 'DashboardController@Minor')->name('dashboard-minor');
 
 Route::get('/dashboard/locations', 'DashboardController@Locations')->name('dashboard-locations');
 Route::get('/dashboard/locations/{id}', 'DashboardController@Location')->name('dashboard-location');

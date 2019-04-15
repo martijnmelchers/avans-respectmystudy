@@ -19,7 +19,17 @@ class DashboardController extends Controller
 
     public function Minors()
     {
-        return view('dashboard/minors/list');
+        $minor_name = "";
+        if (isset($_GET['name'])) $minor_name = $_GET['name'];
+
+        $minors = Minor::where('name', 'like', "%$minor_name%")->get();
+
+        return view('dashboard/minors/list', ['minors' => $minors, 'search' => ['name' => $minor_name]]);
+    }
+
+    public function Minor($id)
+    {
+        return view('dashboard/minors/minor', ['minor' => Minor::where('id', $id)->first()]);
     }
 
     public function Locations()
