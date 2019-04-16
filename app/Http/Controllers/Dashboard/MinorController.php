@@ -35,13 +35,11 @@ class MinorController extends Controller
         $version = 1;
         if (isset($_GET['v'])) $version = intval($_GET['v']);
 
-        $versions = Minor::where('id', $id);
-
         $minor = Minor::where('id', $id)->where('version', $version)->first();
 
         if (!isset($minor))
             return redirect(route('dashboard-minors'));
 
-        return view('dashboard/minors/edit', ['minor' => $minor, 'versions' => $versions]);
+        return view('dashboard/minors/edit', ['minor' => $minor]);
     }
 }

@@ -490,6 +490,10 @@ a {
     background-color: #CACDD3;
 }
 
+.button.disabled {
+    opacity: 0.4;
+}
+
 
 .alert {
     padding: 15px;
