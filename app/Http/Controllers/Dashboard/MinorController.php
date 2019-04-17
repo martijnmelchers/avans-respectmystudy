@@ -11,19 +11,32 @@ class MinorController extends Controller
 {
     public function Minors()
     {
-        $minor_name = "";
+        $minor_name = $is_published = "";
         if (isset($_GET['name'])) $minor_name = $_GET['name'];
+        if (isset($_GET['is_published'])) $is_published = $_GET['is_published'];
 
-        $minors = Minor::where('name', 'like', "%$minor_name%")
+        $raw_minors = Minor::where('name', 'like', "%$minor_name%")
             ->groupBy('id')
             ->orderBy('name', 'asc')
             ->get();
 
-        foreach ($minors as $key => $minor) {
-            $minors[$key] = Minor::where("id", $minor->id)->orderBy('version', 'desc')->first();
+        $minors = array();
+        foreach ($raw_minors as $key => $minor) {
+            $temp = Minor::where("id", $minor->id)->orderBy('version', 'desc')->first();
+            $add = true;
+
+            if (isset($_GET['is_published'])) {
+                if ($_GET['is_published'] == "no") {
+                    if ($temp['is_published']) $add = false;
+                } else if ($_GET['is_published'] == "yes") {
+                    if (!$temp['is_published']) $add = false;
+                }
+            }
+
+            if ($add) $minors[$key] = $temp;
         }
 
-        return view('dashboard/minors/list', ['minors' => $minors, 'search' => ['name' => $minor_name]]);
+        return view('dashboard/minors/list', ['minors' => $minors, 'search' => ['name' => $minor_name, 'is_published' => $is_published]]);
     }
 
     public function Minor($id)
@@ -36,7 +49,7 @@ class MinorController extends Controller
         if (!isset($minor))
             return redirect(route('dashboard-minors'));
 
-        $published_version = Minor::find($id)->where('is_published', true)->first();
+        $published_version = Minor::where("id", $id)->where('is_published', true)->first();
 
         return view('dashboard/minors/minor', ['minor' => $minor, 'published_version' => $published_version]);
     }
@@ -63,7 +76,7 @@ class MinorController extends Controller
         }
 
         // Update the minor
-        Minor::where([["id", "139858"], ["version", Input::get('version')]])
+        Minor::where([["id", $id], ["version", Input::get('version')]])
             ->update([
                 'name' => Input::get('name'),
                 'ects' => Input::get('ects'),

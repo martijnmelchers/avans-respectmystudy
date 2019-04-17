@@ -23,6 +23,14 @@
         </ul>
     </article>
 
+    <div class="buttons">
+        <a href="{{route('dashboard-minors')}}">Alle minors</a>
+        <a href="{{route('dashboard-organisation', $minor->organisation->id)}}" class="">Meer
+            over {{$minor->organisation->name}}</a>
+        <a href="{{route('dashboard-minor-edit', ["id"=>$minor->id, "v"=>$minor->version])}}"
+           class="button blue">Editen</a>
+    </div>
+
     <article>
         <h3>Onderwerp</h3>
         {!! $minor->subject !!}
@@ -37,12 +45,4 @@
         <h3>Requirements</h3>
         {!! $minor->requirements !!}
     </article>
-
-    <div class="buttons">
-        <a href="{{route('dashboard-minors')}}">Alle minors</a>
-        <a href="{{route('dashboard-organisation', $minor->organisation->id)}}" class="">Meer
-            over {{$minor->organisation->name}}</a>
-        <a href="{{route('dashboard-minor-edit', ["id"=>$minor->id, "v"=>$minor->version])}}"
-           class="button blue">Editen</a>
-    </div>
 @endsection

@@ -15,6 +15,15 @@
                 <input value="{{$search['name']}}" type="text" id="name" name="name" placeholder="Naam">
             </div>
 
+            <div class="formline">
+                <label for="is_published">Gepubliceerd</label>
+                <select name="is_published" id="is_published">
+                    <option <?php if ($search['is_published'] == "") echo "selected"; ?> value="">Geen keuze</option>
+                    <option <?php if ($search['is_published'] == "yes") echo "selected"; ?> value="yes">Wel gepubliceerd</option>
+                    <option <?php if ($search['is_published'] == "no") echo "selected"; ?> value="no">Niet gepubliceerd</option>
+                </select>
+            </div>
+
             <input type="submit" value="Zoeken" class="button blue">
         </form>
     </article>
