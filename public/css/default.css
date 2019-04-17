@@ -497,11 +497,16 @@ a {
 
 .alert {
     padding: 15px;
-    background-color: limegreen;
-    color: white;
+    background-color: #dee2e3;
+    color: #76797a;
+    border-bottom: 2px solid #76797a;
     margin-bottom: 15px;
-    border-radius: 3px;
-    font-weight: bold;
+}
+
+.alert.red {
+    border-color: #F64646;
+    background: #ffb0b2;
+    color: #bd3434;
 }
 
 .closebutton {

@@ -10,6 +10,12 @@
 
 @section('content')
     <article>
+        @if(sizeof($errors) > 0)
+            @foreach ($errors->all() as $error)
+                <div class="alert red">{{ $error }}</div>
+            @endforeach
+        @endif
+
         <form method="post">
             @csrf
             <h1>{{$minor->name}}</h1>
@@ -26,6 +32,11 @@
             <div class="formline">
                 <label for="name">Naam</label>
                 <input type="text" name="name" id="name" value="{{$minor->name}}">
+            </div>
+
+            <div class="formline">
+                <label for="ects">Studiepunten</label>
+                <input type="number" name="ects" id="ects" value="{{$minor->ects}}">
             </div>
 
             <div class="formline">
