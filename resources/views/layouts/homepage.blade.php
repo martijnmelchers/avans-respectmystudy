@@ -11,12 +11,17 @@
     <link href="/css/homepage.css" type="text/css" rel="stylesheet">
     <link href="/css/form.css" type="text/css" rel="stylesheet">
 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     {{--<link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">--}}
 </head>
 <body>
 <div class="nav">
     <a href="/" class="title">RespectMyStudy</a>
+    <div class="expander" onclick="$('.nav').toggleClass('visible');"><i class="fas fa-stream"></i></div>
     <div class="nav-buttons">
         <a href="/">Home</a>
         <a href="/minors">Minoren</a>

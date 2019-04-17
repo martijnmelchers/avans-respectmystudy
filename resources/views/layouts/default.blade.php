@@ -25,6 +25,7 @@
 <body>
 <div class="nav">
     <a href="/" class="title">RespectMyStudy</a>
+    <div class="expander" onclick="$('.nav').toggleClass('visible');"><i class="fas fa-stream"></i></div>
     <div class="nav-buttons">
         <a href="/">Home</a>
         <a href="/minors">Minoren</a>
