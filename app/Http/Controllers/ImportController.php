@@ -33,6 +33,8 @@ class ImportController extends Controller
         $result = curl_exec($ch);
         $php_result = json_decode($result);
 
+//        return response()->json($result);
+
         if (curl_errno($ch)) {
             echo 'Error:' . curl_error($ch);
         }
@@ -95,15 +97,10 @@ class ImportController extends Controller
                     $minor->locations()->attach($location);
                 }
             } else {
-                // Minor does not exists
-
-                // Get organisation of minor from database
-                $organisation = Organisation::where("id", $r->organisation_id);
+                $organisation = Organisation::where("id", $r->ownedby_organisation);
 
                 // Check if organisation exists
                 if ($organisation != null) {
-
-                    // Create new minor
                     $minor = new Minor([
                         "id" => $r->id,
                         "version" => 1,
