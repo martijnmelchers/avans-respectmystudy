@@ -42,19 +42,26 @@ class ImportController extends Controller
             die();
         }
 
-        $errors = array();
+        $errors = $messages = array();
 
+        // Loop through all minors
         foreach ($php_result->results as $r) {
+            // Select the minor
             $minor = Minor::orderBy('version', 'desc')->where('id', $r->id)->first();
+
+            $messages[] = "Minor " . $r->id . " already exists";
 
             // Check if minor is set, if already in database
             if (isset($minor)) {
                 // Check if minor has changed
                 if (!$minor->isSame($r)) {
+
                     // Calculate new version
                     $newVersion = $minor->version + 1;
 
-                    // Maak nieuwe minor met hogere versie
+                    $messages[] = "Minor " . $r->id . " has changed, so version " . $newVersion . " was created";
+
+                    // Create new minor
                     $minor = new Minor([
                         "id" => $r->id,
                         "version" => $newVersion,
@@ -77,9 +84,10 @@ class ImportController extends Controller
                     $minor->save();
                 }
 
-                // Update locations of minor
+                // Delete all locations associated with the minor (to prevent doubles in linking table)
                 $minor->locations()->detach();
 
+                // Insert locations of minor
                 foreach ($r->locations as $l) {
                     $minor = Minor::where('id', $r->id)->first();
 
@@ -87,11 +95,15 @@ class ImportController extends Controller
                     $minor->locations()->attach($location);
                 }
             } else {
+                // Minor does not exists
+
+                // Get organisation of minor from database
                 $organisation = Organisation::where("id", $r->organisation_id);
 
                 // Check if organisation exists
                 if ($organisation != null) {
 
+                    // Create new minor
                     $minor = new Minor([
                         "id" => $r->id,
                         "version" => 1,
@@ -113,7 +125,7 @@ class ImportController extends Controller
                     ]);
                     $minor->save();
 
-                    // Insert locations
+                    // Insert locations of created minor
                     foreach ($r->locations as $l) {
                         $location = Location::find($l);
                         $minor = Minor::all()->where("id", $r->id)->first();
@@ -129,7 +141,9 @@ class ImportController extends Controller
         curl_close($ch);
 
         $php_result->errors = $errors;
-        return response(json_encode($php_result), 200)
+        $php_result->messages = $messages;
+
+        return response(json_encode($php_result, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), 200)
             ->header('Content-Type', 'text/json');
     }
 

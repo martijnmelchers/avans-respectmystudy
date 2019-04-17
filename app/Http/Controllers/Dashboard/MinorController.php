@@ -55,28 +55,43 @@ class MinorController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'ects' => 'min:0|integer|required',
-            'contact_hours' => 'min:0|integer|required',
+//            'contact_hours' => 'min:0|integer',
             'language' => 'required',
-            'education_type' => 'required',
+//            'education_type' => 'required',
             'subject' => 'required',
             'goals' => 'required',
             'requirements' => 'required'
         ]);
 
-        $minor = Minor::limit(1)
-            ->where("id", $id)
-            ->where('version', $_POST['version'])
-            ->first()
-            ->update([
-                'name' => $_POST['name'],
-                'ects' => floatval($_POST['ects']),
-                'contact_hours' => intval($_POST['contact_hours']),
-                'education_type' => $_POST['education_type'],
-                'language' => $_POST['language'],
-                'subject' => Input::get('subject'),
-                'goals' => Input::get('goals'),
-                'requirements' => Input::get('requirements'),
-            ]);
+        $minor = Minor::find([$id])->where('version', 2)->first();
+
+        $minor->name = Input::get('name');
+        $minor->version = 2;
+        $minor->ects = Input::get('ects');
+        $minor->contact_hours = Input::get('contact_hours');
+        $minor->language = Input::get('language');
+        $minor->education_type = Input::get('education_type');
+
+        $minor->subject = Input::get('subject');
+        $minor->goals = Input::get('goals');
+        $minor->requirements = Input::get('requirements');
+
+//        return $minor;
+        $minor->save();
+
+//        Minor::updateOrCreate([
+//            'id' => $id,
+//            'version' => Input::get('version')
+//        ], [
+//            'name' => Input::get('name'),
+//            'ects' => floatval($_POST['ects']),
+//            'contact_hours' => intval($_POST['contact_hours']),
+//            'education_type' => $_POST['education_type'],
+//            'language' => $_POST['language'],
+//            'subject' => Input::get('subject'),
+//            'goals' => Input::get('goals'),
+//            'requirements' => Input::get('requirements'),
+//        ]);
 
 //        return $minor;
 //        $minor->name = $_POST['name'];
