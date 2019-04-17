@@ -3,6 +3,12 @@
 @section("title", "Minor " . $minor->name)
 
 @section('content')
+    @if (!isset($published_version))
+        <a href="{{route('dashboard-minor-edit', ["id"=>$minor->id, "v"=>$minor->version])}}" class="alert red">
+            Deze minor heeft nog geen gepubliceerde versies. Klik hier om de laatste versie te bewerken en te publiceren.
+        </a>
+    @endif
+
     <article>
         <h1>{{$minor->name}}</h1>
         <ul>

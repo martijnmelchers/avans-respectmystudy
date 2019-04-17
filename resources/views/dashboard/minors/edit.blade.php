@@ -23,7 +23,7 @@
             <div class="buttons">
                 @foreach ($minor->versions() as $version)
                     <a class="button <?php if ($version->is_published) echo "blue"; ?> <?php if ($minor->version == $version->version) echo "disabled"; ?>"
-                       href="{{route('dashboard-minor-edit', ['id'=>$version->id, 'v'=>$version->version])}}">Versie {{$version->version}}</a>
+                       href="{{route('dashboard-minor-edit', ['id'=>$version->id, 'v'=>$version->version])}}">Versie {{$version->version}}<?php if ($version->is_published) echo " - gepubliceerd"; ?></a>
                 @endforeach
             </div>
 

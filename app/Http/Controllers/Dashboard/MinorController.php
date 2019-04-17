@@ -15,9 +15,13 @@ class MinorController extends Controller
         if (isset($_GET['name'])) $minor_name = $_GET['name'];
 
         $minors = Minor::where('name', 'like', "%$minor_name%")
-            ->groupBy('id', 'version')
+            ->groupBy('id')
             ->orderBy('name', 'asc')
             ->get();
+
+        foreach ($minors as $key => $minor) {
+            $minors[$key] = Minor::where("id", $minor->id)->orderBy('version', 'desc')->first();
+        }
 
         return view('dashboard/minors/list', ['minors' => $minors, 'search' => ['name' => $minor_name]]);
     }
@@ -32,7 +36,9 @@ class MinorController extends Controller
         if (!isset($minor))
             return redirect(route('dashboard-minors'));
 
-        return view('dashboard/minors/minor', ['minor' => $minor]);
+        $published_version = Minor::find($id)->where('is_published', true)->first();
+
+        return view('dashboard/minors/minor', ['minor' => $minor, 'published_version' => $published_version]);
     }
 
     public function Edit($id)
@@ -50,74 +56,27 @@ class MinorController extends Controller
 
     public function EditPost($id, Request $request)
     {
-//        return $_POST;
+        $is_published = false;
+        if (Input::get('is_published') && Input::get('is_published') == "on") {
+            Minor::find($id)->update(['is_published' => false]);
+            $is_published = true;
+        }
 
-        $request->validate([
-            'name' => 'required|max:255',
-            'ects' => 'min:0|integer|required',
-//            'contact_hours' => 'min:0|integer',
-            'language' => 'required',
-//            'education_type' => 'required',
-            'subject' => 'required',
-            'goals' => 'required',
-            'requirements' => 'required'
-        ]);
+        // Update the minor
+        Minor::where([["id", "139858"], ["version", Input::get('version')]])
+            ->update([
+                'name' => Input::get('name'),
+                'ects' => Input::get('ects'),
+                'contact_hours' => Input::get('contact_hours'),
+                'education_type' => Input::get('education_type'),
+                'language' => Input::get('language'),
+                'subject' => Input::get('subject'),
+                'requirements' => Input::get('requirements'),
+                'goals' => Input::get('goals'),
 
-        $minor = Minor::find([$id])->where('version', 2)->first();
+                'is_published' => $is_published
+            ]);
 
-        $minor->name = Input::get('name');
-        $minor->version = 2;
-        $minor->ects = Input::get('ects');
-        $minor->contact_hours = Input::get('contact_hours');
-        $minor->language = Input::get('language');
-        $minor->education_type = Input::get('education_type');
-
-        $minor->subject = Input::get('subject');
-        $minor->goals = Input::get('goals');
-        $minor->requirements = Input::get('requirements');
-
-//        return $minor;
-        $minor->save();
-
-//        Minor::updateOrCreate([
-//            'id' => $id,
-//            'version' => Input::get('version')
-//        ], [
-//            'name' => Input::get('name'),
-//            'ects' => floatval($_POST['ects']),
-//            'contact_hours' => intval($_POST['contact_hours']),
-//            'education_type' => $_POST['education_type'],
-//            'language' => $_POST['language'],
-//            'subject' => Input::get('subject'),
-//            'goals' => Input::get('goals'),
-//            'requirements' => Input::get('requirements'),
-//        ]);
-
-//        return $minor;
-//        $minor->name = $_POST['name'];
-//        $minor->contact_hours = intval($_POST['contact_hours']);
-//        $minor->education_type = $_POST['education_type'];
-//        $minor->language = $_POST['language'];
-//
-////        if (isset($_POST['is_published'])) {
-////            Minor::where("id", $id)->update(['is_published' => 0]);
-////            $minor->is_published = 1;
-////        }
-//
-////        $minor->is_enrollable = $_POST['is_enrollable'];
-//
-//        $minor->save();
-
-//        return $minor;
-//        $version = $_POST['version'];
-//        if (isset($_GET['v'])) $version = intval($_GET['v']);
-//
-//        $minor = Minor::where('id', $id)->where('version', $version)->first();
-//
-//        if (!isset($minor))
-//            return redirect(route('dashboard-minors'));
-//
-        $minor = Minor::where("id", $id)->where("version", $_POST['version'])->first();
-        return view('dashboard/minors/edit', ['minor' => $minor]);
+        return redirect()->route('dashboard-minor', ["id" => $id, "v" => Input::get('version')]);
     }
 }
