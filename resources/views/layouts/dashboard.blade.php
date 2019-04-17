@@ -32,6 +32,7 @@
         <a href="{{route('dashboard-locations')}}" class="{{ Request::path() == 'dashboard/locations' ? 'active' : '' }}"><i class="fas fa-search-location"></i>Locaties</a>
         <a href="{{route('dashboard-organisations')}}" class="{{ Request::path() == 'dashboard/organisations' ? 'active' : '' }}"><i class="fas fa-school"></i>Organisaties</a>
         <a href="{{route('dashboard-reviews')}}" class="{{ Request::path() == 'dashboard/reviews' ? 'active' : '' }}"><i class="far fa-thumbs-up"></i>Reviews</a>
+        <a href="{{route('import')}}" class="{{ Request::path() == 'dashboard/import' ? 'active' : '' }}"><i class="fa fa-download"></i>Importeren</a>
     </div>
 </div>
 

@@ -13,8 +13,8 @@ class MinorController extends Controller
         if (isset($_GET['name'])) $minor_name = $_GET['name'];
 
         $minors = Minor::where('name', 'like', "%$minor_name%")
-            ->groupBy('version', 'id')
-            ->orderBy('name')
+            ->groupBy('id', 'version')
+            ->orderBy('name', 'asc')
             ->get();
 
         return view('dashboard/minors/list', ['minors' => $minors, 'search' => ['name' => $minor_name]]);
@@ -22,12 +22,12 @@ class MinorController extends Controller
 
     public function Minor($id)
     {
-        $minor = Minor::where('id', $id)->first();
+        $minor = Minor::where('id', $id)->orderBy('version', 'desc')->first();
 
         if (!isset($minor))
             return redirect(route('dashboard-minors'));
 
-        return view('dashboard/minors/minor', ['minor' => Minor::where('id', $id)->first()]);
+        return view('dashboard/minors/minor', ['minor' => $minor]);
     }
 
     public function Edit($id)

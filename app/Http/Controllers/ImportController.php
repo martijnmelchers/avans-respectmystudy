@@ -45,13 +45,44 @@ class ImportController extends Controller
         $errors = array();
 
         foreach ($php_result->results as $r) {
-            $minor = Minor::all()->where('id', $r->id)->first();
-            if (isset($minor)) {
-                // Minor staat al in de database
+            $minor = Minor::orderBy('version', 'desc')->where('id', $r->id)->first();
 
+            // Check if minor is set, if already in database
+            if (isset($minor)) {
+                // Check if minor has changed
+                if (!$minor->isSame($r)) {
+                    // Calculate new version
+                    $newVersion = $minor->version + 1;
+
+                    // Maak nieuwe minor met hogere versie
+                    $minor = new Minor([
+                        "id" => $r->id,
+                        "version" => $newVersion,
+                        "name" => $r->name,
+                        "phonenumber" => "",
+                        "email" => "",
+                        "kiesopmaat" => $r->id,
+                        "ects" => $r->ects,
+                        "costs" => $r->costs,
+                        "subject" => $r->subject,
+                        "goals" => $r->goals,
+                        "requirements" => $r->requirements,
+                        "examination" => $r->examination,
+                        "level" => $r->level,
+                        "language" => $r->language,
+                        "is_published" => false,
+                        "is_enrollable" => false,
+                        "organisation_id" => $r->ownedby_organisation,
+                    ]);
+                    $minor->save();
+                }
+
+                // Update locations of minor
                 $minor->locations()->detach();
-                // Update locations
+
                 foreach ($r->locations as $l) {
+                    $minor = Minor::where('id', $r->id)->first();
+
                     $location = Location::find($l);
                     $minor->locations()->attach($location);
                 }
