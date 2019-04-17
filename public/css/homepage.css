@@ -300,8 +300,8 @@ infopoint span {
 }
 
 .newsgroup {
-    padding-top: 40px;
-    width: auto;
+    padding-top: 20px;
+    width: 100%;
 }
 
 .newsgroup article{
@@ -390,7 +390,6 @@ infopoint span {
 }
 
 @media all and (max-width: 1400px) {
-
     .mainpagesearch {
         flex-wrap: wrap;
         align-items: stretch;
@@ -464,11 +463,11 @@ infopoint span {
 
     .articlegroup article {
         max-width: initial;
+        flex-direction: column;
     }
 
     .articlegroup {
-        padding: 60px 60px;
-
+        padding: 60px 20px;
     }
 }
 
