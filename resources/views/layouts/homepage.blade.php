@@ -7,7 +7,7 @@
     <title>@yield('title', "RespectMyStudy")</title>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600|Source+Sans+Pro:100,200,300,400,500,600" rel="stylesheet">
     <link href="/css/homepage.css" type="text/css" rel="stylesheet">
     <link href="/css/form.css" type="text/css" rel="stylesheet">
 
