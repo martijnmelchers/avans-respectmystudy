@@ -87,39 +87,49 @@ class ImportController extends Controller
                     $minor->locations()->attach($location);
                 }
             } else {
-                $minor = new Minor([
-                    "id" => $r->id,
-                    "version" => 1,
-                    "name" => $r->name,
-                    "phonenumber" => "",
-                    "email" => "",
-                    "kiesopmaat" => $r->id,
-                    "ects" => $r->ects,
-                    "costs" => $r->costs,
-                    "subject" => $r->subject,
-                    "goals" => $r->goals,
-                    "requirements" => $r->requirements,
-                    "examination" => $r->examination,
-                    "level" => $r->level,
-                    "language" => $r->language,
-                    "is_published" => false,
-                    "is_enrollable" => false,
-                    "organisation_id" => $r->ownedby_organisation,
-                ]);
-                $minor->save();
+                $organisation = Organisation::where("id", $r->organisation_id);
 
-                // Insert locations
-                foreach ($r->locations as $l) {
-                    $location = Location::find($l);
-                    $minor = Minor::all()->where("id", $r->id)->first();
+                // Check if organisation exists
+                if ($organisation != null) {
 
-                    $minor->locations()->attach($location);
+                    $minor = new Minor([
+                        "id" => $r->id,
+                        "version" => 1,
+                        "name" => $r->name,
+                        "phonenumber" => "",
+                        "email" => "",
+                        "kiesopmaat" => $r->id,
+                        "ects" => $r->ects,
+                        "costs" => $r->costs,
+                        "subject" => $r->subject,
+                        "goals" => $r->goals,
+                        "requirements" => $r->requirements,
+                        "examination" => $r->examination,
+                        "level" => $r->level,
+                        "language" => $r->language,
+                        "is_published" => false,
+                        "is_enrollable" => false,
+                        "organisation_id" => $r->ownedby_organisation,
+                    ]);
+                    $minor->save();
+
+                    // Insert locations
+                    foreach ($r->locations as $l) {
+                        $location = Location::find($l);
+                        $minor = Minor::all()->where("id", $r->id)->first();
+
+                        $minor->locations()->attach($location);
+                    }
+                } else {
+                    $errors[] = "Organisation " . $r->organisation_id . " not found";
                 }
             }
         }
 
         curl_close($ch);
-        return response($result, 200)
+
+        $php_result['errors'] = $errors;
+        return response(json_encode($php_result), 200)
             ->header('Content-Type', 'text/json');
     }
 
@@ -177,7 +187,7 @@ class ImportController extends Controller
         return response($result, 200)
             ->header('Content-Type', 'text/json');
     }
-  
+
     public function Locations()
     {
         // KiesOpMaat API format: https://hastebin.com/egiyatugam.xml
@@ -204,9 +214,9 @@ class ImportController extends Controller
 
         $headers = array();
 
-      $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
+        $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
         $headers[] = "Authorization: Token $kiesopmaat_token";
-      
+
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($ch);
