@@ -129,7 +129,7 @@ class ImportController extends Controller
 
         curl_close($ch);
 
-        $php_result['errors'] = $errors;
+        $php_result->errors = $errors;
         return response(json_encode($php_result), 200)
             ->header('Content-Type', 'text/json');
     }
