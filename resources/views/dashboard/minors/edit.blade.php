@@ -5,11 +5,13 @@
 @section("head")
     <link href="/js/summernote/summernote-lite.css" rel="stylesheet">
     <script src="/js/summernote/summernote-lite.js"></script>
+    <script src="/js/summernote/lang/summernote-nl-NL.js"></script>
 @endsection
 
 @section('content')
     <article>
-        <form method="POST">
+        <form method="post">
+            @csrf
             <h1>{{$minor->name}}</h1>
 
             <div class="buttons">
@@ -18,6 +20,8 @@
                        href="{{route('dashboard-minor-edit', ['id'=>$version->id, 'v'=>$version->version])}}">Versie {{$version->version}}</a>
                 @endforeach
             </div>
+
+            <input type="number" style="display: none;" name="version" value="{{$minor->version}}">
 
             <div class="formline">
                 <label for="name">Naam</label>
@@ -41,12 +45,14 @@
 
             <div class="formline">
                 <label for="is_published">Gepubliceerd?</label>
-                <input type="checkbox" name="is_published" id="is_published" <?php if ($minor->is_published) echo "checked"; ?>>
+                <input type="checkbox" name="is_published"
+                       id="is_published" <?php if ($minor->is_published) echo "checked"; ?>>
             </div>
 
             <div class="formline">
                 <label for="is_enrollable">Inschrijfbaar?</label>
-                <input type="checkbox" name="is_enrollable" id="is_enrollable" <?php if ($minor->is_enrollable) echo "checked"; ?>>
+                <input type="checkbox" name="is_enrollable"
+                       id="is_enrollable" <?php if ($minor->is_enrollable) echo "checked"; ?>>
             </div>
 
             <h3>Onderwerp</h3>
@@ -59,17 +65,21 @@
             <br>
             <h3>Requirements</h3>
             <textarea class="summernote" name="requirements">{!! $minor->requirements !!}</textarea>
-        </form>
-    </article>
 
-    <div class="buttons">
-        <a href="{{route('dashboard-minor', $minor->id)}}">Annuleren</a>
-        <a href="{{route('dashboard-minor-edit', $minor->id)}}" class="button blue">Opslaan</a>
-    </div>
+            <div class="buttons">
+                <input type="submit" name="submit" href="{{route('dashboard-minor-edit', $minor->id)}}" class="button blue" value="Opslaan">
+            </div>
+        </form>
+
+        <div class="buttons">
+            <a href="{{route('dashboard-minor', $minor->id)}}" class="button red small">Annuleren</a>
+            <a href="{{route('dashboard-minors')}}" class="button red small">Alle minors</a>
+        </div>
+    </article>
 
     <script>
         $(document).ready(function () {
-            $('.summernote').summernote();
+            $('.summernote').summernote({lang: 'nl-NL'});
         });
     </script>
 @endsection

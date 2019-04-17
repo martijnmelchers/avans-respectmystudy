@@ -39,6 +39,7 @@ Route::get('/dashboard', 'DashboardController@Home')->name('dashboard');
 Route::get('/dashboard/minors', 'Dashboard\MinorController@Minors')->name('dashboard-minors');
 Route::get('/dashboard/minors/{id}', 'Dashboard\MinorController@Minor')->name('dashboard-minor');
 Route::get('/dashboard/minors/{id}/edit', 'Dashboard\MinorController@Edit')->name('dashboard-minor-edit');
+Route::post('/dashboard/minors/{id}/edit', 'Dashboard\MinorController@EditPost')->name('dashboard-minor-edit');
 
 Route::get('/dashboard/locations', 'Dashboard\LocationController@Locations')->name('dashboard-locations');
 Route::get('/dashboard/locations/{id}', 'Dashboard\LocationController@Location')->name('dashboard-location');
