@@ -39,6 +39,7 @@
                             <div class="buttons">
                                 <a href="/" class="button blue">Zoeken</a>
                             </div>
+                        </div>
                     </form>
                 </div>
             </div>
