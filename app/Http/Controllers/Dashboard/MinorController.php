@@ -12,19 +12,26 @@ class MinorController extends Controller
     public function Minors()
     {
         $minor_name = $is_published = "";
+
+        // Get filter parameters
         if (isset($_GET['name'])) $minor_name = $_GET['name'];
         if (isset($_GET['is_published'])) $is_published = $_GET['is_published'];
 
+        // Select all individual minors
         $raw_minors = Minor::where('name', 'like', "%$minor_name%")
             ->groupBy('id')
             ->orderBy('name', 'asc')
             ->get();
 
         $minors = array();
+
+        // Go through all minors
         foreach ($raw_minors as $key => $minor) {
+            // Select latest version of a minor
             $temp = Minor::where("id", $minor->id)->orderBy('version', 'desc')->first();
             $add = true;
 
+            // Check against filter parameters
             if (isset($_GET['is_published'])) {
                 if ($_GET['is_published'] == "no") {
                     if ($temp['is_published']) $add = false;
@@ -33,8 +40,14 @@ class MinorController extends Controller
                 }
             }
 
+            // Add minor to array
             if ($add) $minors[$key] = $temp;
         }
+
+        // Sort new minors array by name
+        usort($minors, function($a, $b) {
+            return $a['name'] <=> $b['name'];
+        });
 
         return view('dashboard/minors/list', ['minors' => $minors, 'search' => ['name' => $minor_name, 'is_published' => $is_published]]);
     }
