@@ -60,6 +60,11 @@ class Minor extends Model
         return Minor::all()->where("id", $this->id);
     }
 
+    // Return all versions
+    public function version_count() {
+        return Minor::all()->where("id", $this->id)->count();
+    }
+
     /**
      * @param $minor Minor - The minor to check against
      * @return bool

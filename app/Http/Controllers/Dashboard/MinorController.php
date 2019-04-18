@@ -28,7 +28,7 @@ class MinorController extends Controller
         // Go through all minors
         foreach ($raw_minors as $key => $minor) {
             // Select latest version of a minor
-            $temp = Minor::where("id", $minor->id)->orderBy('version', 'desc')->first();
+            $temp = Minor::where("id", $minor->id)->orderBy('is_published', 'desc')->orderBy('version', 'desc')->first();
             $add = true;
 
             // Check against filter parameters
@@ -57,7 +57,7 @@ class MinorController extends Controller
         if (isset($_GET['v']))
             $minor = Minor::where('id', $id)->where('version', $_GET['v'])->first();
         else
-            $minor = Minor::where('id', $id)->orderBy('version', 'desc')->first();
+            $minor = Minor::where('id', $id)->orderBy('is_published', 'desc')->orderBy('version', 'desc')->first();
 
         if (!isset($minor))
             return redirect(route('dashboard-minors'));
