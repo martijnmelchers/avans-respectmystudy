@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "21d136c7f0ea14544f1e73a9bbd8549e",
+    "content-hash": "0a402c6d1d0207c5e4b0a2ca8ccaeba3",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -6019,16 +6019,16 @@
         },
         {
             "name": "laravel/homestead",
-            "version": "v8.1.0",
+            "version": "v8.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/homestead.git",
-                "reference": "7a47985866dd13896a14883038bd1faf40702253"
+                "reference": "68388101a1364019c1fa44ff427be43b5ffda90f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/homestead/zipball/7a47985866dd13896a14883038bd1faf40702253",
-                "reference": "7a47985866dd13896a14883038bd1faf40702253",
+                "url": "https://api.github.com/repos/laravel/homestead/zipball/68388101a1364019c1fa44ff427be43b5ffda90f",
+                "reference": "68388101a1364019c1fa44ff427be43b5ffda90f",
                 "shasum": ""
             },
             "require": {
@@ -6065,7 +6065,7 @@
                 }
             ],
             "description": "A virtual machine for web artisans.",
-            "time": "2019-02-06T01:05:54+00:00"
+            "time": "2019-03-05T22:31:19+00:00"
         },
         {
             "name": "nunomaduro/collision",
