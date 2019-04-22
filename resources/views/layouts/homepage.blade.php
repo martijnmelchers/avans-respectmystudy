@@ -43,10 +43,10 @@
             <div class="item">Taal</div>
             <div class="drop">
                 <a  href="{{route('lang', 'nl')}}">
-                    <img class="item flag" src="https://cdn.wordquest.nl/flags/medium/fr.png" alt="Nederlands">
+                    <img class="item flag" src="https://cdn.wordquest.nl/flags/medium/nl.png" alt="Nederlands">
                 </a>
                <a  href="{{route('lang', 'en')}}">
-                   <img class="item flag" src="https://cdn.wordquest.nl/flags/medium/nl.png" alt="English">
+                   <img class="item flag" src="https://cdn.wordquest.nl/flags/medium/fr.png" alt="English">
                </a>
 
             </div>
