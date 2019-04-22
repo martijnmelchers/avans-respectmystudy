@@ -11,18 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', 'MainPageController@Home')->name('home');
 
 // Minors
 Route::get('/minors', 'MinorController@List')->name('minors');
 Route::get('/minor/{id}', 'MinorController@Minor')->name('minor');
 Route::post('/minor/{id}', 'MinorController@InsertReview')->name('minor');
 
+//Taal
+Route::get('/lang/{lang}', function ($lang) {
+    setcookie('lang', $lang, time() + 60 * 60 * 24 * 30, '/');
+
+    return redirect(route('home'));
+})->name('lang');
+
+
 // Kaart
 Route::get('/map', 'MapController@Map')->name('map');
-
 
 // Organisaties
 Route::get('/organisations', "OrganisationController@list")->name('organisations');

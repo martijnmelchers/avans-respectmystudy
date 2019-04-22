@@ -42,8 +42,13 @@
         <div class="dropdown">
             <div class="item">Taal</div>
             <div class="drop">
-                <img class="item flag" src="https://cdn.wordquest.nl/flags/medium/fr.png" alt="Nederlands">
-                <img class="item flag" src="https://cdn.wordquest.nl/flags/medium/nl.png" alt="English">
+                <a  href="{{route('lang', 'nl')}}">
+                    <img class="item flag" src="https://cdn.wordquest.nl/flags/medium/fr.png" alt="Nederlands">
+                </a>
+               <a  href="{{route('lang', 'en')}}">
+                   <img class="item flag" src="https://cdn.wordquest.nl/flags/medium/nl.png" alt="English">
+               </a>
+
             </div>
         </div>
     </div>

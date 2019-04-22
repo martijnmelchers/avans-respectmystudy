@@ -165,6 +165,7 @@ a {
     margin-right: 80px;
     padding-top: 40px;
     padding-bottom: 40px;
+    min-height: 300px;
 }
 
 .searcharticlewhite {
@@ -242,6 +243,7 @@ a {
 
 .articlegroup article {
     max-width: 30%;
+    min-width: 30%;
 }
 
 .articlegroup article a {
@@ -311,7 +313,6 @@ infopoint span {
     background-color: white;
     margin-bottom: 40px;
     border-radius: 4px;
-    box-shadow: rgba(0,0,0, 0.16) 0px 3px 6px;
 }
 
 .newsgroupcontent h1{
