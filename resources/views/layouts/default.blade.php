@@ -24,10 +24,10 @@
 </head>
 <body>
 <div class="nav">
-    <a href="/" class="title">RespectMyStudy</a>
+    <a href="{{route('home')}}" class="title">RespectMyStudy</a>
     <div class="nav-buttons">
-        <a href="/">Home</a>
-        <a href="/minors">Minoren</a>
+        <a href="{{route('home')}}">Home</a>
+        <a href="{{route('minors')}}">Minoren</a>
         <a href="{{route('map')}}">Kaart</a>
         
         <a href="{{route('organisations')}}">Organisaties</a>
