@@ -9,7 +9,7 @@ services:
       - MARIADB_DATABASE=my_database
       - MARIADB_PASSWORD=my_password
 
-  myapp:
+  respectmystudy:
     tty: true
     image: bitnami/laravel:5-debian-9
     environment:
