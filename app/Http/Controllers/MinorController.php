@@ -9,6 +9,7 @@ use App\Review;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Input;
 
 class MinorController extends Controller
 {
@@ -134,6 +135,12 @@ class MinorController extends Controller
         ]);
 
         return redirect()->back()->with('flash_message', 'Uw review is geplaatst!');
+    }
+
+    public function DeleteReview(Request $request, $id)
+    {
+        Review::destroy(Input::get('review'));
+        return redirect()->back();
     }
 
 }

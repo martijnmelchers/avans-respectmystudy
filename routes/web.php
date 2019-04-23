@@ -28,6 +28,7 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth']);
 Route::get('/minors', 'MinorController@List')->name('minors');
 Route::get('/minor/{id}', 'MinorController@Minor')->name('minor');
 Route::post('/minor/{id}', 'MinorController@InsertReview')->name('minor');
+Route::delete('/minor/{id}', 'MinorController@DeleteReview')->name('review');
 
 // Kaart
 Route::get('/map', 'MapController@Map')->name('map');

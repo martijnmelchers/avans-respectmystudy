@@ -437,6 +437,14 @@ a {
     color: black;
 }
 
+.closebutton.dark {
+    color: black;
+}
+
+.closebutton.dark:hover {
+    color: grey;
+}
+
 .rating {
     border: none;
     text-align: center;

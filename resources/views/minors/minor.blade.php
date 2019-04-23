@@ -142,6 +142,12 @@
                 <h3>Reviews</h3>
                 @foreach($reviews as $r )
                     <div class="review_detail">
+                        <form method="POST">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="_method" value="DELETE" />
+                            <input type="hidden" name="review" value="{{$r->id}}" />
+                            <span class="closebutton dark" onclick="this.parentElement.submit()">&times;</span>
+                        </form>
                         <h5>Titel</h5>
                         <p>{{$r->description}}</p>
                         <h5>Comment</h5>
