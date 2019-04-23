@@ -11,9 +11,18 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function () {   
     return view('welcome');
-})->name('home');
+});
+
+Route::get('/surf/login', 'SurfController@linkSurf')->middleware(['auth']);
+ 
+Route::get('/account', 'AccountController@index')->middleware(['auth']);
+Route::get('/account/linked', 'AccountController@linked');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth']);
 
 // Minors
 Route::get('/minors', 'MinorController@List')->name('minors');
@@ -79,7 +88,6 @@ Route::get('/dashboard/import', function() {
     return view('dashboard/import');
 })->name('import');
 
-// Import routes
 Route::get('/import/minors', 'ImportController@Minors');
 Route::get('/import/organizations', 'ImportController@Organisations');
 Route::get('/import/locations', 'ImportController@Locations');
