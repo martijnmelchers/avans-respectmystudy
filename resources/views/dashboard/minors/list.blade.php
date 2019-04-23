@@ -1,14 +1,14 @@
 @extends('layouts/dashboard')
 
-@section("title", "Minors")
+@section("title", "Minoren")
 
 @section('content')
     <article>
-        <h1>Minors</h1>
+        <h1>Minoren</h1>
     </article>
 
     <article>
-        <h3>Filter minors</h3>
+        <h3>Filter minoren</h3>
         <form method="get">
             <div class="formline">
                 <label for="name">Naam</label>
@@ -46,12 +46,12 @@
         </div>
     @else
         <article>
-            <p>Geen minors gevonden. Gebruik andere zoekcriteria</p>
+            <p>Geen minoren gevonden. Gebruik andere zoekcriteria</p>
         </article>
     @endif
 
     <div class="buttons">
         <a href="{{route('dashboard')}}">Home</a>
-        <a href="{{route('import')}}" class="">Minors importeren</a>
+        <a href="{{route('import')}}" class="">minoren importeren</a>
     </div>
 @endsection

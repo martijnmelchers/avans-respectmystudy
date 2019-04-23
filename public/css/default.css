@@ -295,6 +295,11 @@ a {
     margin: 0;
 }
 
+.blocks .buttons {
+    width: calc(100% - 10px);
+    margin: 5px auto;
+}
+
 /* Lists */
 .list {
     display: flex;
@@ -459,7 +464,7 @@ a {
     transition: box-shadow 0.2s;
 }
 
-.button.small {
+.button.small, .buttons.small .button {
     font-size: 14px;
     padding: 4px;
 }

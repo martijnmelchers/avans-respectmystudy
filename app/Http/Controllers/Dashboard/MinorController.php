@@ -17,10 +17,16 @@ class MinorController extends Controller
         if (isset($_GET['name'])) $minor_name = $_GET['name'];
         if (isset($_GET['is_published'])) $is_published = $_GET['is_published'];
 
+        $per_page = 15;
+        $page = 0;
+        if (isset($_GET['page']) && intval($_GET['page']) !== null) $page = intval($_GET['page']);
+
         // Select all individual minors
-        $raw_minors = Minor::where('name', 'like', "%$minor_name%")
+        $raw_minors = Minor::limit($per_page)
+            ->where('name', 'like', "%$minor_name%")
             ->groupBy('id')
             ->orderBy('name', 'asc')
+            ->offset($per_page * $page)
             ->get();
 
         $minors = array();
@@ -45,7 +51,7 @@ class MinorController extends Controller
         }
 
         // Sort new minors array by name
-        usort($minors, function($a, $b) {
+        usort($minors, function ($a, $b) {
             return $a['name'] <=> $b['name'];
         });
 
@@ -64,7 +70,65 @@ class MinorController extends Controller
 
         $published_version = Minor::where("id", $id)->where('is_published', true)->first();
 
-        return view('dashboard/minors/minor', ['minor' => $minor, 'published_version' => $published_version]);
+        return view('dashboard/minors/minor', ['minor' => $minor, 'published_version' => $published_version, 'versions' => Minor::find($id)]);
+    }
+
+    public function Create()
+    {
+        return view('dashboard/minors/create', ['minor' => new Minor()]);
+    }
+
+    public function CreatePost()
+    {
+        return view('dashboard/minors/create', ['minor' => new Minor()]);
+    }
+
+    public function Versions($id)
+    {
+        $versions = Minor::where('id', $id)->orderBy('version', 'asc')->get();
+
+        if (!isset($versions))
+            return redirect(route('dashboard-minors'));
+
+        return view('dashboard/minors/versions', ['versions' => $versions]);
+    }
+
+    public function MinorNewversion($id)
+    {
+        $minor = Minor::find($id)->orderBy('version', 'desc')->first();
+
+        if (!isset($minor))
+            return redirect(route('dashboard-minors'));
+
+//        $new_version = $minor->copy();
+//
+//        $new_version->version = $minor->version + 1;
+//        $new_version->save();
+
+        $new_version = new Minor([
+            'id' => $id,
+            'version' => $minor->version + 1,
+            'name' => $minor->name,
+            'phonenumber' => $minor->phonenumber,
+            'email' => $minor->email,
+            'examination' => $minor->examination,
+            'contact_hours' => $minor->contact_hours,
+            'costs' => $minor->costs,
+            'level' => $minor->level,
+            'language' => $minor->language,
+            'extra_information' => $minor->extra_information,
+            'is_published' => 0,
+            'is_enrollable' => 0,
+            'subject' => $minor->subject,
+            'goals' => $minor->goals,
+            'requirements' => $minor->requirements,
+            'ects' => $minor->ects,
+            'organisation_id' => $minor->organisation_id,
+        ]);
+
+        $new_version->save();
+
+        return redirect(route('dashboard-minor', ['id' => $minor->id, 'v' => $new_version->version]));
     }
 
     public function Edit($id)

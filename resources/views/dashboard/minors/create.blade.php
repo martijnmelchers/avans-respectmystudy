@@ -1,6 +1,6 @@
 @extends('layouts/dashboard')
 
-@section("title", "Edit minor " . $minor->name)
+@section("title", "Minor toevoegen")
 
 @section("head")
     <link href="/js/summernote/summernote-lite.css" rel="stylesheet">
@@ -16,18 +16,9 @@
             @endforeach
         @endif
 
+        <h1>Nieuwe minor aanmaken</h1>
         <form method="post">
             @csrf
-            <h1>{{$minor->name}}</h1>
-
-            <div class="buttons">
-                @foreach ($minor->versions() as $version)
-                    <a class="button <?php if ($version->is_published) echo "blue"; ?> <?php if ($minor->version == $version->version) echo "disabled"; ?>"
-                       href="{{route('dashboard-minor-edit', ['id'=>$version->id, 'v'=>$version->version])}}">Versie {{$version->version}}<?php if ($version->is_published) echo " - gepubliceerd"; ?><?php if ($version->version == $minor->version) echo " - geselecteerd"; ?></a>
-                @endforeach
-            </div>
-
-            <input type="number" style="display: none;" name="version" value="{{$minor->version}}">
 
             <div class="formline">
                 <label for="name">Naam</label>
@@ -78,14 +69,12 @@
             <textarea class="summernote" name="requirements">{!! $minor->requirements !!}</textarea>
 
             <div class="buttons">
-                <input type="submit" name="submit" href="{{route('dashboard-minor-edit', $minor->id)}}" class="button blue" value="Opslaan">
+                <input type="submit" name="submit" class="button blue" value="Opslaan">
             </div>
         </form>
 
         <div class="buttons">
-            <a href="{{route('dashboard-minor', $minor->id)}}" class="button red small">Annuleren</a>
-            <a href="{{route('dashboard-minor-newversion', $minor->id)}}" class="button red small">Nieuwe versie aanmaken</a>
-            <a href="{{route('dashboard-minors')}}" class="button red small">Alle minors</a>
+            <a href="{{route('dashboard-minors')}}" class="button red small">Annuleren</a>
         </div>
     </article>
 
