@@ -18,7 +18,7 @@ return [
         'infopointcontent1'=>'2',
         'infopoint2ttitle1'=>'Uniek',
         'infopoint2ttitle2'=>'Systeem',
-        'infopointcontent3'=>'3',
+        'infopointcontent2'=>'3',
         'infopoint3ttitle1'=>'Nauwkeurig',
         'infopoint3ttitle2'=>'Filteren',
         'infopointcontent3'=>'4',
