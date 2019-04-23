@@ -14,7 +14,6 @@ class Minor extends Model
         "phonenumber",
         "email",
         "kiesopmaat",
-        "place",
         "ects",
         "subject",
         "goals",
@@ -33,30 +32,48 @@ class Minor extends Model
     ];
 
 
-
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
     }
-
+  
     // Return organisation
     public function organisation()
     {
         return $this->belongsTo('App\Organisation');
     }
-
+  
+    // Return locaties
+    public function locations()
+    {
+        return $this->belongsToMany('App\Location', 'minors_locations');
+    }
+  
     // Return reviews
     public function reviews()
     {
         return $this->belongsTo('App\Review');
     }
 
+    // Return average stars (not done)
+
     /** @return array[float] */
-    public function averageStars()
+    public function averageReviews()
     {
-        $avg_quality = $avg_studiability = $avg_content = 0;
+//        global $avg_content, $avg_studiability, $avg_quality;
+//        return [$avg_quality, $avg_studiability, $avg_content];
+        $reviews = Review::all()->where('minor_id', $this->id);
 
+        if (sizeof($reviews) > 0) {
+            $avg_content = $avg_teachers = $avg_studiability = 0;
 
-        return [$avg_quality, $avg_studiability, $avg_content];
+            $avg_content = $reviews->avg("grade_quality");
+            $avg_teachers = $reviews->avg("grade_content");
+            $avg_studiability = $reviews->avg("grade_studiability");
+
+            return [$avg_content, $avg_teachers, $avg_studiability, sizeof($reviews)];
+        } else {
+            return [];
+        }
     }
 }

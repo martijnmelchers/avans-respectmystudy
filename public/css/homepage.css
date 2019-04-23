@@ -1,0 +1,381 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: #ECF0F1;
+    font-family: 'Source Sans Pro', sans-serif;
+
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    font-family: 'Montserrat', sans-serif;
+    margin: 5px;
+    padding: 0;
+}
+
+.underline {
+    border-bottom: 2px solid #ECF0F1;
+}
+
+.center {
+    text-align: center;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.nav {
+    min-height: 30px;
+    background: white;
+    box-shadow: 0 -5px 20px #9f9f9f;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.nav .title {
+    font-size: 20px;
+    padding: 12px 0 12px 20px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.nav .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 10px 14px 0;
+    font-size: 15px;
+}
+
+.nav .divider {
+    width: 1px;
+    height: 100%;
+    background: #ECF0F1;
+}
+
+.nav .nav-buttons a, .nav .nav-buttons .item {
+    margin: 0 7px;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+}
+
+.nav .nav-buttons a.active {
+    border-bottom: 2px solid #F64646;
+}
+
+.nav .dropdown {
+    position: relative;
+}
+
+.nav .dropdown .drop {
+    position: absolute;
+    background: #ced2d3;
+    width: 100%;
+    border-radius: 3px;
+    padding: 2px;
+    z-index: 420;
+    -webkit-transition: top 0.2s, opacity 0.2s, visibility 0.2s;
+    -moz-transition: top 0.2s, opacity 0.2s, visibility 0.2s;
+    -ms-transition: top 0.2s, opacity 0.2s, visibility 0.2s;
+    -o-transition: top 0.2s, opacity 0.2s, visibility 0.2s;
+    transition: top 0.2s, opacity 0.2s, visibility 0.2s;
+    visibility: hidden;
+    opacity: 0;
+    top: 90%;
+}
+
+.nav .dropdown .drop::after {
+    display: block;
+    content: '';
+    border-bottom: 4px solid #ced2d3;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    position: absolute;
+    top: -4px;
+    left: 40%;
+}
+
+.nav .dropdown .flag {
+    width: 30px;
+    display: block;
+    padding: 2px 0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.nav .dropdown:hover > .drop {
+    visibility: visible;
+    top: 110%;
+    opacity: 1;
+}
+
+.content {
+    width: 100%;
+    top: 50px;
+    position: absolute;
+    display: flex;
+    /*flex-direction: column;*/
+    align-items: flex-start;
+}
+
+.mainpagecontent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background: white;
+}
+
+.mainpagesearch {
+    background: linear-gradient(to left, #89216B, #DA4453);
+    padding: 68px 50px 98px 50px;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.mainpagesearch h1 {
+    font-weight: bold;
+    font-size: 32px;
+    color: white;
+}
+
+.mainpagesearch h2 {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.mainpagesearch p {
+    font-size: 20px;
+    color: white;
+    font-weight: lighter;
+}
+
+.searcharticle {
+    width: 50%;
+    margin-right: 80px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.searcharticlewhite {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-left: 80px;
+    background: white;
+    border-radius: 3px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.searcharticlewhite h2 {
+    font-size: 2em;
+    font-weight: 500;
+    text-align: center;
+    color: #434D53;
+    padding: 8px;
+}
+
+.searcharticlewhite .info {
+    color: black;
+    font-size: 14px;
+    padding: 0;
+    margin: 0 30px;
+}
+
+.searcharticlefilter {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+.searcharticlefilter h3 {
+    color: #434D53;
+}
+
+.searcharticlefilter span {
+    color: #434D53;
+}
+
+.searcharticlewhite input[type=text] {
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 3px;
+    border: 2px solid #dee2e3;
+    margin: 15px 30px;
+}
+
+.articlebutton {
+    float: right;
+    margin: 10px 30px;
+}
+
+.articlefill {
+    width: 75%;
+}
+
+.infogroup {
+    background: #ECF0F1;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    padding: 58px 58px;
+    justify-content: space-between;
+}
+
+.infogroup article {
+    max-width: 30%;
+}
+
+.infogroup article a {
+    width: 100%;
+}
+
+.infogroup h3 {
+    font-weight: 600;
+    text-align: left;
+    font-size: 42px;
+    color: #434D53;
+}
+
+.infogroup img {
+    display: block;
+    width: 80px;
+    height: 80px;
+}
+
+.infogroup p {
+    color: #848484;
+}
+
+.infogroup span {
+    color: #4D648D;
+    padding: 20px;
+    font-size: 3em;
+}
+
+.infobutton {
+    float: right;
+    margin: 5px 20px;
+}
+
+.infopoint {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.infopointtext {
+    align-content: center;
+    display: flex;
+    flex-direction: column;
+    margin: 6px 6px;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 0;
+    flex-grow: 1;
+}
+
+.buttons a, .button {
+    flex-grow: 1;
+    background: #F64646;
+    border-radius: 3px;
+    color: white;
+    padding: 8px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    transition: box-shadow 0.2s;
+}
+
+.buttons a:hover, .button:hover {
+    -webkit-box-shadow: 5px 5px 10px #ced2d3;
+    -moz-box-shadow: 5px 5px 10px #ced2d3;
+    box-shadow: 5px 5px 10px #ced2d3;
+}
+
+.buttons a, .buttons .button {
+    margin-right: 20px;
+}
+
+.buttons a:last-child, .buttons .button:last-child {
+    margin-right: 0px;
+}
+
+/* Button Colors */
+.button.blue {
+    border-color: #4D648D;
+    background-color: #4D648D;
+}
+
+/* Button Colors */
+.button.aqua {
+    border-color: #66BFB3;
+    background-color: #66BFB3;
+}
+
+@media all and (max-width: 1200px) {
+    .infopoint {
+        justify-content: center;
+    }
+    .mainpagesearch {
+        flex-wrap: wrap;
+        align-items: stretch;
+    }
+
+    .searcharticle, .searcharticlewhite {
+        width: initial;
+        flex-grow: 1;
+        margin: 0;
+    }
+
+    .infogroup h3 {
+        font-weight: 600;
+        text-align: left;
+        font-size: 25px;
+        color: #434D53;
+    }
+}
+
+
+@media all and (max-width: 1000px) {
+
+    .mainpagesearch {
+        background: linear-gradient(to left, #89216B, #DA4453);
+        padding: 58px 48px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+
+    .searcharticle {
+        width: auto;
+    }
+
+    .searcharticlewhite {
+        width: auto;
+    }
+
+    .infogroup {
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .infogroup article {
+        max-width: initial;
+    }
+}

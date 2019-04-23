@@ -2,26 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Location;
 use App\Minor;
 use App\Organisation;
-
-use App\Review;
-
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
 
-class MinorController extends Controller
+class MapController extends Controller
 {
-    public function List(Route $route, Request $request)
+    public function Map(Request $request)
     {
-//        $minors = array(new Minor(["id" => 1, "name" => "Minor 1"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]));
-
-        $search_name = $search_ects = $orderby = "";
+        $search_name = $search_ects = "";
         $selected_organisations = $selected_languages = array();
 
         if (isset($_GET['name'])) $search_name = $_GET['name'];
         if (isset($_GET['ects'])) $search_ects = $_GET['ects'];
-        if (isset($_GET['orderby'])) $orderby = $_GET['orderby'];
 
         if (isset($_GET['organisations']) && is_array($_GET['organisations'])) $selected_organisations = $_GET['organisations'];
         if (isset($_GET['languages']) && is_array($_GET['languages'])) $selected_languages = $_GET['languages'];
@@ -35,23 +29,12 @@ class MinorController extends Controller
         // Set allowed languages
         $languages = array('nl', 'de', 'en', 'es');
 
-        if (isset($orderby)) {
-            switch ($orderby) {
-                case "name":
-                    $orderby = "name";
-                    break;
-                default:
-                    $orderby = "id";
-            }
-        }
-
         // Get all minors with base search parameters
         $all_minors = Minor::where([
             ["name", "like", "%${search_name}%"],
-            ["ects", "like", "%${search_ects}%"]])
-//            ["is_enrollable", "=", true]])
-            ->orderBy($orderby)
-            ->get();
+            ["ects", "like", "%${search_ects}%"],
+//            ["is_enrollable", "=", true]
+        ])->get();
 
         // Filter organisations
         if (isset($selected_organisations) && sizeof($selected_organisations) > 0) {
@@ -78,23 +61,39 @@ class MinorController extends Controller
         // Calculate the total minor amount
         $total_minor_amount = sizeof($all_minors);
 
-        // Select the right amount of minors
-        $minors = array();
-        for ($i = $offset * $per_page; $i < ($offset * $per_page) + $per_page; $i++) {
-            if (isset($all_minors[$i]))
-            $minors[] = $all_minors[$i];
-        }
-
         // Calculate the amount of pages
         $pages = round($total_minor_amount / $per_page);
 
         // Select all organisations
         $organisations = Organisation::orderBy('name')->get();
 
-//        echo $minors[0]->reviews();
+        // Select all locations
+        $locations = array();
+
+        foreach ($all_minors as $minor) {
+            foreach ($minor->locations as $location) {
+                $in_array = false;
+
+                foreach ($locations as $l) {
+                    if ($location->id == $l->id) {
+
+                        $in_array = true;
+                        break;
+                    }
+                }
+
+                if (!$in_array) {
+                    $locations[] = $location;
+                }
+            }
+        }
+
+//        $locations = Location::all();
+
         // Return view with all variables
-        return view('minors/list', [
-            "minors" => $minors,
+        return view('minors/map', [
+            "minors" => $all_minors,
+            "locations" => $locations,
             "organisations" => $organisations,
             "selected_organisations" => $selected_organisations,
             "languages" => $languages,
@@ -104,36 +103,7 @@ class MinorController extends Controller
             "request" => $request,
             "name" => $search_name,
             "ects" => $search_ects,
-          
-            "total_minor_amount" => $total_minor_amount,
-            "orderby" => $orderby,
+            "total_minor_amount" => $total_minor_amount
         ]);
     }
-
-    public function Minor($id)
-    {
-//        $minor = Minor::all()->where("id", $id)->where("is_published", 1)->first();
-        $minor = Minor::all()->where("id", $id)->first();
-        $reviews = Review::all()->where('minor_id', $id);
-
-        if (isset($minor)) return view('minors/minor', compact('minor', 'reviews'));
-        else return "Minor niet gevonden";
-    }
-
-    public function InsertReview(Request $request, $id)
-    {
-        Review::create([
-            'description' => $request->get('title'),
-            'minor_id' => $id,
-            'user_id' => 1,
-            'grade_quality' => $request->get('rating_1'),
-            'grade_studiability' => $request->get('rating_2'),
-            'grade_content' => $request->get('rating_3'),
-            'comment' => $request->get('message'),
-            'created_at' => now(), 'updated_at' => now()
-        ]);
-
-        return redirect()->back()->with('flash_message', 'Uw review is geplaatst!');
-    }
-
 }
