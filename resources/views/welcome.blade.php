@@ -25,7 +25,7 @@
                         </p>
                     </div>
                     <div class="searcharticlewhite">
-                        <h2>Zoek in onze 1687 minors</h2>
+                        <h2>Zoek in onze leuke minors</h2>
                         <form method="get" autocomplete="off" action="minors">
                             <p class="info">Zoek hier in onze database met minors.</p>
                             <div class="formline">
