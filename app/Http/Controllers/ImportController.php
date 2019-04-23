@@ -27,8 +27,8 @@ class ImportController extends Controller
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 
         $headers = array();
-        $headers[] = 'Authorization: Token Be6060c3147a74aaec4c15f3531fcc0dcadebe50';
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
+        $headers[] = "Authorization: Token $kiesopmaat_token";
 
         $result = curl_exec($ch);
         $php_result = json_decode($result);
@@ -163,7 +163,9 @@ class ImportController extends Controller
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 
         $headers = array();
-        $headers[] = 'Authorization: Token Be6060c3147a74aaec4c15f3531fcc0dcadebe50';
+
+        $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
+        $headers[] = "Authorization: Token $kiesopmaat_token";
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($ch);
