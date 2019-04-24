@@ -46,15 +46,58 @@ class Minor extends Model
     // Return locaties
     public function locations()
     {
+        
         return $this->belongsToMany('App\Location', 'minors_locations');
     }
   
     // Return reviews
     public function reviews()
     {
-        return $this->belongsTo('App\Review');
+        $reviews = Review::all()->where('minor_id', $this->id);
+        $assessors = User::where('role_id', '=', 2)->pluck('id')->toArray();
+        $reviews_by_students = [];
+        foreach ($reviews as $review) {
+            if (! in_array($review->user_id, $assessors)) {
+                $reviews_by_students[] = $review;
+            }
+        }
+        return $reviews_by_students;
     }
 
+    public function Assessable()
+    {
+        $reviews = Review::all()->where('minor_id', $this->id);
+        $assessors = User::where('role_id', '=', 2)->pluck('id')->toArray();
+        $count = 0;
+        $reviewable = false;
+        foreach ($reviews as $review) {
+            if (in_array($review->user_id, $assessors))
+            {
+                $count++;
+            }else{}
+            if ($count < 3)
+            {
+                $reviewable = true;
+            }else
+                {
+                $reviewable = false;
+            }
+        }
+        return $reviewable;
+    }
+
+    public function assessorReviews()
+    {
+        $reviews = Review::all()->where('minor_id', $this->id);
+        $assessors = User::where('role_id', '=', 2)->pluck('id')->toArray();
+        $reviews_by_assessor = [];
+        foreach ($reviews as $review) {
+            if (in_array($review->user_id, $assessors)) {
+                $reviews_by_assessor[] = $review;
+            }
+        }
+        return $reviews_by_assessor;
+    }
     // Return average stars (not done)
 
     /** @return array[float] */

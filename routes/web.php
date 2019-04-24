@@ -37,6 +37,13 @@ Route::get('/location/{id}', 'LocationController@Location')->name('location');
 Route::get('/import', function() {
     return view('dashboard/import');
 });
+
+// Dashboard minors
+Route::get('/dashboard/dashboard_assessable', 'DashboardminorsController@Minors_to_assess');
+Route::get('/dashboard/dashboard_assessed', 'DashboardminorsController@Assessed_minors');
+Route::get('/dashboard/minor/{id}', 'DashboardminorsController@Minor')->name('minor');
+Route::post('dashboard/minor/{id}', 'DashboardminorsController@InsertReview')->name('minor');
+
 Route::get('/import/minors', 'ImportController@Minors');
 Route::get('/import/organizations', 'ImportController@Organisations');
 Route::get('/import/locations', 'ImportController@Locations');
