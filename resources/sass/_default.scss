@@ -1,0 +1,17 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: #ECF0F1;
+    font-family: 'Source Sans Pro', sans-serif;
+
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $primary-font;
+    margin: 5px;
+    padding: 0;
+}

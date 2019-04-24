@@ -1,0 +1,65 @@
+.formline {
+    margin: 5px auto;
+    display: flex;
+    align-items: center;
+}
+
+.formline.wrap {
+    flex-wrap: wrap;
+}
+
+input, select {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 14px;
+}
+
+input[type='text'], input[type='tel'], input[type='password'], input[type='number'], select {
+    padding: 3px;
+    border: 2px solid #dee2e3;
+    background: #ECF0F1;
+    outline: none;
+    border-radius: 3px;
+
+    flex-grow: 1;
+    display: block;
+    overflow: hidden;
+}
+
+.formline label {
+    padding: 0 4px 0 0;
+}
+
+.formline label.wide {
+    width: 100%;
+}
+
+input[type='submit'] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    flex-grow: 1;
+    width: 100%;
+    padding: 5px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    margin: 5px 0;
+    font-size: 17px;
+    border: none;
+}
+
+input[type='submit']:not(.button) {
+    border: 2px solid #dee2e3;
+    background: #ECF0F1;
+    background-color: #ECF0F1;
+    cursor: pointer;
+
+    -webkit-transition: background 0.2s;
+    -moz-transition: background 0.2s;
+    -ms-transition: background 0.2s;
+    -o-transition: background 0.2s;
+    transition: background 0.2s;
+}
+
+input[type='submit']:not(.button):hover {
+    background: #dee2e3;
+}

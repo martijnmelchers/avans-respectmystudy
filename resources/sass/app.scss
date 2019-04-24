@@ -1,14 +1,13 @@
+/* Bootstrap base imports */
+@import
+'~bootstrap/scss/functions',
+'~bootstrap/scss/variables',
+'~bootstrap/scss/mixins';
 
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+/* Reset SCSS (Reset before anything so it can be overwritten again) */
+@import './reset';
 
-// Variables
-@import 'variables';
-
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
-
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
+/* Bootstrap components */
+@import '~bootstrap/scss/utilities';
+@import '~bootstrap/scss/bootstrap-grid';
+@import '~bootstrap/scss/type';
