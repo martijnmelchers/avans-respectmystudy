@@ -35,3 +35,6 @@
         </div>
     </div>
 @endsection
+@section('head')
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@endsection

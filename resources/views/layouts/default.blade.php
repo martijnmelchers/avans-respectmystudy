@@ -22,9 +22,9 @@
 <body>
 <div class="nav">
     <div class="expander" onclick="$('.nav').toggleClass('visible');"><i class="fas fa-stream"></i></div>
-    <a href="{{route('home')}}" class="title">RespectMyStudy</a>
+    <a href="{{route('index')}}" class="title">RespectMyStudy</a>
     <div class="nav-buttons">
-        <a href="{{route('home')}}">Home</a>
+        <a href="/">Home</a>
         <a href="{{route('minors')}}">Minoren</a>
         <a href="{{route('map')}}">Kaart</a>
         
@@ -33,7 +33,7 @@
         {{--Gray stripe--}}
         <div class="divider"></div>
         @auth
-            <a href="{{ url('/account') }}">Home</a>
+            <a href="{{ url('/account') }}">Account</a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();

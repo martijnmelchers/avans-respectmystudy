@@ -13,7 +13,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'MainPageController@Home')->name('home');
+Route::get('/', 'MainPageController@index')->name('index');
 
 Route::get('/surf/login', 'SurfController@linkSurf')->middleware(['auth']);
 
@@ -33,7 +33,7 @@ Route::post('/minor/{id}', 'MinorController@InsertReview')->name('minor');
 Route::get('/lang/{lang}', function ($lang) {
     setcookie('lang', $lang, time() + 60 * 60 * 24 * 30, '/');
 
-    return redirect(route('home'));
+    return redirect(route('index'));
 })->name('lang');
 
 

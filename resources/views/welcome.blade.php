@@ -1,6 +1,9 @@
-@extends('layouts/homepage')
+@extends('layouts/default')
 
 @section("title", "Home")
+
+
+
 
 @section('content')
     <div class="content">
@@ -170,4 +173,7 @@
         </div>
 
     </div>
+@endsection
+@section('head')
+<link href="/css/homepage.css" type="text/css" rel="stylesheet">
 @endsection
