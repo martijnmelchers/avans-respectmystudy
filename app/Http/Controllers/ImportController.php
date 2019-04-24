@@ -26,7 +26,7 @@ class ImportController extends Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 
-        $headers = array();
+        $headers = [];
         $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
         $headers[] = "Authorization: Token $kiesopmaat_token";
 
@@ -44,7 +44,7 @@ class ImportController extends Controller
             die();
         }
 
-        $errors = $messages = array();
+        $errors = $messages = [];
 
         // Loop through all minors
         foreach ($php_result->results as $r) {
@@ -162,10 +162,10 @@ class ImportController extends Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 
-        $headers = array();
+        $headers = [];
 
         $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
-        $headers[] = "Authorization: Token $kiesopmaat_token";
+        $headers[] = "Authorization: Token Be6060c3147a74aaec4c15f3531fcc0dcadebe50";
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($ch);
@@ -225,7 +225,7 @@ class ImportController extends Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 
-        $headers = array();
+        $headers = [];
 
         $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
         $headers[] = "Authorization: Token $kiesopmaat_token";
@@ -245,7 +245,7 @@ class ImportController extends Controller
             die();
         }
 
-        $errors = array();
+        $errors = [];
 
         foreach ($php_result->results as $r) {
             $location = Location::all()->where('id', $r->id)->first();
