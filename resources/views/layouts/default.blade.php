@@ -45,10 +45,10 @@
                 </form>
             </div>
         @else
-            <a href="{{ route('home') }}">Login</a>
+            <a href="{{ route('login') }}">Login</a>
 
             @if (Route::has('register'))
-                <a href="{{ route('home') }}">Register</a>
+                <a href="{{ route('register') }}">Register</a>
             @endif
         @endauth
 

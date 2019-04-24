@@ -13,7 +13,7 @@
 
 Route::get('/', function () {   
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/surf/login', 'SurfController@linkSurf')->middleware(['auth']);
  
@@ -22,7 +22,7 @@ Route::get('/account/linked', 'AccountController@linked');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth']);
+Route::get('/home', 'HomeController@index')->middleware(['auth']);
 
 // Minors
 Route::get('/minors', 'MinorController@List')->name('minors');
