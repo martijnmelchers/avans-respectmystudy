@@ -21,6 +21,7 @@
 </head>
 <body>
 <div class="nav">
+    <div class="expander" onclick="$('.nav').toggleClass('visible');"><i class="fas fa-stream"></i></div>
     <a href="{{route('home')}}" class="title">RespectMyStudy</a>
     <div class="nav-buttons">
         <a href="{{route('home')}}">Home</a>
