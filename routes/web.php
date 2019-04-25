@@ -44,7 +44,7 @@ Route::get('/location/{id}', 'LocationController@Location')->name('location');
 
 //
 // Dashboard
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['admin'])->group(function(){
     // Home
     Route::get('/dashboard', 'DashboardController@Home')->name('dashboard');
 
