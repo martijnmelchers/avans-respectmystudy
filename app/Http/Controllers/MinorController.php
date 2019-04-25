@@ -48,8 +48,8 @@ class MinorController extends Controller
         // Get all minors with base search parameters
         $all_minors = Minor::where([
             ["name", "like", "%${search_name}%"],
-            ["ects", "like", "%${search_ects}%"]])
-//            ["is_enrollable", "=", true]])
+            ["ects", "like", "%${search_ects}%"],
+            ["is_published", "=", true]])
             ->orderBy($orderby)
             ->get();
 

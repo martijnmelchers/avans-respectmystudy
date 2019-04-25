@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'nl',
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'nl',
 
     /*
     |--------------------------------------------------------------------------
@@ -106,7 +106,7 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'nl_NL',
 
     /*
     |--------------------------------------------------------------------------
@@ -178,7 +178,9 @@ return [
         /*
          * Selenium
          */
-        Modelizer\Selenium\SeleniumServiceProvider::class
+        Modelizer\Selenium\SeleniumServiceProvider::class,
+
+        Aacotroneo\Saml2\Saml2ServiceProvider::class
     ],
 
     /*
@@ -227,7 +229,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Saml2' => Aacotroneo\Saml2\Facades\Saml2Auth::class
     ],
 
 ];

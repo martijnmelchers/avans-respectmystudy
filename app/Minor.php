@@ -64,6 +64,42 @@ class Minor extends Model
         return $reviews_by_students;
     }
 
+    // Return all versions
+    public function versions() {
+        return Minor::all()->where("id", $this->id);
+    }
+
+    // Return all versions
+    public function version_count() {
+        return Minor::all()->where("id", $this->id)->count();
+    }
+
+    /**
+     * @param $minor Minor - The minor to check against
+     * @return bool
+     */
+    public function isSame($minor) {
+        if ($minor->name != $this->name)
+            return false;
+
+        if ($minor->subject != $this->subject)
+            return false;
+
+        if ($minor->goals != $this->goals)
+            return false;
+
+        if ($minor->requirements != $this->requirements)
+            return false;
+
+        if ($minor->ects != $this->ects)
+            return false;
+
+        if ($minor->costs != $this->costs)
+            return false;
+
+        return true;
+    }
+
     public function Assessable()
     {
         $reviews = Review::all()->where('minor_id', $this->id);
