@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Minor;
 use App\Review;
+use Auth;
 use App\role;
 use App\User;
 use Illuminate\Http\Request;
@@ -47,7 +48,7 @@ class DashboardminorsController extends Controller
         Review::create([
             'description' => $request->get('title'),
             'minor_id' => $id,
-            'user_id' => 2,
+            'user_id' => Auth::user()->id,
             'grade_quality' => $request->get('rating_1'),
             'grade_studiability' => $request->get('rating_2'),
             'grade_content' => $request->get('rating_3'),
@@ -56,5 +57,13 @@ class DashboardminorsController extends Controller
         ]);
 
         return redirect()->back()->with('flash_message', 'Uw review is geplaatst!');
+    }
+
+    public function MergeReviews($id)
+    {
+        $minor = Minor::where('id', '=', $id)->first();
+        $assessor_reviews = $minor->assessorReviews();
+        if (isset($minor))  return view('/dashboard/dashboard_merge_reviews', compact('minor', 'assessor_reviews'));
+        else return "Minor niet gevonden";
     }
 }

@@ -1,9 +1,8 @@
-@extends('layouts/default')
+@extends('layouts/dashboard')
 
 @section("title", "Minor")
 
 @section('content')
-    <div class="content">
         <div class="wrapper wrap">
             <article>
                 <h1>{{$minor->name}}</h1>
@@ -132,10 +131,11 @@
                     <input type="submit" value="Plaats review">
                 </form>
             </article>
-
+            @if($minor->Assessable())
             <div class="buttons">
-                <a href="{{ URL::previous() }}" class="button">Reviews samenvoegen</a>
+                <a href="{{route('dashboard-merge', $minor->id)}}" class="button">Reviews samenvoegen</a>
             </div>
+            @endif
 
             <article>
                 <h3>Reviews</h3>
@@ -192,7 +192,6 @@
                 @endforeach
             </article>
         </div>
-    </div>
 
 
 

@@ -54,7 +54,12 @@ class Minor extends Model
     public function reviews()
     {
         $reviews = Review::all()->where('minor_id', $this->id);
-        $assessors = User::where('role_id', '=', 2)->pluck('id')->toArray();
+        $h_assessor_id = Role::where('role_name', '=', 'HoofdAssessor')
+            ->orWhere('role_name', '=', 'Admin')
+            ->orWhere('role_name', '=', 'Assessor')
+            ->pluck('id')
+            ->toArray();
+        $assessors = User::whereIn('role_id', $h_assessor_id)->pluck('id')->toArray();
         $reviews_by_students = [];
         foreach ($reviews as $review) {
             if (! in_array($review->user_id, $assessors)) {
@@ -103,20 +108,19 @@ class Minor extends Model
     public function Assessable()
     {
         $reviews = Review::all()->where('minor_id', $this->id);
-        $assessors = User::where('role_id', '=', 2)->pluck('id')->toArray();
-        $count = 0;
+        $h_assessor_id = Role::where('role_name', '=', 'HoofdAssessor')
+            ->orWhere('role_name', '=', 'Admin')
+            ->pluck('id')
+            ->toArray();
+        $assessors = User::whereIn('role_id', $h_assessor_id)->pluck('id')->toArray();
         $reviewable = false;
-        foreach ($reviews as $review) {
+        foreach ($reviews as $review)
+        {
             if (in_array($review->user_id, $assessors))
             {
-                $count++;
-            }else{}
-            if ($count < 3)
-            {
-                $reviewable = true;
-            }else
-                {
                 $reviewable = false;
+            }else{
+                $reviewable = true;
             }
         }
         return $reviewable;
@@ -146,9 +150,9 @@ class Minor extends Model
         if (sizeof($reviews) > 0) {
             $avg_content = $avg_teachers = $avg_studiability = 0;
 
-            $avg_content = $reviews->avg("grade_quality");
-            $avg_teachers = $reviews->avg("grade_content");
-            $avg_studiability = $reviews->avg("grade_studiability");
+            $avg_content = round($reviews->avg("grade_quality"), 2);
+            $avg_teachers = round($reviews->avg("grade_content"),2);
+            $avg_studiability = round($reviews->avg("grade_studiability"), 2);
 
             return [$avg_content, $avg_teachers, $avg_studiability, sizeof($reviews)];
         } else {
