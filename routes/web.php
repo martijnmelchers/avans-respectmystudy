@@ -95,9 +95,9 @@ Route::middleware(['auth'])->group(function(){
         return view('dashboard/import');
     })->name('import');
 
-    Route::get('/dashboard/dashboard_assessable', 'DashboardminorsController@Minors_to_assess');
+    Route::get('/dashboard/dashboard_assessable', 'DashboardminorsController@Minors_to_assess')->name('assessable');
 
-    Route::get('/dashboard/dashboard_assessed', 'DashboardminorsController@Assessed_minors');
+    Route::get('/dashboard/dashboard_assessed', 'DashboardminorsController@Assessed_minors')->name('assessed');
 
     Route::get('/dashboard/minor/{id}', 'DashboardminorsController@Minor')->name('dashboard-minor-reviews');
 

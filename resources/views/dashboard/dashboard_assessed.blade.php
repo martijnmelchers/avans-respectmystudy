@@ -1,5 +1,9 @@
 @extends('layouts/dashboard')
 @section('content')
+    <div class="buttons">
+        <a href="{{route('assessable')}}" class=""><i></i>Assessable minoren</a>
+        <a href="{{route('assessed')}}" class=""><i></i>Assessed minoren</a>
+    </div>
     <div>
         <div class="wrapper wrap">
             <div class="list minorlist">
