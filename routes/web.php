@@ -92,7 +92,7 @@ Route::middleware(['auth'])->group(function(){
     // Users
     Route::get('/dashboard/users', 'Dashboard\UserController@Users')->name('dashboard-users');
     Route::get('/dashboard/users/{id}', 'Dashboard\UserController@User')->name('dashboard-user');
-    Route::get('/dashboard/users/{id}/edit', 'Dashboard\UserController@UserEdit')->name('dashboard-user-edit');
+    Route::post('/dashboard/users/{id}', 'Dashboard\UserController@Edit')->name('dashboard-user-edit');
 
     // Temporary Importing
     Route::get('/dashboard/import', function() {

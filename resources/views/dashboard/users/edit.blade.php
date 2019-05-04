@@ -13,7 +13,7 @@
         @if(sizeof($errors) > 0)
             @foreach ($errors->all() as $error)
                 <div class="alert red">{{ $error }}</div>
-            @endforeach
+            @endforeach 
         @endif
 
         <form method="post">
@@ -21,22 +21,19 @@
             <h1>{{$user->name}}</h1>
 
 
-
-            <input type="number" style="display: none;" name="version" value="{{$user->version}}">
-
             <div class="formline">
                 <label for="name">Naam</label>
                 <input type="text" name="name" id="name" value="{{$user->name}}">
             </div>
            
             <div class="formline">
-                <label for="name">Email</label>
-                <input disabled type="text" name="name" id="name" value="{{$user->email}}">
+                <label for="email">Email</label>
+                <input disabled type="text" id="email" value="{{$user->email}}">
             </div>
 
             <div class="formline">
-                <label for="name">Gebruikersnaam</label>
-                <input type="text" name="name" id="name" value="{{$user->username}}">
+                <label for="username">Gebruikersnaam</label>
+                <input type="text" name="username" id="username" value="{{$user->username}}">
             </div>
         
 
