@@ -1,0 +1,58 @@
+.button, button {
+    color: white;
+    padding: 10px 50px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: $primary-font;
+    font-size: 14px;
+    display: inline-block;
+
+    &.red {
+        background-color: $primary-red;
+
+        &:hover {
+            background-color: $primary-red-hover;
+        }
+
+        &:active {
+            background-color: $primary-red-active;
+        }
+    }
+
+    &.green {
+        background-color: $primary-green;
+
+        &:hover {
+            background-color: $primary-green-hover;
+        }
+
+        &:active {
+            background-color: $primary-green-active;
+        }
+    }
+
+    &.blue {
+        background-color: $primary-blue;
+
+        &:hover {
+            background-color: $primary-blue-hover;
+        }
+
+        &:active {
+            background-color: $primary-blue-active;
+        }
+    }
+
+    &.grey {
+        background-color: $primary-grey;
+
+        &:hover {
+            background-color: $primary-grey-hover;
+        }
+
+        &:active {
+            background-color: $primary-grey-active;
+        }
+    }
+}

@@ -8,8 +8,8 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro:400,700" rel="stylesheet">
-    <link href="/css/default.css" type="text/css" rel="stylesheet">
-    <link href="/css/form.css" type="text/css" rel="stylesheet">
+    <link href="/css/app.css" type="text/css" rel="stylesheet">
+   {{-- <link href="/css/form.css" type="text/css" rel="stylesheet">--}}
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

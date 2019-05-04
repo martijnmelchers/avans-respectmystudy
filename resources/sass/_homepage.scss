@@ -1,0 +1,53 @@
+@import './variables';
+
+.presentation {
+    background: linear-gradient(to left, #89216B, #DA4453);
+    padding: 100px 0 100px 0;
+
+    .presentation-left {
+        h1 {
+            font-weight: bold;
+            font-size: 34px;
+            color: white;
+        }
+
+        h2 {
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        p {
+            font-size: 20px;
+            color: white;
+            font-weight: 200;
+        }
+    }
+
+}
+
+.highlights {
+    margin-top: 30px;
+    .highlight-header {
+        margin-bottom: 10px;
+        margin-top: 10px;
+
+        i {
+            color: $primary-blue;
+        }
+        h1 {
+            font-weight: 700;
+            margin: 0;
+        }
+    }
+
+    .highlight-content {
+        p {
+            font-family: $primary-font;
+            line-height: 1.2;
+            font-weight: normal;
+        }
+
+        margin-bottom: 10px;
+    }
+
+}
