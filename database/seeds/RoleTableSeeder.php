@@ -15,5 +15,10 @@ class RoleTableSeeder extends Seeder
             'role_name' => "default",
             'role_description' => 'standaard rol',
         ]);
+
+        DB::table('roles')->insert([
+            'role_name' => "admin",
+            'role_description' => 'administrator rol',
+        ]);
     }
 }

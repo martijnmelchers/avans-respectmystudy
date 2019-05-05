@@ -46,13 +46,27 @@ class Minor extends Model
     // Return locaties
     public function locations()
     {
+        
         return $this->belongsToMany('App\Location', 'minors_locations');
     }
   
     // Return reviews
     public function reviews()
     {
-        return $this->hasMany('App\Review');
+        $reviews = Review::all()->where('minor_id', $this->id);
+        $h_assessor_id = Role::where('role_name', '=', 'HoofdAssessor')
+            ->orWhere('role_name', '=', 'Admin')
+            ->orWhere('role_name', '=', 'Assessor')
+            ->pluck('id')
+            ->toArray();
+        $assessors = User::whereIn('role_id', $h_assessor_id)->pluck('id')->toArray();
+        $reviews_by_students = [];
+        foreach ($reviews as $review) {
+            if (! in_array($review->user_id, $assessors)) {
+                $reviews_by_students[] = $review;
+            }
+        }
+        return $reviews_by_students;
     }
 
     // Return all versions
@@ -91,6 +105,39 @@ class Minor extends Model
         return true;
     }
 
+    public function Assessable()
+    {
+        $reviews = Review::all()->where('minor_id', $this->id);
+        $h_assessor_id = Role::where('role_name', '=', 'HoofdAssessor')
+            ->orWhere('role_name', '=', 'Admin')
+            ->pluck('id')
+            ->toArray();
+        $assessors = User::whereIn('role_id', $h_assessor_id)->pluck('id')->toArray();
+        $reviewable = false;
+        foreach ($reviews as $review)
+        {
+            if (in_array($review->user_id, $assessors))
+            {
+                $reviewable = false;
+            }else{
+                $reviewable = true;
+            }
+        }
+        return $reviewable;
+    }
+
+    public function assessorReviews()
+    {
+        $reviews = Review::all()->where('minor_id', $this->id);
+        $assessors = User::where('role_id', '=', 2)->pluck('id')->toArray();
+        $reviews_by_assessor = [];
+        foreach ($reviews as $review) {
+            if (in_array($review->user_id, $assessors)) {
+                $reviews_by_assessor[] = $review;
+            }
+        }
+        return $reviews_by_assessor;
+    }
     // Return average stars (not done)
 
     /** @return array[float] */
@@ -103,9 +150,9 @@ class Minor extends Model
         if (sizeof($reviews) > 0) {
             $avg_content = $avg_teachers = $avg_studiability = 0;
 
-            $avg_content = $reviews->avg("grade_quality");
-            $avg_teachers = $reviews->avg("grade_content");
-            $avg_studiability = $reviews->avg("grade_studiability");
+            $avg_content = round($reviews->avg("grade_quality"), 2);
+            $avg_teachers = round($reviews->avg("grade_content"),2);
+            $avg_studiability = round($reviews->avg("grade_studiability"), 2);
 
             return [$avg_content, $avg_teachers, $avg_studiability, sizeof($reviews)];
         } else {

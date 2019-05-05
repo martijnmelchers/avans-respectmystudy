@@ -97,9 +97,18 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/dashboard/import', function() {
         return view('dashboard/import');
     })->name('import');
+
+    Route::get('/dashboard/dashboard_assessable', 'DashboardminorsController@Minors_to_assess')->name('assessable');
+
+    Route::get('/dashboard/dashboard_assessed', 'DashboardminorsController@Assessed_minors')->name('assessed');
+
+    Route::get('/dashboard/minor/{id}/reviews', 'DashboardminorsController@Minor')->name('dashboard-minor-reviews');
+
+    Route::post('dashboard/minor/{id}/reviews', 'DashboardminorsController@InsertReview')->name('dashboard-minor-reviews');
+
+    Route::get('dashboard/dashboard_merge_reviews/{id}', 'DashboardminorsController@MergeReviews')->name('dashboard-merge');
+
+    Route::post('dashboard/dashboard_merge_reviews/{id}', 'DashboardminorsController@InsertReview')->name('dashboard-merge');
 });
 
-
-Route::get('/import/minors', 'ImportController@Minors');
-Route::get('/import/organizations', 'ImportController@Organisations');
-Route::get('/import/locations', 'ImportController@Locations');
+// Dashboard minors
