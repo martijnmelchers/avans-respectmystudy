@@ -50,8 +50,8 @@ class MinorController extends Controller
         // Get all minors with base search parameters
         $all_minors = Minor::where([
             ["name", "like", "%${search_name}%"],
-            ["ects", "like", "%${search_ects}%"]])
-//            ["is_enrollable", "=", true]])
+            ["ects", "like", "%${search_ects}%"],
+            ["is_published", "=", true]])
             ->orderBy($orderby)
             ->get();
 
@@ -116,7 +116,7 @@ class MinorController extends Controller
     {
 //        $minor = Minor::all()->where("id", $id)->where("is_published", 1)->first();
         $minor = Minor::all()->where("id", $id)->first();
-        $reviews = Review::all()->where('minor_id', $id);
+        $reviews = $minor->reviews();
 
         if (isset($minor)) return view('minors/minor', compact('minor', 'reviews'));
         else return "Minor niet gevonden";

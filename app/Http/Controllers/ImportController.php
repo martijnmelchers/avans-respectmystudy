@@ -26,12 +26,14 @@ class ImportController extends Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 
-        $headers = array();
-        $headers[] = 'Authorization: Token Be6060c3147a74aaec4c15f3531fcc0dcadebe50';
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        $headers = [];
+        $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
+        $headers[] = "Authorization: Token $kiesopmaat_token";
 
         $result = curl_exec($ch);
         $php_result = json_decode($result);
+
+//        return response()->json($result);
 
         if (curl_errno($ch)) {
             echo 'Error:' . curl_error($ch);
@@ -42,53 +44,103 @@ class ImportController extends Controller
             die();
         }
 
-        $errors = array();
+        $errors = $messages = [];
 
+        // Loop through all minors
         foreach ($php_result->results as $r) {
-            $minor = Minor::all()->where('id', $r->id)->first();
-            if (isset($minor)) {
-                // Minor staat al in de database
+            // Select the minor
+            $minor = Minor::orderBy('version', 'desc')->where('id', $r->id)->first();
 
+            $messages[] = "Minor " . $r->id . " already exists";
+
+            // Check if minor is set, if already in database
+            if (isset($minor)) {
+                // Check if minor has changed
+                if (!$minor->isSame($r)) {
+
+                    // Calculate new version
+                    $newVersion = $minor->version + 1;
+
+                    $messages[] = "Minor " . $r->id . " has changed, so version " . $newVersion . " was created";
+
+                    // Create new minor
+                    $minor = new Minor([
+                        "id" => $r->id,
+                        "version" => $newVersion,
+                        "name" => $r->name,
+                        "phonenumber" => "",
+                        "email" => "",
+                        "kiesopmaat" => $r->id,
+                        "ects" => $r->ects,
+                        "costs" => $r->costs,
+                        "subject" => $r->subject,
+                        "goals" => $r->goals,
+                        "requirements" => $r->requirements,
+                        "examination" => $r->examination,
+                        "level" => $r->level,
+                        "language" => $r->language,
+                        "is_published" => false,
+                        "is_enrollable" => false,
+                        "organisation_id" => $r->ownedby_organisation,
+                    ]);
+                    $minor->save();
+                }
+
+                // Delete all locations associated with the minor (to prevent doubles in linking table)
                 $minor->locations()->detach();
-                // Update locations
+
+                // Insert locations of minor
                 foreach ($r->locations as $l) {
+                    $minor = Minor::where('id', $r->id)->first();
+
                     $location = Location::find($l);
                     $minor->locations()->attach($location);
                 }
             } else {
-                $minor = new Minor([
-                    "id" => $r->id,
-                    "version" => 1,
-                    "name" => $r->name,
-                    "phonenumber" => "",
-                    "email" => "",
-                    "kiesopmaat" => $r->id,
-                    "ects" => $r->ects,
-                    "costs" => $r->costs,
-                    "subject" => $r->subject,
-                    "goals" => $r->goals,
-                    "requirements" => $r->requirements,
-                    "examination" => $r->examination,
-                    "level" => $r->level,
-                    "language" => $r->language,
-                    "is_published" => false,
-                    "is_enrollable" => false,
-                    "organisation_id" => $r->ownedby_organisation,
-                ]);
-                $minor->save();
+                $organisation = Organisation::where("id", $r->ownedby_organisation);
 
-                // Insert locations
-                foreach ($r->locations as $l) {
-                    $location = Location::find($l);
-                    $minor = Minor::all()->where("id", $r->id)->first();
+                // Check if organisation exists
+                if ($organisation != null) {
+                    $minor = new Minor([
+                        "id" => $r->id,
+                        "version" => 1,
+                        "name" => $r->name,
+                        "phonenumber" => "",
+                        "email" => "",
+                        "kiesopmaat" => $r->id,
+                        "ects" => $r->ects,
+                        "costs" => $r->costs,
+                        "subject" => $r->subject,
+                        "goals" => $r->goals,
+                        "requirements" => $r->requirements,
+                        "examination" => $r->examination,
+                        "level" => $r->level,
+                        "language" => $r->language,
+                        "is_published" => false,
+                        "is_enrollable" => false,
+                        "organisation_id" => $r->ownedby_organisation,
+                    ]);
+                    $minor->save();
 
-                    $minor->locations()->attach($location);
+                    // Insert locations of created minor
+                    foreach ($r->locations as $l) {
+                        $location = Location::find($l);
+                        $minor = Minor::all()->where("id", $r->id)->first();
+
+                        $minor->locations()->attach($location);
+                    }
+                } else {
+                    $errors[] = "Organisation " . $r->organisation_id . " not found";
                 }
             }
         }
 
         curl_close($ch);
-        return response($result, 200)
+
+        $php_result->errors = $errors;
+        $php_result->messages = $messages;
+
+        return response(json_encode($php_result, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE), 200)
             ->header('Content-Type', 'text/json');
     }
 
@@ -110,8 +162,10 @@ class ImportController extends Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 
-        $headers = array();
-        $headers[] = 'Authorization: Token Be6060c3147a74aaec4c15f3531fcc0dcadebe50';
+        $headers = [];
+
+        $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
+        $headers[] = "Authorization: Token Be6060c3147a74aaec4c15f3531fcc0dcadebe50";
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($ch);
@@ -146,7 +200,7 @@ class ImportController extends Controller
         return response($result, 200)
             ->header('Content-Type', 'text/json');
     }
-  
+
     public function Locations()
     {
         // KiesOpMaat API format: https://hastebin.com/egiyatugam.xml
@@ -171,11 +225,11 @@ class ImportController extends Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 
-        $headers = array();
+        $headers = [];
 
-      $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
+        $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
         $headers[] = "Authorization: Token $kiesopmaat_token";
-      
+
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($ch);
@@ -191,7 +245,7 @@ class ImportController extends Controller
             die();
         }
 
-        $errors = array();
+        $errors = [];
 
         foreach ($php_result->results as $r) {
             $location = Location::all()->where('id', $r->id)->first();
