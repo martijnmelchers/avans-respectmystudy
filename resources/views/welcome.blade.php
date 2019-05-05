@@ -153,7 +153,7 @@
                     </div>
                 </div>
                 <div class="newsgroup">
-                    <article>
+                    <div class="box">
                         <img src="http://127.0.0.1:8000/svg/404.svg">
                         <div class="newsgroupcontent">
                             <h1>Studentenwoningen worden steeds duurder</h1>
@@ -175,7 +175,7 @@
                                 </div>
                             </div>
                         </div>
-                    </article>
+                    </div>
                     <article>
                         <img src="http://127.0.0.1:8000/svg/404.svg">
                         <div class="newsgroupcontent">

@@ -49438,9 +49438,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\Avans\Blok 7 & 8\avans-respectmystudy\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! E:\Avans\Blok 7 & 8\avans-respectmystudy\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! E:\Avans\Blok 7 & 8\avans-respectmystudy\resources\sass\_homepage.scss */"./resources/sass/_homepage.scss");
+__webpack_require__(/*! C:\Users\Martijn\Documents\Avans\Project Blok 7 en 8\avans-respectmystudy\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\Martijn\Documents\Avans\Project Blok 7 en 8\avans-respectmystudy\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\Users\Martijn\Documents\Avans\Project Blok 7 en 8\avans-respectmystudy\resources\sass\_homepage.scss */"./resources/sass/_homepage.scss");
 
 
 /***/ })
