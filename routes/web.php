@@ -27,6 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth']);
 // Minors
 Route::get('/minors', 'MinorController@List')->name('minors');
 Route::get('/minor/{id}', 'MinorController@Minor')->name('minor');
+// TODO review controller
 Route::post('/minor/{id}', 'MinorController@InsertReview')->name('minor');
 Route::delete('/minor/{id}', 'MinorController@DeleteReview')->name('review');
 

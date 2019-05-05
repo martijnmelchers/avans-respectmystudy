@@ -9,6 +9,7 @@ use App\Review;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
 class MinorController extends Controller
@@ -139,7 +140,12 @@ class MinorController extends Controller
 
     public function DeleteReview(Request $request, $id)
     {
-        Review::destroy(Input::get('review'));
+        $deleted = Review::where("id", Input::get("review"))
+            ->where("user_id", Auth::id())
+            ->delete();
+        if ($deleted == 0) {
+            return abort(403);
+        }
         return redirect()->back();
     }
 
