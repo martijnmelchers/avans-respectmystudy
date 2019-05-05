@@ -127,7 +127,7 @@ class MinorController extends Controller
         Review::create([
             'description' => $request->get('title'),
             'minor_id' => $id,
-            'user_id' => 1,
+            'user_id' => Auth::id(),
             'grade_quality' => $request->get('rating_1'),
             'grade_studiability' => $request->get('rating_2'),
             'grade_content' => $request->get('rating_3'),

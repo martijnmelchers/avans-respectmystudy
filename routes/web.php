@@ -28,8 +28,8 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth']);
 Route::get('/minors', 'MinorController@List')->name('minors');
 Route::get('/minor/{id}', 'MinorController@Minor')->name('minor');
 // TODO review controller
-Route::post('/minor/{id}', 'MinorController@InsertReview')->name('minor');
-Route::delete('/minor/{id}', 'MinorController@DeleteReview')->name('review');
+Route::post('/minor/{id}', 'MinorController@InsertReview')->name('minor')->middleware(['auth']);
+Route::delete('/minor/{id}', 'MinorController@DeleteReview')->name('review')->middleware(['auth']);
 
 // Kaart
 Route::get('/map', 'MapController@Map')->name('map');
