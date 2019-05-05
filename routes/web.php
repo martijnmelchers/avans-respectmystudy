@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'MainPageController@Home')->name('home');
@@ -22,7 +21,7 @@ Route::get('/account/linked', 'AccountController@linked');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth']);
+Route::get('/home', 'HomeController@index')->middleware(['auth']);
 
 // Minors
 Route::get('/minors', 'MinorController@List')->name('minors');
@@ -51,7 +50,7 @@ Route::get('/location/{id}', 'LocationController@Location')->name('location');
 
 //
 // Dashboard
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['admin'])->group(function(){
     // Home
     Route::get('/dashboard', 'DashboardController@Home')->name('dashboard');
 
@@ -89,6 +88,10 @@ Route::middleware(['auth'])->group(function(){
 
     // Reviews
     Route::get('/dashboard/reviews', 'DashboardController@Reviews')->name('dashboard-reviews');
+    // Users
+    Route::get('/dashboard/users', 'Dashboard\UserController@Users')->name('dashboard-users');
+    Route::get('/dashboard/users/{id}', 'Dashboard\UserController@User')->name('dashboard-user');
+    Route::post('/dashboard/users/{id}', 'Dashboard\UserController@Edit')->name('dashboard-user-edit');
 
     // Temporary Importing
     Route::get('/dashboard/import', function() {

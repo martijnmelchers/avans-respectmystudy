@@ -28,6 +28,7 @@ class User extends Authenticatable
     ];
 
 
+
     public function surfUser(){
         return $this->hasOne('App\SurfUser');
     }
