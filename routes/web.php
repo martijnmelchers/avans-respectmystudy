@@ -88,6 +88,10 @@ Route::middleware(['admin'])->group(function(){
 
     // Reviews
     Route::get('/dashboard/reviews', 'DashboardController@Reviews')->name('dashboard-reviews');
+    // Users
+    Route::get('/dashboard/users', 'Dashboard\UserController@Users')->name('dashboard-users');
+    Route::get('/dashboard/users/{id}', 'Dashboard\UserController@User')->name('dashboard-user');
+    Route::post('/dashboard/users/{id}', 'Dashboard\UserController@Edit')->name('dashboard-user-edit');
 
     // Temporary Importing
     Route::get('/dashboard/import', function() {
