@@ -10,13 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {   
-    return view('welcome');
-})->name('home');
+Route::get('/', 'MainPageController@Home')->name('home');
 
 Route::get('/surf/login', 'SurfController@linkSurf')->middleware(['auth']);
- 
+
 Route::get('/account', 'AccountController@index')->middleware(['auth']);
 Route::get('/account/linked', 'AccountController@linked');
 
@@ -29,9 +28,16 @@ Route::get('/minors', 'MinorController@List')->name('minors');
 Route::get('/minor/{id}', 'MinorController@Minor')->name('minor');
 Route::post('/minor/{id}', 'MinorController@InsertReview')->name('minor');
 
+//Taal
+Route::get('/lang/{lang}', function ($lang) {
+    setcookie('lang', $lang, time() + 60 * 60 * 24 * 30, '/');
+
+    return redirect(route('home'));
+})->name('lang');
+
+
 // Kaart
 Route::get('/map', 'MapController@Map')->name('map');
-
 
 // Organisaties
 Route::get('/organisations', "OrganisationController@list")->name('organisations');

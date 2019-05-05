@@ -31,12 +31,19 @@ a {
 
 .nav {
     min-height: 30px;
+    width: 100%;
     background: white;
     box-shadow: 0 -5px 20px #9f9f9f;
     position: relative;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-family: 'Montserrat', sans-serif;
+    z-index: 9999999999;
+}
+
+.nav .expander {
+    display: none;
 }
 
 .nav .title {
@@ -587,6 +594,59 @@ article form .titlefield {
 
 .rating b {
     display: block;
+}
+
+
+/* Mobile friendly */
+@media all and (max-width: 800px) {
+    .content {
+        flex-wrap: wrap;
+    }
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        margin: 0 40px 40px 40px;
+    }
+
+    .minorlist .reviews {
+        display: none;
+    }
+
+    .nav {
+        overflow: visible;
+        position: fixed;
+        top: 0;
+    }
+    .nav .expander {
+        margin-right: 10px;
+        cursor: pointer;
+        display: block;
+    }
+    .nav .nav-buttons {
+        visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        left: 0;
+        top: 48px;
+        width: calc(100% - 20px);
+        background: #f5f5f5;
+        padding: 0px 10px;
+        max-height: 0;
+        overflow: hidden;
+
+        -webkit-transition: padding 0.3s, visibility 0.3s, max-height 0.3s;
+        -moz-transition:    padding 0.3s, visibility 0.3s, max-height 0.3s;
+        -ms-transition:     padding 0.3s, visibility 0.3s, max-height 0.3s;
+        -o-transition:      padding 0.3s, visibility 0.3s, max-height 0.3s;
+        transition:         padding 0.3s, visibility 0.3s, max-height 0.3s;
+    }
+    .nav.visible .nav-buttons {
+        visibility: visible;
+        max-height: 200px;
+        padding: 10px;
+    }
 }
 
 /* Mobile friendly */
