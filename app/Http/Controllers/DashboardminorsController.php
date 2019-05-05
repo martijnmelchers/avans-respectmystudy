@@ -39,7 +39,7 @@ class DashboardminorsController extends Controller
     {
         $minor = Minor::where('id', '=', $id)->first();
         $assessor_reviews = $minor->assessorReviews();
-        if (isset($minor)) return view('/dashboard/dashboard_minor', compact('minor', 'assessor_reviews'));
+        if (isset($minor)) return view('/dashboard/reviews/dashboard_minor', compact('minor', 'assessor_reviews'));
         else return "Minor niet gevonden";
     }
 

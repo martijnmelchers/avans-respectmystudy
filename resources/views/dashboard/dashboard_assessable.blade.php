@@ -9,7 +9,7 @@
             <div class="list minorlist">
                 @if (sizeof($reviewable_minors) > 0)
                     @foreach ($reviewable_minors as $minor)
-                        <a href="minor/{{$minor->id}}" class="item">
+                        <a href="{{route('dashboard-minor-reviews', $minor->id)}}" class="item">
                             <div class="info">
                                 <div class="text">
                                     <h3 class="underline">{{$minor->name}}</h3>

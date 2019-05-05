@@ -99,9 +99,9 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('/dashboard/dashboard_assessed', 'DashboardminorsController@Assessed_minors')->name('assessed');
 
-    Route::get('/dashboard/minor/{id}', 'DashboardminorsController@Minor')->name('dashboard-minor-reviews');
+    Route::get('/dashboard/minor/{id}/reviews', 'DashboardminorsController@Minor')->name('dashboard-minor-reviews');
 
-    Route::post('dashboard/minor/{id}', 'DashboardminorsController@InsertReview')->name('dashboard-minor-reviews');
+    Route::post('dashboard/minor/{id}/reviews', 'DashboardminorsController@InsertReview')->name('dashboard-minor-reviews');
 
     Route::get('dashboard/dashboard_merge_reviews/{id}', 'DashboardminorsController@MergeReviews')->name('dashboard-merge');
 
