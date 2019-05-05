@@ -138,6 +138,57 @@
                     <input type="submit" value="Plaats review">
                 </form>
             </article>
+            <style>
+                #overlay {
+                    position: fixed;
+                    display: none;
+                    flex: 1;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background-color: rgba(0,0,0,0.5);
+                    z-index: 2;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .overlay-container {
+                    max-width: 300px;
+                    padding: 12px;
+                }
+                .overlay-buttons {
+                    display: flex;
+                    flex-direction: row;
+                    margin-top: 8px;
+                }
+                .overlay-buttons .button {
+                    margin: 8px;
+                }
+            </style>
+            <script>
+                function showOverlay(button) {
+                    window.currentDeleteReviewForm = button.parentElement;
+                    document.getElementById('overlay').style.display = 'flex';
+                }
+
+                function hideOverlay(cancel) {
+                    if (!cancel && window.currentDeleteReviewForm) {
+                        window.currentDeleteReviewForm.submit();
+                    }
+                    document.getElementById('overlay').style.display = 'none';
+                }
+            </script>
+            <div id="overlay">
+                <article class="overlay-container">
+                    <span class="closebutton dark" onclick="hideOverlay(true)">&times;</span>
+
+                    <h3>Weet je zeker dat je deze review wilt verwijderen?</h3>
+                    <div class="overlay-buttons">
+                        <div class="button" onclick="hideOverlay(false)">Verwijder</div>
+                        <div class="button gray" onclick="hideOverlay(true)">Annuleer</div>
+                    </div>
+                </article>
+            </div>
             <article>
                 <h3>Reviews</h3>
                 @foreach($reviews as $r)
@@ -147,7 +198,7 @@
                                 {{ csrf_field() }}
                                 <input type="hidden" name="_method" value="DELETE" />
                                 <input type="hidden" name="review" value="{{$r->id}}" />
-                                <span class="closebutton dark" onclick="this.parentElement.submit()">&times;</span>
+                                <span class="closebutton dark" onclick="showOverlay(this)">&times;</span>
                             </form>
                         @endif
                         <h5>Titel</h5>
