@@ -89,13 +89,14 @@ Route::middleware(['admin'])->group(function(){
     // Reviews
     Route::get('/dashboard/reviews', 'DashboardController@Reviews')->name('dashboard-reviews');
 
-    // Temporary Importing
+    // Dashboard importing
     Route::get('/dashboard/import', function() {
         return view('dashboard/import');
     })->name('import');
+
+    // Import routes
+    Route::get('/import/minors', 'ImportController@Minors');
+    Route::get('/import/organizations', 'ImportController@Organisations');
+    Route::get('/import/locations', 'ImportController@Locations');
+
 });
-
-
-Route::get('/import/minors', 'ImportController@Minors');
-Route::get('/import/organizations', 'ImportController@Organisations');
-Route::get('/import/locations', 'ImportController@Locations');
