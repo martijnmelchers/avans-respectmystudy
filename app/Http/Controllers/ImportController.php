@@ -169,7 +169,7 @@ class ImportController extends Controller
 
         $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
         $headers[] = "Authorization: Token $kiesopmaat_token";
-
+      
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($ch);

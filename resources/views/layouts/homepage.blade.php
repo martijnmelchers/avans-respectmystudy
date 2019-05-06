@@ -31,10 +31,10 @@
         @auth
             <a href="{{ url('/account') }}">Home</a>
         @else
-            <a href="{{ route('home') }}">Inloggen</a>
+            <a href="{{ route('login') }}">Inloggen</a>
 
             @if (Route::has('register'))
-                <a href="{{ route('home') }}">Register</a>
+                <a href="{{ route('register') }}">Register</a>
             @endif
         @endauth
 
