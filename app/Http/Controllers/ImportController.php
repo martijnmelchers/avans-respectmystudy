@@ -30,6 +30,9 @@ class ImportController extends Controller
         $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
         $headers[] = "Authorization: Token $kiesopmaat_token";
 
+        // Add headers to request
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
         $result = curl_exec($ch);
         $php_result = json_decode($result);
 
@@ -165,7 +168,8 @@ class ImportController extends Controller
         $headers = [];
 
         $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
-        $headers[] = "Authorization: Token Be6060c3147a74aaec4c15f3531fcc0dcadebe50";
+        $headers[] = "Authorization: Token $kiesopmaat_token";
+
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($ch);
@@ -175,6 +179,7 @@ class ImportController extends Controller
             echo 'Error:' . curl_error($ch);
         }
 
+        // Get KIESOPMAAT error
         if (isset($php_result->detail)) {
             echo $result;
             die();
