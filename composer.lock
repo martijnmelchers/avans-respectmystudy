@@ -4397,16 +4397,16 @@
         },
         {
             "name": "sebastian/environment",
-            "version": "4.2.1",
+            "version": "4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "3095910f0f0fb155ac4021fc51a4a7a39ac04e8a"
+                "reference": "6fda8ce1974b62b14935adc02a9ed38252eca656"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/3095910f0f0fb155ac4021fc51a4a7a39ac04e8a",
-                "reference": "3095910f0f0fb155ac4021fc51a4a7a39ac04e8a",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/6fda8ce1974b62b14935adc02a9ed38252eca656",
+                "reference": "6fda8ce1974b62b14935adc02a9ed38252eca656",
                 "shasum": ""
             },
             "require": {
@@ -4421,7 +4421,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.2-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -4446,7 +4446,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2019-04-25T07:55:20+00:00"
+            "time": "2019-02-01T05:27:49+00:00"
         },
         {
             "name": "sebastian/exporter",
@@ -5512,7 +5512,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "backendtea@gmail.com"
+                    "email": "BackEndTea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -6524,16 +6524,16 @@
         },
         {
             "name": "laravel/homestead",
-            "version": "v8.3.2",
+            "version": "v8.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/homestead.git",
-                "reference": "d24813d86ece4bf3bcb95d7c00df188cac702db3"
+                "reference": "b2b3f19d1789ebdf518b649a864cd037af0d379a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/homestead/zipball/d24813d86ece4bf3bcb95d7c00df188cac702db3",
-                "reference": "d24813d86ece4bf3bcb95d7c00df188cac702db3",
+                "url": "https://api.github.com/repos/laravel/homestead/zipball/b2b3f19d1789ebdf518b649a864cd037af0d379a",
+                "reference": "b2b3f19d1789ebdf518b649a864cd037af0d379a",
                 "shasum": ""
             },
             "require": {
@@ -6570,7 +6570,7 @@
                 }
             ],
             "description": "A virtual machine for web artisans.",
-            "time": "2019-04-24T16:09:37+00:00"
+            "time": "2019-04-20T20:38:09+00:00"
         },
         {
             "name": "nunomaduro/collision",
