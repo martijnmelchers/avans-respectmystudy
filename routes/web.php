@@ -95,10 +95,16 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/dashboard/users/{id}', 'Dashboard\UserController@User')->name('dashboard-user');
     Route::post('/dashboard/users/{id}', 'Dashboard\UserController@Edit')->name('dashboard-user-edit');
 
-    // Temporary Importing
+    // Dashboard importing
     Route::get('/dashboard/import', function() {
         return view('dashboard/import');
     })->name('import');
+
+  
+    // Import routes
+    Route::get('/import/minors', 'ImportController@Minors');
+    Route::get('/import/organizations', 'ImportController@Organisations');
+    Route::get('/import/locations', 'ImportController@Locations');
 
     Route::get('/dashboard/dashboard_assessable', 'DashboardminorsController@Minors_to_assess')->name('assessable');
 
@@ -112,5 +118,3 @@ Route::middleware(['admin'])->group(function(){
 
     Route::post('dashboard/dashboard_merge_reviews/{id}', 'DashboardminorsController@InsertReview')->name('dashboard-merge');
 });
-
-// Dashboard minors
