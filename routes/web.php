@@ -26,7 +26,9 @@ Route::get('/home', 'HomeController@index')->middleware(['auth']);
 // Minors
 Route::get('/minors', 'MinorController@List')->name('minors');
 Route::get('/minor/{id}', 'MinorController@Minor')->name('minor');
-Route::post('/minor/{id}', 'MinorController@InsertReview')->name('minor');
+// TODO review controller
+Route::post('/minor/{id}', 'MinorController@InsertReview')->name('minor')->middleware(['auth']);
+Route::delete('/minor/{id}', 'MinorController@DeleteReview')->name('review')->middleware(['auth']);
 
 //Taal
 Route::get('/lang/{lang}', function ($lang) {
