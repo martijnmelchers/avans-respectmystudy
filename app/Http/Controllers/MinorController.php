@@ -9,6 +9,8 @@ use App\Review;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class MinorController extends Controller
 {
@@ -114,9 +116,10 @@ class MinorController extends Controller
     {
 //        $minor = Minor::all()->where("id", $id)->where("is_published", 1)->first();
         $minor = Minor::all()->where("id", $id)->first();
-        $reviews = Review::all()->where('minor_id', $id);
+        $reviews = $minor->reviews();
+        $user_id = Auth::id();
 
-        if (isset($minor)) return view('minors/minor', compact('minor', 'reviews'));
+        if (isset($minor)) return view('minors/minor', compact('minor', 'reviews', 'user_id'));
         else return "Minor niet gevonden";
     }
 
@@ -125,7 +128,7 @@ class MinorController extends Controller
         Review::create([
             'description' => $request->get('title'),
             'minor_id' => $id,
-            'user_id' => 1,
+            'user_id' => Auth::id(),
             'grade_quality' => $request->get('rating_1'),
             'grade_studiability' => $request->get('rating_2'),
             'grade_content' => $request->get('rating_3'),
@@ -134,6 +137,17 @@ class MinorController extends Controller
         ]);
 
         return redirect()->back()->with('flash_message', 'Uw review is geplaatst!');
+    }
+
+    public function DeleteReview(Request $request, $id)
+    {
+        $deleted = Review::where("id", Input::get("review"))
+            ->where("user_id", Auth::id())
+            ->delete();
+        if ($deleted == 0) {
+            return abort(403);
+        }
+        return redirect()->back();
     }
 
 }

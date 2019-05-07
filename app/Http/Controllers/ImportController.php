@@ -26,9 +26,12 @@ class ImportController extends Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 
-        $headers = array();
+        $headers = [];
         $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
         $headers[] = "Authorization: Token $kiesopmaat_token";
+
+        // Add headers to request
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($ch);
         $php_result = json_decode($result);
@@ -44,7 +47,7 @@ class ImportController extends Controller
             die();
         }
 
-        $errors = $messages = array();
+        $errors = $messages = [];
 
         // Loop through all minors
         foreach ($php_result->results as $r) {
@@ -162,10 +165,11 @@ class ImportController extends Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 
-        $headers = array();
+        $headers = [];
 
         $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
         $headers[] = "Authorization: Token $kiesopmaat_token";
+      
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($ch);
@@ -175,6 +179,7 @@ class ImportController extends Controller
             echo 'Error:' . curl_error($ch);
         }
 
+        // Get KIESOPMAAT error
         if (isset($php_result->detail)) {
             echo $result;
             die();
@@ -225,7 +230,7 @@ class ImportController extends Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 
-        $headers = array();
+        $headers = [];
 
         $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
         $headers[] = "Authorization: Token $kiesopmaat_token";
@@ -245,7 +250,7 @@ class ImportController extends Controller
             die();
         }
 
-        $errors = array();
+        $errors = [];
 
         foreach ($php_result->results as $r) {
             $location = Location::all()->where('id', $r->id)->first();

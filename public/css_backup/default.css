@@ -536,6 +536,13 @@ a {
     color: black;
 }
 
+.closebutton.dark {
+    color: black;
+}
+
+.closebutton.dark:hover {
+    color: grey;
+}
 
 /* Ratings */
 .rating {

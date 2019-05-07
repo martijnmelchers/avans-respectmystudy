@@ -1,9 +1,8 @@
-@extends('layouts/default')
+@extends('layouts.dashboard')
 
 @section("title", "Minor")
 
 @section('content')
-    <div class="content">
         <div class="wrapper wrap">
             <article>
                 <h1>{{$minor->name}}</h1>
@@ -12,8 +11,7 @@
             </article>
 
             <div class="buttons">
-                <a href="/" class="button">Home</a>
-                <a href="{{route('minors')}}" class="button">Alle minors</a>
+                <a href="{{ URL::previous() }}" class="button">Alle minors</a>
             </div>
 
             <article>
@@ -47,12 +45,6 @@
                     <p>We hebben geen locaties gevonden waar deze minor wordt gegeven.</p>
                 </article>
             @endif
-
-            <div class="buttons" style="margin-bottom: 50px;">
-                <a href="{{route('minors', ["organisations"=>[$minor->organisation->id]])}}" class="button blue">Alle
-                    minors
-                    van {{$minor->organisation->name}}</a>
-            </div>
             <article>
                 <h3>Voeg een nieuwe review toe</h3>
                 @if (Session::has('flash_message'))
@@ -60,6 +52,7 @@
                         <span class="closebutton" onclick="this.parentElement.style.display='none';">&times;</span>
                     </div>
                 @endif
+
                 <form method="post">
                     {{ csrf_field() }}
                     <div class="formline">
@@ -138,69 +131,16 @@
                     <input type="submit" value="Plaats review">
                 </form>
             </article>
-            <style>
-                #overlay {
-                    position: fixed;
-                    display: none;
-                    flex: 1;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background-color: rgba(0,0,0,0.5);
-                    z-index: 2;
-                    justify-content: center;
-                    align-items: center;
-                }
-                .overlay-container {
-                    max-width: 300px;
-                    padding: 12px;
-                }
-                .overlay-buttons {
-                    display: flex;
-                    flex-direction: row;
-                    margin-top: 8px;
-                }
-                .overlay-buttons .button {
-                    margin: 8px;
-                }
-            </style>
-            <script>
-                function showOverlay(button) {
-                    window.currentDeleteReviewForm = button.parentElement;
-                    document.getElementById('overlay').style.display = 'flex';
-                }
-
-                function hideOverlay(cancel) {
-                    if (!cancel && window.currentDeleteReviewForm) {
-                        window.currentDeleteReviewForm.submit();
-                    }
-                    document.getElementById('overlay').style.display = 'none';
-                }
-            </script>
-            <div id="overlay">
-                <article class="overlay-container">
-                    <span class="closebutton dark" onclick="hideOverlay(true)">&times;</span>
-
-                    <h3>Weet je zeker dat je deze review wilt verwijderen?</h3>
-                    <div class="overlay-buttons">
-                        <div class="button" onclick="hideOverlay(false)">Verwijder</div>
-                        <div class="button gray" onclick="hideOverlay(true)">Annuleer</div>
-                    </div>
-                </article>
+            @if($minor->Assessable())
+            <div class="buttons">
+                <a href="{{route('dashboard-merge', $minor->id)}}" class="button">Reviews samenvoegen</a>
             </div>
+            @endif
+
             <article>
                 <h3>Reviews</h3>
-                @foreach($reviews as $r)
+                @foreach($assessor_reviews as $r )
                     <div class="review_detail">
-                        @if($r->user_id == $user_id)
-                            <form method="POST">
-                                {{ csrf_field() }}
-                                <input type="hidden" name="_method" value="DELETE" />
-                                <input type="hidden" name="review" value="{{$r->id}}" />
-                                <span class="closebutton dark" onclick="showOverlay(this)">&times;</span>
-                            </form>
-                        @endif
                         <h5>Titel</h5>
                         <p>{{$r->description}}</p>
                         <h5>Comment</h5>
@@ -252,7 +192,6 @@
                 @endforeach
             </article>
         </div>
-    </div>
 
 
 
