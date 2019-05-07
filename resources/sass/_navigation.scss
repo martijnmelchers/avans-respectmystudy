@@ -1,10 +1,11 @@
 
 .nav {
-    min-height: 30px;
+    height: 60px;
     width: 100%;
+    top: 0;
     background: white;
-    box-shadow: 0 -5px 20px #9f9f9f;
-    position: relative;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    position: fixed;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -30,11 +31,14 @@
 
         a, .item {
             margin: 0 7px;
-            border-bottom: 2px solid transparent;
             cursor: pointer;
+            font-weight: 500;
+            font-size: 17px;
 
             &.active {
-                border-bottom: 2px solid $primary-red;
+                border-bottom: 1px solid $primary-red;
+                font-weight: bold;
+                padding-bottom: 3px;
             }
         }
     }

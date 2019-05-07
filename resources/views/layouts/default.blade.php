@@ -7,7 +7,7 @@
     <title>@yield('title', "RespectMyStudy") - RespectMyStudy</title>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900|Source+Sans+Pro:400,700" rel="stylesheet">
     <link href="/css/app.css" type="text/css" rel="stylesheet">
    {{-- <link href="/css/form.css" type="text/css" rel="stylesheet">--}}
 
@@ -24,9 +24,9 @@
     <div class="expander" onclick="$('.nav').toggleClass('visible');"><i class="fas fa-stream"></i></div>
     <a href="{{route('index')}}" class="title">RespectMyStudy</a>
     <div class="nav-buttons">
-        <a href="/">Home</a>
-        <a href="{{route('minors')}}">Minoren</a>
-        <a href="{{route('map')}}">Kaart</a>
+        <a href="/" class="{{ Request::is('/') ? 'active' : '' }}">Home</a>
+        <a href="{{route('minors')}}" class="{{ Request::is('minors') ? 'active' : '' }}">Minoren</a>
+        <a href="{{route('map')}}" class="{{ Request::is('map') ? 'active' : '' }}">Kaart</a>
         
         <a href="{{route('organisations')}}">Organisaties</a>
 

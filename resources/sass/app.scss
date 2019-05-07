@@ -12,8 +12,14 @@
 @import '~bootstrap/scss/bootstrap-grid';
 @import '~bootstrap/scss/type';
 
+/* Import parts */
 @import './variables';
 @import './default';
 @import './navigation';
 @import './button';
 @import './box';
+
+/* Import tools */
+@import './tools/colors';
+@import './tools/weight';
+@import './tools/font';

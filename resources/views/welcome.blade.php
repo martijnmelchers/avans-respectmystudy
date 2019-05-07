@@ -9,14 +9,14 @@
     <div class="content">
         <div class="wrapper wrap">
             <div class="presentation">
-                <div class="row">
-                    <div class="col-xl-4 offset-xl-1 presentation-left">
+                <div class="row justify-content-center">
+                    <div class="col-xl-4 presentation-left">
                         <h1>{{__('content.homepage.mainarticletitle')}}</h1>
                         <p>
                             {{__('content.homepage.mainarticlecontent')}}
                         </p>
                     </div>
-                    <div class="col-xl-5 offset-xl-1">
+                    <div class="col-xl-4 offset-xl-1">
                         <div class="box shadow">
                             <h1> {{__('content.homepage.search.part1')}}
                                 <b>1482</b> {{__('content.homepage.search.part2')}}</h1>
@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center highlights">
+            <div class="row justify-content-center highlighted-points">
                 <div class="col-3">
                     <div class="row highlight-header">
                         <div class="col-3">
@@ -54,9 +54,11 @@
                     </div>
                     <div class="row highlight-content">
                         <div class="col-12">
-
-                            <p>
-                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum…
+                            <p class="c-secondary f-primary">
+                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+                                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+                                accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+                                sanctus est Lorem ipsum dolor sit amet. Lorem ipsum…
                             </p>
                         </div>
                     </div>
@@ -79,9 +81,11 @@
                     </div>
                     <div class="row highlight-content">
                         <div class="col-12">
-
-                            <p>
-                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum…
+                            <p class="c-secondary f-primary">
+                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+                                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+                                accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+                                sanctus est Lorem ipsum dolor sit amet. Lorem ipsum…
                             </p>
                         </div>
                     </div>
@@ -104,9 +108,11 @@
                     </div>
                     <div class="row highlight-content">
                         <div class="col-12">
-
-                            <p>
-                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum…
+                            <p class="c-secondary f-primary">
+                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+                                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+                                accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+                                sanctus est Lorem ipsum dolor sit amet. Lorem ipsum…
                             </p>
                         </div>
                     </div>
@@ -119,94 +125,107 @@
                 </div>
             </div>
 
-            <div class="articlegroup">
-                <div class="icontitle">
-                    <div class="infopoint">
-                        <span class="fas fa-bullhorn fa-5x"></span>
-                        <div class="infopointtext">
-                            <h3>{{__('content.homepage.highlightedminortitle')}}</h3>
+            <div class="row highlighted-minors justify-content-center">
+                <div class="col-9">
+                    <div class="row highlight-header">
+                        <div class="col-1">
+                            <i class="fas fa-bullhorn fa-4x"></i>
                         </div>
+                        <div class="col-10">
+                            <h1>{{__('content.homepage.highlightedminortitle')}}</h1>
+                        </div>
+
                     </div>
                 </div>
-                <article>
-                    <p>
-                    </p>
-                </article>
-                <article>
-                    <p>
-                        <span class="far fa-image fa-4x"></span>
-                    </p>
-                </article>
-                <article>
-                    <p>
-                    </p>
-                </article>
+            </div>
+            <div class="row highlighted-minors justify-content-center">
+                <div class="col-3">
+                    <div class="box shadow">
+                        Content
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="box shadow">
+                        Content
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="box shadow">
+                        Content
+                    </div>
+                </div>
+
             </div>
 
-            <div class="articlegroup">
-                <div class="icontitle">
-                    <div class="infopoint">
-                        <span class="fas fa-newspaper fa-5x"></span>
-                        <div class="infopointtext">
-                            <h3>{{__('content.homepage.newstitle')}}</h3>
+            <div class="row highlighted-minors justify-content-center">
+                <div class="col-9">
+                    <div class="row highlight-header">
+                        <div class="col-1">
+                            <i class="fas fa-newspaper fa-4x"></i>
                         </div>
+                        <div class="col-10">
+                            <h1>{{__('content.homepage.newstitle')}}</h1>
+                        </div>
+
                     </div>
                 </div>
-                <div class="newsgroup">
-                    <div class="box">
-                        <img src="http://127.0.0.1:8000/svg/404.svg">
-                        <div class="newsgroupcontent">
-                            <h1>Studentenwoningen worden steeds duurder</h1>
-                            <h2>Geschreven door: Juliet de boer | Geplaatst op 5 april 2019</h2>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin facilisis sodales libero,
-                                nec
-                                euismod nunc feugiat in.
-                                Donec luctus mi scelerisque felis viverra, eu elementum tellus semper. Sed a tincidunt
-                                mauris.
-                                Integer mattis in neque vitae suscipit. Sed sagittis, ante ac gravida aliquet, nisl
-                                lectus
-                                pulvinar odio, sed sagittis urna neque vel arcu.
-                                Nunc pulvinar velit justo, sit amet sodales.
-                            </p>
-                            <div class="infobutton">
-                                <div class="buttons">
+            </div>
+            <div class="row justify-content-center news-articles">
+                <div class="col-9 article-wrapper">
+                    <div class="box no-padding article">
+                        <div class="row">
+                            <div class="col-4 article-image">
+                                <img src="svg/404.svg"/>
+                            </div>
+                            <div class="col-8 article-content">
+                                <h1 class="w-700">Studentenwoningen worden steeds duurder</h1>
+                                <h6 class="w-300">Geschreven door: Juliet de boer | Geplaatst op 5 april 2019</h6>
+                                <p class="intro-content c-primary f-primary w-400">
+                                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                                    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+                                    eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+                                    takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+                                    consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                    dolore magna…
+                                </p>
+                                <div class="article-actions text-right">
                                     <a href="/" class="button blue">{{__('content.buttons.readfurtherbutton')}}</a>
                                 </div>
                             </div>
+
                         </div>
                     </div>
-                    <article>
-                        <img src="http://127.0.0.1:8000/svg/404.svg">
-                        <div class="newsgroupcontent">
-                            <h1>Respectmystudy beste site van het jaar</h1>
-                            <h2>Geschreven door: Juliet de boer | Geplaatst op 1 april 2019</h2>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin facilisis sodales libero,
-                                nec
-                                euismod nunc feugiat in.
-                                Donec luctus mi scelerisque felis viverra, eu elementum tellus semper. Sed a tincidunt
-                                mauris.
-                                Integer mattis in neque vitae suscipit. Sed sagittis, ante ac gravida aliquet, nisl
-                                lectus
-                                pulvinar odio, sed sagittis urna neque vel arcu.
-                                Nunc pulvinar velit justo, sit amet sodales.
-                            </p>
-                            <div class="infobutton">
-                                <div class="buttons">
+                </div>
+                <div class="col-9 article-wrapper">
+                    <div class="box no-padding article">
+                        <div class="row">
+                            <div class="col-4 article-image">
+                                <img src="svg/404.svg"/>
+                            </div>
+                            <div class="col-8 article-content">
+                                <h1 class="w-700">Respectmystudy beste site van het jaar</h1>
+                                <h6 class="w-300">Geschreven door: Juliet de boer | Geplaatst op 1 april 2019</h6>
+                                <p class="intro-content c-primary f-primary w-400">
+                                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                                    tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+                                    takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+                                    consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                    dolore magna…
+                                </p>
+                                <div class="article-actions text-right">
                                     <a href="/" class="button blue">{{__('content.buttons.readfurtherbutton')}}</a>
                                 </div>
                             </div>
+
                         </div>
-                    </article>
+                    </div>
                 </div>
-
-
             </div>
+
 
         </div>
-    </div>
-
     </div>
 @endsection
 @section('head')

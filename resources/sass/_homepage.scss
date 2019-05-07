@@ -3,6 +3,7 @@
 .presentation {
     background: linear-gradient(to left, #89216B, #DA4453);
     padding: 100px 0 100px 0;
+    margin-top: 60px;
 
     .presentation-left {
         h1 {
@@ -25,24 +26,11 @@
 
 }
 
-.highlights {
+.highlighted-points {
     margin-top: 30px;
-    .highlight-header {
-        margin-bottom: 10px;
-        margin-top: 10px;
-
-        i {
-            color: $primary-blue;
-        }
-        h1 {
-            font-weight: 700;
-            margin: 0;
-        }
-    }
 
     .highlight-content {
         p {
-            font-family: $primary-font;
             line-height: 1.2;
             font-weight: normal;
         }
@@ -53,7 +41,71 @@
 }
 
 .highlighted-minors {
+    margin-top: 50px;
+
+    .highlight-header {
+        h1 {
+            font-size: 50px;
+        }
+    }
+}
+
+.news-articles {
+    .article-wrapper {
+        margin-top: 30px;
+
+        .article {
+            max-height: 250px;
+
+            & .article-image {
+                overflow: hidden;
+                height: 250px;
+
+                img {
+                    max-width: none;
+                    width: auto;
+                }
+            }
+
+            & .article-content {
+                padding: 20px 60px 20px 20px;
+
+
+                h1 {
+                    margin-bottom: 0;
+                    margin-left: 0;
+                    font-size: 30px;
+                }
+
+                h6 {
+                    margin-top: 0;
+                    margin-left: 0;
+                }
+
+                & .intro-content {
+                    margin-top: 20px;
+                    line-height: 1.2;
+                }
+
+                & .article-actions {
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
 
 }
 
+.highlight-header {
+    margin-bottom: 10px;
+    margin-top: 10px;
 
+    i {
+        color: $primary-blue;
+    }
+
+    h1 {
+        font-weight: 700;
+        margin: 0;
+    }
+}
