@@ -5,7 +5,7 @@
 }
 
 .presentation .presentation-left {
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
 .presentation .presentation-left h1 {
@@ -119,9 +119,45 @@ form input[type=text] {
   font-size: 5em;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1560px) {
   .fa-6x {
     font-size: 4em;
+  }
+
+  .highlight-header h1 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 1300px) {
+  .fa-6x {
+    font-size: 4em;
+  }
+}
+
+@media (max-width: 1200px) {
+  .fa-6x {
+    font-size: 4em;
+  }
+
+  .news-articles .article-wrapper .article .article-content h1 {
+    font-size: 20px;
+  }
+
+  .news-articles .article-wrapper .article .article-content h6 {
+    font-size: 16px;
+  }
+
+  .news-articles .article-wrapper .article .article-content p {
+    font-size: 16px;
+  }
+
+  .highlighted-minors .highlight-header h1 {
+    font-size: 50px;
+  }
+
+  .highlighted-minors .box {
+    margin-bottom: 40px;
   }
 }
 
@@ -131,59 +167,33 @@ form input[type=text] {
   }
 }
 
-@media (max-width: 1200px) {
-  .fa-6x {
-    font-size: 5em;
-  }
-
-  .highlight-header h1 {
-    font-weight: 700;
-    margin: 0;
-    font-size: 2em;
-  }
-
+@media (max-width: 768px) {
   .news-articles .article-wrapper {
     margin-top: 30px;
   }
 
   .news-articles .article-wrapper .article .article-content h1 {
-    margin-bottom: 0;
-    margin-left: 0;
     font-size: 20px;
   }
 
   .news-articles .article-wrapper .article .article-content h6 {
-    margin-top: 0;
-    margin-left: 0;
     font-size: 16px;
   }
 
   .news-articles .article-wrapper .article .article-content p {
     font-size: 16px;
   }
-}
 
-@media (max-width: 1300px) {
-  .fa-6x {
-    font-size: 4em;
+  .news-articles .article-wrapper .article .article-content .article-actions .button {
+    font-size: 10px;
   }
 
-  .highlight-header h1 {
-    font-weight: 700;
-    margin: 0;
-    font-size: 2em;
-  }
-}
-
-@media (max-width: 1560px) {
-  .fa-6x {
-    font-size: 4em;
+  .highlighted-minors .highlight-header h1 {
+    font-size: 36px;
   }
 
-  .highlight-header h1 {
-    font-weight: 700;
-    margin: 0;
-    font-size: 28px;
+  .highlighted-points .button {
+    font-size: 10px;
   }
 }
 
