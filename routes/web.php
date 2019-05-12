@@ -26,7 +26,9 @@ Route::get('/home', 'HomeController@index')->middleware(['auth']);
 // Minors
 Route::get('/minors', 'MinorController@List')->name('minors');
 Route::get('/minor/{id}', 'MinorController@Minor')->name('minor');
-Route::post('/minor/{id}', 'MinorController@InsertReview')->name('minor');
+// TODO review controller
+Route::post('/minor/{id}', 'MinorController@InsertReview')->name('minor')->middleware(['auth']);
+Route::delete('/minor/{id}', 'MinorController@DeleteReview')->name('review')->middleware(['auth']);
 
 //Taal
 Route::get('/lang/{lang}', function ($lang) {
@@ -93,13 +95,26 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/dashboard/users/{id}', 'Dashboard\UserController@User')->name('dashboard-user');
     Route::post('/dashboard/users/{id}', 'Dashboard\UserController@Edit')->name('dashboard-user-edit');
 
-    // Temporary Importing
+    // Dashboard importing
     Route::get('/dashboard/import', function() {
         return view('dashboard/import');
     })->name('import');
+
+  
+    // Import routes
+    Route::get('/import/minors', 'ImportController@Minors');
+    Route::get('/import/organizations', 'ImportController@Organisations');
+    Route::get('/import/locations', 'ImportController@Locations');
+
+    Route::get('/dashboard/dashboard_assessable', 'DashboardminorsController@Minors_to_assess')->name('assessable');
+
+    Route::get('/dashboard/dashboard_assessed', 'DashboardminorsController@Assessed_minors')->name('assessed');
+
+    Route::get('/dashboard/minor/{id}/reviews', 'DashboardminorsController@Minor')->name('dashboard-minor-reviews');
+
+    Route::post('dashboard/minor/{id}/reviews', 'DashboardminorsController@InsertReview')->name('dashboard-minor-reviews');
+
+    Route::get('dashboard/dashboard_merge_reviews/{id}', 'DashboardminorsController@MergeReviews')->name('dashboard-merge');
+
+    Route::post('dashboard/dashboard_merge_reviews/{id}', 'DashboardminorsController@InsertReview')->name('dashboard-merge');
 });
-
-
-Route::get('/import/minors', 'ImportController@Minors');
-Route::get('/import/organizations', 'ImportController@Organisations');
-Route::get('/import/locations', 'ImportController@Locations');
