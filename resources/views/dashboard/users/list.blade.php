@@ -16,7 +16,7 @@
 
 
 
-            <input type="submit" value="Zoeken" class="button blue">
+            <input disabled type="submit" value="Zoeken" class="button blue">
         </form>
     </article>
 
@@ -39,6 +39,5 @@
 
     <div class="buttons">
         <a href="{{route('dashboard')}}">Home</a>
-        <a href="{{route('import')}}" class="">Gebruikers importeren</a>
     </div>
 @endsection
