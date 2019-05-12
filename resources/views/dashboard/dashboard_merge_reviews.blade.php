@@ -86,7 +86,7 @@
                     <b>Inhoud</b>
                 </div>
             </div>
-            <input type="submit" value="Plaats review">
+            <input type="submit" value="Plaats review" id="submitbutton">
         </form>
     </article>
             <article>
