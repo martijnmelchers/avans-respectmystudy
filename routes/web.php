@@ -80,7 +80,7 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/dashboard/locations', 'Dashboard\LocationController@Locations')->name('dashboard-locations');
 
     // Specific location
-    Route::get('/dashboard/locations/{id}', 'Dashboard\LocationController@Location')->name('dashboard-location');
+    Route::get('/dashboard/location/{id}', 'Dashboard\LocationController@Location')->name('dashboard-location');
 
     // Organisation list
     Route::get('/dashboard/organisations', 'DashboardController@Organisations')->name('dashboard-organisations');

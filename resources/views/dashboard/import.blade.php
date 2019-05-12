@@ -52,11 +52,11 @@
                     <div class="inner"></div>
                     <div class="text">Nog niks aan het importeren</div>
                 </div>
-
-                <div id="errors">
-
-                </div>
             </article>
+
+            <div id="errors">
+
+            </div>
 
             <div class="buttons">
                 <div class="button" onclick="importProgrammes()">Importeer minors</div>
@@ -80,7 +80,7 @@
                 total = o.count;
                 progress += o.results.length;
 
-                document.getElementsByClassName("text")[0].innerHTML = "Scholen importeren";
+                document.getElementsByClassName("text")[0].innerHTML = "Organisaties importeren";
                 document.getElementsByClassName("inner")[0].style.width = ((100 * progress) / total) + "%";
 
                 if (o.next != null) {
@@ -118,19 +118,21 @@
 
                 console.log("Pagina " + page + "; Progress: " + progress);
 
-                document.getElementsByClassName("text")[0].innerHTML = "Locaties importeren";
+                document.getElementsByClassName("text")[0].innerHTML = "Minors importeren";
                 document.getElementsByClassName("inner")[0].style.width = ((100 * progress) / total) + "%";
 
                 if (o.errors != null && o.errors.length > 0) {
                     o.errors.forEach(function (e) {
-                        errors.push(e);
-                    })
+                        $("<div></div>")
+                            .text(e)
+                            .addClass("alert")
+                            .addClass("red")
+                            .click(function(e) {
+                                $(this).remove();
+                            })
+                            .appendTo("#errors");
+                    });
                 }
-
-                document.getElementById('errors').innerHTML = "";
-                errors.forEach(function (e) {
-                    document.getElementById("errors").innerHTML += "<div class='alert red'>" + e.error + "</div>";
-                });
 
                 if (o.next != null) {
                     importProgrammes(page + 1, progress);

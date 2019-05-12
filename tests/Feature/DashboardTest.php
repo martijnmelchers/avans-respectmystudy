@@ -7,13 +7,8 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class MinorTest extends TestCase
+class DashboardTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
     public function testRedirectDashboard()
     {
         $response = $this->get('/dashboard');

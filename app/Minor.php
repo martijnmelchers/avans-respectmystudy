@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Minor extends Model
 {
+    public $incrementing = false;
+
     protected $append = ['organisation', 'reviews'];
     protected $fillable = [
         "id",
@@ -53,20 +55,22 @@ class Minor extends Model
     // Return reviews
     public function reviews()
     {
-        $reviews = Review::all()->where('minor_id', $this->id);
-        $h_assessor_id = Role::where('role_name', '=', 'HoofdAssessor')
-            ->orWhere('role_name', '=', 'Admin')
-            ->orWhere('role_name', '=', 'Assessor')
-            ->pluck('id')
-            ->toArray();
-        $assessors = User::whereIn('role_id', $h_assessor_id)->pluck('id')->toArray();
-        $reviews_by_students = [];
-        foreach ($reviews as $review) {
-            if (! in_array($review->user_id, $assessors)) {
-                $reviews_by_students[] = $review;
-            }
-        }
-        return $reviews_by_students;
+//        $reviews = Review::all()->where('minor_id', $this->id);
+//        $h_assessor_id = Role::where('role_name', '=', 'HoofdAssessor')
+//            ->orWhere('role_name', '=', 'Admin')
+//            ->orWhere('role_name', '=', 'Assessor')
+//            ->pluck('id')
+//            ->toArray();
+//        $assessors = User::whereIn('role_id', $h_assessor_id)->pluck('id')->toArray();
+//        $reviews_by_students = [];
+//        foreach ($reviews as $review) {
+//            if (! in_array($review->user_id, $assessors)) {
+//                $reviews_by_students[] = $review;
+//            }
+//        }
+//        return $reviews_by_students;
+
+        return $this->hasMany(Review::class);
     }
 
     // Return all versions

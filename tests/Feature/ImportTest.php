@@ -9,6 +9,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ImportTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function testRedirect()
     {
         $response = $this->get('/dashboard/import');
