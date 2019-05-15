@@ -15,7 +15,7 @@ return [
             'part1' => 'Zoek in onze',
             'part2' => 'minors'
         ],
-        'searchplaceholder' => 'Vul een zoekopdracht in...',
+        'search_placeholder' => 'Vul een zoekopdracht in...',
         'infopoin1ttitle1' => 'Quality',
         'infopoint1ttitle2' => 'Control',
         'infopointcontent1' => 'Tekst-vak: 2',

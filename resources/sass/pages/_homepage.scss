@@ -1,4 +1,4 @@
-@import './variables';
+@import '../variables';
 
 .presentation {
     background: linear-gradient(to left, #89216B, #DA4453);
@@ -46,7 +46,7 @@
 
     .highlight-header {
         h1 {
-           font-size:  50px;
+            font-size: 50px;
         }
     }
 }
@@ -109,24 +109,24 @@
     }
 }
 
-    form {
-        p {
-            margin: 5px;
-        }
-
-        input[type=text] {
-            font-size: 18px;
-            padding: 10px;
-            border-radius: 3px;
-            border: 2px solid #dee2e3;
-            margin: 15px 0px;
-            width: 100%;
-            background: white;
-            color: #CACDD3;
-        }
+form {
+    p {
+        margin: 5px;
     }
 
-.fa-6x{
+    input[type=text] {
+        font-size: 18px;
+        padding: 10px;
+        border-radius: 3px;
+        border: 2px solid #dee2e3;
+        margin: 15px 0px;
+        width: 100%;
+        background: white;
+        color: #CACDD3;
+    }
+}
+
+.fa-6x {
     font-size: 5em;
 }
 

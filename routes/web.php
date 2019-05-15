@@ -52,7 +52,7 @@ Route::get('/location/{id}', 'LocationController@Location')->name('location');
 
 //
 // Dashboard
-Route::middleware(['admin'])->group(function(){
+Route::middleware(['auth'])->group(function(){
     // Home
     Route::get('/dashboard', 'DashboardController@Home')->name('dashboard');
 
