@@ -60,7 +60,7 @@
     </div>
 
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 col-white">
             <h3>Voeg een nieuwe review toe</h3>
             @if (Session::has('flash_message'))
                 <div class="alert">{{ Session::get('flash_message') }}
@@ -200,7 +200,7 @@
                 </div>
             </article>
         </div>
-        <article>
+        <div class="col-12 col-white">
             <h3>Reviews</h3>
             @foreach($reviews as $r)
                 <div class="review_detail">
@@ -261,7 +261,7 @@
                     <h6>Gepubliceerd op: {{$r->created_at}}</h6>
                 </div>
             @endforeach
-        </article>
+        </div>
     </div>
 
 
