@@ -55,16 +55,14 @@
             box-shadow: 10px 10px 20px #c3c3c3;
         }
 
-        .collapse {
+        /*.collapse {
             display: flex;
             flex-direction: column;
             flex-grow: 1;
-            padding: 3px;
             border-radius: 3px;
             margin: 13px 0;
-            background: #ECF0F1;
             border: 2px solid #dee2e3;
-        }
+        }*/
 
         .collapse .drop {
             max-height: 0;
@@ -126,33 +124,41 @@
                         <input type="text" id="ecs" name="ects" value="{{$ects}}" placeholder="Studiepunten">
                     </div>
 
-                    <div class="collapse">
-                        <div class="title">Organisaties ({{sizeof($selected_organisations)}} geselecteerd)</div>
-                        <div class="drop">
-                            @foreach($organisations as $organisation)
-                                <div class="formline">
-                                    <input name="organisations[]"
-                                           <?php if (in_array($organisation['id'], $selected_organisations)) echo "checked"; ?> type="checkbox"
-                                           id="{{$organisation->id}}" value="{{$organisation->id}}"><label
-                                        for="{{$organisation->id}}">{{$organisation->name}}</label>
-                                </div>
-                            @endforeach
+                    <div class="form-group">
+                        <label>Organisaties</label>
+                        <div class="collapse">
+                            <div class="title">{{sizeof($selected_organisations)}} geselecteerd</div>
+                            <div class="drop">
+                                @foreach($organisations as $organisation)
+                                    <div class="formline">
+                                        <input name="organisations[]"
+                                               <?php if (in_array($organisation['id'], $selected_organisations)) echo "checked"; ?> type="checkbox"
+                                               id="{{$organisation->id}}" value="{{$organisation->id}}"><label
+                                            for="{{$organisation->id}}">{{$organisation->name}}</label>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
 
-                    <div class="collapse">
-                        <div class="title">Talen ({{sizeof($selected_languages)}} geselecteerd)</div>
-                        <div class="drop">
-                            @foreach($languages as $language)
-                                <div class="formline">
-                                    <input name="languages[]"
-                                           <?php if (in_array($language, $selected_languages)) echo "checked"; ?> type="checkbox"
-                                           id="{{$language}}" value="{{$language}}"><label
-                                        for="{{$language}}">{{$language}}</label>
-                                </div>
-                            @endforeach
+
+                    <div class="form-group">
+                        <label>Taal</label>
+                        <div class="collapse">
+                            <div class="title">{{sizeof($selected_languages)}} geselecteerd</div>
+                            <div class="drop">
+                                @foreach($languages as $language)
+                                    <div class="formline">
+                                        <input name="languages[]"
+                                               <?php if (in_array($language, $selected_languages)) echo "checked"; ?> type="checkbox"
+                                               id="{{$language}}" value="{{$language}}"><label
+                                            for="{{$language}}">{{$language}}</label>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
+
 
                     <div class="form-group">
                         <label  for="orderby">Sorteren</label>
@@ -161,7 +167,10 @@
                             <option <?php if ($orderby == "name") echo "selected"; ?> value="name">Naam</option>
                         </select>
                     </div>
-                    <button type="submit" class="button blue block">Zoeken</button>
+
+                    <div class="form-group">
+                        <button type="submit" class="button blue block">Zoeken</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -280,8 +289,4 @@
 
 
     </div>
-
-
-
-
 @endsection
