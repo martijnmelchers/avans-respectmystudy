@@ -29,18 +29,19 @@
             <p>{{sizeof($locations)}} locaties gevonden</p>
 
             <form method="get" class="form" autocomplete="off">
-                <div class="formline wrap">
-                    <label for="name" class="wide">Naam</label>
-                    <input type="text" id="name" name="name" value="{{$name}}" placeholder="Naam"></div>
-                <div class="formline wrap">
-                    <label for="ects" class="wide">Studiepunten</label>
+                <div class="form-group">
+                    <label for="name">Naam</label>
+                    <input type="text" id="name" name="name" value="{{$name}}" placeholder="Naam">
+                </div>
+                <div class="form-group">
+                    <label for="ects">Studiepunten</label>
                     <input type="text" id="ecs" name="ects" value="{{$ects}}" placeholder="Studiepunten"></div>
 
                 <div class="collapse">
                     <div class="title">Organisaties ({{sizeof($selected_organisations)}} geselecteerd)</div>
                     <div class="drop">
                         @foreach($organisations as $organisation)
-                            <div class="formline">
+                            <div class="form-group">
                                 <input name="organisations[]"
                                        <?php if (in_array($organisation['id'], $selected_organisations)) echo "checked"; ?> type="checkbox"
                                        id="{{$organisation->id}}" value="{{$organisation->id}}"><label
@@ -54,7 +55,7 @@
                     <div class="title">Talen ({{sizeof($selected_languages)}} geselecteerd)</div>
                     <div class="drop">
                         @foreach($languages as $language)
-                            <div class="formline">
+                            <div class="form-group">
                                 <input name="languages[]"
                                        <?php if (in_array($language, $selected_languages)) echo "checked"; ?> type="checkbox"
                                        id="{{$language}}" value="{{$language}}"><label
@@ -95,7 +96,6 @@
                     m.bindPopup('Jouw locatie');
                     m.addTo(mymap);
                 });
-
 
                 @foreach ($locations as $location)
                     @if (isset($location->lat) && isset($location->lon))
