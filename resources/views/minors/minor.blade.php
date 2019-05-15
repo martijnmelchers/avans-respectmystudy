@@ -8,34 +8,33 @@
 
 @section('content')
     <div class="row content">
-        <div class="col">
+        <div class="col col-white">
             <h1>{{$minor->name}}</h1>
             <p>{!! $minor->subject !!}
             </p>
         </div>
     </div>
 
-    <div class="row row-space">
+    <div class="row buttons">
         <div class="col">
             <a href="/" class="button block red">Home</a>
         </div>
         <div class="col">
             <a href="{{route('minors')}}" class="button block red">Alle minors</a>
         </div>
+        <div class="col">
+            <a href="{{route('organisation', $minor->organisation->id)}}" class="button block red">Alle minors van {{$minor->organisation->name}}</a>
+        </div>
     </div>
 
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 col-white">
             <h3>Doelen</h3>
             <p>{!! $minor->goals !!}</p>
-        </div>
 
-        <div class="col-12">
             <h3>Requirements</h3>
             <p>{!! $minor->requirements !!}</p>
-        </div>
 
-        <div class="col-12">
             <h3>Toetsing</h3>
             <p>{!! $minor->examination !!}</p>
         </div>
@@ -43,31 +42,21 @@
 
     <div class="row">
         @if ($minor->locations->count() > 0)
-            <div class="col-12">
+            <div class="col-12 col-white">
                 <h3>Locaties waar deze minor wordt gegeven:</h3>
                 <p>Klik op een locatie om er meer over te zien.</p>
             </div>
-            <div class="col-12">
-                <div class="buttons">
-                    @foreach ($minor->locations as $location)
-                        <a class="button blue" href="{{route('location', $location->id)}}">{{$location->name}}</a>
-                    @endforeach
-                </div>
+            <div class="col-12 col-white">
+                @foreach ($minor->locations as $location)
+                    <a class="button blue" href="{{route('location', $location->id)}}">{{$location->name}}</a>
+                @endforeach
             </div>
         @else
-            <div class="col-12">
+            <div class="col-12 col-white">
                 <h3>Locaties waar deze minor wordt geven:</h3>
                 <p>We hebben geen locaties gevonden waar deze minor wordt gegeven.</p>
             </div>
         @endif
-
-        <div class="col">
-            <div class="buttons" style="margin-bottom: 50px;">
-                <a href="{{route('minors', ["organisations"=>[$minor->organisation->id]])}}" class="button blue">Alle
-                    minors
-                    van {{$minor->organisation->name}}</a>
-            </div>
-        </div>
     </div>
 
     <div class="row">

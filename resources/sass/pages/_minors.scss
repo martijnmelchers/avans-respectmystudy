@@ -1,11 +1,31 @@
+.container-fluid {
+  width: 93%;
+}
+
+.col-white {
+  background: white;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  padding: 15px;
+}
+
 .buttons {
   margin: 10px 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  margin: 10px 0 5px 0;
+  margin: 5px 0;
 }
 
-.row-space {
+.row.buttons {
   margin: 20px 0;
+
+  .col:last-child {
+    padding-right: 0;
+  }
+
+  .col:first-child {
+    padding-left: 0;
+  }
 }
