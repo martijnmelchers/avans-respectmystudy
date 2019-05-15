@@ -2,6 +2,10 @@
 
 return [
 
+    'nav' =>[
+
+    ],
+
     'buttons' =>[
         'searchbutton'=>'Search',
         'readmorebutton'=>'Read more',
@@ -24,5 +28,35 @@ return [
         'infopointcontent3'=>'4',
         'highlightedminortitle'=>'Featured minors',
         'newstitle'=>'The latest news',
-    ]
+    ],
+
+    'minors' =>[
+        'filter_minors' => '',
+        'minors_found' => '',
+        'minorname' => '',
+        'points' => '',
+        'organisation' => '',
+        'selected' => '',
+        'language' => '',
+        'sort' => '',
+        'no_sort' => '',
+        'none_found' => '',
+    ],
+
+    'map' =>[
+        'filter_locations' => '',
+        'locations_found' => '',
+    ],
+
+    'organisation ' =>[
+
+    ],
+
+    'login' =>[
+
+    ],
+
+    'register' =>[
+
+    ],
 ];

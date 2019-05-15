@@ -47,7 +47,6 @@
                <a  href="{{route('lang', 'en')}}">
                    <img class="item flag" src="https://cdn.wordquest.nl/flags/medium/fr.png" alt="English">
                </a>
-
             </div>
         </div>
     </div>

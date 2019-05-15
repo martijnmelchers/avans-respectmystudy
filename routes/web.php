@@ -31,12 +31,7 @@ Route::post('/minor/{id}', 'MinorController@InsertReview')->name('minor')->middl
 Route::delete('/minor/{id}', 'MinorController@DeleteReview')->name('review')->middleware(['auth']);
 
 //Taal
-Route::get('/lang/{lang}', function ($lang) {
-    setcookie('lang', $lang, time() + 60 * 60 * 24 * 30, '/');
-
-    return redirect(route('home'));
-})->name('lang');
-
+Route::get('lang/{locale}', 'LocalizationController@index')->name('lang');
 
 // Kaart
 Route::get('/map', 'MapController@Map')->name('map');
