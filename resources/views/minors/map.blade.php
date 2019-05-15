@@ -15,90 +15,13 @@
             crossorigin=""></script>
 
     <script src="/js/leaflet-mouseposition.js"></script>
+    <link href="/css/map.css" type="text/css" rel="stylesheet">
+    <link href="/css_backup/form.css" type="text/css" rel="stylesheet">
 
-    <style>
-        .nav {
-            z-index: 10000;
-        }
-
-        .map {
-            position: absolute;
-            left: 0px;
-            top: 0px;
-            height: 100%;
-            width: 100%;
-            z-index: 2;
-        }
-
-        .content {
-            top: 40px;
-            height: calc(100% - 40px);
-        }
-
-        .sidebar {
-            top: 80px;
-            z-index: 100;
-        }
-
-        @media all and (max-width: 800px){
-            .sidebar {
-                top: 40px;
-                margin: 0 20px;
-            }
-        }
-    </style>
 @endsection
 
 @section('content')
-    <style>
-        .sidebar.wide {
-            min-width: 250px;
-        }
 
-        .collapse {
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            padding: 3px;
-            border-radius: 3px;
-            margin: 13px 0;
-            background: #ECF0F1;
-            border: 2px solid #dee2e3;
-        }
-
-        .collapse .drop {
-            max-height: 0;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            /*justify-content: flex-start;*/
-            font-size: 13px;
-
-            -webkit-transition: max-height 0.5s;
-            -moz-transition: max-height 0.5s;
-            -ms-transition: max-height 0.5s;
-            -o-transition: max-height 0.5s;
-            transition: max-height 0.5s;
-        }
-
-        .collapse:hover .drop {
-            max-height: 200px;
-            overflow-y: scroll;
-        }
-
-        .collapse .drop .formline {
-            margin: 2px 0;
-        }
-
-        .leaflet-container .leaflet-control-mouseposition {
-            background-color: rgba(255, 255, 255, 0.7);
-            box-shadow: 0 0 5px #bbb;
-            padding: 0 5px;
-            margin:0;
-            color: #333;
-            font: 11px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
-        }
-    </style>
 
     <div class="content wide">
         <div class="sidebar wide">
