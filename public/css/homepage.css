@@ -4,6 +4,10 @@
   margin-top: 60px;
 }
 
+.presentation .presentation-left {
+  margin-bottom: 80px;
+}
+
 .presentation .presentation-left h1 {
   font-weight: bold;
   font-size: 34px;
@@ -19,6 +23,7 @@
   font-size: 20px;
   color: white;
   font-weight: 200;
+  margin: 5px;
 }
 
 .highlighted-points {
@@ -44,10 +49,6 @@
 
 .news-articles .article-wrapper {
   margin-top: 30px;
-}
-
-.news-articles .article-wrapper .article {
-  max-height: 250px;
 }
 
 .news-articles .article-wrapper .article .article-image {
@@ -76,7 +77,7 @@
 }
 
 .news-articles .article-wrapper .article .article-content .intro-content {
-  margin-top: 20px;
+  margin-top: 10px;
   line-height: 1.2;
 }
 
@@ -96,5 +97,103 @@
 .highlight-header h1 {
   font-weight: 700;
   margin: 0;
+  font-size: 30px;
+}
+
+form p {
+  margin: 5px;
+}
+
+form input[type=text] {
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 3px;
+  border: 2px solid #dee2e3;
+  margin: 15px 0px;
+  width: 100%;
+  background: white;
+  color: #CACDD3;
+}
+
+.fa-6x {
+  font-size: 5em;
+}
+
+@media (max-width: 1560px) {
+  .fa-6x {
+    font-size: 4em;
+  }
+
+  .highlight-header h1 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 1300px) {
+  .fa-6x {
+    font-size: 4em;
+  }
+}
+
+@media (max-width: 1200px) {
+  .fa-6x {
+    font-size: 4em;
+  }
+
+  .news-articles .article-wrapper .article .article-content h1 {
+    font-size: 20px;
+  }
+
+  .news-articles .article-wrapper .article .article-content h6 {
+    font-size: 16px;
+  }
+
+  .news-articles .article-wrapper .article .article-content p {
+    font-size: 16px;
+  }
+
+  .highlighted-minors .highlight-header h1 {
+    font-size: 50px;
+  }
+
+  .highlighted-minors .box {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 992px) {
+  .fa-6x {
+    font-size: 4em;
+  }
+}
+
+@media (max-width: 768px) {
+  .news-articles .article-wrapper {
+    margin-top: 30px;
+  }
+
+  .news-articles .article-wrapper .article .article-content h1 {
+    font-size: 20px;
+  }
+
+  .news-articles .article-wrapper .article .article-content h6 {
+    font-size: 16px;
+  }
+
+  .news-articles .article-wrapper .article .article-content p {
+    font-size: 16px;
+  }
+
+  .news-articles .article-wrapper .article .article-content .article-actions .button {
+    font-size: 10px;
+  }
+
+  .highlighted-minors .highlight-header h1 {
+    font-size: 36px;
+  }
+
+  .highlighted-points .button {
+    font-size: 10px;
+  }
 }
 
