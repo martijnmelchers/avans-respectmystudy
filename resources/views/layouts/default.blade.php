@@ -67,7 +67,8 @@
         </div>
     </div>
 </div>
-
-@yield('content')
+<div class="container-fluid">
+    @yield('content')
+</div>
 </body>
 </html>
