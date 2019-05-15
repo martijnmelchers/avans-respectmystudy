@@ -55,35 +55,6 @@
             box-shadow: 10px 10px 20px #c3c3c3;
         }
 
-        /*.collapse {
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            border-radius: 3px;
-            margin: 13px 0;
-            border: 2px solid #dee2e3;
-        }*/
-
-        .collapse .drop {
-            max-height: 0;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            /*justify-content: flex-start;*/
-            font-size: 13px;
-
-            -webkit-transition: max-height 0.5s;
-            -moz-transition: max-height 0.5s;
-            -ms-transition: max-height 0.5s;
-            -o-transition: max-height 0.5s;
-            transition: max-height 0.5s;
-        }
-
-        .collapse:hover .drop {
-            max-height: 200px;
-            overflow-y: scroll;
-        }
-
         .collapse .drop .formline {
             margin: 2px 0;
         }

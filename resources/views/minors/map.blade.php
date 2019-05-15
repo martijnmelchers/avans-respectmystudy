@@ -16,7 +16,6 @@
 
     <script src="/js/leaflet-mouseposition.js"></script>
     <link href="/css/map.css" type="text/css" rel="stylesheet">
-    <link href="/css_backup/form.css" type="text/css" rel="stylesheet">
 
 @endsection
 
@@ -25,8 +24,8 @@
 
     <div class="content wide">
         <div class="sidebar wide">
-            <h3 class="center">Filter minors</h3>
-            <p>{{sizeof($locations)}} locaties gevonden</p>
+            <h2 class="text-center text-uppercase w-700 f-primary">FILTERS</h2>
+            <p class="text-center w-500 f-primary c-primary">{{$total_minor_amount == 0 ? "Geen minoren gevonden" : "${total_minor_amount} minors gevonden"}}</p>
 
             <form method="get" class="form" autocomplete="off">
                 <div class="form-group">
@@ -37,34 +36,42 @@
                     <label for="ects">Studiepunten</label>
                     <input type="text" id="ecs" name="ects" value="{{$ects}}" placeholder="Studiepunten"></div>
 
-                <div class="collapse">
-                    <div class="title">Organisaties ({{sizeof($selected_organisations)}} geselecteerd)</div>
-                    <div class="drop">
-                        @foreach($organisations as $organisation)
-                            <div class="form-group">
-                                <input name="organisations[]"
-                                       <?php if (in_array($organisation['id'], $selected_organisations)) echo "checked"; ?> type="checkbox"
-                                       id="{{$organisation->id}}" value="{{$organisation->id}}"><label
+                <div class="form-group">
+                    <label>Organisaties</label>
+                    <div class="collapse">
+                        <div class="title">{{sizeof($selected_organisations)}} geselecteerd</div>
+                        <div class="drop">
+                            @foreach($organisations as $organisation)
+                                <div class="form-group">
+                                    <input name="organisations[]"
+                                           <?php if (in_array($organisation['id'], $selected_organisations)) echo "checked"; ?> type="checkbox"
+                                           id="{{$organisation->id}}" value="{{$organisation->id}}"><label
                                         for="{{$organisation->id}}">{{$organisation->name}}</label>
-                            </div>
-                        @endforeach
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
 
-                <div class="collapse">
-                    <div class="title">Talen ({{sizeof($selected_languages)}} geselecteerd)</div>
-                    <div class="drop">
-                        @foreach($languages as $language)
-                            <div class="form-group">
-                                <input name="languages[]"
-                                       <?php if (in_array($language, $selected_languages)) echo "checked"; ?> type="checkbox"
-                                       id="{{$language}}" value="{{$language}}"><label
+                <div class="form-group">
+                    <label>Talen</label>
+                    <div class="collapse">
+                        <div class="title">{{sizeof($selected_languages)}} geselecteerd</div>
+                        <div class="drop">
+                            @foreach($languages as $language)
+                                <div class="form-group">
+                                    <input name="languages[]"
+                                           <?php if (in_array($language, $selected_languages)) echo "checked"; ?> type="checkbox"
+                                           id="{{$language}}" value="{{$language}}"><label
                                         for="{{$language}}">{{$language}}</label>
-                            </div>
-                        @endforeach
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-                <input type="submit">
+                <div class="form-group">
+                    <button type="submit" class="button blue block">Zoeken</button>
+                </div>
             </form>
         </div>
 
@@ -83,7 +90,7 @@
 
                 L.control.mousePosition().addTo(mymap);
 
-                navigator.geolocation.getCurrentPosition(function(location) {
+                navigator.geolocation.getCurrentPosition(function (location) {
                     var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
 
                     var m = L.circle(latlng, {
@@ -97,13 +104,13 @@
                     m.addTo(mymap);
                 });
 
-                @foreach ($locations as $location)
+                    @foreach ($locations as $location)
                     @if (isset($location->lat) && isset($location->lon))
-                        var marker = L.marker([{{$location->lat}}, {{$location->lon}}]);
-                        marker.bindPopup("<b>{{$location->name}}</b><br><a target='_blank' href='/location/{{$location->id}}'>Meer info</a>");
-                        marker.addTo(mymap);
-                        console.log("{{$location->name}} toegevoegd op {{$location->lat}}, {{$location->lon}}");
-                    @endif
+                var marker = L.marker([{{$location->lat}}, {{$location->lon}}]);
+                marker.bindPopup("<b>{{$location->name}}</b><br><a target='_blank' href='/location/{{$location->id}}'>Meer info</a>");
+                marker.addTo(mymap);
+                console.log("{{$location->name}} toegevoegd op {{$location->lat}}, {{$location->lon}}");
+                @endif
                 @endforeach
             </script>
         </div>
