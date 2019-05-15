@@ -8541,3 +8541,11 @@ button.grey:active {
   font-family: "Source Sans Pro", sans-serif;
 }
 
+.wrap-break {
+  overflow-wrap: break-word;
+}
+
+.wrap-spaces {
+  overflow-wrap: break-spaces;
+}
+
