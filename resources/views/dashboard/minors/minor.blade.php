@@ -56,4 +56,13 @@
         <h3>Requirements</h3>
         {!! $minor->requirements !!}
     </article>
+
+    <article>
+        <h3>Contact</h3>
+        @if (isset($minor->contact))
+            {{$minor->contact}}
+        @else
+            <p>Geen contact gevonden</p>
+        @endif
+    </article>
 @endsection

@@ -30,7 +30,8 @@ class Minor extends Model
         "is_published",
         "is_enrollable",
         "organisation_id",
-        "location_id"
+        "location_id",
+        "contact_group_id"
     ];
 
 
@@ -48,8 +49,12 @@ class Minor extends Model
     // Return locaties
     public function locations()
     {
-        
         return $this->belongsToMany('App\Location', 'minors_locations');
+    }
+
+    // Return contact group
+    public function contact() {
+        return $this->belongsTo('App\ContactGroup');
     }
   
     // Return reviews

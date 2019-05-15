@@ -147,6 +147,8 @@ class MinorController extends Controller
     public function EditPost($id, Request $request)
     {
         $is_published = false;
+
+        // un-publish all versions of the selected minor
         if (Input::get('is_published') && Input::get('is_published') == "on") {
             Minor::find($id)->update(['is_published' => false]);
             $is_published = true;
