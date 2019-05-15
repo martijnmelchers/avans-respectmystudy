@@ -55,4 +55,12 @@
             background-color: $primary-grey-active;
         }
     }
+
+    &.block {
+        width: 100%;
+    }
+}
+
+button {
+    border-style: none;
 }

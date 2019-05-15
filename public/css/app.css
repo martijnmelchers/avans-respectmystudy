@@ -8298,6 +8298,10 @@ b,
   padding: 0 !important;
 }
 
+.content {
+  margin-top: 80px;
+}
+
 .nav {
   height: 60px;
   width: 100%;
@@ -8476,6 +8480,15 @@ button.grey:active {
   background-color: #a0a6b0;
 }
 
+.button.block,
+button.block {
+  width: 100%;
+}
+
+button {
+  border-style: none;
+}
+
 .box {
   padding: 20px;
   background: white;
@@ -8488,6 +8501,32 @@ button.grey:active {
 
 .box.no-padding {
   padding: 0;
+}
+
+form .form-group,
+.form .form-group {
+  margin-bottom: 5px;
+}
+
+form .form-group label,
+.form .form-group label {
+  display: block;
+  font-family: "Source Sans Pro", sans-serif;
+  color: #434D53;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+form .form-group input,
+form .form-group select,
+.form .form-group input,
+.form .form-group select {
+  border-radius: 4px;
+  border: 1px solid #848484;
+  padding: 5px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 15px;
+  width: 100%;
 }
 
 /* Import tools */
