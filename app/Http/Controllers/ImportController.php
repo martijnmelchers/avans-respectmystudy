@@ -304,7 +304,7 @@ class ImportController extends Controller
             die();
         }
 
-        $messages = array();
+        $messages = [];
 
         foreach ($php_result->results as $r) {
             $location = Location::all()->where('id', $r->id)->first();
