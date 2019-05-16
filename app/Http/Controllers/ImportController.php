@@ -274,7 +274,7 @@ class ImportController extends Controller
             die();
         }
 
-        $errors = [];
+        $messages = array();
 
         foreach ($php_result->results as $r) {
             $location = Location::all()->where('id', $r->id)->first();
@@ -294,10 +294,10 @@ class ImportController extends Controller
                     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 
                     $google_result = curl_exec($ch);
-                    $php_result = json_decode($google_result);
+                    $google_php_result = json_decode($google_result);
 
-                    if (sizeof($php_result->results) > 0) {
-                        foreach ($php_result->results as $r) {
+                    if (sizeof($google_php_result->results) > 0) {
+                        foreach ($google_php_result->results as $r) {
                             $lat = floatval($r->geometry->location->lat);
                             $lon = floatval($r->geometry->location->lng);
 
@@ -305,6 +305,8 @@ class ImportController extends Controller
                             $location->lon = $lon;
                             $location->save();
                         }
+                    } else if (isset($google_php_result->error_message)) {
+                        $messages[] = $google_php_result->error_message;
                     }
                 }
             } else {
@@ -344,10 +346,10 @@ class ImportController extends Controller
                     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 
                     $google_result = curl_exec($ch);
-                    $php_result = json_decode($google_result);
+                    $google_php_result = json_decode($google_result);
 
-                    if (sizeof($php_result->results) > 0) {
-                        foreach ($php_result->results as $r) {
+                    if (sizeof($google_php_result->results) > 0) {
+                        foreach ($google_php_result->results as $r) {
                             $lat = floatval($r->geometry->location->lat);
                             $lon = floatval($r->geometry->location->lng);
 
@@ -361,7 +363,10 @@ class ImportController extends Controller
         }
 
         curl_close($ch);
-        return response($result, 200)
+
+        $php_result->messages = $messages;
+
+        return response()->json($php_result, 200, [], JSON_UNESCAPED_SLASHES)
             ->header('Content-Type', 'text/json');
     }
 
