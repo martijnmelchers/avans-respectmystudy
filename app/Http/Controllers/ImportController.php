@@ -413,7 +413,7 @@ class ImportController extends Controller
             $page = "";
         }
 
-        $messages = array();
+        $messages = [];
 
         curl_setopt($ch, CURLOPT_URL, "https://www.kiesopmaat.nl/api/public/person/$page");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
