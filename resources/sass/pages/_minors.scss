@@ -1,5 +1,5 @@
 .container-fluid {
-  width: 93%;
+  width: 95%;
 }
 
 .row {
@@ -24,6 +24,46 @@ p {
 
 h1, h2, h3, h4, h5, h6 {
   margin: 5px 0;
+}
+
+
+//Minor list
+.minorlist > a {
+  margin-bottom: 15px;
+}
+.minorlist .box {
+  padding: 10px;
+}
+
+.text-stretch {
+  text-align: justify;
+}
+
+.text-small {
+  font-size: 15px;
+}
+
+.text-lined {
+  border-top: 2px solid rgb(236, 240, 241);
+  border-bottom: 2px solid rgb(236, 240, 241);
+  padding: 5px 0;
+}
+
+.text-error {
+  font-size: 15px;
+  color: red;
+}
+
+.organisation_img {
+  width: 90%;
+  max-width: 95px;
+  margin: 0 auto;
+  display: block;
+}
+
+.info-gray {
+  color: rgb(132, 132, 132);
+  font-size: 12px;
 }
 
 .row.buttons {
