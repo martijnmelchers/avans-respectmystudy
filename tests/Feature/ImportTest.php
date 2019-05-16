@@ -57,6 +57,26 @@ class ImportTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function testContactPersonsImport()
+    {
+        $user = factory(User::class)->make(['role_id' => 2]);
+        $this->actingAs($user);
+
+        $response = $this->get('/import/contactpersons');
+
+        $response->assertStatus(200);
+    }
+
+    public function testContactGroupImport()
+    {
+        $user = factory(User::class)->make(['role_id' => 2]);
+        $this->actingAs($user);
+
+        $response = $this->get('/import/contactgroups');
+
+        $response->assertStatus(200);
+    }
 }
 
 // test: .\vendor\bin\phpunit
