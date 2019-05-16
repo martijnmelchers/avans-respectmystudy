@@ -40,6 +40,7 @@
                     <div class="description">
                         <p>Versie {{$minor->version}}</p>
                         <p>Gepubliceerd {{$minor->is_published ? "Ja" : "Nee"}}</p>
+                        <p>{{$minor->contactGroup ? $minor->contactGroup->name : "Geen contactpersoon"}}</p>
                     </div>
                 </a>
             @endforeach

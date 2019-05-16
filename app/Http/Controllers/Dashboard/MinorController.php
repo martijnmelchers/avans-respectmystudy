@@ -64,6 +64,7 @@ class MinorController extends Controller
                 ->count();
         }
 
+        $pages = $pages / $per_page;
         $minors = array();
 
         // Go through all minors

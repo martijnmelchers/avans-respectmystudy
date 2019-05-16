@@ -53,7 +53,11 @@ class Minor extends Model
     }
 
     // Return contact group
-    public function contact() {
+    public function contactPersons() {
+        return $this->hasMany('App\ContactPerson');
+    }
+
+    public function contactGroup() {
         return $this->belongsTo('App\ContactGroup');
     }
   

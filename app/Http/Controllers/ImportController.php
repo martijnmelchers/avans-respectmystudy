@@ -37,8 +37,6 @@ class ImportController extends Controller
         $result = curl_exec($ch);
         $php_result = json_decode($result);
 
-//        return response()->json($result);
-
         if (curl_errno($ch)) {
             echo 'Error:' . curl_error($ch);
         }
@@ -160,6 +158,19 @@ class ImportController extends Controller
                     }
                 } else {
                     $errors[] = "Organisatie " . $r->ownedby_organisation . " niet gevonden";
+                }
+            }
+
+            if (isset($r->contact)) {
+                $contact_group = ContactGroup::where("id", $r->contact)->first();
+
+                if (isset($contact_group)) {
+                    $minor = Minor::where("id", $r->id)->first();
+                    $minor->contact_group_id = $r->contact;
+                    $minor->save();
+                    $messages[] = "Contactgroep $r->id toegevoegd!";
+                } else {
+                    $errors[] = "Contactgroep $r->id niet gevonden!";
                 }
             }
         }
