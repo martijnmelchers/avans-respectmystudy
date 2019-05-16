@@ -252,10 +252,10 @@ class ImportController extends Controller
                 }
             }
 
-            $location = Location::where("id", $r->id)->first();
+            $location = Location::find($r->id);
 
             // Check if location already has a location
-            if (!isset($location->lat)) {
+            if (isset($location) && !isset($location->lat)) {
                 // Get location information
                 $address = urlencode($location->visitingaddress);
                 $postalcode = str_replace(" ", "", $location->visitingzip);
