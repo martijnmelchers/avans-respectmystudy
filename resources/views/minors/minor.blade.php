@@ -60,7 +60,7 @@
                         <span class="closebutton" onclick="this.parentElement.style.display='none';">&times;</span>
                     </div>
                 @endif
-                <form method="post">
+                <form method="post" id="add-review-form">
                     {{ csrf_field() }}
                     <div class="formline">
                         <input class="titlefield" type="text" name="title" placeholder="Vul hier de titel in...">
@@ -192,7 +192,7 @@
             <article>
                 <h3>Reviews</h3>
                 @foreach($reviews as $r)
-                    <div class="review_detail">
+                    <div class="review_detail" data-review-id="{{$r->id}}">
                         @if($r->user_id == $user_id)
                             <form method="POST">
                                 {{ csrf_field() }}
