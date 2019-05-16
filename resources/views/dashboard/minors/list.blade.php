@@ -40,9 +40,27 @@
                     <div class="description">
                         <p>Versie {{$minor->version}}</p>
                         <p>Gepubliceerd {{$minor->is_published ? "Ja" : "Nee"}}</p>
+                        <p>{{$minor->contactGroup ? $minor->contactGroup->name : "Geen contactpersoon"}}</p>
                     </div>
                 </a>
             @endforeach
+        </div>
+
+        <div class="pagenav">
+            <div class="text">Pagina</div>
+            <div class="pages">
+                @if ($page > 0)
+                    <a href="{{$request->fullUrlWithQuery(["page"=>$page - 1])}}"
+                       class="previous block"><i class="fas fa-arrow-left"></i> {{$page}}</a>
+                @endif
+
+                <div class="current block">{{$page + 1}}</div>
+
+                @if ($page + 1 < $pages)
+                    <a href="{{$request->fullUrlWithQuery(["page"=>$page + 1])}}"
+                       class="next block">{{$page+2}} <i class="fas fa-arrow-right"></i></a>
+                @endif
+            </div>
         </div>
     @else
         <article>

@@ -19,6 +19,10 @@ class Controller extends BaseController
 
     function setLocale()
     {
+        // Dont do anything if you are running a test, since this will crash the application
+        if (App::runningUnitTests())
+            return;
+
         if (!isset($_COOKIE['lang'])) {
             setcookie('lang', $this->getBrowserLocale(), time() + 60 * 60 * 24 * 30, "/");
             $lang = $this->getBrowserLocale();
