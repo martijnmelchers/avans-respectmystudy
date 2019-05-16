@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Input;
 
 class MinorController extends Controller
 {
-    public function Minors()
+    public function Minors(Request $request)
     {
         $minor_name = $is_published = "";
 
@@ -21,19 +21,56 @@ class MinorController extends Controller
         $page = 0;
         if (isset($_GET['page']) && intval($_GET['page']) !== null) $page = intval($_GET['page']);
 
-        // Select all individual minors
-        $raw_minors = Minor::limit($per_page)
-            ->where('name', 'like', "%$minor_name%")
-            ->groupBy('id')
-            ->orderBy('name', 'asc')
-            ->offset($per_page * $page)
-            ->get();
+        // Check if there is a filter on is_published
+        if ($is_published == "yes") {
+            // Select all individual minors that have a published version
+            $raw_minors = Minor::limit($per_page)
+                ->where('name', 'like', "%$minor_name%")
+                ->where('is_published', 1)
+                ->groupBy('id')
+                ->orderBy('name', 'asc')
+                ->offset($per_page * $page)
+                ->get();
+
+            $pages = Minor::all()
+                ->where('is_published', 1)
+                ->groupBy('id')
+                ->count();
+        } else if ($is_published == "no") {
+            // Select all individual minors that don't have a published version
+            $raw_minors = Minor::limit($per_page)
+                ->where('name', 'like', "%$minor_name%")
+                ->where('is_published', 0)
+                ->groupBy('id')
+                ->orderBy('name', 'asc')
+                ->offset($per_page * $page)
+                ->get();
+
+            $pages = Minor::all()
+                ->where('is_published', 0)
+                ->groupBy('id')
+                ->count();
+        } else {
+            // Select all individual minors
+            $raw_minors = Minor::limit($per_page)
+                ->where('name', 'like', "%$minor_name%")
+                ->groupBy('id')
+                ->orderBy('name', 'asc')
+                ->offset($per_page * $page)
+                ->get();
+
+            $pages = Minor::all()
+                ->groupBy('id')
+                ->count();
+        }
+
+        echo $pages;
 
         $minors = array();
 
         // Go through all minors
         foreach ($raw_minors as $key => $minor) {
-            // Select latest version of a minor
+            // Select published verison of a minor, or the latest version of a minor
             $temp = Minor::where("id", $minor->id)->orderBy('is_published', 'desc')->orderBy('version', 'desc')->first();
             $add = true;
 
@@ -50,12 +87,18 @@ class MinorController extends Controller
             if ($add) $minors[$key] = $temp;
         }
 
-        // Sort new minors array by name
+        // Sort new minor list array by name
         usort($minors, function ($a, $b) {
             return $a['name'] <=> $b['name'];
         });
 
-        return view('dashboard/minors/list', ['minors' => $minors, 'search' => ['name' => $minor_name, 'is_published' => $is_published]]);
+        return view('dashboard/minors/list', [
+            'minors' => $minors,
+            'search' => [
+                'name' => $minor_name,
+                'is_published' => $is_published
+            ], "page" => $page,
+            "pages" => $pages, "request"=>$request]);
     }
 
     public function Minor($id)
