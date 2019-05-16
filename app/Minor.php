@@ -52,11 +52,12 @@ class Minor extends Model
         return $this->belongsToMany('App\Location', 'minors_locations');
     }
 
-    // Return contact group
+    // Return contact persons
     public function contactPersons() {
-        return $this->hasMany('App\ContactPerson');
+        return $this->belongsToMany('App\ContactPerson', 'minors_contact_persons');
     }
 
+    // Return contact group
     public function contactGroup() {
         return $this->belongsTo('App\ContactGroup');
     }

@@ -161,6 +161,7 @@ class ImportController extends Controller
                 }
             }
 
+            // Bind contact group
             if (isset($r->contact)) {
                 $contact_group = ContactGroup::where("id", $r->contact)->first();
 
@@ -171,6 +172,24 @@ class ImportController extends Controller
                     $messages[] = "Contactgroep $r->id toegevoegd!";
                 } else {
                     $errors[] = "Contactgroep $r->id niet gevonden!";
+                }
+            }
+
+            // Bind teachers
+            if (isset($r->teachers)) {
+                $minor = Minor::all()->where("id", $r->id)->first();
+//                $minor->contactPersons()->detach();
+
+                foreach ($r->teachers as $teacher) {
+                    $contact_person = ContactPerson::where("id", $teacher)->first();
+
+                    if (isset($contact_person)) {
+                        $minor->contactPersons()->attach($teacher);
+                        $minor->save();
+                        $messages[] = "Contactpersoon $r->id toegevoegd!";
+                    } else {
+                        $errors[] = "Contactpersoon $r->id niet gevonden!";
+                    }
                 }
             }
         }
