@@ -14,4 +14,6 @@ const mix = require('laravel-mix');
 mix.sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/pages/_homepage.scss', 'public/css/homepage.css')
     .sass('resources/sass/pages/_minors.scss', 'public/css/minors.css')
-    .sass('resources/sass/pages/_map.scss', 'public/css/map.css');
+    .sass('resources/sass/pages/_map.scss', 'public/css/map.css')
+    .sass('resources/sass/pages/_organisations.scss', 'public/css/organisations.css');
+
