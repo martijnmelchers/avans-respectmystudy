@@ -52,16 +52,18 @@
                     <div class="inner"></div>
                     <div class="text">Nog niks aan het importeren</div>
                 </div>
-
-                <div id="errors">
-
-                </div>
             </article>
+
+            <div id="errors">
+
+            </div>
 
             <div class="buttons">
                 <div class="button" onclick="importProgrammes()">Importeer minors</div>
                 <div class="button" onclick="importLocations()">Importeer Locaties</div>
                 <div class="button" onclick="importSchools()">Importeer Organisaties</div>
+                <div class="button" onclick="importPersons()">Importeer Contactpersonen</div>
+                <div class="button" onclick="importGroups()">Importeer Contactgroepen</div>
             </div>
         </div>
     </div>
@@ -80,7 +82,7 @@
                 total = o.count;
                 progress += o.results.length;
 
-                document.getElementsByClassName("text")[0].innerHTML = "Scholen importeren";
+                document.getElementsByClassName("text")[0].innerHTML = "Organisaties importeren";
                 document.getElementsByClassName("inner")[0].style.width = ((100 * progress) / total) + "%";
 
                 if (o.next != null) {
@@ -118,24 +120,78 @@
 
                 console.log("Pagina " + page + "; Progress: " + progress);
 
-                document.getElementsByClassName("text")[0].innerHTML = "Locaties importeren";
+                document.getElementsByClassName("text")[0].innerHTML = "Minors importeren";
                 document.getElementsByClassName("inner")[0].style.width = ((100 * progress) / total) + "%";
 
                 if (o.errors != null && o.errors.length > 0) {
                     o.errors.forEach(function (e) {
-                        errors.push(e);
-                    })
+                        addError(e);
+                    });
                 }
-
-                document.getElementById('errors').innerHTML = "";
-                errors.forEach(function (e) {
-                    document.getElementById("errors").innerHTML += "<div class='alert red'>" + e.error + "</div>";
-                });
 
                 if (o.next != null) {
                     importProgrammes(page + 1, progress);
                 }
             });
+        }
+
+        function importPersons(page = 1, progress = 0) {
+            $.getJSON("/import/contactpersons/?page=" + page, function (o) {
+                console.log(o);
+
+                total = o.count;
+                progress += o.results.length;
+
+                console.log("Pagina " + page + "; Progress: " + progress);
+
+                document.getElementsByClassName("text")[0].innerHTML = total + " Contactpersonen importeren";
+                document.getElementsByClassName("inner")[0].style.width = ((100 * progress) / total) + "%";
+
+                if (o.errors != null && o.errors.length > 0) {
+                    o.errors.forEach(function (e) {
+                        addError(e);
+                    });
+                }
+
+                if (o.next != null) {
+                    importPersons(page + 1, progress);
+                }
+            });
+        }
+
+        function importGroups(page = 1, progress = 0) {
+            $.getJSON("/import/contactgroups/?page=" + page, function (o) {
+                console.log(o);
+
+                total = o.count;
+                progress += o.results.length;
+
+                console.log("Pagina " + page + "; Progress: " + progress);
+
+                document.getElementsByClassName("text")[0].innerHTML = total + " Contactgroupen importeren";
+                document.getElementsByClassName("inner")[0].style.width = ((100 * progress) / total) + "%";
+
+                if (o.errors != null && o.errors.length > 0) {
+                    o.errors.forEach(function (e) {
+                        addError(e);
+                    });
+                }
+
+                if (o.next != null) {
+                    importGroups(page + 1, progress);
+                }
+            });
+        }
+
+        function addError(e) {
+            $("<div></div>")
+                .text(e)
+                .addClass("alert")
+                .addClass("red")
+                .click(function () {
+                    $(this).remove();
+                })
+                .appendTo("#errors");
         }
     </script>
 @endsection
