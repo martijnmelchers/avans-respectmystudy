@@ -1,11 +1,10 @@
 @extends('layouts.default')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+
+    <div class="row content justify-content-center">
+        <div class="box col-6">
+                <h2>{{ __('Register') }}</h2>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -63,17 +62,16 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="button blue block ">
                                     {{ __('Register') }}
                                 </button>
                             </div>
                         </div>
                     </form>
                 </div>
-            </div>
         </div>
     </div>
-</div>
+
 @endsection
 @section('head')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
