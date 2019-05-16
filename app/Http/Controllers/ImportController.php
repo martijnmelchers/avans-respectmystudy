@@ -314,7 +314,7 @@ class ImportController extends Controller
 
                 // Check if the organisation exists
                 if (!isset($organisation)) {
-                    $messages[] = "{$r->firstname} {$r->middlename} {$r->lastname} kon niet worden toegevoegd omdat de organisatie $r->ownedby_organisation niet bestaat";
+                    $messages[] = "{$r->firstname} {$r->middlename} {$r->lastname} kon niet worden toegevoegd omdat de organisatie {$r->ownedby_organisation} niet bestaat";
                 } else {
                     // Add the contact person
                     $contactperson = new ContactPerson([
