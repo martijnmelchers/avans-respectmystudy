@@ -3,16 +3,16 @@
 @section("title", "Home")
 
 
-
+@section('container_class', 'full-width')
 
 @section('content')
 
     <div class="presentation">
         <div class="row justify-content-center">
             <div class="col-xl-4 col-10 presentation-left">
-                <h1>{{__('content.homepage.mainarticletitle')}}</h1>
+                <h1>{{__('home.presentation.title')}}</h1>
                 <p>
-                    {{__('content.homepage.mainarticlecontent')}}
+                    {{__('home.presentation.description')}}
                 </p>
             </div>
             <div class="col-xl-4 col-10 offset-xl-1">
