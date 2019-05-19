@@ -39,4 +39,27 @@ strong, b, .bold, .strong {
     width: calc(100% - 300px);
     margin-left: 250px;
     margin-top: 20px;
+
+    @media all and (max-width: 900px){
+        width: calc(100% - 80px);
+        margin-left: 40px;
+    }
+}
+
+.alert {
+    width: 100%;
+    flex-grow: 1;
+    padding: 10px;
+    background: #fefefe;
+    border: 2px solid #fdfdfe;
+    margin: 20px 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+
+    &.red {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+    }
 }

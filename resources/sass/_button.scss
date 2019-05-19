@@ -76,4 +76,11 @@ button {
 
 .buttons {
     margin: -5px;
+
+    &.small {
+        .button, button {
+            font-size: 12px;
+            padding: 5px 20px;
+        }
+    }
 }

@@ -1,135 +1,154 @@
 .nav, .side {
-  height: 60px;
-  width: 100%;
-  top: 0;
-  background: white;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  position: fixed;
-  display: flex;
-  font-family: $primary-font;
-  z-index: 9999999999;
+	 height: 60px;
+	 width: 100%;
+	 top: 0;
+	 background: white;
+	 box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+	 position: fixed;
+	 display: flex;
+	 font-family: $primary-font;
+	 z-index: 9999999999;
 
-  .expander {
-	display: none;
-  }
+	 .expander {
+			display: none;
+	 }
 }
 
 .nav {
-  justify-content: space-between;
-  align-items: center;
+	 justify-content: space-between;
+	 align-items: center;
 
-  .title {
-	font-size: 20px;
-	padding: 12px 0 12px 20px;
-	margin: 0;
-	font-weight: bold;
-  }
+	 .title {
+			font-size: 20px;
+			padding: 12px 0 12px 20px;
+			margin: 0;
+			font-weight: bold;
+	 }
 
-  .nav-buttons {
-	display: flex;
-	justify-content: space-between;
-	padding: 14px 10px 14px 0;
-	font-size: 15px;
+	 .nav-buttons {
+			display: flex;
+			justify-content: space-between;
+			padding: 14px 10px 14px 0;
+			font-size: 15px;
 
-	a, .item {
-	  margin: 0 7px;
-	  cursor: pointer;
-	  font-weight: 500;
-	  font-size: 17px;
+			a, .item {
+				 margin: 0 7px;
+				 cursor: pointer;
+				 font-weight: 500;
+				 font-size: 17px;
 
-	  &.active {
-		border-bottom: 1px solid $primary-red;
-		font-weight: bold;
-		padding-bottom: 3px;
-	  }
-	}
-  }
+				 &.active {
+						border-bottom: 1px solid $primary-red;
+						font-weight: bold;
+						padding-bottom: 3px;
+				 }
+			}
+	 }
 
-  .divider {
-	width: 1px;
-	height: 100%;
-	background: #ECF0F1;
-  }
+	 .divider {
+			width: 1px;
+			height: 100%;
+			background: #ECF0F1;
+	 }
 
-  .dropdown {
-	position: relative;
+	 .dropdown {
+			position: relative;
 
-	.drop {
-	  position: absolute;
-	  background: #ced2d3;
-	  width: 100%;
-	  border-radius: 3px;
-	  padding: 2px;
+			.drop {
+				 position: absolute;
+				 background: #ced2d3;
+				 width: 100%;
+				 border-radius: 3px;
+				 padding: 2px;
 
-	  -webkit-transition: top 0.2s, opacity 0.2s, visibility 0.2s;
-	  -moz-transition: top 0.2s, opacity 0.2s, visibility 0.2s;
-	  -ms-transition: top 0.2s, opacity 0.2s, visibility 0.2s;
-	  -o-transition: top 0.2s, opacity 0.2s, visibility 0.2s;
-	  transition: top 0.2s, opacity 0.2s, visibility 0.2s;
-	  visibility: hidden;
-	  opacity: 0;
-	  top: 90%;
+				 -webkit-transition: top 0.2s, opacity 0.2s, visibility 0.2s;
+				 -moz-transition: top 0.2s, opacity 0.2s, visibility 0.2s;
+				 -ms-transition: top 0.2s, opacity 0.2s, visibility 0.2s;
+				 -o-transition: top 0.2s, opacity 0.2s, visibility 0.2s;
+				 transition: top 0.2s, opacity 0.2s, visibility 0.2s;
+				 visibility: hidden;
+				 opacity: 0;
+				 top: 90%;
 
-	  &::after {
-		display: block;
-		content: '';
-		border-bottom: 4px solid #ced2d3;
-		border-left: 5px solid transparent;
-		border-right: 5px solid transparent;
-		position: absolute;
-		top: -4px;
-		left: 40%;
-	  }
-	}
+				 &::after {
+						display: block;
+						content: '';
+						border-bottom: 4px solid #ced2d3;
+						border-left: 5px solid transparent;
+						border-right: 5px solid transparent;
+						position: absolute;
+						top: -4px;
+						left: 40%;
+				 }
+			}
 
-	.flag {
-	  width: 30px;
-	  display: block;
-	  padding: 2px 0;
-	  border-radius: 3px;
-	  overflow: hidden;
-	}
+			.flag {
+				 width: 30px;
+				 display: block;
+				 padding: 2px 0;
+				 border-radius: 3px;
+				 overflow: hidden;
+			}
 
-	&:hover > .drop {
-	  visibility: visible;
-	  top: 110%;
-	  opacity: 1;
-	}
-  }
+			&:hover > .drop {
+				 visibility: visible;
+				 top: 110%;
+				 opacity: 1;
+			}
+	 }
 }
 
 .side {
-  width: 200px;
-  height: 100%;
-  flex-direction: column;
-  padding: 0 15px;
+	 width: 200px;
+	 height: 100%;
+	 flex-direction: column;
+	 padding: 0 15px;
 
 
-  .title {
-	font-size: 18px;
-	padding: 10px 0;
-	font-weight: bold;
-	text-align: center;
-  }
+	 .title {
+			font-size: 18px;
+			padding: 10px 0;
+			font-weight: bold;
+			text-align: center;
+	 }
 
-  .nav-buttons {
-	display: flex;
-	justify-content: space-between;
-	padding: 0;
-	font-size: 15px;
-	flex-direction: column;
+	 .nav-buttons {
+			display: flex;
+			justify-content: space-between;
+			padding: 0;
+			font-size: 15px;
+			flex-direction: column;
 
-	.item, a {
-	  padding: 2px 0;
-	  font-size: 15px;
+			.item, a {
+				 padding: 2px 0;
+				 font-size: 15px;
 
-	  .active {
-		color: #F64646;
-	  }
-	}
+				 .active {
+						color: #F64646;
+				 }
+			}
 
-	i {
-	  min-width: 23px;
-	}
-  }
+			i {
+				 min-width: 23px;
+			}
+	 }
+
+	 @media all and (max-width: 900px) {
+			width: 100%;
+			position: relative;
+
+			.nav-buttons {
+				 margin: 0 0 10px 0;
+				 flex-wrap: wrap;
+				 flex-direction: row;
+
+				 a, .item {
+						padding: 0 5px;
+				 }
+
+				 i {
+						display: none;
+				 }
+			}
+	 }
 }
