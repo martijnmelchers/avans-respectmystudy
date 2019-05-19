@@ -26,10 +26,10 @@
     <a href="{{route('index')}}" class="title">RespectMyStudy</a>
     <div class="nav-buttons">
         <a href="/" class="{{ Request::is('/') ? 'active' : '' }}">Home</a>
-        <a href="{{route('minors')}}" class="{{ Request::is('minors') ? 'active' : '' }}">Minoren</a>
-        <a href="{{route('map')}}" class="{{ Request::is('map') ? 'active' : '' }}">Kaart</a>
+        <a href="{{route('minors')}}" class="{{ Request::is('minors') ? 'active' : '' }}">{{__('navbar.presentation.minors')}}</a>
+        <a href="{{route('map')}}" class="{{ Request::is('map') ? 'active' : '' }}">{{__('navbar.presentation.map')}}</a>
         
-        <a href="{{route('organisations')}}">Organisaties</a>
+        <a href="{{route('organisations')}}">{{__('navbar.presentation.organisations')}}</a>
 
         {{--Gray stripe--}}
         <div class="divider"></div>
@@ -51,17 +51,17 @@
                 @csrf
             </form>
         @else
-            <a href="{{ route('login') }}">Login</a>
+            <a href="{{ route('login') }}">{{__('navbar.presentation.login')}}</a>
 
             @if (Route::has('register'))
-                <a href="{{ route('register') }}">Register</a>
+                <a href="{{ route('register') }}">{{__('navbar.presentation.register')}}</a>
             @endif
         @endauth
 
         <div class="dropdown">
-            <div class="item">Taal</div>
+            <div class="item">{{__('navbar.presentation.language')}}</div>
             <div class="drop">
-                <a  href="{{route('lang', 'nl')}}">
+                <a   href="{{route('lang', 'nl')}}" >
                     <img class="item flag" src="https://cdn.wordquest.nl/flags/medium/nl.png" alt="Nederlands">
                 </a>
                 <a  href="{{route('lang', 'en')}}">
