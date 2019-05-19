@@ -3,7 +3,7 @@
 	 flex-wrap: wrap;
 	 width: 100%;
 	 flex-grow: 1;
-	 margin: 10px -5px;
+
 
 	 .item {
 			margin: 5px;
@@ -21,9 +21,22 @@
 			-ms-transition: background 0.2s;
 			-o-transition: background 0.2s;
 			transition: background 0.2s;
+			word-wrap: break-word;
+
+			h4 {
+				word-break: break-all;
+			}
 	 }
 
 	 .item:hover {
 			background: #f5f5f5;
 	 }
+}
+
+.row {
+	&.button_row{
+		a{
+			width: 100%; 	
+		}
+	}
 }
