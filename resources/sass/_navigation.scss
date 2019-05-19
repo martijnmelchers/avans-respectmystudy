@@ -152,3 +152,29 @@
 			}
 	 }
 }
+
+.pagenav {
+	 display: flex;
+	 flex-direction: column;
+	 justify-content: center;
+	 text-align: center;
+	 margin: 10px 0;
+
+	 .pages {
+			display: flex;
+			justify-content: center;
+
+			.block {
+				 background: white;
+				 padding: 5px;
+				 margin: 5px;
+				 -webkit-border-radius: 3px;
+				 -moz-border-radius: 3px;
+				 border-radius: 3px;
+
+				 &.previous, &.next {
+						cursor: pointer;
+				 }
+			}
+	 }
+}

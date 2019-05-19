@@ -44,7 +44,7 @@
             <a class="button blue" href="{{route('dashboard-minor-edit', ["id"=>$minor->id, "v"=>$minor->version])}}">Editen</a>
         </div>
 
-        <article class="col-12 box mb-2 mt-2">
+        <div class="col-12 box mb-2 mt-2">
             <article>
                 <h3>Onderwerp</h3>
                 {!! $minor->subject !!}
@@ -59,24 +59,24 @@
                 <h3>Requirements</h3>
                 {!! $minor->requirements !!}
             </article>
-        </div>
-    <article>
-        <h3>Requirements</h3>
-        {!! $minor->requirements !!}
-    </article>
+            <article>
+                <h3>Requirements</h3>
+                {!! $minor->requirements !!}
+            </article>
 
-    <article>
-        <h3>Contact</h3>
-        @if (isset($minor->contactGroup))
-            <p>Het contactpersoon voor deze minor is <b>{{$minor->contactGroup->name}}</b>, te bereiken op
-                <b>{{$minor->contactGroup->email}}</b></p>
-            @if (isset($minor->contactGroup->telephone) && $minor->contactGroup->telephone != "")
-                <p>Het telefoonnummer is {{$minor->contactGroup->telephone}}</p>
-            @endif
-            {{$minor->contactGroup->postaladdress}}
-        @else
-            <p>Geen contact gevonden</p>
-        @endif
-    </article>
+            <article>
+                <h3>Contact</h3>
+                @if (isset($minor->contactGroup))
+                    <p>Het contactpersoon voor deze minor is <b>{{$minor->contactGroup->name}}</b>, te bereiken op
+                        <b>{{$minor->contactGroup->email}}</b></p>
+                    @if (isset($minor->contactGroup->telephone) && $minor->contactGroup->telephone != "")
+                        <p>Het telefoonnummer is {{$minor->contactGroup->telephone}}</p>
+                    @endif
+                    {{$minor->contactGroup->postaladdress}}
+                @else
+                    <p>Geen contact gevonden</p>
+                @endif
+            </article>
+        </div>
     </div>
 @endsection

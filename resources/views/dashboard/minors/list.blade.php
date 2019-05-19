@@ -46,7 +46,7 @@
                 @endforeach
             </div>
 
-            <div class="pagenav">
+            <div class="pagenav col-12">
                 <div class="text">Pagina</div>
                 <div class="pages">
                     @if ($page > 0)
@@ -61,24 +61,6 @@
                            class="next block">{{$page+2}} <i class="fas fa-arrow-right"></i></a>
                     @endif
                 </div>
-            </div>
-        @else
-            <article>
-                <p>Geen minoren gevonden. Gebruik andere zoekcriteria</p>
-            </article>
-        @endif
-
-        @if (sizeof($minors) > 0)
-            <div class="blocks">
-                @foreach ($minors as $minor)
-                    <a href="{{route('dashboard-minor', $minor->id)}}" class="item">
-                        <h4>{{$minor->name}}</h4>
-                        <div class="description">
-                            <p>Versie {{$minor->version}}</p>
-                            <p>Gepubliceerd {{$minor->is_published ? "Ja" : "Nee"}}</p>
-                        </div>
-                    </a>
-                @endforeach
             </div>
         @else
             <div class="col-12 mb-2 mt-2 box">
