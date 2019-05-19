@@ -128,6 +128,9 @@ class Minor extends Model
             ->toArray();
         $assessors = User::whereIn('role_id', $h_assessor_id)->pluck('id')->toArray();
         $reviewable = false;
+        if ($reviews->count() == 0){
+            $reviewable = true;
+        }
         foreach ($reviews as $review)
         {
             if (in_array($review->user_id, $assessors))
