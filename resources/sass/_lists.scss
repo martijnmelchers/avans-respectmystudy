@@ -1,0 +1,29 @@
+.blocks {
+	 display: flex;
+	 flex-wrap: wrap;
+	 width: 100%;
+	 flex-grow: 1;
+	 margin: 10px -5px;
+
+	 .item {
+			margin: 5px;
+			padding: 5px;
+			flex-grow: 1;
+			display: flex;
+			flex-direction: column;
+			background: white;
+			-webkit-border-radius: 3px;
+			-moz-border-radius: 3px;
+			border-radius: 3px;
+			text-align: center;
+			-webkit-transition: background 0.2s;
+			-moz-transition: background 0.2s;
+			-ms-transition: background 0.2s;
+			-o-transition: background 0.2s;
+			transition: background 0.2s;
+	 }
+
+	 .item:hover {
+			background: #f5f5f5;
+	 }
+}
