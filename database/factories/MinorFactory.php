@@ -14,29 +14,28 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\Minor::class, function (Faker $faker) {
+    $organisations = \App\Organisation::pluck('id')->toArray();
+
     return [
-        'id' => rand(1000, 9000),
+        'id' => rand(0, 100),
         'version' => 1,
         'name' => "WordQuest Minor",
         'phonenumber' => $faker->phoneNumber,
         'email' => $faker->unique()->safeEmail,
-        'place'=>$faker->city,
         'ects' => array('7.5', '15', '30')[rand(0, 2)],
-        'subject'=>$faker->realText(1000),
-        'goals' =>$faker->realText(500),
-        'requirements'=>$faker->realText(300),
-        'examination'=>$faker->realText(200),
+        'subject' => $faker->realText(1000),
+        'goals' => $faker->realText(500),
+        'requirements' => $faker->realText(300),
+        'examination' => $faker->realText(200),
         'contact_hours' => rand(10, 40),
         'costs' => rand(1000, 2060),
-        'level' =>"BOE",
-        'education_type'=> array('HBO', 'WO')[rand(0, 1)],
+        'level' => "HBO",
+        'education_type' => $faker->randomElement(['HBO', 'WO']),
         'language' => $faker->languageCode,
         'is_published' => true,
-        'is_enrollable' =>true,
+        'is_enrollable' => true,
 
         'kiesopmaat' => rand(1000, 9000),
-        'organisation_id' => 1,
-        'location_id' => 1,
-        'education_period_id' => 1,
+        'organisation_id' => $faker->randomElement($organisations)
     ];
 });

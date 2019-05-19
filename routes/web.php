@@ -12,7 +12,7 @@
 */
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'MainPageController@Home')->name('home');
+Route::get('/', 'MainPageController@index')->name('index');
 
 Route::get('/surf/login', 'SurfController@linkSurf')->middleware(['auth']);
 
@@ -21,7 +21,7 @@ Route::get('/account/linked', 'AccountController@linked');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->middleware(['auth']);
+Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth']);
 
 // Minors
 Route::get('/minors', 'MinorController@List')->name('minors');
@@ -47,7 +47,7 @@ Route::get('/location/{id}', 'LocationController@Location')->name('location');
 
 //
 // Dashboard
-Route::middleware(['admin'])->group(function(){
+Route::middleware([])->group(function(){
     // Home
     Route::get('/dashboard', 'DashboardController@Home')->name('dashboard');
 
@@ -75,7 +75,7 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/dashboard/locations', 'Dashboard\LocationController@Locations')->name('dashboard-locations');
 
     // Specific location
-    Route::get('/dashboard/locations/{id}', 'Dashboard\LocationController@Location')->name('dashboard-location');
+    Route::get('/dashboard/location/{id}', 'Dashboard\LocationController@Location')->name('dashboard-location');
 
     // Organisation list
     Route::get('/dashboard/organisations', 'DashboardController@Organisations')->name('dashboard-organisations');
@@ -100,6 +100,8 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/import/minors', 'ImportController@Minors');
     Route::get('/import/organizations', 'ImportController@Organisations');
     Route::get('/import/locations', 'ImportController@Locations');
+    Route::get('/import/contactpersons', 'ImportController@ContactPersons');
+    Route::get('/import/contactgroups', 'ImportController@ContactGroups');
 
     Route::get('/dashboard/dashboard_assessable', 'DashboardminorsController@Minors_to_assess')->name('assessable');
 

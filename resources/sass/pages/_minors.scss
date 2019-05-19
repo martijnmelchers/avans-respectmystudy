@@ -1,0 +1,79 @@
+.container-fluid {
+  width: 95%;
+}
+
+.row {
+  margin: 20px 0;
+}
+
+p {
+  padding: 3px 0;
+}
+
+.col-white {
+  background: white;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  padding: 15px;
+}
+
+.buttons {
+  margin: 10px 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 5px 0;
+}
+
+
+//Minor list
+.minorlist > a {
+  margin-bottom: 15px;
+}
+.minorlist .box {
+  padding: 10px;
+}
+
+.text-stretch {
+  text-align: justify;
+}
+
+.text-small {
+  font-size: 15px;
+}
+
+.text-lined {
+  border-top: 2px solid rgb(236, 240, 241);
+  border-bottom: 2px solid rgb(236, 240, 241);
+  padding: 5px 0;
+}
+
+.text-error {
+  font-size: 15px;
+  color: red;
+}
+
+.organisation_img {
+  width: 90%;
+  max-width: 95px;
+  margin: 0 auto;
+  display: block;
+}
+
+.info-gray {
+  color: rgb(132, 132, 132);
+  font-size: 12px;
+}
+
+.row.buttons {
+  margin: 20px 0;
+
+  .col:last-child {
+    padding-right: 0;
+  }
+
+  .col:first-child {
+    padding-left: 0;
+  }
+}

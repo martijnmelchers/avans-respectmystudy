@@ -16,7 +16,7 @@ input, select {
 input[type='text'], input[type='tel'], input[type='password'], input[type='number'], select {
     padding: 3px;
     border: 2px solid #dee2e3;
-    background: #ECF0F1;
+
     outline: none;
     border-radius: 3px;
 

@@ -7,9 +7,9 @@
     <title>@yield('title', "RespectMyStudy") - RespectMyStudy</title>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro:400,700" rel="stylesheet">
-    <link href="/css/default.css" type="text/css" rel="stylesheet">
-    <link href="/css/form.css" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900|Source+Sans+Pro:400,700" rel="stylesheet">
+    <link href="/css/app.css" type="text/css" rel="stylesheet">
+   {{-- <link href="/css/form.css" type="text/css" rel="stylesheet">--}}
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -23,11 +23,12 @@
 <body>
 <div class="nav">
     <div class="expander" onclick="$('.nav').toggleClass('visible');"><i class="fas fa-stream"></i></div>
-    <a href="{{route('home')}}" class="title">RespectMyStudy</a>
+    <a href="{{route('index')}}" class="title">RespectMyStudy</a>
     <div class="nav-buttons">
-        <a href="{{route('home')}}">Home</a>
-        <a href="{{route('minors')}}">Minoren</a>
-        <a href="{{route('map')}}">Kaart</a>
+        <a href="/" class="{{ Request::is('/') ? 'active' : '' }}">Home</a>
+        <a href="{{route('minors')}}" class="{{ Request::is('minors') ? 'active' : '' }}">Minoren</a>
+        <a href="{{route('map')}}" class="{{ Request::is('map') ? 'active' : '' }}">Kaart</a>
+        
         <a href="{{route('organisations')}}">Organisaties</a>
 
         {{--Gray stripe--}}
@@ -70,7 +71,8 @@
         </div>
     </div>
 </div>
-
-@yield('content')
+<div class="container-fluid @yield('container_class')">
+    @yield('content')
+</div>
 </body>
 </html>
