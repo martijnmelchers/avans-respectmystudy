@@ -11,7 +11,7 @@
             </ul>
         </div>
 
-        <div class="col-12 box">
+        <div class="col-12 box mt-2">
             <h6>Alle minors op deze locatie</h6>
         </div>
         <div class="blocks">

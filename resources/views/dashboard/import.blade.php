@@ -63,11 +63,11 @@
             </div>
 
             <div class="buttons">
-                <div class="button" onclick="importProgrammes()">Importeer minors</div>
-                <div class="button" onclick="importLocations()">Importeer Locaties</div>
-                <div class="button" onclick="importSchools()">Importeer Organisaties</div>
-                <div class="button" onclick="importPersons()">Importeer Contactpersonen</div>
-                <div class="button" onclick="importGroups()">Importeer Contactgroepen</div>
+                <div class="button blue" onclick="importProgrammes()">Importeer minors</div>
+                <div class="button blue" onclick="importLocations()">Importeer Locaties</div>
+                <div class="button blue" onclick="importSchools()">Importeer Organisaties</div>
+                <div class="button blue" onclick="importPersons()">Importeer Contactpersonen</div>
+                <div class="button blue" onclick="importGroups()">Importeer Contactgroepen</div>
             </div>
         </div>
     </div>

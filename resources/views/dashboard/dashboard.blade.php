@@ -22,6 +22,14 @@
                 <h3>Aantal organisaties</h3>
                 <h1>{{$organisation_amount}}</h1>
             </a>
+            <a class="item" href="">
+                <h3>Aantal contactpersonen</h3>
+                <h1>{{$contactpersons_amount}}</h1>
+            </a>
+            <a class="item" href="">
+                <h3>Aantal contactgroepen</h3>
+                <h1>{{$contactgroups_amount}}</h1>
+            </a>
         </div>
     </div>
 @endsection
