@@ -80,7 +80,7 @@ Route::middleware([])->group(function(){
     Route::get('/dashboard/locations', 'Dashboard\LocationController@Locations')->name('dashboard-locations');
 
     // Specific location
-    Route::get('/dashboard/locations/{id}', 'Dashboard\LocationController@Location')->name('dashboard-location');
+    Route::get('/dashboard/location/{id}', 'Dashboard\LocationController@Location')->name('dashboard-location');
 
     // Organisation list
     Route::get('/dashboard/organisations', 'DashboardController@Organisations')->name('dashboard-organisations');
@@ -105,6 +105,8 @@ Route::middleware([])->group(function(){
     Route::get('/import/minors', 'ImportController@Minors');
     Route::get('/import/organizations', 'ImportController@Organisations');
     Route::get('/import/locations', 'ImportController@Locations');
+    Route::get('/import/contactpersons', 'ImportController@ContactPersons');
+    Route::get('/import/contactgroups', 'ImportController@ContactGroups');
 
     Route::get('/dashboard/dashboard_assessable', 'DashboardminorsController@Minors_to_assess')->name('assessable');
 

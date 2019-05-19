@@ -56,20 +56,19 @@
                     <div class="inner"></div>
                     <div class="text">Nog niks aan het importeren</div>
                 </div>
-
-                <div id="errors">
-
-                </div>
             </article>
 
+            <div id="errors">
+
+            </div>
+
             <div class="buttons">
-                <div class="button blue" onclick="importProgrammes()">Importeer minors</div>
-                <div class="button blue" onclick="importLocations()">Importeer Locaties</div>
-                <div class="button blue" onclick="importSchools()">Importeer Organisaties</div>
+                <div class="button" onclick="importProgrammes()">Importeer minors</div>
+                <div class="button" onclick="importLocations()">Importeer Locaties</div>
+                <div class="button" onclick="importSchools()">Importeer Organisaties</div>
+                <div class="button" onclick="importPersons()">Importeer Contactpersonen</div>
+                <div class="button" onclick="importGroups()">Importeer Contactgroepen</div>
             </div>
         </div>
     </div>
-
-    <script>
-    </script>
 @endsection

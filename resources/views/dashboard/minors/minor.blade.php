@@ -60,5 +60,23 @@
                 {!! $minor->requirements !!}
             </article>
         </div>
+    <article>
+        <h3>Requirements</h3>
+        {!! $minor->requirements !!}
+    </article>
+
+    <article>
+        <h3>Contact</h3>
+        @if (isset($minor->contactGroup))
+            <p>Het contactpersoon voor deze minor is <b>{{$minor->contactGroup->name}}</b>, te bereiken op
+                <b>{{$minor->contactGroup->email}}</b></p>
+            @if (isset($minor->contactGroup->telephone) && $minor->contactGroup->telephone != "")
+                <p>Het telefoonnummer is {{$minor->contactGroup->telephone}}</p>
+            @endif
+            {{$minor->contactGroup->postaladdress}}
+        @else
+            <p>Geen contact gevonden</p>
+        @endif
+    </article>
     </div>
 @endsection
