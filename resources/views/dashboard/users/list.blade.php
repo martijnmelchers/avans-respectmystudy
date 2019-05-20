@@ -8,6 +8,7 @@
             <h1>Gebruikers</h1>
             <h3>Filter Gebruikers</h3>
                 <form method="get">
+                    <div class="form-group">
                         <label for="name">Naam</label>
                     </div>
                     <input type="submit" value="Zoeken" class="button blue small">
