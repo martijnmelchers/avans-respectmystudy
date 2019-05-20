@@ -4,6 +4,7 @@
 
 @section('head')
     <link href="/css/minors.css" type="text/css" rel="stylesheet">
+    <link href="/css/overlay.css" type="text/css" rel="stylesheet">
 @endsection
 
 @section('content')
