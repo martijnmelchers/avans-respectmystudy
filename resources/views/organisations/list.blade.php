@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="row content justify-content-center">
-        <div class="col-10 ">
+        <div class="col-10">
                 <article>
                     <h1>Alle organisaties</h1>
                     <p>Hieronder staan alle organisaties die minors aanbieden via onze site.</p>
