@@ -2,6 +2,10 @@
 
 @section("title", "Minor")
 
+@section('head')
+    <link href="/css/overlay.css" type="text/css" rel="stylesheet">
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-12 box">
@@ -91,60 +95,30 @@
             </form>
         </div>
     </div>
-        <style>
-            #overlay {
-                position: fixed;
-                display: none;
-                flex: 1;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-color: rgba(0, 0, 0, 0.5);
-                z-index: 2;
-                justify-content: center;
-                align-items: center;
-            }
+    <script>
+        function showOverlay(button) {
+            window.currentDeleteReviewForm = button.parentElement;
+            document.getElementById('overlay').style.display = 'flex';
+        }
 
-            .overlay-container {
-                max-width: 300px;
-                padding: 12px;
+        function hideOverlay(cancel) {
+            if (!cancel && window.currentDeleteReviewForm) {
+                window.currentDeleteReviewForm.submit();
             }
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+    <div id="overlay">
+        <article class="overlay-container">
+            <span class="closebutton dark" onclick="hideOverlay(true)">&times;</span>
 
-            .overlay-buttons {
-                display: flex;
-                flex-direction: row;
-                margin-top: 8px;
-            }
-
-            .overlay-buttons .button {
-                margin: 8px;
-            }
-        </style>
-        <script>
-            function showOverlay(button) {
-                window.currentDeleteReviewForm = button.parentElement;
-                document.getElementById('overlay').style.display = 'flex';
-            }
-
-            function hideOverlay(cancel) {
-                if (!cancel && window.currentDeleteReviewForm) {
-                    window.currentDeleteReviewForm.submit();
-                }
-                document.getElementById('overlay').style.display = 'none';
-            }
-        </script>
-        <div id="overlay">
-            <article class="overlay-container">
-                <span class="closebutton dark" onclick="hideOverlay(true)">&times;</span>
-
-                <h3>Weet je zeker dat je deze review wilt verwijderen?</h3>
-                <div class="overlay-buttons">
-                    <div class="button" onclick="hideOverlay(false)">Verwijder</div>
-                    <div class="button gray" onclick="hideOverlay(true)">Annuleer</div>
-                </div>
-            </article>
-        </div>
+            <h3>Weet je zeker dat je deze review wilt verwijderen?</h3>
+            <div class="overlay-buttons">
+                <div class="button" onclick="hideOverlay(false)">Verwijder</div>
+                <div class="button gray" onclick="hideOverlay(true)">Annuleer</div>
+            </div>
+        </article>
+    </div>
     <div class="row">
         <div class="col-12 box">
             <h3>Reviews</h3>
