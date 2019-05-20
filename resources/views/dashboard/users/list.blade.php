@@ -3,13 +3,12 @@
 @section("title", "Gebruikers ")
 
 @section('content')
-
         <div class="row">
             <div class="col-12 box">
             <h1>Gebruikers</h1>
-            <h6>Filter Gebruikers</h3>
+            <h3>Filter Gebruikers</h3>
                 <form method="get">
-                    <div class="formline">
+                    <div class="form-group">
                         <label for="name">Naam</label>
                     </div>
                     <input type="submit" value="Zoeken" class="button blue small">
