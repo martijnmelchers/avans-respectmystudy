@@ -2,7 +2,7 @@
 
 return [
     'filter' => 'Filters',
-    'minors_found' => 'Minors found',
+    'minors_found' => 'minors found',
     'minor_name' => 'Name',
     'points' => 'Points',
     'organisation' => 'Organisation',

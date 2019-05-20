@@ -1,30 +1,4 @@
-.container-fluid {
-  width: 95%;
-}
-
-.row {
-  margin: 20px 0;
-}
-
-p {
-  padding: 3px 0;
-}
-
-.col-white {
-  background: white;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  padding: 15px;
-}
-
-.buttons {
-  margin: 10px 0;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  margin: 5px 0;
-}
+@import '../variables';
 
 
 //Minor list
@@ -51,7 +25,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-error {
   font-size: 15px;
-  color: red;
+  color: $primary-red;
 }
 
 .organisation_img {
@@ -75,5 +49,33 @@ h1, h2, h3, h4, h5, h6 {
 
   .col:first-child {
     padding-left: 0;
+  }
+}
+
+#overlay {
+  position: fixed;
+  display: none;
+  flex: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay-container {
+  max-width: 300px;
+  padding: 12px;
+}
+
+.overlay-buttons {
+  display: flex;
+  flex-direction: row;
+  margin-top: 8px;
+  .button {
+    margin: 8px;
   }
 }

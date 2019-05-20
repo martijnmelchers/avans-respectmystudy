@@ -11,10 +11,10 @@
 
     <div class="row content">
 
-        <div class="col-xl-3">
+        <div class="col-xl-2">
             <div class="box">
                 <h3 class="text-center text-uppercase w-700 f-primary">{{__('minors.filter')}}</h3>
-                <p class="text-center w-500 f-primary c-primary">{{$total_minor_amount == 0 ? __('minors.none_found') : "${total_minor_amount}  " + __('minors.none_found') }}</p>
+                <p class="text-center w-500 f-primary c-primary">{{$total_minor_amount == 0 ? __('minors.none_found') : "{$total_minor_amount} " . __('minors.minors_found')  }}</p>
 
                 <form method="get" autocomplete="off">
                     <div class="form-group">
@@ -159,7 +159,7 @@
                                             </div>
                                         @else
                                             <div class="text-error">
-                                                <b><i class="fas fa-exclamation-triangle"></i> <span class="underline">Geen reviews</span></b>
+                                                <h1><i class="fas fa-exclamation-circle"></i> <span class="underline">Geen reviews</span></h1>
                                             </div>
                                             <div class="stars">
                                                 <p>We hebben nog geen reviews van deze minor gekregen.</p>

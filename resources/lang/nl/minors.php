@@ -2,7 +2,7 @@
 
 return [
     'filter' => 'Filters',
-    'minors_found' => 'Minors gevonden',
+    'minors_found' => 'minors gevonden',
     'minor_name' => 'Naam',
     'points' => 'Studiepunten',
     'organisation' => 'Organisatie',
