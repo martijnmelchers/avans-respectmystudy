@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="row content justify-content-center">
-        <div class="col-10 ">
+        <div class="col-10">
                 <article>
                     <h1>{{__('organisations.organisations_title')}}</h1>
                     <p>{{__('organisations.organisations_description')}}</p>

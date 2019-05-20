@@ -2,9 +2,13 @@
 
 @section("title", "Minor")
 
+@section('head')
+    <link href="/css/organisations.css" type="text/css" rel="stylesheet">
+@endsection
+
 @section('content')
-    <div class="content">
-        <div class="wrapper wrap">
+    <div class="row content justify-content-center">
+        <div class="col-10">
             <article>
                 <h1>{{$organisation->name}}</h1>
                 <ul>
@@ -14,8 +18,8 @@
             </article>
 
             <div class="buttons">
-                <a href="/" class="button">Home</a>
-                <a href="{{route('organisations')}}" class="button">Alle organisaties</a>
+                <a href="/" class="button red">Home</a>
+                <a href="{{route('organisations')}}" class="button red">Alle organisaties</a>
             </div>
 
             <article>
@@ -23,7 +27,7 @@
             </article>
             <div class="buttons">
                 @foreach ($organisation->locations as $location)
-                    <a href="/location/{{$location->id}}">{{$location->name}}</a>
+                    <a class="button red" href="/location/{{$location->id}}">{{$location->name}}</a>
                 @endforeach
             </div>
 

@@ -31,6 +31,31 @@
   text-align: center;
 }
 
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5px 0 5px 0px;
+
+  .buttons a, .button {
+    flex-grow: 1;
+    background: #F64646;
+    border-radius: 3px;
+    color: white;
+    padding: 8px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+
+    transition: box-shadow 0.2s;
+  }
+}
+
+ul {
+  list-style-type: circle;
+  margin: 20px;
+}
+
 .content article {
   -webkit-box-shadow: 0 0 20px #dbdbdb;
   -moz-box-shadow: 0 0 20px #dbdbdb;
