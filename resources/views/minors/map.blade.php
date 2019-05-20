@@ -16,15 +16,17 @@
 
     <script src="/js/leaflet-mouseposition.js"></script>
     <link href="/css/map.css" type="text/css" rel="stylesheet">
+    <link href="/css/minors.css" type="text/css" rel="stylesheet">
 
 @endsection
 
 @section('content')
 
 
-    <div class="content wide">
-        <div class="sidebar wide">
-            <h2 class="text-center text-uppercase w-700 f-primary">FILTERS</h2>
+    <div class="row content">
+        <div class="sidebar col-xl-3">
+            <div class="box">
+            <h3 class="text-center text-uppercase w-700 f-primary">FILTERS</h3>
             <p class="text-center w-500 f-primary c-primary">{{$total_minor_amount == 0 ? "Geen minoren gevonden" : "${total_minor_amount} minors gevonden"}}</p>
 
             <form method="get" class="form" autocomplete="off">
@@ -73,6 +75,7 @@
                     <button type="submit" class="button blue block">Zoeken</button>
                 </div>
             </form>
+        </div>
         </div>
 
         <div class="wrapper wrap">

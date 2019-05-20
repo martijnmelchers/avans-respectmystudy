@@ -23,28 +23,9 @@
 
 .sidebar {
   position: sticky;
-  top: 20px;
   display: flex;
   flex-direction: column;
-  background: white;
-  width: calc(18% - 20px);
-  padding: 20px;
-  min-width: 200px;
-  margin-left: 20px;
-  border-radius: 3px;
-  -webkit-box-shadow: 0 0 20px #c3c3c3;
-  -moz-box-shadow: 0 0 20px #c3c3c3;
-  box-shadow: 0 0 20px #c3c3c3;
-}
-
-.sidebar {
-  top: 80px;
   z-index: 100;
-  margin-top: 40px;
-}
-
-.sidebar.wide {
-  min-width: 250px;
 }
 
 .leaflet-container .leaflet-control-mouseposition {
