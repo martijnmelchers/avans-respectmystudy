@@ -18,7 +18,7 @@
             <div class="col-xl-4 col-10 offset-xl-1">
                 <div class="box shadow">
                     <h1> {{__('home.search.part1')}}
-                        <b>1482</b> {{__('content.homepage.search.part2')}}</h1>
+                        <b>1482</b> {{__('home.search.part2')}}</h1>
                     <form method="get" autocomplete="off" action="minors">
                         <div class="formline">
                             <input name="name" placeholder=" {{__('home.search_placeholder')}}"

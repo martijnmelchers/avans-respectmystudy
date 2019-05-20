@@ -10,8 +10,8 @@
     <div class="row content justify-content-center">
         <div class="col-10 ">
                 <article>
-                    <h1>Alle organisaties</h1>
-                    <p>Hieronder staan alle organisaties die minors aanbieden via onze site.</p>
+                    <h1>{{__('organisations.organisations_title')}}</h1>
+                    <p>{{__('organisations.organisations_description')}}</p>
                 </article>
 
                 <div class="list stretch">

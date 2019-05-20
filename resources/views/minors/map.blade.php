@@ -25,22 +25,22 @@
     <div class="row content">
         <div class="sidebar col-xl-3">
             <div class="box">
-            <h3 class="text-center text-uppercase w-700 f-primary">FILTERS</h3>
-            <p class="text-center w-500 f-primary c-primary">{{$total_minor_amount == 0 ? "Geen minoren gevonden" : "${total_minor_amount} minors gevonden"}}</p>
+            <h3 class="text-center text-uppercase w-700 f-primary">{{__('minors.filter')}}</h3>
+                <p class="text-center w-500 f-primary c-primary">{{$total_minor_amount == 0 ? __('minors.none_found') : "${total_minor_amount}  " + __('minors.none_found') }}</p>
 
             <form method="get" class="form" autocomplete="off">
                 <div class="form-group">
-                    <label for="name">Naam</label>
-                    <input type="text" id="name" name="name" value="{{$name}}" placeholder="Naam">
+                    <label for="name">{{__('minors.minor_name')}}</label>
+                    <input type="text" id="name" name="name" value="{{$name}}" placeholder="{{__('minors.minor_name')}}">
                 </div>
                 <div class="form-group">
-                    <label for="ects">Studiepunten</label>
-                    <input type="text" id="ecs" name="ects" value="{{$ects}}" placeholder="Studiepunten"></div>
+                    <label for="ects">{{__('minors.points')}}</label>
+                    <input type="text" id="ecs" name="ects" value="{{$ects}}" placeholder="{{__('minors.points')}}"></div>
 
                 <div class="form-group">
-                    <label>Organisaties</label>
+                    <label>{{__('minors.organisation')}}</label>
                     <div class="collapse">
-                        <div class="title">{{sizeof($selected_organisations)}} geselecteerd</div>
+                        <div class="title">{{sizeof($selected_organisations)}} {{__('minors.selected')}}</div>
                         <div class="drop">
                             @foreach($organisations as $organisation)
                                 <div class="form-group">
@@ -55,9 +55,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Talen</label>
+                    <label>{{__('minors.language')}}</label>
                     <div class="collapse">
-                        <div class="title">{{sizeof($selected_languages)}} geselecteerd</div>
+                        <div class="title">{{sizeof($selected_languages)}} {{__('minors.selected')}}</div>
                         <div class="drop">
                             @foreach($languages as $language)
                                 <div class="form-group">
@@ -71,7 +71,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="button blue block">Zoeken</button>
+                    <button type="submit" class="button blue block">{{__('minors.buttons.search_button')}}</button>
                 </div>
             </form>
         </div>

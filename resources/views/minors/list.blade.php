@@ -14,7 +14,7 @@
         <div class="col-xl-3">
             <div class="box">
                 <h3 class="text-center text-uppercase w-700 f-primary">{{__('minors.filter')}}</h3>
-                <p class="text-center w-500 f-primary c-primary">{{$total_minor_amount == 0 ? "Geen minoren gevonden" : "${total_minor_amount} minors gevonden" }}</p>
+                <p class="text-center w-500 f-primary c-primary">{{$total_minor_amount == 0 ? __('minors.none_found') : "${total_minor_amount}  " + __('minors.none_found') }}</p>
 
                 <form method="get" autocomplete="off">
                     <div class="form-group">
