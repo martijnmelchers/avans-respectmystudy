@@ -9,7 +9,7 @@
 
     <div class="row content justify-content-center ">
             <div class="box col-4">
-                <h2>{{ __('login.login') }}</h2>
+                <h2 class="mb-4 text-center text-uppercase">{{ __('login.login') }}</h2>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group row">
@@ -52,17 +52,21 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="button blue block col-6">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="button blue block col-auto">
                                     {{ __('login.buttons.login_button') }}
                                 </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('login.forgot_password') }}
-                                    </a>
-                                @endif
                             </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                            @if (Route::has('password.request'))
+                                <a class="btn btn-link col-auto" href="{{ route('password.request') }}">
+                                    {{ __('login.forgot_password') }}
+                                </a>
+                            @endif
+                        </div>
                         </div>
                     </form>
 

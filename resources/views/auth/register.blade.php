@@ -3,10 +3,8 @@
 @section('content')
 
     <div class="row content justify-content-center">
-        <div class="box col-6">
-                <h2>{{ __('register.register') }}</h2>
-
-                <div class="card-body">
+        <div class="box col-5">
+                <h2 class="mb-4 text-center text-uppercase">{{ __('register.register') }}</h2>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
@@ -68,7 +66,6 @@
                             </div>
                         </div>
                     </form>
-                </div>
         </div>
     </div>
 
