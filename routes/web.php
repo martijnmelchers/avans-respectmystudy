@@ -90,6 +90,10 @@ Route::middleware([])->group(function(){
     Route::get('/dashboard/users/{id}', 'Dashboard\UserController@User')->name('dashboard-user');
     Route::post('/dashboard/users/{id}', 'Dashboard\UserController@Edit')->name('dashboard-user-edit');
 
+    Route::get('/dashboard/articles', 'Dashboard\NewsController@Articles')->name('dashboard-articles');
+    Route::get('/dashboard/articles/{id}', 'Dashboard\NewsController@Article')->name('dashboard-article');
+    // Route::post('/dashboard/articles/{id}', 'Dashboard\UserController@Edit')->name('dashboard-user-edit');
+    
     // Dashboard importing
     Route::get('/dashboard/import', function() {
         return view('dashboard/import');
