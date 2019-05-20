@@ -8,7 +8,7 @@ class MainpageController extends Controller
 {
     function __construct()
     {
-        // $this->setLocale();
+        $this->setLocale();
         // $this->middleware('guest');
     }
 

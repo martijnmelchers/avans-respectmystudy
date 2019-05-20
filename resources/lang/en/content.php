@@ -2,6 +2,10 @@
 
 return [
 
+    'nav' =>[
+
+    ],
+
     'buttons' =>[
         'searchbutton'=>'Search',
         'readmorebutton'=>'Read more',
@@ -24,5 +28,23 @@ return [
         'infopointcontent3'=>'Text-area: 4',
         'highlightedminortitle'=>'Featured minors',
         'newstitle'=>'The latest news',
-    ]
+    ],
+
+
+    'map' =>[
+        'filter_locations' => '',
+        'locations_found' => '',
+    ],
+
+    'organisation ' =>[
+
+    ],
+
+    'login' =>[
+
+    ],
+
+    'register' =>[
+
+    ],
 ];

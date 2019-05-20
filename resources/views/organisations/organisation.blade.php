@@ -18,12 +18,12 @@
             </article>
 
             <div class="buttons">
-                <a href="/" class="button red">Home</a>
-                <a href="{{route('organisations')}}" class="button red">Alle organisaties</a>
+                <a href="/" class="button red">{{__('organisations.buttons.home_button')}}</a>
+                <a href="{{route('organisations')}}" class="button red">{{__('organisations.buttons.organisations_button')}}</a>
             </div>
 
             <article>
-                <h3>Alle locaties van {{$organisation->name}}</h3>
+                <h3>{{__('organisations.all_locations')}} {{$organisation->name}}</h3>
             </article>
             <div class="buttons">
                 @foreach ($organisation->locations as $location)
@@ -32,7 +32,7 @@
             </div>
 
             <article>
-                <h3>Alle minors van {{$organisation->name}}</h3>
+                <h3>{{__('organisations.all_minors')}}  {{$organisation->name}}</h3>
             </article>
             @if (sizeof($organisation->minors) > 0)
                 <div class="buttons">
@@ -41,7 +41,7 @@
                     @endforeach
                 </div>
             @else
-                <article>We hebben geen minors gevonden voor {{$organisation->name}}</article>
+                <article>{{__('organisations.no_minors_found')}} {{$organisation->name}}</article>
             @endif
         </div>
     </div>
