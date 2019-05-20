@@ -22,7 +22,6 @@
 
 @section('content')
 
-
     <div class="row content">
         <div class="sidebar col-xl-3">
             <div class="box">
