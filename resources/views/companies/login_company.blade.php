@@ -1,0 +1,1 @@
+https://scotch.io/@sukelali/how-to-create-multi-table-authentication-in-laravel

@@ -83,7 +83,7 @@
                             <input type="radio" id="star2_1" name="rating_1" value="2"/>
                             <label class="full" for="star2_1"
                                    title="Kinda bad - 2 stars"></label>
-                            <input type="radio" id="star1_1" name="rating_1" value="1"/>
+                            <input type="radio" required id="star1_1" name="rating_1" value="1"/>
                             <label class="full" for="star1_1"
                                    title="Sucks big time - 1 star"></label>
                             <b>kwaliteit</b>
@@ -105,7 +105,7 @@
                             <label class="full"
                                    for="star2_2"
                                    title="Kinda bad - 2 stars"></label>
-                            <input type="radio" id="star1_2" name="rating_2" value="1"/>
+                            <input type="radio" required id="star1_2" name="rating_2" value="1"/>
                             <label class="full"
                                    for="star1_2"
                                    title="Sucks big time - 1 star"></label>
@@ -128,7 +128,7 @@
                             <label class="full"
                                    for="star2_3"
                                    title="Kinda bad - 2 stars"></label>
-                            <input type="radio" id="star1_3" name="rating_3" value="1"/>
+                            <input type="radio" required id="star1_3" name="rating_3" value="1"/>
                             <label class="full"
                                    for="star1_3"
                                    title="Sucks big time - 1 star"></label>

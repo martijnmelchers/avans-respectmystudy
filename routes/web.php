@@ -19,6 +19,9 @@ Route::get('/surf/login', 'SurfController@linkSurf')->middleware(['auth']);
 Route::get('/account', 'AccountController@index')->middleware(['auth']);
 Route::get('/account/linked', 'AccountController@linked');
 
+Route::get('companies/register_company', 'Companies\CompanyController@showRegister')->name('register-company');
+Route::post('companies/register_company', 'Companies\CompanyController@register')->name('register-company-action');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->middleware(['auth']);
