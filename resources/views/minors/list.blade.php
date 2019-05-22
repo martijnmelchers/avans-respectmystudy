@@ -10,7 +10,6 @@
 
 
     <div class="row content">
-
         <div class="col-xl-2">
             <div class="box">
                 <h3 class="text-center text-uppercase w-700 f-primary">{{__('minors.filter')}}</h3>

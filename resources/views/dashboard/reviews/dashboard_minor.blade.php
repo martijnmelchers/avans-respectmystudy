@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="row content">
-        <div class="col col-white">
+        <div class="col box">
             <h1>{{$minor->name}}</h1>
             <p>{!! $minor->subject !!}
             </p>
@@ -16,7 +16,7 @@
     </div>
 
     <div class="row">
-        <div class="col-12 col-white">
+        <div class="col-12 box">
             <h3>Doelen</h3>
             <p>{!! $minor->goals !!}</p>
 
@@ -30,17 +30,17 @@
 
     <div class="row">
         @if ($minor->locations->count() > 0)
-            <div class="col-12 col-white">
+            <div class="col-12 box">
                 <h3>Locaties waar deze minor wordt gegeven:</h3>
                 <p>Klik op een locatie om er meer over te zien.</p>
             </div>
-            <div class="col-12 col-white">
+            <div class="col-12 box">
                 @foreach ($minor->locations as $location)
                     <a class="button blue" href="{{route('location', $location->id)}}">{{$location->name}}</a>
                 @endforeach
             </div>
         @else
-            <div class="col-12 col-white">
+            <div class="col-12 box">
                 <h3>Locaties waar deze minor wordt geven:</h3>
                 <p>We hebben geen locaties gevonden waar deze minor wordt gegeven.</p>
             </div>
@@ -54,7 +54,7 @@
     </div>
 
     <div class="row">
-        <div class="col-12 col-white">
+        <div class="col-12 box">
             <h3>Voeg een nieuwe review toe</h3>
             @if (Session::has('flash_message'))
                 <div class="alert">{{ Session::get('flash_message') }}
@@ -194,7 +194,7 @@
                 </div>
             </article>
         </div>
-        <div class="col-12 col-white">
+        <div class="col-12 box">
             <h3>Reviews</h3>
             @foreach($assessor_reviews as $r)
                 <div class="review_detail">
