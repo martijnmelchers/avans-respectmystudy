@@ -8,7 +8,7 @@ return [
     'forgot_password' => 'Wachtwoord vergeten?',
 
 
-    'buttons' => [
+        'buttons' => [
         'login_button' => 'Inloggen',
     ],
 ];
