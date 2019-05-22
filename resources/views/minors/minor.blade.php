@@ -8,7 +8,8 @@
 @endsection
 
 @section('content')
-    <div class="row content">
+<div class="row content justify-content-center">
+    <div class="col-10">
         <div class="col box">
             <h1>{{$minor->name}}</h1>
             <p>{!! $minor->subject !!}
@@ -16,7 +17,7 @@
         </div>
     </div>
 
-    <div class="row buttons">
+    <div class="col-10 row buttons">
         <div class="col">
             <a href="/" class="button block red">Home</a>
         </div>
@@ -28,7 +29,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="col-10">
         <div class="col-12 box">
             <h3>Doelen</h3>
             <p>{!! $minor->goals !!}</p>
@@ -41,7 +42,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="col-10">
         @if ($minor->locations->count() > 0)
             <div class="col-12 box">
                 <h3>Locaties waar deze minor wordt gegeven:</h3>
@@ -60,7 +61,7 @@
         @endif
     </div>
 
-    <div class="row">
+    <div class="col-10">
         <div class="col-12 box">
             <h3>Voeg een nieuwe review toe</h3>
             @if (Session::has('flash_message'))
@@ -234,6 +235,6 @@
             @endforeach
         </div>
     </div>
-
+</div>
 
 @endsection
