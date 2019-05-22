@@ -18,8 +18,8 @@
             </article>
 
             <div class="buttons">
-                <a href="/" class="button red col-auto">{{__('organisations.buttons.home_button')}}</a>
-                <a href="{{route('organisations')}}" class="button red col-6">{{__('organisations.buttons.organisations_button')}}</a>
+                <a href="/" class="button red col">{{__('organisations.buttons.home_button')}}</a>
+                <a href="{{route('organisations')}}" class="button red col">{{__('organisations.buttons.organisations_button')}}</a>
             </div>
 
             <article>
