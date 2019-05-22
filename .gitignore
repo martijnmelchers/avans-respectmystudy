@@ -27,7 +27,6 @@ logs/
 package-lock.json
 
 /public/css/**
-/public/js/**
 mix-manifest.json
 
 package-lock.json
