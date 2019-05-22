@@ -15,6 +15,7 @@
 }
 
 .nav {
+	 align-items: center;
 	 justify-content: space-between;
 
 	 .title {
@@ -102,6 +103,7 @@
 			transition: height 0.6s, max-heigth 0.6s;
 
 			overflow: hidden;
+			align-items: flex-start;
 
 			.title {
 				 padding: 18px 0 18px 20px;
