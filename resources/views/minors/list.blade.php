@@ -10,7 +10,7 @@
 
 
     <div class="row content">
-        <div class="col-xl-2">
+        <div class="col-xl-2 mb-4">
             <div class="box">
                 <h3 class="text-center text-uppercase w-700 f-primary">{{__('minors.filter')}}</h3>
                 <p class="text-center w-500 f-primary c-primary">{{$total_minor_amount == 0 ? __('minors.none_found') : "{$total_minor_amount} " . __('minors.minors_found')  }}</p>
@@ -103,15 +103,15 @@
 
                                 <div class="row info-gray">
                                     <div class="col-4">
-                                        <p><b>Onderwijsperiodes</b></p>
-                                        <p><i class="far fa-calendar-alt"></i> Geen onderwijsperiode</p>
+                                        <p class="mb-1"><b>{{__('minors.education_period')}}</b></p>
+                                        <p class="mb-1"><i class="far fa-calendar-alt"></i> Geen onderwijsperiode</p>
                                         <p><i class="far fa-edit"></i> Geen inschrijfdatum</p>
                                     </div>
                                     <div class="col-8">
                                         @if (sizeof($minor->averageReviews()) > 0)
                                             <div class="row">
                                                 <div class="col-xl-8">
-                                                    <h6 class="w-700">Beoordelingen door studenten</h6>
+                                                    <h6 class="w-700">{{__('minors.student_rating')}}</h6>
                                                 </div>
                                                 <div class="col-xl-4">
                                                     <div class="amount">
@@ -191,13 +191,10 @@
                                             <div class="no-reviews">
                                                 <i class="fas fa-exclamation-circle"></i>
                                                 <h3 class="w-700 text-uppercase">
-                                                    Nog geen reviews
+                                                    {{__('minors.no_reviews')}}
                                                 </h3>
                                                 <p>
-                                                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                                                    nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-                                                    erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-                                                    et ea rebum. Stet clita…
+                                                    content
                                                 </p>
                                             </div>
                                         @endif
