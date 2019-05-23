@@ -60,11 +60,6 @@
         </div>
 
         <div class="col-12 box margin">
-            <h3>Requirements</h3>
-            {!! $minor->requirements !!}
-        </div>
-
-        <div class="col-12 box margin">
             <h3>Contact</h3>
             @if (isset($minor->contactGroup))
                 <p>Het contactpersoon voor deze minor is <b>{{$minor->contactGroup->name}}</b>, te bereiken op
@@ -79,6 +74,22 @@
                 </p>
             @else
                 <p>Geen contact gevonden</p>
+            @endif
+        </div>
+
+        <div class="col-12 box margin">
+            <h3>Docenten</h3>
+            @if ($minor->contactPersons->count() > 0)
+                <ul class="list">
+                    @foreach ($minor->contactPersons as $contactperson)
+                        <li>{{$contactperson->firstname}}
+                            {{$contactperson->middlename}}
+                            {{$contactperson->lastname}}
+                            <b>{{(!empty($contactperson->email) ? $contactperson->email : "Geen email ingesteld")}}</b></li>
+                    @endforeach
+                </ul>
+            @else
+                <p>Geen docenten aan deze minor gekoppeld</p>
             @endif
         </div>
     </div>

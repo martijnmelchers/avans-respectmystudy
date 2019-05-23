@@ -8,7 +8,7 @@
     </div>
 
     <div class="col-12 box margin">
-        <p>Deze contactgroep is verbonden aan {{$contactgroup->minors->count()}} minoren</p>
+        <p>Deze contactgroep is verbonden aan {{$contactgroup->minors->count()}} minoren, van {{$contactgroup->organisation->name}}</p>
         <ul class="list">
             <li>
                 Per email te bereiken op <b><a href="mailto:{{$contactgroup->email}}">{{$contactgroup->email}}</a></b>
