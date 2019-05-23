@@ -21,8 +21,5 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function Organisation($id)
-    {
-        return view('dashboard/organisations/organisation', ['organisation' => Organisation::where('id', $id)->first()]);
-    }
+
 }

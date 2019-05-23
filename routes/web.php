@@ -78,10 +78,10 @@ Route::middleware([])->group(function(){
     Route::get('/dashboard/location/{id}', 'Dashboard\LocationController@Location')->name('dashboard-location');
 
     // Organisation list
-    Route::get('/dashboard/organisations', 'DashboardController@Organisations')->name('dashboard-organisations');
+    Route::get('/dashboard/organisations', 'Dashboard\OrganisationController@Organisations')->name('dashboard-organisations');
 
     // Specific organisation
-    Route::get('/dashboard/organisations/{id}', 'DashboardController@Organisation')->name('dashboard-organisation');
+    Route::get('/dashboard/organisations/{id}', 'Dashboard\OrganisationController@Organisation')->name('dashboard-organisation');
 
     // Reviews
     Route::get('/dashboard/reviews', 'DashboardController@Reviews')->name('dashboard-reviews');

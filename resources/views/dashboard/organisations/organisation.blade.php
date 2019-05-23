@@ -20,6 +20,15 @@
             @endforeach
         </div>
 
+        <div class="col-12 box">
+            <h6>Alle minoren van {{$organisation->name}}</h6>
+        </div>
+        <div class="blocks">
+            @foreach ($organisation->minors as $minor)
+                <a class="item p-2" href="{{route('dashboard-minor', $minor->id)}}">{{$minor->name}}</a>
+            @endforeach
+        </div>
+
         <div class="buttons">
             <a class="button blue" href="{{route('dashboard-organisations')}}">Alle organisaties</a>
         </div>
