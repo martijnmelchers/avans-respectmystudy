@@ -8,61 +8,62 @@
 @endsection
 
 @section('content')
-    <div class="row content">
-        <div class="col col-white">
+<div class="row content justify-content-center">
+    <div class="col-10">
+        <div class="col box">
             <h1>{{$minor->name}}</h1>
             <p>{!! $minor->subject !!}
             </p>
         </div>
     </div>
 
-    <div class="row buttons">
-        <div class="col">
+    <div class="col-10 row buttons">
+        <div class="col-xl">
             <a href="/" class="button block red">Home</a>
         </div>
-        <div class="col">
-            <a href="{{route('minors')}}" class="button block red">Alle minors</a>
+        <div class="col-xl">
+            <a href="{{route('minors')}}" class="button block red">{{__('minors.all_minors')}}</a>
         </div>
-        <div class="col">
-            <a href="{{route('organisation', $minor->organisation->id)}}" class="button block red">Alle minors van {{$minor->organisation->name}}</a>
+        <div class="col-xl">
+            <a href="{{route('organisation', $minor->organisation->id)}}" class="button block red">{{__('minors.all_minors_for')}} {{$minor->organisation->name}}</a>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-12 col-white">
-            <h3>Doelen</h3>
+    <div class="col-10">
+        <div class="col-12 box">
+            <h3>{{__('minors.minor_goals')}}</h3>
             <p>{!! $minor->goals !!}</p>
 
-            <h3>Requirements</h3>
+            <h3>{{__('minors.minor_requirements')}}</h3>
             <p>{!! $minor->requirements !!}</p>
 
-            <h3>Toetsing</h3>
+            <h3>{{__('minors.minor_examination')}}</h3>
             <p>{!! $minor->examination !!}</p>
         </div>
     </div>
 
-    <div class="row">
+    <div class="col-10">
         @if ($minor->locations->count() > 0)
-            <div class="col-12 col-white">
-                <h3>Locaties waar deze minor wordt gegeven:</h3>
-                <p>Klik op een locatie om er meer over te zien.</p>
+            <div class="col-12 box">
+                <h3>{{__('minors.minor_location')}}</h3>
+                <p>{{__('minors.minor_location_info')}}</p>
             </div>
-            <div class="col-12 col-white">
+            <div class="col-12 box">
                 @foreach ($minor->locations as $location)
                     <a class="button blue" href="{{route('location', $location->id)}}">{{$location->name}}</a>
                 @endforeach
             </div>
         @else
-            <div class="col-12 col-white">
-                <h3>Locaties waar deze minor wordt geven:</h3>
-                <p>We hebben geen locaties gevonden waar deze minor wordt gegeven.</p>
+            <div class="col-12 box">
+                <h3>{{__('minors.minor_location')}}</h3>
+                <p>{{__('minors.minor_no_locations')}}</p>
             </div>
         @endif
     </div>
 
-    <div class="row">
-        <div class="col-12 col-white">
-            <h3>Voeg een nieuwe review toe</h3>
+    <div class="col-10">
+        <div class="col-12 box">
+            <h3>{{__('minors.new_review')}}</h3>
             @if (Session::has('flash_message'))
                 <div class="alert">{{ Session::get('flash_message') }}
                     <span class="closebutton" onclick="this.parentElement.style.display='none';">&times;</span>
@@ -71,10 +72,10 @@
             <form method="post">
                 {{ csrf_field() }}
                 <div class="formline">
-                    <input class="titlefield" type="text" name="title" placeholder="Vul hier de titel in...">
+                    <input class="titlefield" type="text" name="title" placeholder="{{__('minors.review_title_placeholder')}}">
                 </div>
                 <div class="formline">
-                            <textarea name="message" required placeholder="Typ hier uw review..."
+                            <textarea name="message" required placeholder="{{__('minors.review_content_placeholder')}}"
                                       type="message"></textarea>
                 </div>
                 <div class="stars">
@@ -95,7 +96,7 @@
                         <input type="radio" id="star1_1" name="rating_1" value="1"/>
                         <label class="full" for="star1_1"
                                title="Sucks big time - 1 star"></label>
-                        <b>kwaliteit</b>
+                        <b>{{__('minors.review_quality')}}</b>
                     </div>
                     <div class="rating">
                         <input type="radio" id="star5_2" name="rating_2" value="5"/>
@@ -118,7 +119,7 @@
                         <label class="full"
                                for="star1_2"
                                title="Sucks big time - 1 star"></label>
-                        <b>Studeerbaarheid</b>
+                        <b>{{__('minors.review_studiability')}}</b>
                     </div>
                     <div class="rating">
                         <input type="radio" id="star5_3" name="rating_3" value="5"/>
@@ -141,10 +142,10 @@
                         <label class="full"
                                for="star1_3"
                                title="Sucks big time - 1 star"></label>
-                        <b>Inhoud</b>
+                        <b>{{__('minors.review_content')}}</b>
                     </div>
                 </div>
-                <input type="submit" value="Plaats review">
+                <input class="button blue" type="submit" value="{{__('minors.buttons.post_button')}}">
             </form>
         </div>
         <script>
@@ -164,14 +165,14 @@
             <article class="overlay-container">
                 <span class="closebutton dark" onclick="hideOverlay(true)">&times;</span>
 
-                <h3>Weet je zeker dat je deze review wilt verwijderen?</h3>
+                <h3>{{__('minors.review_remove_warning')}}</h3>
                 <div class="overlay-buttons">
-                    <div class="button" onclick="hideOverlay(false)">Verwijder</div>
-                    <div class="button gray" onclick="hideOverlay(true)">Annuleer</div>
+                    <div class="button" onclick="hideOverlay(false)">{{__('minors.review.remove')}}</div>
+                    <div class="button gray" onclick="hideOverlay(true)">{{__('minors.review_remove_cancel')}}</div>
                 </div>
             </article>
         </div>
-        <div class="col-12 col-white">
+        <div class="col-12 box">
             <h3>Reviews</h3>
             @foreach($reviews as $r)
                 <div class="review_detail">
@@ -199,8 +200,8 @@
                                         @endif
                                     @endfor
                                 </span>
-                            <b>Kwaliteit</b>
-                            <span class="description">{{$r->grade_quality}} Sterren</span>
+                            <b>{{__('minors.review_quality')}}</b>
+                            <span class="description">{{$r->grade_quality}} {{__('minors.review_stars')}}</span>
                         </p>
                         <p>
                                 <span class="row">
@@ -212,8 +213,8 @@
                                         @endif
                                     @endfor
                                 </span>
-                            <b>Studeerbaarheid</b>
-                            <span class="description">{{$r->grade_studiability}} Sterren</span>
+                            <b>{{__('minors.review_studiability')}}</b>
+                            <span class="description">{{$r->grade_studiability}} {{__('minors.review_stars')}}</span>
                         </p>
                         <p>
                                 <span class="row">
@@ -225,15 +226,15 @@
                                         @endif
                                     @endfor
                                 </span>
-                            <b>Inhoud</b>
-                            <span class="description">{{$r->grade_content}} Sterren</span>
+                            <b>{{__('minors.review_content')}}</b>
+                            <span class="description">{{$r->grade_content}} {{__('minors.review_stars')}}</span>
                         </p>
                     </div>
-                    <h6>Gepubliceerd op: {{$r->created_at}}</h6>
+                    <h6>{{__('minors.review_published_on')}}{{$r->created_at}}</h6>
                 </div>
             @endforeach
         </div>
     </div>
-
+</div>
 
 @endsection

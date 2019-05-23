@@ -29,13 +29,13 @@
         <a href="{{route('minors')}}" class="{{ Request::is('minors') ? 'active' : '' }}">{{__('navbar.minors')}}</a>
         <a href="{{route('map')}}" class="{{ Request::is('map') ? 'active' : '' }}">{{__('navbar.map')}}</a>
         
-        <a href="{{route('organisations')}}">{{__('navbar.organisations')}}</a>
+        <a href="{{route('organisations')}}" class="{{ Request::is('organisations') ? 'active' : '' }}">{{__('navbar.organisations')}}</a>
 
         {{--Gray stripe--}}
         <div class="divider"></div>
 
         @auth
-            <a href="{{ url('/account') }}">Account</a>
+            <a href="{{ url('/account') }}" class="{{ Request::is('account') ? 'active' : '' }}">Account</a>
 
             @if(Auth::user()->role_id != 1)
                 <a href="{{route('dashboard')}}">Dashboard</a>
