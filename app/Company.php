@@ -9,9 +9,12 @@ class Company extends Authenticatable
 {
     use Notifiable;
 
+    protected $guard = 'company';
+
     protected $table = 'companies';
 
     protected $fillable =['email', 'password', 'role_id', 'company_name',
         'company_description', 'extra_information'];
+
     protected $hidden = ['password'];
 }
