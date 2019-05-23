@@ -15,133 +15,66 @@
             crossorigin=""></script>
 
     <script src="/js/leaflet-mouseposition.js"></script>
+    <link href="/css/map.css" type="text/css" rel="stylesheet">
+    <link href="/css/minors.css" type="text/css" rel="stylesheet">
 
-    <style>
-        .nav {
-            z-index: 10000;
-        }
-
-        .map {
-            position: absolute;
-            left: 0px;
-            top: 0px;
-            height: 100%;
-            width: 100%;
-            z-index: 2;
-        }
-
-        .content {
-            top: 40px;
-            height: calc(100% - 40px);
-        }
-
-        .sidebar {
-            top: 80px;
-            z-index: 100;
-        }
-
-        @media all and (max-width: 800px){
-            .sidebar {
-                top: 40px;
-                margin: 0 20px;
-            }
-        }
-    </style>
 @endsection
 
 @section('content')
-    <style>
-        .sidebar.wide {
-            min-width: 250px;
-        }
 
-        .collapse {
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            padding: 3px;
-            border-radius: 3px;
-            margin: 13px 0;
-            background: #ECF0F1;
-            border: 2px solid #dee2e3;
-        }
-
-        .collapse .drop {
-            max-height: 0;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            /*justify-content: flex-start;*/
-            font-size: 13px;
-
-            -webkit-transition: max-height 0.5s;
-            -moz-transition: max-height 0.5s;
-            -ms-transition: max-height 0.5s;
-            -o-transition: max-height 0.5s;
-            transition: max-height 0.5s;
-        }
-
-        .collapse:hover .drop {
-            max-height: 200px;
-            overflow-y: scroll;
-        }
-
-        .collapse .drop .formline {
-            margin: 2px 0;
-        }
-
-        .leaflet-container .leaflet-control-mouseposition {
-            background-color: rgba(255, 255, 255, 0.7);
-            box-shadow: 0 0 5px #bbb;
-            padding: 0 5px;
-            margin:0;
-            color: #333;
-            font: 11px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
-        }
-    </style>
-
-    <div class="content wide">
-        <div class="sidebar wide">
-            <h3 class="center">Filter minors</h3>
-            <p>{{sizeof($locations)}} locaties gevonden</p>
+    <div class="row content">
+        <div class="sidebar col-xl-3">
+            <div class="box">
+            <h3 class="text-center text-uppercase w-700 f-primary">{{__('minors.filter')}}</h3>
+                <p class="text-center w-500 f-primary c-primary">{{$total_minor_amount == 0 ? __('minors.none_found') : "{$total_minor_amount} " . __('minors.minors_found')  }}</p>
 
             <form method="get" class="form" autocomplete="off">
-                <div class="formline wrap">
-                    <label for="name" class="wide">Naam</label>
-                    <input type="text" id="name" name="name" value="{{$name}}" placeholder="Naam"></div>
-                <div class="formline wrap">
-                    <label for="ects" class="wide">Studiepunten</label>
-                    <input type="text" id="ecs" name="ects" value="{{$ects}}" placeholder="Studiepunten"></div>
+                <div class="form-group">
+                    <label for="name">{{__('minors.minor_name')}}</label>
+                    <input type="text" id="name" name="name" value="{{$name}}" placeholder="{{__('minors.minor_name')}}">
+                </div>
+                <div class="form-group">
+                    <label for="ects">{{__('minors.points')}}</label>
+                    <input type="text" id="ecs" name="ects" value="{{$ects}}" placeholder="{{__('minors.points')}}"></div>
 
-                <div class="collapse">
-                    <div class="title">Organisaties ({{sizeof($selected_organisations)}} geselecteerd)</div>
-                    <div class="drop">
-                        @foreach($organisations as $organisation)
-                            <div class="formline">
-                                <input name="organisations[]"
-                                       <?php if (in_array($organisation['id'], $selected_organisations)) echo "checked"; ?> type="checkbox"
-                                       id="{{$organisation->id}}" value="{{$organisation->id}}"><label
+                <div class="form-group">
+                    <label>{{__('minors.organisation')}}</label>
+                    <div class="collapse">
+                        <div class="title">{{sizeof($selected_organisations)}} {{__('minors.selected')}}</div>
+                        <div class="drop">
+                            @foreach($organisations as $organisation)
+                                <div class="form-group">
+                                    <input name="organisations[]"
+                                           <?php if (in_array($organisation['id'], $selected_organisations)) echo "checked"; ?> type="checkbox"
+                                           id="{{$organisation->id}}" value="{{$organisation->id}}"><label
                                         for="{{$organisation->id}}">{{$organisation->name}}</label>
-                            </div>
-                        @endforeach
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
 
-                <div class="collapse">
-                    <div class="title">Talen ({{sizeof($selected_languages)}} geselecteerd)</div>
-                    <div class="drop">
-                        @foreach($languages as $language)
-                            <div class="formline">
-                                <input name="languages[]"
-                                       <?php if (in_array($language, $selected_languages)) echo "checked"; ?> type="checkbox"
-                                       id="{{$language}}" value="{{$language}}"><label
+                <div class="form-group">
+                    <label>{{__('minors.language')}}</label>
+                    <div class="collapse">
+                        <div class="title">{{sizeof($selected_languages)}} {{__('minors.selected')}}</div>
+                        <div class="drop">
+                            @foreach($languages as $language)
+                                <div class="form-group">
+                                    <input name="languages[]"
+                                           <?php if (in_array($language, $selected_languages)) echo "checked"; ?> type="checkbox"
+                                           id="{{$language}}" value="{{$language}}"><label
                                         for="{{$language}}">{{$language}}</label>
-                            </div>
-                        @endforeach
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-                <input type="submit">
+                <div class="form-group">
+                    <button type="submit" class="button blue block">{{__('minors.buttons.search_button')}}</button>
+                </div>
             </form>
+        </div>
         </div>
 
         <div class="wrapper wrap">
@@ -159,7 +92,7 @@
 
                 L.control.mousePosition().addTo(mymap);
 
-                navigator.geolocation.getCurrentPosition(function(location) {
+                navigator.geolocation.getCurrentPosition(function (location) {
                     var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
 
                     var m = L.circle(latlng, {
@@ -173,14 +106,13 @@
                     m.addTo(mymap);
                 });
 
-
-                @foreach ($locations as $location)
+                    @foreach ($locations as $location)
                     @if (isset($location->lat) && isset($location->lon))
-                        var marker = L.marker([{{$location->lat}}, {{$location->lon}}]);
-                        marker.bindPopup("<b>{{$location->name}}</b><br><a target='_blank' href='/location/{{$location->id}}'>Meer info</a>");
-                        marker.addTo(mymap);
-                        console.log("{{$location->name}} toegevoegd op {{$location->lat}}, {{$location->lon}}");
-                    @endif
+                var marker = L.marker([{{$location->lat}}, {{$location->lon}}]);
+                marker.bindPopup("<b>{{$location->name}}</b><br><a target='_blank' href='/location/{{$location->id}}'>Meer info</a>");
+                marker.addTo(mymap);
+                console.log("{{$location->name}} toegevoegd op {{$location->lat}}, {{$location->lon}}");
+                @endif
                 @endforeach
             </script>
         </div>

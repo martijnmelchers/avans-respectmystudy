@@ -12,7 +12,7 @@
 */
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'MainPageController@Home')->name('home');
+Route::get('/', 'MainPageController@index')->name('index');
 
 Route::get('/surf/login', 'SurfController@linkSurf')->middleware(['auth']);
 
@@ -21,7 +21,7 @@ Route::get('/account/linked', 'AccountController@linked');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->middleware(['auth']);
+Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth']);
 
 // Minors
 Route::get('/minors', 'MinorController@List')->name('minors');
@@ -31,12 +31,7 @@ Route::post('/minor/{id}', 'MinorController@InsertReview')->name('minor')->middl
 Route::delete('/minor/{id}', 'MinorController@DeleteReview')->name('review')->middleware(['auth']);
 
 //Taal
-Route::get('/lang/{lang}', function ($lang) {
-    setcookie('lang', $lang, time() + 60 * 60 * 24 * 30, '/');
-
-    return redirect(route('home'));
-})->name('lang');
-
+Route::get('lang/{locale}', 'LocalizationController@index')->name('lang');
 
 // Kaart
 Route::get('/map', 'MapController@Map')->name('map');
@@ -52,7 +47,7 @@ Route::get('/location/{id}', 'LocationController@Location')->name('location');
 
 //
 // Dashboard
-Route::middleware(['admin'])->group(function(){
+Route::middleware([])->group(function(){
     // Home
     Route::get('/dashboard', 'DashboardController@Home')->name('dashboard');
 
@@ -83,10 +78,10 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/dashboard/location/{id}', 'Dashboard\LocationController@Location')->name('dashboard-location');
 
     // Organisation list
-    Route::get('/dashboard/organisations', 'DashboardController@Organisations')->name('dashboard-organisations');
+    Route::get('/dashboard/organisations', 'Dashboard\OrganisationController@Organisations')->name('dashboard-organisations');
 
     // Specific organisation
-    Route::get('/dashboard/organisations/{id}', 'DashboardController@Organisation')->name('dashboard-organisation');
+    Route::get('/dashboard/organisations/{id}', 'Dashboard\OrganisationController@Organisation')->name('dashboard-organisation');
 
     // Contact groups
     Route::get('/dashboard/contactgroups', 'Dasbhoard\ContactGroupController@ContactGroups')->name('dashboard-contactgroups');
@@ -122,4 +117,9 @@ Route::middleware(['admin'])->group(function(){
     Route::get('dashboard/dashboard_merge_reviews/{id}', 'DashboardminorsController@MergeReviews')->name('dashboard-merge');
 
     Route::post('dashboard/dashboard_merge_reviews/{id}', 'DashboardminorsController@InsertReview')->name('dashboard-merge');
+
+
+    Route::get('dashboard/analytics', function() {
+        return view('dashboard/analytics');
+    })->name('dashboard-merge');
 });

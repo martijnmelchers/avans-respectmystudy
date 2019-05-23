@@ -2,9 +2,13 @@
 
 @section("title", "Minor")
 
+@section('head')
+    <link href="/css/organisations.css" type="text/css" rel="stylesheet">
+@endsection
+
 @section('content')
-    <div class="content">
-        <div class="wrapper wrap">
+    <div class="row content justify-content-center">
+        <div class="col-10">
             <article>
                 <h1>{{$organisation->name}}</h1>
                 <ul>
@@ -14,30 +18,30 @@
             </article>
 
             <div class="buttons">
-                <a href="/" class="button">Home</a>
-                <a href="{{route('organisations')}}" class="button">Alle organisaties</a>
+                <a href="/" class="button red col">{{__('organisations.buttons.home_button')}}</a>
+                <a href="{{route('organisations')}}" class="button red col">{{__('organisations.buttons.organisations_button')}}</a>
             </div>
 
             <article>
-                <h3>Alle locaties van {{$organisation->name}}</h3>
+                <h3>{{__('organisations.all_locations')}} {{$organisation->name}}</h3>
             </article>
             <div class="buttons">
                 @foreach ($organisation->locations as $location)
-                    <a href="/location/{{$location->id}}">{{$location->name}}</a>
+                    <a class="button red" href="/location/{{$location->id}}">{{$location->name}}</a>
                 @endforeach
             </div>
 
             <article>
-                <h3>Alle minors van {{$organisation->name}}</h3>
+                <h3>{{__('organisations.all_minors')}}  {{$organisation->name}}</h3>
             </article>
             @if (sizeof($organisation->minors) > 0)
                 <div class="buttons">
                     @foreach ($organisation->minors as $minor)
-                        <a href="/location/{{$minor->id}}">{{$minor->name}}</a>
+                        <a class="button red col-auto" href="/location/{{$minor->id}}">{{$minor->name}}</a>
                     @endforeach
                 </div>
             @else
-                <article>We hebben geen minors gevonden voor {{$organisation->name}}</article>
+                <article>{{__('organisations.no_minors_found')}} {{$organisation->name}}</article>
             @endif
         </div>
     </div>
