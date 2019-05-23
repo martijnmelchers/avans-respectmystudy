@@ -180,7 +180,9 @@ return [
          */
         Modelizer\Selenium\SeleniumServiceProvider::class,
 
-        Aacotroneo\Saml2\Saml2ServiceProvider::class
+        Aacotroneo\Saml2\Saml2ServiceProvider::class,
+
+        Khill\Lavacharts\Laravel\LavachartsServiceProvider::class
     ],
 
     /*
@@ -230,7 +232,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Saml2' => Aacotroneo\Saml2\Facades\Saml2Auth::class
+        'Saml2' => Aacotroneo\Saml2\Facades\Saml2Auth::class,
+        'Lava'=>Khill\Lavacharts\Laravel\LavachartsFacade::class
     ],
 
 ];
