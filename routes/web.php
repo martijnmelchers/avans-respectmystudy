@@ -93,7 +93,8 @@ Route::middleware([])->group(function(){
     Route::get('/dashboard/articles', 'Dashboard\NewsController@Articles')->name('dashboard-articles');
     Route::get('/dashboard/articles/{id}', 'Dashboard\NewsController@Article')->name('dashboard-article');
     // Route::post('/dashboard/articles/{id}', 'Dashboard\UserController@Edit')->name('dashboard-user-edit');
-    
+    Route::post('/dashboard/article/create', 'Dashboard\NewsController@Create')->name('dashboard-article-create');
+    Route::get('/dashboard/article/create', 'Dashboard\NewsController@New')->name('dashboard-article-new');
     // Dashboard importing
     Route::get('/dashboard/import', function() {
         return view('dashboard/import');

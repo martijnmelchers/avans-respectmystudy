@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Input;
 
 class NewsController extends Controller
 {
+    
     /**
      * Gets all articles (filtered).
      */
@@ -25,6 +26,14 @@ class NewsController extends Controller
     }
 
     /**
+     * View route for creating a new article.
+     */
+    public function New(){
+        return view('dashboard/articles/create');
+    }
+
+
+    /**
      * Post / Put route for editing a news article.
      */
     public function Edit(){
@@ -33,8 +42,25 @@ class NewsController extends Controller
 
     /**
      * Post route for creating a new article.
+     * 
+     * @param Request $request
+     * @return Response
      */
-    public function Create(){
+    public function Create(Request $request){
+        // Check if the expected fields are here.
+        $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required',
+        ]);
+
+        $article = new Article($request->all());
         
+
+        $article->published = (int) $article->published;
+        if($article->published !== 0 && $article->published !== 1){
+            $article->published = 0;
+        }
+        $article->save();
+        return redirect(route('dashboard-articles'));
     }
 }

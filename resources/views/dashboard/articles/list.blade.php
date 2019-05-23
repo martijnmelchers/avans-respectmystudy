@@ -4,7 +4,7 @@
 
 @section('content')
         <div class="row">
-            <div class="col-12 box">
+            <div class="col-12 box heading">
             <h1>Nieuws</h1>
             <h3>Filter nieuws</h3>
                 <form method="get">
@@ -16,15 +16,22 @@
             </div>
 
         @if (sizeof($articles) > 0)
-            <div class="blocks">
                 @foreach ($articles as $article)
+
+                <div class="col-12 dashboard_article">
                     <a href="{{route('dashboard-article', $article->id)}}" class="item">
-                        <h4>{{$article->title}}</h4>
-                        <h4><b>Excerpt.</b></h4>
-                        <h4>{{$article->id}}</h4>
+
+                        <div class="inner">
+                                
+                                <h4>{{$article->title}}</h4>
+                                <h5>{{strip_tags($article->excerpt(10))}}.</h5>
+                                <h5><small>{{$article->published}}</small></h5>
+                        </div>
                     </a>
+
+                </div>
+
                 @endforeach
-            </div>
         @else
                 <div class="col-12 box">
                     <p>Geen Artikelen gevonden. Gebruik andere zoekcriteria</p>
@@ -34,8 +41,15 @@
         </div>
 
         <div class="row">
-            <div class="col-12">
+            <div class="col-6">
                 <a href="{{route('dashboard')}}" class="button blue">Home</a>
             </div>
+            <div class="col-6">
+                <a href="{{route('dashboard-article-new')}}" class="button blue">Nieuwsartikel aanmaken</a>
+            </div>
         </div>
+@endsection
+
+@section('head')
+    <link href="/css/articles.css" type="text/css" rel="stylesheet">
 @endsection
