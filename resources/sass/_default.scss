@@ -16,10 +16,29 @@ h1, h2, h3, h4, h5, h6 {
 a {
     color: inherit;
     text-decoration: none;
+    
+    &.active {
+        color: $primary-red;
+        text-decoration: underline;
+        
+        &:hover {
+            color: $primary-red-hover;
+        }
+    }
+}
+
+p {
+    margin: 3px 0;
+    padding: 1px 0;
 }
 
 strong, b, .bold, .strong {
     font-weight: bold;
+}
+
+.list {
+    list-style-type: circle;
+    margin: 3px 0 3px 20px;
 }
 
 .no-padding {

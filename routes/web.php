@@ -84,7 +84,8 @@ Route::middleware([])->group(function(){
     Route::get('/dashboard/organisations/{id}', 'Dashboard\OrganisationController@Organisation')->name('dashboard-organisation');
 
     // Contact groups
-    Route::get('/dashboard/contactgroups', 'Dasbhoard\ContactGroupController@ContactGroups')->name('dashboard-contactgroups');
+    Route::get('/dashboard/contactgroups', 'Dashboard\ContactGroupController@ContactGroups')->name('dashboard-contactgroups');
+    Route::get('/dashboard/contactgroup/{id}', 'Dashboard\ContactGroupController@ContactGroup')->name('dashboard-contactgroup');
 
     // Reviews
     Route::get('/dashboard/reviews', 'DashboardController@Reviews')->name('dashboard-reviews');
