@@ -88,6 +88,9 @@ Route::middleware(['admin'])->group(function(){
     // Specific organisation
     Route::get('/dashboard/organisations/{id}', 'DashboardController@Organisation')->name('dashboard-organisation');
 
+    // Contact groups
+    Route::get('/dashboard/contactgroups', 'Dasbhoard\ContactGroupController@ContactGroups')->name('dashboard-contactgroups');
+
     // Reviews
     Route::get('/dashboard/reviews', 'DashboardController@Reviews')->name('dashboard-reviews');
     // Users
