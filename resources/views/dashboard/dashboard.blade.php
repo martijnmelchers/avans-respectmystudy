@@ -9,7 +9,7 @@
             <p>Welkom in het dashboard</p>
         </div>
 
-        <div class="blocks">
+        <div class="blocks mt-2">
             <a class="item" href="{{route('dashboard-minors')}}">
                 <h3>Aantal minors</h3>
                 <h1>{{$minor_amount}}</h1>

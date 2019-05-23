@@ -114,4 +114,9 @@ Route::middleware([])->group(function(){
     Route::get('dashboard/dashboard_merge_reviews/{id}', 'DashboardminorsController@MergeReviews')->name('dashboard-merge');
 
     Route::post('dashboard/dashboard_merge_reviews/{id}', 'DashboardminorsController@InsertReview')->name('dashboard-merge');
+
+
+    Route::get('dashboard/analytics', function() {
+        return view('dashboard/analytics');
+    })->name('dashboard-merge');
 });
