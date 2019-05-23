@@ -18,8 +18,8 @@
             </article>
 
             <div class="buttons">
-                <a href="/" class="button red">{{__('organisations.buttons.home_button')}}</a>
-                <a href="{{route('organisations')}}" class="button red">{{__('organisations.buttons.organisations_button')}}</a>
+                <a href="/" class="button red col">{{__('organisations.buttons.home_button')}}</a>
+                <a href="{{route('organisations')}}" class="button red col">{{__('organisations.buttons.organisations_button')}}</a>
             </div>
 
             <article>
@@ -37,7 +37,7 @@
             @if (sizeof($organisation->minors) > 0)
                 <div class="buttons">
                     @foreach ($organisation->minors as $minor)
-                        <a href="/location/{{$minor->id}}">{{$minor->name}}</a>
+                        <a class="button red col-auto" href="/location/{{$minor->id}}">{{$minor->name}}</a>
                     @endforeach
                 </div>
             @else
