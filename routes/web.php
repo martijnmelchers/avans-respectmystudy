@@ -25,6 +25,10 @@ Route::post('companies/register_company', 'Companies\CompanyController@register'
 Route::get('companies/login_company', 'Auth\CompanyLoginController@showLoginForm')->name('company-login');
 Route::post('companies/login_company', 'Auth\CompanyLoginController@login')->name('company-login-submit');
 
+
+Route::get('/companies/companies', 'Companies\CompanyController@companyList')->name('companies');
+Route::get('/companies/company/{id}', 'Companies\CompanyController@Company')->name('company');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->middleware(['auth']);

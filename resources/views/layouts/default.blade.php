@@ -27,6 +27,9 @@
     <div class="nav-buttons">
         <a href="{{route('home')}}">Home</a>
         <a href="{{route('minors')}}">Minoren</a>
+        @if(Auth::guard('company'))
+        <a href="{{route('companies')}}">Companies</a>
+        @endif
         <a href="{{route('map')}}">Kaart</a>
         <a href="{{route('organisations')}}">Organisaties</a>
 

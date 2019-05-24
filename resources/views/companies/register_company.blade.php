@@ -19,10 +19,7 @@
             <input class="titlefield" type="text" name="email" placeholder="E-mail">
         </div>
         <div class="formline">
-            <input class="titlefield" type="text" name="password" placeholder="Wachtwoord">
-        </div>
-        <div class="formline">
-            <input class="titlefield" type="text" name="pwcheck" placeholder="Herhaal Wachtwoord">
+            <input class="titlefield" type="text" name="location" placeholder="Hoofdlocatie">
         </div>
         <div class="formline">
             <textarea name="company_description" required placeholder="Geef hier informatie over uw bedrijf" type="message"></textarea>

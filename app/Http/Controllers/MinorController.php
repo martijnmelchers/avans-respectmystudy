@@ -29,7 +29,7 @@ class MinorController extends Controller
         if (isset($_GET['languages']) && is_array($_GET['languages'])) $selected_languages = $_GET['languages'];
 
         // Default settings
-        $per_page = 10;
+        $per_page = 1;
         $offset = 0;
         if (isset($_GET['page']))
             $offset = intval($_GET['page']);

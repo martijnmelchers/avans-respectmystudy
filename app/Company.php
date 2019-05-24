@@ -13,8 +13,8 @@ class Company extends Authenticatable
 
     protected $table = 'companies';
 
-    protected $fillable =['email', 'password', 'role_id', 'company_name',
-        'company_description', 'extra_information'];
+    protected $fillable =['user_id', 'company_name',
+        'company_description', 'extra_information', 'location'];
 
-    protected $hidden = ['password'];
+    protected $hidden = ['password', 'remember_token'];
 }

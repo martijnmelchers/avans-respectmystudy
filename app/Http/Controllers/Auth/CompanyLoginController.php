@@ -10,7 +10,7 @@ class CompanyLoginController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest', ['except' => ['logout']]);
     }
 
     public function showLoginForm(){
@@ -23,9 +23,9 @@ class CompanyLoginController extends Controller
             ['email' => 'required|email',
             'password' => 'required|min:6']);
         //attempt login
-       if(Auth::guard('company')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)){
+       if(Auth::guard('company')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))){
            //successful redirect
-           return redirect()->intended(route('home'));
+           return redirect('/');
        }
         //unsuccessful show error
         return redirect()->back()->withInput($request->only('email', 'remember'));

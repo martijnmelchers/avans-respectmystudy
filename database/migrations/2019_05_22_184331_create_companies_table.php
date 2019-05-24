@@ -15,17 +15,15 @@ class CreateCompaniesTable extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('role_id');
-            $table->string('email', 100);
+            $table->unsignedInteger('user_id');
+            $table->string('location', 100);
             $table->string('company_name', '45');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password', '100');
             $table->text('company_description');
             $table->text('extra_information');
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
