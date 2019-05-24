@@ -1,6 +1,6 @@
 @extends('layouts/dashboard')
 
-@section("title", "Edit user " . $user->name)
+@section("title", "Minor toevoegen")
 
 @section("head")
     <link href="/js/summernote/summernote-lite.css" rel="stylesheet">
@@ -9,53 +9,49 @@
 @endsection
 
 @section('content')
-        <div class="row">
-            <div class="col-12 box">
-            @if(sizeof($errors) > 0)
-                @foreach ($errors->all() as $error)
-                    <div class="alert red">{{ $error }}</div>
-                @endforeach 
-            @endif
+    <div class="row">
+        @if(sizeof($errors) > 0)
+            @foreach ($errors->all() as $error)
+                <div class="alert red">{{ $error }}</div>
+            @endforeach
+        @endif
 
+        <div class="col-12 box mb-2">
+            <h1>Nieuwsartikel "{{$article->title}}" Bewerken</h1>
             <form method="post">
                 @csrf
-                <h1>{{$user->name}}</h1>
-
 
                 <div class="form-group">
-                    <label for="name">Naam</label>
-                    <input type="text" class="form-control" name="name" id="name" value="{{$user->name}}">
+                    <label for="name">Titel</label>
+                    <input type="text" name="title" id="titel" value="{{$article->title}}">
                 </div>
+
+                <div class="form-group">
+                    <label for="featured_image">Uitgelichte afbeelding</label>
+                    <input type="file" name="featured_image" id="featured_image">
+                </div>
+
+                <div class="form-group">
+                    <label for="published">Publiceer de minor meteen?</label>
+                    <input type="checkbox" name="published"
+                           id="published" value="1">
+                </div>
+
+                <h3>Content</h3>
+                <textarea class="summernote" name="content">{!! $article->content !!}</textarea>
+
             
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input disabled type="text" class="form-control" id="email" value="{{$user->email}}">
-                </div>
-
-                <div class="form-group">
-                    <label for="username">Gebruikersnaam</label>
-                    <input type="text" class="form-control" name="username" id="username" value="{{$user->username}}">
-                </div>
-            
-
-
-                <div class="buttons mt-1">
-                    <input type="submit" name="submit" href="{{route('dashboard-user-edit', $user->id)}}"
-                           class="button blue" value="Opslaan">
+                <div class="buttons mt-2">
+                    <a tabindex="-1" href="{{route('dashboard-article-edit', $article->id)}}" class="button red">Annuleren</a>
+                    <input type="submit" name="submit" class="button blue" value="Opslaan">
                 </div>
             </form>
-            </div>
-           
-        </div>
 
-        <div class="row button_row">
-            <div class="col-md-6 col-xs-12">
-                <a href="{{route('dashboard-user', $user->id)}}" class="button blue">Annuleren</a>
-            </div>
-            <div class="col-md-6 col-xs-12">
-                <a href="{{route('dashboard-users')}}" class="button blue">Alle users</a>
-            </div>
+                <div class="buttons mt-2">
+                    <a href="{{route('dashboard-article-delete', $article->id)}}" class="button red" data-method="get" data-token="{{csrf_token()}}" data-confirm="Are you sure?">Verwijderen</a>
+                </div>
         </div>
+    </div>
 
     <script>
         $(document).ready(function () {

@@ -54,4 +54,11 @@ class Article extends Model
 
         return $text;
     }
+
+    /**
+     * Returns the author of this post.
+     */
+    public function author(){
+        return $this->belongsTo('App\User', 'author_id');
+    }
 }

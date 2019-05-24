@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use \App\Article;
 use Illuminate\Support\Facades\Input;
+use Auth;
 
 class NewsController extends Controller
 {
@@ -22,7 +23,7 @@ class NewsController extends Controller
      */
     public function Article($id){
         $article = Article::findOrFail($id);
-        return view('dashboard/article/edit', compact('article'));
+        return view('dashboard/articles/edit', compact('article'));
     }
 
     /**
@@ -34,10 +35,33 @@ class NewsController extends Controller
 
 
     /**
+     * Deletes the article with the specified id.s
+     */
+    public function Delete($id){
+        $article = Article::findOrFail($id);
+        $article->delete();
+        return redirect(route('dashboard-articles'));
+    }
+
+    /**
      * Post / Put route for editing a news article.
      */
-    public function Edit(){
+    public function Edit($id, Request $request){
+        $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required',
+        ]);
+        $article = Article::findOrFail($id);
+        $article->fill($request->all());
 
+        if($request->hasFile('featured_image')){
+            $article->featured_image = NewsController::SaveFeatured($request);
+        }
+
+        $article->save();
+        
+        // Return to the same page.
+        return redirect(route('dashboard-article-edit', $article->id));
     }
 
     /**
@@ -54,13 +78,26 @@ class NewsController extends Controller
         ]);
 
         $article = new Article($request->all());
-        
-
+        $article->author_id = Auth::user()->id;
         $article->published = (int) $article->published;
         if($article->published !== 0 && $article->published !== 1){
             $article->published = 0;
         }
+
+        if($request->hasFile('featured_image')){
+            $article->featured_image = NewsController::SaveFeatured($request);
+        }
+
         $article->save();
         return redirect(route('dashboard-articles'));
+    }
+
+
+
+    /**
+     * Saves the specified featured image and returns an url.
+     */
+    private static function SaveFeatured(Request $request){
+        return $request->file('featured_image')->store('public');
     }
 }

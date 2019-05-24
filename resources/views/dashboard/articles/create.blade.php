@@ -18,7 +18,7 @@
 
         <div class="col-12 box mb-2">
             <h1>Nieuw nieuwsartikel aanmaken</h1>
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-group">
@@ -30,6 +30,11 @@
                     <label for="published">Publiceer de minor meteen?</label>
                     <input type="checkbox" name="published"
                            id="published" value="1">
+                </div>
+
+                <div class="form-group">
+                    <label for="featured_image">Uitgelichte afbeelding</label>
+                    <input type="file" name="featured_image" id="featured_image">
                 </div>
 
                 <h3>Content</h3>
