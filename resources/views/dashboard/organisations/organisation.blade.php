@@ -7,8 +7,15 @@
         <div class="col-12 margin box">
             <h1>{{$organisation->name}}</h1>
             <ul>
-                <li>{{$organisation->abbreviation}}</li>
+                <li>Afkorting: {{$organisation->abbreviation}}</li>
+                <li>Type: {{$organisation->type}}</li>
+                <li>Deelnemend: {{$organisation->participates ? 'ja' : 'nee'}}</li>
             </ul>
+        </div>
+
+        <div class="buttons">
+            <a class="button blue" href="{{route('dashboard-organisations')}}">Alle organisaties</a>
+            <a class="button blue" href="{{route('dashboard-organisation-edit', $organisation->id)}}">Editen</a>
         </div>
 
         <div class="col-12 margin box">
@@ -29,8 +36,5 @@
             @endforeach
         </div>
 
-        <div class="buttons row">
-            <a class="col button blue" href="{{route('dashboard-organisations')}}">Alle organisaties</a>
-        </div>
     </div>
 @endsection
