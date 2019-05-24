@@ -109,7 +109,7 @@
                     @foreach ($locations as $location)
                     @if (isset($location->lat) && isset($location->lon))
                 var marker = L.marker([{{$location->lat}}, {{$location->lon}}]);
-                marker.bindPopup("<b>{{$location->name}}</b><br><a target='_blank' href='/location/{{$location->id}}'>Meer info</a>");
+                marker.bindPopup("<b>{{$location->name}}</b><br><a target='_blank' href='/location/{{$location->id}}'>{{__('minors.more_info')}}</a>");
                 marker.addTo(mymap);
                 console.log("{{$location->name}} toegevoegd op {{$location->lat}}, {{$location->lon}}");
                 @endif

@@ -12,11 +12,17 @@ return [
     'no_sort' => 'Geen volgorde',
     'none_found' => 'Geen minors gevonden',
 
+    'more_info' => 'Meer info',
+
     'education_period'  => 'Onderwijsperiodes',
     'no_education_period'=>'Geen onderwijsperiode',
     'no_registration_date'=>'Geen inschrijfdatum',
     'student_rating' => 'Beoordelingen door studenten',
     'no_reviews' => 'Nog geen reviews',
+    'reviews_average' => 'Gemiddeld',
+    'reviews_content_and_quality' => 'Inhoud & Kwaliteit',
+    'reviews_quality_teachers' => 'Kwaliteit docenten',
+    'reviews_studiability' => 'Studeerbaarheid',
 
     'all_minors' => 'Alle minors',
     'all_minors_for' => 'Alle minors van ',
@@ -43,9 +49,13 @@ return [
 
     'review_stars' => 'Sterren',
 
+    'review_placed' => 'Uw review is geplaatst!',
+
     'review_published_on' => 'Gepubliceerd op: ',
 
-    '' => '',
+    'review_minor_title' => 'Titel',
+    'review_minor_comment' => 'Comment',
+    'review_minor_rating' => 'Rating',
 
     'buttons' => [
         'search_button' => 'Zoeken',

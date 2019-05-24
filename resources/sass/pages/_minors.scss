@@ -48,54 +48,65 @@
             text-align: center;
         }
     }
+}
 
-    .rating {
-        border: none;
-        text-align: center;
+.stars {
+    .star {
+        width: 18%;
+        font-size: 26px;
+        color: #FFE74B;
     }
 
-    .rating > input {
-        display: none;
+    b, p {
+        font-size: 16px;
     }
+}
 
-    .rating > label:before {
-        margin: 5px;
-        font-size: 1.25em;
-        font-family: "Font Awesome 5 free";
-        display: inline-block;
-        content: "\f005";
-    }
+.rating {
+    border: none;
+}
 
-    .rating > .half:before {
-        content: "\f089";
-        position: absolute;
-    }
+.rating > input {
+    display: none;
+}
 
-    .rating > label {
-        color: #ddd;
-        float: right;
-    }
+.rating > label:before {
+    margin: 5px;
+    font-size: 1.25em;
+    font-family: "Font Awesome 5 free";
+    display: inline-block;
+    content: "\f005";
+}
 
-    .rating > input:checked ~ label,
-    .rating:not(:checked) > label:hover,
-    .rating:not(:checked) > label:hover ~ label {
-        color: #FFD700;
-    }
+.rating > .half:before {
+    content: "\f089";
+    position: absolute;
+}
 
-    .rating > input:checked + label:hover,
-    .rating > input:checked ~ label:hover,
-    .rating > label:hover ~ input:checked ~ label,
-    .rating > input:checked ~ label:hover ~ label {
-        color: #FFED85;
-    }
+.rating > label {
+    color: #ddd;
+    float: right;
+}
 
-    .rating b {
-        display: block;
-    }
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: #FFD700;
 }
 
 .box {
     margin-bottom: 20px;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label {
+    color: #FFED85;
+}
+
+.rating b {
+    display: block;
 }
 
 .text-stretch {

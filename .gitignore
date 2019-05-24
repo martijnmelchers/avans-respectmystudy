@@ -30,3 +30,4 @@ package-lock.json
 mix-manifest.json
 
 package-lock.json
+service-account-credentials.json

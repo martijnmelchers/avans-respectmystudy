@@ -188,11 +188,11 @@
                             <span class="closebutton dark" onclick="showOverlay(this)">&times;</span>
                         </form>
                     @endif
-                    <h5>Titel</h5>
+                    <h5>{{__('minors.review_minor_title')}}</h5>
                     <p>{{$r->description}}</p>
-                    <h5>Comment</h5>
+                    <h5>{{__('minors.review_minor_comment')}}</h5>
                     <p>{{$r->comment}}</p>
-                    <h5>Rating</h5>
+                    <h5>{{__('minors.review_minor_rating')}}</h5>
                     <div class="d-flex flex-column flex-md-row justify-content-around stars">
                         <p class="d-flex flex-column">
                                 <span class="d-flex flex-row justify-content-center">

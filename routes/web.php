@@ -38,7 +38,7 @@ Route::get('/map', 'MapController@Map')->name('map');
 
 // Organisaties
 Route::get('/organisations', "OrganisationController@list")->name('organisations');
-Route::get('/organisation/{id}', 'OrganisationController@Organisation')->name('organisation');
+Route::get('/organisations/{id}', 'OrganisationController@Organisation')->name('organisation');
 
 // Locaties
 Route::get('/locations', "LocationController@list")->name('locations');
@@ -114,4 +114,9 @@ Route::middleware([])->group(function(){
     Route::get('dashboard/dashboard_merge_reviews/{id}', 'DashboardminorsController@MergeReviews')->name('dashboard-merge');
 
     Route::post('dashboard/dashboard_merge_reviews/{id}', 'DashboardminorsController@InsertReview')->name('dashboard-merge');
+
+
+    Route::get('dashboard/analytics', function() {
+        return view('dashboard/analytics');
+    })->name('dashboard-merge');
 });
