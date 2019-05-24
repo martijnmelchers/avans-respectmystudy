@@ -3,11 +3,11 @@
 @section("title", "Minor")
 
 @section('head')
-    <link href="/css/overlay.css" type="text/css" rel="stylesheet">
+    <link href="/css/minors.css" type="text/css" rel="stylesheet">
 @endsection
 
 @section('content')
-    <div class="row">
+    <div class="row minor">
         <div class="col-12 box">
             <h3>Voeg de samengevoegde review toe</h3>
             @if (Session::has('flash_message'))
@@ -17,14 +17,14 @@
             @endif
             <form method="post">
                 {{ csrf_field() }}
-                <div class="formline">
+                <div class="form-group">
                     <input class="titlefield" type="text" name="title" placeholder="Vul hier de titel in...">
                 </div>
-                <div class="formline">
-                            <textarea name="message" required placeholder="Typ hier uw review..."
-                                      type="message"></textarea>
+                <div class="form-group">
+                    <textarea name="message" required placeholder="Typ hier uw review..."
+                              type="message"></textarea>
                 </div>
-                <div class="stars">
+                <div class="d-flex justify-content-around stars">
                     <div class="rating">
                         <input type="radio" id="star5_1" name="rating_1" value="5"/>
                         <label class="full"

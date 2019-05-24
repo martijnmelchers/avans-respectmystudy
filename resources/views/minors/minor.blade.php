@@ -4,11 +4,10 @@
 
 @section('head')
     <link href="/css/minors.css" type="text/css" rel="stylesheet">
-    <link href="/css/overlay.css" type="text/css" rel="stylesheet">
 @endsection
 
 @section('content')
-<div class="row content justify-content-center">
+<div class="row content justify-content-center minor">
     <div class="col-10">
         <div class="col box">
             <h1>{{$minor->name}}</h1>
@@ -71,14 +70,14 @@
             @endif
             <form method="post">
                 {{ csrf_field() }}
-                <div class="formline">
+                <div class="form-group">
                     <input class="titlefield" type="text" name="title" placeholder="{{__('minors.review_title_placeholder')}}">
                 </div>
-                <div class="formline">
-                            <textarea name="message" required placeholder="{{__('minors.review_content_placeholder')}}"
-                                      type="message"></textarea>
+                <div class="form-group">
+                    <textarea name="message" required placeholder="{{__('minors.review_content_placeholder')}}"
+                              type="message"></textarea>
                 </div>
-                <div class="stars">
+                <div class="d-flex justify-content-around stars">
                     <div class="rating">
                         <input type="radio" id="star5_1" name="rating_1" value="5"/>
                         <label class="full"
@@ -189,7 +188,7 @@
                     <h5>Comment</h5>
                     <p>{{$r->comment}}</p>
                     <h5>Rating</h5>
-                    <div class="stars">
+                    <div class="stars justify-content-around">
                         <p>
                                 <span class="row">
                                     @for($i=0; $i<5; $i++)
