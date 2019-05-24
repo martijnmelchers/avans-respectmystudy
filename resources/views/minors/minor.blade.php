@@ -77,7 +77,7 @@
                     <textarea name="message" required placeholder="{{__('minors.review_content_placeholder')}}"
                               type="message"></textarea>
                 </div>
-                <div class="d-flex justify-content-around stars">
+                <div class="d-flex flex-column flex-md-row justify-content-around stars">
                     <div class="rating">
                         <input type="radio" id="star5_1" name="rating_1" value="5"/>
                         <label class="full"
@@ -161,13 +161,18 @@
             }
         </script>
         <div id="overlay">
-            <div class="box overlay-container">
-                <span class="closebutton dark" onclick="hideOverlay(true)">&times;</span>
+            <div class="d-flex flex-column box overlay-container">
+                <div class="d-flex flex-row-reverse">
+                    <span class="d-flex"></span>
+                    <span class="closebutton dark" onclick="hideOverlay(true)">&times;</span>
+                </div>
+                <div class="d-flex flex-column">
 
-                <h3>{{__('minors.review_remove_warning')}}</h3>
-                <div class="row overlay-buttons">
-                    <div class="button" onclick="hideOverlay(false)">{{__('minors.review.remove')}}</div>
-                    <div class="button gray" onclick="hideOverlay(true)">{{__('minors.review_remove_cancel')}}</div>
+                    <h3>{{__('minors.review_remove_warning')}}</h3>
+                    <div class="d-flex flex-row justify-content-center overlay-buttons">
+                        <div class="button red" onclick="hideOverlay(false)">{{__('minors.review_remove')}}</div>
+                        <div class="button grey" onclick="hideOverlay(true)">{{__('minors.review_remove_cancel')}}</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -188,9 +193,9 @@
                     <h5>Comment</h5>
                     <p>{{$r->comment}}</p>
                     <h5>Rating</h5>
-                    <div class="d-flex flex-row justify-content-around stars">
+                    <div class="d-flex flex-column flex-md-row justify-content-around stars">
                         <p class="d-flex flex-column">
-                                <span class="d-flex flex-row justify-content-between">
+                                <span class="d-flex flex-row justify-content-center">
                                     @for($i=0; $i<5; $i++)
                                         @if($i < $r->grade_quality)
                                             <i class="fas fa-star star"></i>
@@ -203,7 +208,7 @@
                             <span class="description">{{$r->grade_quality}} {{__('minors.review_stars')}}</span>
                         </p>
                         <p class="d-flex flex-column">
-                                <span class="d-flex flex-row justify-content-between">
+                                <span class="d-flex flex-row justify-content-center">
                                     @for($i=0; $i<5; $i++)
                                         @if($i < $r->grade_studiability)
                                             <i class="fas fa-star star"></i>
@@ -216,7 +221,7 @@
                             <span class="description">{{$r->grade_studiability}} {{__('minors.review_stars')}}</span>
                         </p>
                         <p class="d-flex flex-column">
-                                <span class="d-flex flex-row justify-content-between">
+                                <span class="d-flex flex-row justify-content-center">
                                     @for($i=0; $i<5; $i++)
                                         @if($i < $r->grade_content)
                                             <i class="fas fa-star star"></i>

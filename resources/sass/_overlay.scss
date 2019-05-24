@@ -13,12 +13,11 @@
 }
 
 .overlay-container {
-  max-width: 300px;
+  max-width: 400px;
   padding: 12px;
+  margin: 20px;
 
   .overlay-buttons {
-    display: flex;
-    flex-direction: row;
     margin-top: 8px;
 
     .button {
