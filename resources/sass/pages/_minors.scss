@@ -35,8 +35,17 @@
             color: #FFE74B;
         }
 
+        .review .star {
+            color: #fff01a;
+            font-size: 17px;
+        }
+
         b, p {
             font-size: 16px;
+        }
+
+        p {
+            text-align: center;
         }
     }
 
@@ -85,8 +94,9 @@
     }
 }
 
-
-
+.box {
+    margin-bottom: 20px;
+}
 
 .text-stretch {
     text-align: justify;
@@ -120,7 +130,7 @@
 }
 
 .row.buttons {
-    margin: 20px 0;
+    margin-bottom: 20px;
 
     .col:last-child {
         padding-right: 0;
@@ -168,4 +178,8 @@
     width: 100%;
     height: 100%;
     color: black;;
+}
+
+.review-detail:not(:last-child) {
+    margin-bottom: 20px;
 }

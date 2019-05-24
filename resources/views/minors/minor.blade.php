@@ -65,7 +65,7 @@
             <h3>{{__('minors.new_review')}}</h3>
             @if (Session::has('flash_message'))
                 <div class="alert">{{ Session::get('flash_message') }}
-                    <span class="closebutton" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <span class="closebutton dark" onclick="this.parentElement.style.display='none';">&times;</span>
                 </div>
             @endif
             <form method="post">
@@ -161,20 +161,20 @@
             }
         </script>
         <div id="overlay">
-            <article class="overlay-container">
+            <div class="box overlay-container">
                 <span class="closebutton dark" onclick="hideOverlay(true)">&times;</span>
 
                 <h3>{{__('minors.review_remove_warning')}}</h3>
-                <div class="overlay-buttons">
+                <div class="row overlay-buttons">
                     <div class="button" onclick="hideOverlay(false)">{{__('minors.review.remove')}}</div>
                     <div class="button gray" onclick="hideOverlay(true)">{{__('minors.review_remove_cancel')}}</div>
                 </div>
-            </article>
+            </div>
         </div>
         <div class="col-12 box">
             <h3>Reviews</h3>
             @foreach($reviews as $r)
-                <div class="review_detail">
+                <div class="box shadow review-detail">
                     @if($r->user_id == $user_id)
                         <form method="POST">
                             {{ csrf_field() }}
@@ -188,9 +188,9 @@
                     <h5>Comment</h5>
                     <p>{{$r->comment}}</p>
                     <h5>Rating</h5>
-                    <div class="stars justify-content-around">
-                        <p>
-                                <span class="row">
+                    <div class="d-flex flex-row justify-content-around stars">
+                        <p class="d-flex flex-column">
+                                <span class="d-flex flex-row justify-content-between">
                                     @for($i=0; $i<5; $i++)
                                         @if($i < $r->grade_quality)
                                             <i class="fas fa-star star"></i>
@@ -202,8 +202,8 @@
                             <b>{{__('minors.review_quality')}}</b>
                             <span class="description">{{$r->grade_quality}} {{__('minors.review_stars')}}</span>
                         </p>
-                        <p>
-                                <span class="row">
+                        <p class="d-flex flex-column">
+                                <span class="d-flex flex-row justify-content-between">
                                     @for($i=0; $i<5; $i++)
                                         @if($i < $r->grade_studiability)
                                             <i class="fas fa-star star"></i>
@@ -215,8 +215,8 @@
                             <b>{{__('minors.review_studiability')}}</b>
                             <span class="description">{{$r->grade_studiability}} {{__('minors.review_stars')}}</span>
                         </p>
-                        <p>
-                                <span class="row">
+                        <p class="d-flex flex-column">
+                                <span class="d-flex flex-row justify-content-between">
                                     @for($i=0; $i<5; $i++)
                                         @if($i < $r->grade_content)
                                             <i class="fas fa-star star"></i>

@@ -51,7 +51,7 @@ strong, b, .bold, .strong {
     flex-grow: 1;
     padding: 10px;
     background: #fefefe;
-    border: 2px solid #fdfdfe;
+    border: 2px solid #76797a;
     margin: 20px 0;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -61,5 +61,29 @@ strong, b, .bold, .strong {
         color: #721c24;
         background-color: #f8d7da;
         border-color: #f5c6cb;
+    }
+}
+
+.closebutton {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+        color: black;
+    }
+
+    &.dark {
+        color: black;
+
+        &:hover {
+            color: grey;
+
+        }
     }
 }
