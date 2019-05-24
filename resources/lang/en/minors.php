@@ -12,11 +12,17 @@ return [
     'no_sort' => 'No order',
     'none_found' => 'No minors found',
 
+    'more_info' => 'More info',
+
     'education_period'  => 'Education period',
     'no_education_period'=>'',
     'no_registration_date'=>'',
     'student_rating' => 'Assessments by students',
     'no_reviews' => 'No reviews yet',
+    'reviews_average' => 'Average',
+    'reviews_content_and_quality' => 'Content & Quality',
+    'reviews_quality_teachers' => 'Quality teachers',
+    'reviews_studiability' => 'Studiability',
 
     'all_minors' => 'All minors',
     'all_minors_for' => 'All minors for ',
@@ -43,7 +49,13 @@ return [
 
     'review_stars' => 'Stars',
 
+    'review_placed' => 'Your review has been placed!',
+
     'review_published_on' => 'Published on: ',
+
+    'review_minor_title' => 'Title',
+    'review_minor_comment' => 'Comment',
+    'review_minor_rating' => 'Rating',
 
     'buttons' => [
         'search_button' => 'Search',

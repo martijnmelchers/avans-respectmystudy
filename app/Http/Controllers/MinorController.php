@@ -136,7 +136,7 @@ class MinorController extends Controller
             'created_at' => now(), 'updated_at' => now()
         ]);
 
-        return redirect()->back()->with('flash_message', 'Uw review is geplaatst!');
+        return redirect()->back()->with('flash_message', __('minors.review_placed'));
     }
 
     public function DeleteReview(Request $request, $id)
