@@ -5,7 +5,6 @@
         <div class="wrapper wrap">
             <article>
                 <h1>Welkom</h1>
-
                     @if ($surfUser == null)
                         <p>Heb je je account nog niet gelinked aan surf?</p>
 
