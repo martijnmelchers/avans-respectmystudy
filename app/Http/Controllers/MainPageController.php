@@ -9,10 +9,10 @@ class MainpageController extends Controller
     function __construct()
     {
         $this->setLocale();
-        $this->middleware('guest');
+        // $this->middleware('guest');
     }
 
-    public function Home() {
+    public function index() {
         return view('welcome');
     }
 }

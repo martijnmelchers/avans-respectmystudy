@@ -80,7 +80,8 @@ class Minor extends Model
 //        }
 //        return $reviews_by_students;
 
-        return $this->hasMany(Review::class);
+//        return $this->hasMany(Review::class);
+        return Review::all()->where("minor_id", $this->id);
     }
 
     // Return all versions
@@ -128,6 +129,9 @@ class Minor extends Model
             ->toArray();
         $assessors = User::whereIn('role_id', $h_assessor_id)->pluck('id')->toArray();
         $reviewable = false;
+        if ($reviews->count() == 0){
+            $reviewable = true;
+        }
         foreach ($reviews as $review)
         {
             if (in_array($review->user_id, $assessors))
@@ -162,11 +166,13 @@ class Minor extends Model
         $reviews = Review::all()->where('minor_id', $this->id);
 
         if (sizeof($reviews) > 0) {
-            $avg_content = $avg_teachers = $avg_studiability = 0;
+            $avg_content = 0;
+            $avg_teachers = 0;
+            $avg_studiability = 0;
 
-            $avg_content = round($reviews->avg("grade_quality"), 2);
-            $avg_teachers = round($reviews->avg("grade_content"),2);
-            $avg_studiability = round($reviews->avg("grade_studiability"), 2);
+            $avg_content = number_format(round($reviews->avg("grade_quality"), 1), 1, ",", ".");
+            $avg_teachers =  number_format(round($reviews->avg("grade_content"), 1), 1, ",", ".");
+            $avg_studiability =  number_format(round($reviews->avg("grade_studiability"), 1), 1, ",", ".");
 
             return [$avg_content, $avg_teachers, $avg_studiability, sizeof($reviews)];
         } else {

@@ -178,7 +178,7 @@ class ImportController extends Controller
 
     public function Organisations()
     {
-        $messages = [];
+        $messages = $errors = [];
 
         $page = (isset($_GET['page']) && $_GET['page'] > 0 ? "?page=" . $_GET['page'] : "");
         $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
@@ -201,18 +201,21 @@ class ImportController extends Controller
                     "type" => $r->type,
                     "participates" => $r->participates,
                 ]);
-                $organization->save();
+
+                if (!$organization->save())
+                    $errors[] = "Organisatie {$r->name} kon niet worden toegevoegd.";
             }
         }
 
         $php_result->messages = $messages;
+        $php_result->errors = $errors;
         return response()->json($php_result, 200, [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
             ->header('Content-Type', 'text/json');
     }
 
     public function Locations()
     {
-        $messages = [];
+        $messages = $errors = [];
 
         $page = (isset($_GET['page']) && $_GET['page'] > 0 ? "?page=" . $_GET['page'] : "");
         $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
@@ -232,7 +235,7 @@ class ImportController extends Controller
 
                 // Check if organisation has been imported
                 if (Organisation::where('id', $r->ownedby_organisation)->get()->count() == 0) {
-                    $messages[] = "Locatie {$r->name} kan niet worden geimporteerd omdat de organisatie {$r->ownedby_organisation} niet bestaat!";
+                    $errors[] = "Locatie {$r->name} kan niet worden geimporteerd omdat de organisatie {$r->ownedby_organisation} niet bestaat!";
                 } else {
                     // Create a new location
                     $location = new Location([
@@ -280,12 +283,13 @@ class ImportController extends Controller
                         $messages[] = $google_php_result->error_message;
                     }
                 } else {
-                    $messages[] = "Er is geen google maps API key ingesteld, dus de locaties kunnen niet automatisch een lengte- en breedtegraad krijgen.";
+                    $errors[] = "Er is geen google maps API key ingesteld, dus de locaties kunnen niet automatisch een lengte- en breedtegraad krijgen.";
                 }
             }
         }
 
         $php_result->messages = $messages;
+        $php_result->errors = $errors;
 
         return response()->json($php_result, 200, [], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
             ->header('Content-Type', 'text/json');
@@ -293,7 +297,7 @@ class ImportController extends Controller
 
     public function ContactPersons()
     {
-        $messages = [];
+        $messages = $errors = [];
 
         $page = (isset($_GET['page']) && $_GET['page'] > 0 ? "?page=" . $_GET['page'] : "");
         $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
@@ -314,7 +318,7 @@ class ImportController extends Controller
 
                 // Check if the organisation exists
                 if (!isset($organisation)) {
-                    $messages[] = "{$r->firstname} {$r->middlename} {$r->lastname} kon niet worden toegevoegd omdat de organisatie {$r->ownedby_organisation} niet bestaat";
+                    $errors[] = "{$r->firstname} {$r->middlename} {$r->lastname} kon niet worden toegevoegd omdat de organisatie {$r->ownedby_organisation} niet bestaat";
                 } else {
                     // Add the contact person
                     $contactperson = new ContactPerson([
@@ -327,19 +331,21 @@ class ImportController extends Controller
                     ]);
 
                     if (!$contactperson->save())
-                        $messages[] = "{$r->firstname} {$r->middlename} {$r->lastname} kon niet worden toegevoegd";
+                        $errors[] = "{$r->firstname} {$r->middlename} {$r->lastname} kon niet worden toegevoegd";
                 }
             }
         }
 
         $php_result->messages = $messages;
+        $php_result->errors = $errors;
+
         return response()->json($php_result, 200, [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
             ->header('Content-Type', 'text/json');
     }
 
     public function ContactGroups()
     {
-        $messages = [];
+        $messages = $errors = [];
 
         $page = (isset($_GET['page']) && $_GET['page'] > 0 ? "?page=" . $_GET['page'] : "");
         $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
@@ -363,13 +369,13 @@ class ImportController extends Controller
                 ]);
 
                 if (!$contactgroup->save())
-                    $messages[] = "Er ging iets mis bij het updaten van $r->name";
+                    $errors[] = "Er ging iets mis bij het updaten van $r->name";
             } else {
                 $organisation = Organisation::where("id", $r->ownedby_organisation)->first();
 
                 // Check if the organisation exists
                 if (!isset($organisation)) {
-                    $messages[] = "$r->name ($r->id) kan niet worden toegevoegd omdat de organisatie ($r->ownedby_organisation) niet bestaat";
+                    $errors[] = "$r->name ($r->id) kan niet worden toegevoegd omdat de organisatie ($r->ownedby_organisation) niet bestaat";
                 } else {
                     $contactgroup = new ContactGroup([
                         'id' => $r->id,
@@ -382,12 +388,14 @@ class ImportController extends Controller
                     ]);
 
                     if (!$contactgroup->save())
-                        $messages[] = "Er ging iets mis bij het toevoegen van $r->name";
+                        $errors[] = "Er ging iets mis bij het toevoegen van $r->name";
                 }
             }
         }
 
         $php_result->messages = $messages;
+        $php_result->errors = $errors;
+
         return response()->json($php_result, 200, [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
             ->header('Content-Type', 'text/json');
     }
