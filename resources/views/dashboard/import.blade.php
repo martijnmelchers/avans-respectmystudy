@@ -34,9 +34,9 @@
 
         <div class="col-12 box">
             <h3>Hulp bij importeren</h3>
-            <p>Als je voor de eerste keer importeerd, is het verstandig om eerst contactgroepen en -personen te
-                importeren. Daarna organisaties, locaties en als laatste minoren. Zo wordt alles goed aan elkaar
-                gekoppeld en komt de applicatie het best tot zijn recht. Bovendien voorkom je zo errors.</p>
+            <p>Als je voor de eerste keer importeerd, is het verstandig om eerst organisaties te importeren. Daarna
+                contactgroepen en -personen. Daarna locaties en als laatste minoren. Zo wordt alles goed
+                aan elkaar gekoppeld en komt de applicatie het best tot zijn recht. Bovendien voorkom je zo errors.</p>
         </div>
     </div>
 @endsection
