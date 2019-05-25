@@ -21,7 +21,7 @@ Route::get('/account/linked', 'AccountController@linked');
 Route::get('/account/company', 'AccountController@index');
 
 Route::get('companies/register_company', 'Companies\CompanyController@showRegister')->name('register-company');
-Route::post('companies/register_company', 'Companies\CompanyController@register')->name('register-company-action');
+Route::post('/account', 'Companies\CompanyController@register')->name('register-company-action');
 
 Route::get('companies/login_company', 'Auth\CompanyLoginController@showLoginForm')->name('company-login');
 Route::post('companies/login_company', 'Auth\CompanyLoginController@login')->name('company-login-submit');
