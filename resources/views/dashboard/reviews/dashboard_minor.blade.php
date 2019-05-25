@@ -7,16 +7,14 @@
 @endsection
 
 @section('content')
-    <div class="row content">
-        <div class="col box">
+    <div class="row content justify-content-center minor">
+        <div class="col-10 box">
             <h1>{{$minor->name}}</h1>
             <p>{!! $minor->subject !!}
             </p>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-12 box">
+    <div class="col-10 box">
             <h3>Doelen</h3>
             <p>{!! $minor->goals !!}</p>
 
@@ -25,52 +23,59 @@
 
             <h3>Toetsing</h3>
             <p>{!! $minor->examination !!}</p>
-        </div>
     </div>
 
-    <div class="row">
+    <div class="col-10 box">
         @if ($minor->locations->count() > 0)
-            <div class="col-12 box">
+            <div class="box">
                 <h3>Locaties waar deze minor wordt gegeven:</h3>
                 <p>Klik op een locatie om er meer over te zien.</p>
             </div>
-            <div class="col-12 box">
+            <div class="box">
                 @foreach ($minor->locations as $location)
                     <a class="button blue" href="{{route('location', $location->id)}}">{{$location->name}}</a>
                 @endforeach
             </div>
         @else
-            <div class="col-12 box">
                 <h3>Locaties waar deze minor wordt geven:</h3>
                 <p>We hebben geen locaties gevonden waar deze minor wordt gegeven.</p>
-            </div>
         @endif
     </div>
 
-    <div class="row buttons">
-        <div class="col">
-            <a href="{{route('dashboard-merge', $minor->id)}}" class="button block blue">Merge assessor reviews</a>
+        <div class="col-10 row buttons">
+            <div class="col-xl">
+                <a href="{{route('dashboard-merge')}}" class="button block blue">Merge reviews</a>
+            </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-12 box">
-            <h3>Voeg een nieuwe review toe</h3>
+        <div class="col-10 box">
+            <h3>{{__('minors.new_review')}}</h3>
             @if (Session::has('flash_message'))
                 <div class="alert">{{ Session::get('flash_message') }}
-                    <span class="closebutton" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <span class="closebutton dark" onclick="this.parentElement.style.display='none';">&times;</span>
                 </div>
             @endif
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form method="post">
                 {{ csrf_field() }}
-                <div class="formline">
-                    <input class="titlefield" type="text" name="title" placeholder="Vul hier de titel in...">
+                <div class="form-group">
+                    <input class="titlefield" type="text" name="title" placeholder="{{__('minors.review_title_placeholder')}}">
                 </div>
-                <div class="formline">
-                            <textarea name="message" required placeholder="Type hier uw review..."
-                                      type="message"></textarea>
+                <div class="form-group">
+                    <textarea name="message" required placeholder="{{__('minors.review_content_placeholder')}}"
+                              type="message"></textarea>
                 </div>
-                <div class="stars">
+                <div class="d-flex flex-column flex-md-row justify-content-around stars">
                     <div class="rating">
                         <input type="radio" id="star5_1" name="rating_1" value="5"/>
                         <label class="full"
@@ -88,7 +93,7 @@
                         <input type="radio" id="star1_1" name="rating_1" value="1"/>
                         <label class="full" for="star1_1"
                                title="Sucks big time - 1 star"></label>
-                        <b>kwaliteit</b>
+                        <b>{{__('minors.review_quality')}}</b>
                     </div>
                     <div class="rating">
                         <input type="radio" id="star5_2" name="rating_2" value="5"/>
@@ -111,7 +116,7 @@
                         <label class="full"
                                for="star1_2"
                                title="Sucks big time - 1 star"></label>
-                        <b>Studeerbaarheid</b>
+                        <b>{{__('minors.review_studiability')}}</b>
                     </div>
                     <div class="rating">
                         <input type="radio" id="star5_3" name="rating_3" value="5"/>
@@ -134,10 +139,10 @@
                         <label class="full"
                                for="star1_3"
                                title="Sucks big time - 1 star"></label>
-                        <b>Inhoud</b>
+                        <b>{{__('minors.review_content')}}</b>
                     </div>
                 </div>
-                <input type="submit" value="Plaats review">
+                <input class="button blue" type="submit" value="{{__('minors.buttons.post_button')}}">
             </form>
         </div>
         <style>
@@ -194,7 +199,7 @@
                 </div>
             </article>
         </div>
-        <div class="col-12 box">
+        <div class="col-10 box">
             <h3>Reviews</h3>
             @foreach($assessor_reviews as $r)
                 <div class="review_detail">
@@ -257,6 +262,6 @@
             @endforeach
         </div>
     </div>
-
+    </div>
 
 @endsection

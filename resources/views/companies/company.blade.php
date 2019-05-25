@@ -17,7 +17,6 @@
             <div class="col-xl">
                 <a href="{{route('companies')}}" class="button block blue">Alle bedrijven</a>
             </div>
-
         </div>
 
         <div class="col-10">
