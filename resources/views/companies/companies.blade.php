@@ -1,24 +1,26 @@
 @extends('layouts/default')
-
+@section('head')
+    <link href="/css/organisations.css" type="text/css" rel="stylesheet">
+@endsection
 @section('content')
-    <div class="wrapper wrap">
-        <div class="list minorlist">
-            @if (sizeof($companies) > 0)
+    <div class="row content justify-content-center">
+        <div class="col-10">
+            <article>
+                <h1>Alle bedrijven</h1>
+                <p>Hieronder staan alle bedrijven die bij ons geregistreerd zijn</p>
+            </article>
+
+            <div class="list stretch">
                 @foreach ($companies as $c)
-                    <a href="company/{{$c->id}}" class="item">
-                        <div class="info">
-                            <div class="text">
-                                <h3 class="underline">{{$c->company_name}}</h3>
-                                <p>{{Strip_tags(substr($c->company_description, 0, 550))}}...</p>
-                            </div>
-                            <div class="media">
-                                <img src="https://wordquest.nl/media/avatars/PixelAstronaut.gif">
-                                <h3 class="points"><span class="ec">{{$c->location}}</span> Location</h3>
-                            </div>
-                        </div>
+                    <a class="item" href="{{route('company', $c->id)}}">
+                        <h3>{{$c->company_name}}</h3>
+                        <h6>Locatie</h6>
+                        <p>{{$c->location}}</p>
+                        <h6>Korte beschrijving</h6>
+                        <p>{{Strip_tags(substr($c->company_description, 0, 550))}}...</p>
                     </a>
                 @endforeach
+            </div>
         </div>
     </div>
-    @endif
 @endsection

@@ -20,7 +20,6 @@ class CompanyController extends Controller
 
     public function showRegister()
     {
-
         return view('/companies/register_company');
     }
 

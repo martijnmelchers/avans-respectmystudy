@@ -1,6 +1,7 @@
 @extends('layouts/default')
 
 @section('content')
+    <div class="row content justify-content-center minor">
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -10,24 +11,27 @@
             </ul>
         </div>
     @endif
-    <form method="post">
-        {{ csrf_field() }}
-        <div class="formline">
-            <input class="titlefield" type="text" name="company_name" placeholder="Bedrijfsnaam">
+        <div class="col-10">
+            <form method="post">
+                {{ csrf_field() }}
+                <div class="form-group">
+                    <input class="titlefield" type="text" name="company_name" placeholder="Bedrijfsnaam">
+                </div>
+                <div class="form-group">
+                    <input class="titlefield" type="text" name="location" placeholder="Hoofdlocatie">
+                </div>
+                <div class="form-group">
+                    <textarea name="company_description" required placeholder="Geef hier informatie over uw bedrijf"
+                              type="message"></textarea>
+                </div>
+                <div class="form-group">
+                    <textarea name="extra_information" required placeholder="Leuke extra informatie over uw bedrijf"
+                              type="message"></textarea>
+                </div>
+                <div class="form-group">
+                    <input class="button-blue" type="submit" value="Registreer">
+                </div>
+            </form>
         </div>
-        <div class="formline">
-            <input class="titlefield" type="text" name="email" placeholder="E-mail">
-        </div>
-        <div class="formline">
-            <input class="titlefield" type="text" name="location" placeholder="Hoofdlocatie">
-        </div>
-        <div class="formline">
-            <textarea name="company_description" required placeholder="Geef hier informatie over uw bedrijf" type="message"></textarea>
-        </div>
-        <div class="formline">
-            <textarea name="extra_information" required placeholder="Leuke extra informatie over uw bedrijf" type="message"></textarea>
-        </div>
-
-        <input type="submit" value="Registreer">
-    </form>
+    </div>
 @endsection

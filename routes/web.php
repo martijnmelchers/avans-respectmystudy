@@ -28,7 +28,7 @@ Route::post('companies/login_company', 'Auth\CompanyLoginController@login')->nam
 
 
 Route::get('/companies/companies', 'Companies\CompanyController@companyList')->name('companies');
-Route::get('/companies/company/{id}', 'Companies\CompanyController@CompanyMW')->name('company');
+Route::get('/companies/company/{id}', 'Companies\CompanyController@company')->name('company');
 
 Auth::routes();
 

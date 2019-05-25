@@ -1,26 +1,41 @@
 @extends('layouts/default')
 
 @section('content')
-    <div class="content">
-        <div class="wrapper wrap">
-            <article>
-                <h1>{{$c->company_name}}</h1>
-            </article>
+    <div class="row content justify-content-center minor">
+        <div class="col-10">
+            <div class="col box">
+                <article>
+                    <h1>{{$c->company_name}}</h1>
+                </article>
+            </div>
+        </div>
 
-            <div class="buttons">
-                <a href="/" class="button">Home</a>
-                <a href="{{route('companies')}}" class="button">Alle minors</a>
+        <div class="col-10 row buttons">
+            <div class="col-xl ">
+                <a href="/" class="button block blue">Home</a>
+            </div>
+            <div class="col-xl">
+                <a href="{{route('companies')}}" class="button block blue">Alle bedrijven</a>
             </div>
 
-            <article>
-                <h3>Doelen</h3>
-                <p>{{$c->company_description}}</p>
-            </article>
+        </div>
 
-            <article>
-                <h3>Requirements</h3>
-                <p>{{$c->extra_information}}</p>
-            </article>
+        <div class="col-10">
+            <div class="col box">
+                <article>
+                    <h3>Beschrijving</h3>
+                    <p>{{$c->company_description}}</p>
+                </article>
+            </div>
+        </div>
+
+        <div class="col-10">
+            <div class="col box">
+                <article>
+                    <h3>Extra informatie</h3>
+                    <p>{{$c->extra_information}}</p>
+                </article>
+            </div>
         </div>
     </div>
 @endsection
