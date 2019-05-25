@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e4cdc500f3b89acb58c0d8bfa146e1ca",
+    "content-hash": "d21a6ed8fd09a76a259d9c1b764897ff",
     "packages": [
         {
             "name": "aacotroneo/laravel-saml2",
@@ -1115,27 +1115,27 @@
         },
         {
             "name": "google/apiclient",
-            "version": "v2.2.2",
+            "version": "v2.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client.git",
-                "reference": "4e0fd83510e579043e10e565528b323b7c2b3c81"
+                "reference": "4bfd3edc21cceaf45fc216a4196e1993cf7a89eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client/zipball/4e0fd83510e579043e10e565528b323b7c2b3c81",
-                "reference": "4e0fd83510e579043e10e565528b323b7c2b3c81",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client/zipball/4bfd3edc21cceaf45fc216a4196e1993cf7a89eb",
+                "reference": "4bfd3edc21cceaf45fc216a4196e1993cf7a89eb",
                 "shasum": ""
             },
             "require": {
-                "firebase/php-jwt": "~2.0|~3.0|~4.0|~5.0",
+                "firebase/php-jwt": "~2.0||~3.0||~4.0||~5.0",
                 "google/apiclient-services": "~0.13",
                 "google/auth": "^1.0",
-                "guzzlehttp/guzzle": "~5.3.1|~6.0",
+                "guzzlehttp/guzzle": "~5.3.1||~6.0",
                 "guzzlehttp/psr7": "^1.2",
                 "monolog/monolog": "^1.17",
                 "php": ">=5.4",
-                "phpseclib/phpseclib": "~0.3.10|~2.0"
+                "phpseclib/phpseclib": "~0.3.10||~2.0"
             },
             "require-dev": {
                 "cache/filesystem-adapter": "^0.3.2",
@@ -1170,7 +1170,7 @@
             "keywords": [
                 "google"
             ],
-            "time": "2018-06-20T15:52:20+00:00"
+            "time": "2019-05-21T18:06:55+00:00"
         },
         {
             "name": "google/apiclient-services",
@@ -1907,26 +1907,26 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.52",
+            "version": "1.0.46",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "c5a5097156387970e6f0ccfcdf03f752856f3391"
+                "reference": "f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/c5a5097156387970e6f0ccfcdf03f752856f3391",
-                "reference": "c5a5097156387970e6f0ccfcdf03f752856f3391",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2",
+                "reference": "f3e0d925c18b92cf3ce84ea5cc58d62a1762a2b2",
                 "shasum": ""
             },
             "require": {
-                "ext-fileinfo": "*",
                 "php": ">=5.5.9"
             },
             "conflict": {
                 "league/flysystem-sftp": "<1.0.6"
             },
             "require-dev": {
+                "ext-fileinfo": "*",
                 "phpspec/phpspec": "^3.4",
                 "phpunit/phpunit": "^5.7.10"
             },
@@ -1987,7 +1987,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2019-05-20T20:21:14+00:00"
+            "time": "2018-08-22T07:45:22+00:00"
         },
         {
             "name": "lmc/steward",
@@ -4908,30 +4908,30 @@
         },
         {
             "name": "spatie/laravel-analytics",
-            "version": "3.7.0",
+            "version": "3.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-analytics.git",
-                "reference": "4ac45abeaf68c3bb928154737ac257b004615a82"
+                "reference": "371885fc2a2e12e3d5a5eb45b7bc9fd4f2a2fb3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-analytics/zipball/4ac45abeaf68c3bb928154737ac257b004615a82",
-                "reference": "4ac45abeaf68c3bb928154737ac257b004615a82",
+                "url": "https://api.github.com/repos/spatie/laravel-analytics/zipball/371885fc2a2e12e3d5a5eb45b7bc9fd4f2a2fb3c",
+                "reference": "371885fc2a2e12e3d5a5eb45b7bc9fd4f2a2fb3c",
                 "shasum": ""
             },
             "require": {
                 "google/apiclient": "^2.0",
-                "laravel/framework": "~5.8.0",
+                "laravel/framework": "~5.4.0|~5.5.0|~5.6.0|~5.7.0|~5.8.0",
                 "madewithlove/illuminate-psr-cache-bridge": "^1.0",
-                "nesbot/carbon": "^1.21 | ^2.0",
-                "php": "^7.2"
+                "nesbot/carbon": "^1.21",
+                "php": "^7.0"
             },
             "require-dev": {
                 "league/flysystem": ">=1.0.8",
                 "mockery/mockery": "^1.0",
-                "orchestra/testbench": "~3.8.0",
-                "phpunit/phpunit": "^8.0"
+                "orchestra/testbench": "~3.4.6|~3.5.0|~3.6.0|~3.7.0|~3.8.0",
+                "phpunit/phpunit": "^6.1|^7.0|^8.0"
             },
             "type": "library",
             "extra": {
@@ -4971,7 +4971,7 @@
                 "retrieve",
                 "spatie"
             ],
-            "time": "2019-02-27T16:25:09+00:00"
+            "time": "2019-02-27T16:22:11+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -5692,7 +5692,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "backendtea@gmail.com"
+                    "email": "BackEndTea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -6641,16 +6641,16 @@
         },
         {
             "name": "laravel/homestead",
-            "version": "v8.4.0",
+            "version": "v8.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/homestead.git",
-                "reference": "c1e194bac77a03374adb9f92be818d25fa16335a"
+                "reference": "2a3f040a074e312b3d3d0ea9e42a1f1cca1ec20a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/homestead/zipball/c1e194bac77a03374adb9f92be818d25fa16335a",
-                "reference": "c1e194bac77a03374adb9f92be818d25fa16335a",
+                "url": "https://api.github.com/repos/laravel/homestead/zipball/2a3f040a074e312b3d3d0ea9e42a1f1cca1ec20a",
+                "reference": "2a3f040a074e312b3d3d0ea9e42a1f1cca1ec20a",
                 "shasum": ""
             },
             "require": {
@@ -6687,7 +6687,7 @@
                 }
             ],
             "description": "A virtual machine for web artisans.",
-            "time": "2019-05-01T14:45:57+00:00"
+            "time": "2019-05-24T18:52:59+00:00"
         },
         {
             "name": "nunomaduro/collision",
