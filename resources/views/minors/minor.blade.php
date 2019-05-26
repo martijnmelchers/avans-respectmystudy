@@ -179,7 +179,7 @@
         <div class="col-12 box">
             <h3>Reviews</h3>
             @foreach($reviews as $r)
-                <div class="box shadow review-detail">
+                <div class="box shadow mb-2 review-detail">
                     @if($r->user_id == $user_id)
                         <form method="POST">
                             {{ csrf_field() }}

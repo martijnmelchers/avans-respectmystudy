@@ -8,7 +8,7 @@
 @section('content')
 
     <div class="row content justify-content-center ">
-            <div class="box col-4">
+            <div class="box col-8 col-xl-4">
                 <h2 class="mb-4 text-center text-uppercase">{{ __('login.login') }}</h2>
                     <form id="loginForm" method="POST" action="{{ route('login') }}">
                         @csrf
