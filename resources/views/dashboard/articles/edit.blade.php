@@ -18,7 +18,7 @@
 
         <div class="col-12 box mb-2">
             <h1>Nieuwsartikel "{{$article->title}}" Bewerken</h1>
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-group">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use \App\Article;
 use Illuminate\Support\Facades\Input;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
@@ -99,5 +100,9 @@ class NewsController extends Controller
      */
     private static function SaveFeatured(Request $request){
         return $request->file('featured_image')->store('public');
+    }
+
+    private static function DeleteFeatured($fileName){ 
+        $url = Storage::delete($fileName);
     }
 }

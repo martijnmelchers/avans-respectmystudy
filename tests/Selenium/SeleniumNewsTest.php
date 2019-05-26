@@ -12,7 +12,7 @@ class SeleniumNewsTest extends SeleniumTest
      */
     public function testDashboardGet()
     {
-        $this->visit('/dashboard/news')
+        $this->visit('/dashboard/articless')
         ->see('Nieuws');
     }
 }

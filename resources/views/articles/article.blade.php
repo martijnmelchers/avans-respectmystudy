@@ -1,10 +1,17 @@
+
+
+<?php
+    use Illuminate\Support\Facades\Storage;
+?>
+
 @extends('layouts/default')
 
 @section("title", $article->title)
 
 @section('head')
-    <link href="/css/minors.css" type="text/css" rel="stylesheet">
-    <link href="/css/overlay.css" type="text/css" rel="stylesheet">
+
+    <link href="{{ asset('css/articles.css') }}" rel="stylesheet">
+
 @endsection
 
 @section('content')
@@ -14,6 +21,11 @@
             <h1>{{$article->title}}</h1>
             <h5>{{$article->created_at}}</h5>
             <h5>{{$article->author->name}}</h5>
+            <hr>
+
+
+            <div class="featured_image" style="background-image: url({{Storage::url($article->featured_image)}})">
+            </div>
             <hr>
         </div>
     </div>
