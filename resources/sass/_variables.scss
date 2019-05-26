@@ -1,20 +1,25 @@
+$primary-font:                      'Montserrat', sans-serif;
+$secondary-font:                    'Source Sans Pro', sans-serif;
 
-// Body
-$body-bg: #f8fafc;
+$primary-background:                 #ECF0F1;
 
-// Typography
-$font-family-sans-serif: "Nunito", sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
 
-// Colors
-$blue: #3490dc;
-$indigo: #6574cd;
-$purple: #9561e2;
-$pink: #f66D9b;
-$red: #e3342f;
-$orange: #f6993f;
-$yellow: #ffed4a;
-$green: #38c172;
-$teal: #4dc0b5;
-$cyan: #6cb2eb;
+$primary-blue:                       #4D648D;
+$primary-blue-hover:                 darken($primary-blue, 10%);
+$primary-blue-active:                darken($primary-blue, 15%);
+
+$primary-red:                        #F64646;
+$primary-red-hover:                  darken($primary-red, 10%);
+$primary-red-active:                 darken($primary-red, 15%);
+
+$primary-green:                      #66BFB3;
+$primary-green-hover:                darken($primary-green, 10%);
+$primary-green-active:               darken($primary-green, 15%);
+
+$primary-grey:                       #CACDD3;
+$primary-grey-hover:                 darken($primary-grey, 10%);
+$primary-grey-active:                darken($primary-grey, 15%);
+
+$font-color-primary:                 #434D53;
+$font-color-secondary:               #848484;
+

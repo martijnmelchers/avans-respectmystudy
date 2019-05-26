@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Minor extends Model
 {
+    public $incrementing = false;
+
     protected $append = ['organisation', 'reviews'];
     protected $fillable = [
         "id",
@@ -28,7 +30,8 @@ class Minor extends Model
         "is_published",
         "is_enrollable",
         "organisation_id",
-        "location_id"
+        "location_id",
+        "contact_group_id"
     ];
 
 
@@ -48,11 +51,37 @@ class Minor extends Model
     {
         return $this->belongsToMany('App\Location', 'minors_locations');
     }
+
+    // Return contact persons
+    public function contactPersons() {
+        return $this->belongsToMany('App\ContactPerson', 'minors_contact_persons');
+    }
+
+    // Return contact group
+    public function contactGroup() {
+        return $this->belongsTo('App\ContactGroup');
+    }
   
     // Return reviews
     public function reviews()
     {
-        return $this->hasMany('App\Review');
+//        $reviews = Review::all()->where('minor_id', $this->id);
+//        $h_assessor_id = Role::where('role_name', '=', 'HoofdAssessor')
+//            ->orWhere('role_name', '=', 'Admin')
+//            ->orWhere('role_name', '=', 'Assessor')
+//            ->pluck('id')
+//            ->toArray();
+//        $assessors = User::whereIn('role_id', $h_assessor_id)->pluck('id')->toArray();
+//        $reviews_by_students = [];
+//        foreach ($reviews as $review) {
+//            if (! in_array($review->user_id, $assessors)) {
+//                $reviews_by_students[] = $review;
+//            }
+//        }
+//        return $reviews_by_students;
+
+//        return $this->hasMany(Review::class);
+        return Review::all()->where("minor_id", $this->id);
     }
 
     // Return all versions
@@ -91,6 +120,42 @@ class Minor extends Model
         return true;
     }
 
+    public function Assessable()
+    {
+        $reviews = Review::all()->where('minor_id', $this->id);
+        $h_assessor_id = Role::where('role_name', '=', 'HoofdAssessor')
+            ->orWhere('role_name', '=', 'Admin')
+            ->pluck('id')
+            ->toArray();
+        $assessors = User::whereIn('role_id', $h_assessor_id)->pluck('id')->toArray();
+        $reviewable = false;
+        if ($reviews->count() == 0){
+            $reviewable = true;
+        }
+        foreach ($reviews as $review)
+        {
+            if (in_array($review->user_id, $assessors))
+            {
+                $reviewable = false;
+            }else{
+                $reviewable = true;
+            }
+        }
+        return $reviewable;
+    }
+
+    public function assessorReviews()
+    {
+        $reviews = Review::all()->where('minor_id', $this->id);
+        $assessors = User::where('role_id', '=', 2)->pluck('id')->toArray();
+        $reviews_by_assessor = [];
+        foreach ($reviews as $review) {
+            if (in_array($review->user_id, $assessors)) {
+                $reviews_by_assessor[] = $review;
+            }
+        }
+        return $reviews_by_assessor;
+    }
     // Return average stars (not done)
 
     /** @return array[float] */
@@ -101,11 +166,13 @@ class Minor extends Model
         $reviews = Review::all()->where('minor_id', $this->id);
 
         if (sizeof($reviews) > 0) {
-            $avg_content = $avg_teachers = $avg_studiability = 0;
+            $avg_content = 0;
+            $avg_teachers = 0;
+            $avg_studiability = 0;
 
-            $avg_content = $reviews->avg("grade_quality");
-            $avg_teachers = $reviews->avg("grade_content");
-            $avg_studiability = $reviews->avg("grade_studiability");
+            $avg_content = number_format(round($reviews->avg("grade_quality"), 1), 1, ",", ".");
+            $avg_teachers =  number_format(round($reviews->avg("grade_content"), 1), 1, ",", ".");
+            $avg_studiability =  number_format(round($reviews->avg("grade_studiability"), 1), 1, ",", ".");
 
             return [$avg_content, $avg_teachers, $avg_studiability, sizeof($reviews)];
         } else {

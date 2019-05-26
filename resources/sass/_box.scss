@@ -1,0 +1,25 @@
+.box {
+    padding: 20px;
+    background: white;
+    border-radius: 4px;
+
+    &.shadow {
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.16) !important;
+    }
+
+    &.no-padding {
+        padding: 0;
+    }
+
+    &.margin {
+        margin: 15px 0;
+    }
+  
+    &.heading {
+        margin-bottom: 20px;
+    }
+}
+
+.text_content {
+    word-wrap: break-word;
+}

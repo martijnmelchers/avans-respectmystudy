@@ -33,7 +33,7 @@ class MapController extends Controller
         $all_minors = Minor::where([
             ["name", "like", "%${search_name}%"],
             ["ects", "like", "%${search_ects}%"],
-//            ["is_enrollable", "=", true]
+            ["is_published", "=", true]
         ])->get();
 
         // Filter organisations

@@ -2,42 +2,45 @@
 
 @section("title", "Minor")
 
+@section('head')
+    <link href="/css/organisations.css" type="text/css" rel="stylesheet">
+@endsection
+
 @section('content')
-    <div class="content">
-        <div class="wrapper wrap">
-            <article>
+    <div class="row content justify-content-center">
+        <div class="col-10 box">
                 <h1>{{$organisation->name}}</h1>
                 <ul>
                     <li>{{$organisation->abbreviation}}</li>
                     <li>{{$organisation->type}}</li>
                 </ul>
-            </article>
+        </div>
 
-            <div class="buttons">
-                <a href="/" class="button">Home</a>
-                <a href="{{route('organisations')}}" class="button">Alle organisaties</a>
+            <div class="buttons stretch col-10">
+                <a href="/" class="button red">{{__('organisations.buttons.home_button')}}</a>
+                <a href="{{route('organisations')}}" class="button red">{{__('organisations.buttons.organisations_button')}}</a>
             </div>
 
-            <article>
-                <h3>Alle locaties van {{$organisation->name}}</h3>
-            </article>
-            <div class="buttons">
+            <div class="col-10 box margin">
+                <h3>{{__('organisations.all_locations')}} {{$organisation->name}}</h3>
+            </div>
+            <div class="col-10 buttons small">
                 @foreach ($organisation->locations as $location)
-                    <a href="/location/{{$location->id}}">{{$location->name}}</a>
+                    <a class="button red" href="/location/{{$location->id}}">{{$location->name}}</a>
                 @endforeach
             </div>
 
-            <article>
-                <h3>Alle minors van {{$organisation->name}}</h3>
-            </article>
+            <div class="col-10 box margin">
+                <h3>{{__('organisations.all_minors')}}  {{$organisation->name}}</h3>
+            </div>
             @if (sizeof($organisation->minors) > 0)
-                <div class="buttons">
+                <div class="buttons small">
                     @foreach ($organisation->minors as $minor)
-                        <a href="/location/{{$minor->id}}">{{$minor->name}}</a>
+                        <a class="button red col-auto" href="/location/{{$minor->id}}">{{$minor->name}}</a>
                     @endforeach
                 </div>
             @else
-                <article>We hebben geen minors gevonden voor {{$organisation->name}}</article>
+                <div class="col-10 box margin">{{__('organisations.no_minors_found')}} {{$organisation->name}}</div>
             @endif
         </div>
     </div>
