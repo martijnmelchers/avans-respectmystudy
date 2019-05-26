@@ -176,7 +176,7 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-center news-articles">
+    <div class="row justify-content-center news-articles mb-4">
         <div class="col-xl-9 col-10 article-wrapper">
             <div class="box no-padding article">
                 <div class="row">
