@@ -3,11 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Company;
 
 class AccountController extends Controller
 {
     public function index(){
-        $user = \Auth::user();
+        $isCompany = false;
+        if (Auth::user()->role_id == 5){
+            $isCompany = true;
+        }
+        $user_id = Auth::user()->id;
+        $company =  Company::All()->where('user_id','=', $user_id)->first();
+        if ($isCompany){
+            if ($company == null){
+                return view('companies/register_company');
+            }
+            else{
+                header( "refresh:5;url=/account" );
+                return view('account.company', compact('company'));
+            }
+        }
+
+        $user = Auth::user();
         $surfUser = null;
         if(isset($user->surfUser)){
             $surfUser = $user->surfUser;
@@ -16,12 +34,16 @@ class AccountController extends Controller
     }
 
     public function linked(){
-        $user = \Auth::user();
+        $user = Auth::user();
         $linked = false;
         if(isset($user->surfUser)){
             $linked = true;
         }
         header( "refresh:5;url=/account" );
         return view('account.linked', compact('linked'));
+    }
+
+    public function companyRegistered(){
+
     }
 }

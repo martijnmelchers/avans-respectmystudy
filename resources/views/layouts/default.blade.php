@@ -42,6 +42,7 @@
     <div class="nav-buttons">
         <a href="/" class="{{ Request::is('/') ? 'active' : '' }}">Home</a>
         <a href="{{route('minors')}}" class="{{ Request::is('minors') ? 'active' : '' }}">{{__('navbar.minors')}}</a>
+        <a href="{{route('companies')}}" class="{{ Request::is('companies') ? 'active' : '' }}">{{__('Companies')}}</a>
         <a href="{{route('map')}}" class="{{ Request::is('map') ? 'active' : '' }}">{{__('navbar.map')}}</a>
 
         <a href="{{route('organisations')}}"

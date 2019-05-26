@@ -129,6 +129,21 @@ class MinorController extends Controller
 
     public function InsertReview(Request $request, $id)
     {
+        $messages = [
+            'required' => 'The :attribute field is required.',
+            'max' => 'The :attribute fields maximum amount characters are exceeded.',
+            'min' => 'The :attribute fields minimum amount characters are required.'
+        ];
+        $rules = [
+            'title' => 'required|max:50',
+            'rating_1' => 'required|min:1',
+            'rating_2' => 'required|min:1',
+            'rating_3' => 'required|min:1',
+            'message' => 'required|max:500',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
         Review::create([
             'description' => $request->get('title'),
             'minor_id' => $id,

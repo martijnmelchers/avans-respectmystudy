@@ -40,9 +40,9 @@
             <a href="{{route('assessable')}}" class="{{ Request::path() == 'dashboard/reviews' ? 'active' : '' }}"><i
                         class="far fa-thumbs-up"></i>Reviews</a>
             <a href="{{route('dashboard-users')}}" class="{{ Request::path() == 'dashboard/users' ? 'active' : '' }}"><i
-                        class="far fa-thumbs-up"></i>Gebruikers</a>
+                        class="far fas fa-user"></i>Gebruikers</a>
             <a href="{{route('dashboard-articles')}}" class="{{ Request::path() == 'dashboard/articles' ? 'active' : '' }}"><i
-                        class="far fa-thumbs-up"></i>Nieuws</a>
+                        class="fas fa-newspaper"></i>Nieuws</a>
             <a href="{{route('import')}}" class="{{ Request::path() == 'dashboard/import' ? 'active' : '' }}"><i
                         class="fa fa-download"></i>Importeren</a>
         </div>
