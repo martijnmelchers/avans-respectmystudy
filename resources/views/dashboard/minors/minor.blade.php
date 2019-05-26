@@ -22,7 +22,7 @@
             </a>
         @endif
 
-        <div class="col-12 box mb-2">
+        <div class="col-12 box margin">
             <h1>{{$minor->name}}</h1>
             <ul>
                 <li>Versie: {{$minor->version}}</li>
@@ -44,39 +44,54 @@
             <a class="button blue" href="{{route('dashboard-minor-edit', ["id"=>$minor->id, "v"=>$minor->version])}}">Editen</a>
         </div>
 
-        <div class="col-12 box mb-2 mt-2">
-            <article>
-                <h3>Onderwerp</h3>
-                {!! $minor->subject !!}
-            </article>
-
-            <article>
-                <h3>Goals</h3>
-                {!! $minor->goals !!}
-            </article>
-
-            <article>
-                <h3>Requirements</h3>
-                {!! $minor->requirements !!}
-            </article>
-            <article>
-                <h3>Requirements</h3>
-                {!! $minor->requirements !!}
-            </article>
-
-            <article>
-                <h3>Contact</h3>
-                @if (isset($minor->contactGroup))
-                    <p>Het contactpersoon voor deze minor is <b>{{$minor->contactGroup->name}}</b>, te bereiken op
-                        <b>{{$minor->contactGroup->email}}</b></p>
-                    @if (isset($minor->contactGroup->telephone) && $minor->contactGroup->telephone != "")
-                        <p>Het telefoonnummer is {{$minor->contactGroup->telephone}}</p>
-                    @endif
-                    {{$minor->contactGroup->postaladdress}}
-                @else
-                    <p>Geen contact gevonden</p>
-                @endif
-            </article>
+        <div class="col-12 box margin">
+            <h3>Onderwerp</h3>
+            {!! $minor->subject !!}
         </div>
+
+        <div class="col-12 box margin">
+            <h3>Goals</h3>
+            {!! $minor->goals !!}
+        </div>
+
+        <div class="col-12 box margin">
+            <h3>Requirements</h3>
+            {!! $minor->requirements !!}
+        </div>
+
+        <div class="col-12 box margin">
+            <h3>Contact</h3>
+            @if (isset($minor->contactGroup))
+                <p>Het contactpersoon voor deze minor is <b>{{$minor->contactGroup->name}}</b>, te bereiken op
+                    <b>{{$minor->contactGroup->email}}</b></p>
+                @if (isset($minor->contactGroup->telephone) && $minor->contactGroup->telephone != "")
+                    <p>Het telefoonnummer is {{$minor->contactGroup->telephone}}</p>
+                @endif
+                {{$minor->contactGroup->postaladdress}}
+
+                <p>
+                    <a class="active" href="{{route('dashboard-contactgroup', $minor->contactGroup->id)}}">Meer info</a>
+                </p>
+            @else
+                <p>Geen contact gevonden</p>
+            @endif
+        </div>
+
+        <div class="col-12 box margin">
+            <h3>Docenten</h3>
+            @if ($minor->contactPersons->count() > 0)
+                <ul class="list">
+                    @foreach ($minor->contactPersons as $contactperson)
+                        <li>{{$contactperson->firstname}}
+                            {{$contactperson->middlename}}
+                            {{$contactperson->lastname}}
+                            <b>{{(!empty($contactperson->email) ? $contactperson->email : "Geen email ingesteld")}}</b></li>
+                    @endforeach
+                </ul>
+            @else
+                <p>Geen docenten aan deze minor gekoppeld</p>
+            @endif
+        </div>
+    </div>
     </div>
 @endsection

@@ -76,10 +76,23 @@ class DashboardMinorTest extends TestCase
         $location = factory(Location::class)->create();
         $minor = factory(Minor::class)->create();
 
-//        $response = $this->get('/dashboard/minor/' . $minor->id . '/edit');
-        $response = $this->post('/dashboard/minor/' . $minor->id . '/edit', ['name' => "TEST"]);
+        $response = $this->post('/dashboard/minor/' . $minor->id . '/edit', ['version' => 1, 'name' => "TEST", 'ects' => 30, "contact_hours" => 1]);
 
-        $response->assertStatus(302);
         self::assertSame("TEST", Minor::find($minor->id)->first()->name);
+        $response->assertRedirect('/dashboard/minor/' . $minor->id . '/?v=1');
+        $response->assertStatus(302);
+    }
+
+    public function testMinorVersionsView() {
+        $user = factory(User::class)->make(['role_id' => 2]);
+        $this->actingAs($user);
+
+        $organisation = factory(Organisation::class)->create();
+        $location = factory(Location::class)->create();
+        $minor = factory(Minor::class)->create();
+
+        $response = $this->get('/dashboard/minor/' . $minor->id . '/versions');
+
+        $response->assertStatus(200);
     }
 }

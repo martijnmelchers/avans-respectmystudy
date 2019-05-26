@@ -3,8 +3,8 @@
 @section("title", "Gebruikers ")
 
 @section('content')
-        <div class="row">
-            <div class="col-12 box">
+    <div class="row">
+        <div class="col-12 box">
             <h1>Gebruikers</h1>
             <!-- <h3>Filter Gebruikers</h3>
                 <form method="get">
@@ -26,15 +26,16 @@
                 @endforeach
             </div>
         @else
-                <div class="col-12 box">
-                    <p>Geen Gebruikers gevonden. Gebruik andere zoekcriteria</p>
-                </div>
+            <div class="col-12 box">
+                <p>Geen Gebruikers gevonden. Gebruik andere zoekcriteria</p>
+            </div>
         @endif
 
-        </div>
+    </div>
 
-        <div class="row buttons">
-            <a href="{{route('dashboard')}}" class="button blue">Home</a>
-            <a href="{{route('import')}}" class="button blue">Gebruikers importeren</a>
+    <div class="row buttons stretch">
+        <div class="button">
+            <a href="{{route('dashboard')}}" style="width: 100%;" class="button blue">Home</a>
         </div>
+    </div>
 @endsection
