@@ -1,0 +1,9 @@
+.wrap {
+    &-break {
+        overflow-wrap: break-word;
+    }
+
+    &-spaces {
+        overflow-wrap: break-spaces;
+    }
+}

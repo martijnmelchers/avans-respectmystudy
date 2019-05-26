@@ -1,0 +1,35 @@
+/node_modules
+/public/hot
+/public/css
+
+/public/storage
+/storage/*.key
+/vendor
+.env
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+
+### Vagrant ###
+# General
+.vagrant/
+
+# Log files (if you are creating logs in debug mode, uncomment this)
+# *.logs
+
+### Vagrant Patch ###
+*.box
+
+logs/
+
+.idea/
+
+package-lock.json
+
+/public/css/**
+mix-manifest.json
+
+package-lock.json
+service-account-credentials.json

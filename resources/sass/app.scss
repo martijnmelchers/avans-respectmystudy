@@ -1,0 +1,30 @@
+/* Bootstrap base imports */
+@import
+'~bootstrap/scss/functions',
+'~bootstrap/scss/variables',
+'~bootstrap/scss/mixins';
+
+/* Reset SCSS (Reset before anything so it can be overwritten again) */
+@import './reset';
+
+/* Bootstrap components */
+@import '~bootstrap/scss/utilities';
+@import '~bootstrap/scss/bootstrap-grid';
+@import '~bootstrap/scss/type';
+
+/* Import parts */
+@import './variables';
+@import './default';
+@import './navigation';
+@import './button';
+@import './box';
+@import './forms';
+@import './lists';
+@import './overlay';
+@import './labels';
+
+/* Import tools */
+@import './tools/colors';
+@import './tools/weight';
+@import './tools/font';
+@import './tools/wrap';
