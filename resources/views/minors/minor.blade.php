@@ -4,11 +4,10 @@
 
 @section('head')
     <link href="/css/minors.css" type="text/css" rel="stylesheet">
-    <link href="/css/overlay.css" type="text/css" rel="stylesheet">
 @endsection
 
 @section('content')
-<div class="row content justify-content-center">
+<div class="row content justify-content-center minor">
     <div class="col-10">
         <div class="col box">
             <h1>{{$minor->name}}</h1>
@@ -66,19 +65,19 @@
             <h3>{{__('minors.new_review')}}</h3>
             @if (Session::has('flash_message'))
                 <div class="alert">{{ Session::get('flash_message') }}
-                    <span class="closebutton" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <span class="closebutton dark" onclick="this.parentElement.style.display='none';">&times;</span>
                 </div>
             @endif
             <form method="post">
                 {{ csrf_field() }}
-                <div class="formline">
+                <div class="form-group">
                     <input class="titlefield" type="text" name="title" placeholder="{{__('minors.review_title_placeholder')}}">
                 </div>
-                <div class="formline">
-                            <textarea name="message" required placeholder="{{__('minors.review_content_placeholder')}}"
-                                      type="message"></textarea>
+                <div class="form-group">
+                    <textarea name="message" required placeholder="{{__('minors.review_content_placeholder')}}"
+                              type="message"></textarea>
                 </div>
-                <div class="stars">
+                <div class="d-flex flex-column flex-md-row justify-content-around stars">
                     <div class="rating">
                         <input type="radio" id="star5_1" name="rating_1" value="5"/>
                         <label class="full"
@@ -162,20 +161,25 @@
             }
         </script>
         <div id="overlay">
-            <article class="overlay-container">
-                <span class="closebutton dark" onclick="hideOverlay(true)">&times;</span>
-
-                <h3>{{__('minors.review_remove_warning')}}</h3>
-                <div class="overlay-buttons">
-                    <div class="button" onclick="hideOverlay(false)">{{__('minors.review.remove')}}</div>
-                    <div class="button gray" onclick="hideOverlay(true)">{{__('minors.review_remove_cancel')}}</div>
+            <div class="d-flex flex-column box overlay-container">
+                <div class="d-flex flex-row-reverse">
+                    <span class="d-flex"></span>
+                    <span class="closebutton dark" onclick="hideOverlay(true)">&times;</span>
                 </div>
-            </article>
+                <div class="d-flex flex-column">
+
+                    <h3>{{__('minors.review_remove_warning')}}</h3>
+                    <div class="d-flex flex-row justify-content-center overlay-buttons">
+                        <div class="button red" onclick="hideOverlay(false)">{{__('minors.review_remove')}}</div>
+                        <div class="button grey" onclick="hideOverlay(true)">{{__('minors.review_remove_cancel')}}</div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-12 box">
             <h3>Reviews</h3>
             @foreach($reviews as $r)
-                <div class="review_detail">
+                <div class="box shadow review-detail">
                     @if($r->user_id == $user_id)
                         <form method="POST">
                             {{ csrf_field() }}
@@ -184,14 +188,14 @@
                             <span class="closebutton dark" onclick="showOverlay(this)">&times;</span>
                         </form>
                     @endif
-                    <h5>Titel</h5>
+                    <h5>{{__('minors.review_minor_title')}}</h5>
                     <p>{{$r->description}}</p>
-                    <h5>Comment</h5>
+                    <h5>{{__('minors.review_minor_comment')}}</h5>
                     <p>{{$r->comment}}</p>
-                    <h5>Rating</h5>
-                    <div class="stars">
-                        <p>
-                                <span class="row">
+                    <h5>{{__('minors.review_minor_rating')}}</h5>
+                    <div class="d-flex flex-column flex-md-row justify-content-around stars">
+                        <p class="d-flex flex-column">
+                                <span class="d-flex flex-row justify-content-center">
                                     @for($i=0; $i<5; $i++)
                                         @if($i < $r->grade_quality)
                                             <i class="fas fa-star star"></i>
@@ -203,8 +207,8 @@
                             <b>{{__('minors.review_quality')}}</b>
                             <span class="description">{{$r->grade_quality}} {{__('minors.review_stars')}}</span>
                         </p>
-                        <p>
-                                <span class="row">
+                        <p class="d-flex flex-column">
+                                <span class="d-flex flex-row justify-content-center">
                                     @for($i=0; $i<5; $i++)
                                         @if($i < $r->grade_studiability)
                                             <i class="fas fa-star star"></i>
@@ -216,8 +220,8 @@
                             <b>{{__('minors.review_studiability')}}</b>
                             <span class="description">{{$r->grade_studiability}} {{__('minors.review_stars')}}</span>
                         </p>
-                        <p>
-                                <span class="row">
+                        <p class="d-flex flex-column">
+                                <span class="d-flex flex-row justify-content-center">
                                     @for($i=0; $i<5; $i++)
                                         @if($i < $r->grade_content)
                                             <i class="fas fa-star star"></i>

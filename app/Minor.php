@@ -80,7 +80,8 @@ class Minor extends Model
 //        }
 //        return $reviews_by_students;
 
-        return $this->hasMany(Review::class);
+//        return $this->hasMany(Review::class);
+        return Review::all()->where("minor_id", $this->id);
     }
 
     // Return all versions
