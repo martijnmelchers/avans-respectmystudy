@@ -30,6 +30,7 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/account';
 
+
     /**
      * Create a new controller instance.
      *
@@ -53,6 +54,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'role' => ['required', 'int', 'in:4,5']
         ]);
     }
 
@@ -64,11 +66,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if ($data['role'] == 4){
+            $this->redirectTo =  '/account';
+        }else if ($data['role'] == 5){
+            $this->redirectTo =  '/companies/register_company';
+        }
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'role_id' => 1,
+            'role_id' => $data['role'],
             'username' => ""
         ]);
     }
