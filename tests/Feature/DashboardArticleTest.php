@@ -36,6 +36,13 @@ class DashboardArticleTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function testArticleCreate(){
+        $user = factory(User::class)->create(['role_id' => 2]);
+        $this->actingAs($user);
+        $response = $this->get("/dashboard/article/create");
+        $response->assertStatus(200);
+    }
+
     public function testArticleList(){
         $user = factory(User::class)->create(['role_id' => 2]);
         $this->actingAs($user);
