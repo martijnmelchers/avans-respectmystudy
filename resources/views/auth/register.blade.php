@@ -5,7 +5,7 @@
     <div class="row content justify-content-center">
         <div class="box col-5">
                 <h2 class="mb-4 text-center text-uppercase">{{ __('register.register') }}</h2>
-                    <form method="POST" action="{{ route('register') }}">
+                    <form id="registerForm" method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
