@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="row content justify-content-center">
-        <div class="box col-5">
+        <div class="box col-xl-5 col-8">
                 <h2 class="mb-4 text-center text-uppercase">{{ __('register.register') }}</h2>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
