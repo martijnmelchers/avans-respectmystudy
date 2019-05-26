@@ -10,7 +10,7 @@ form, .form {
             margin-bottom: 5px;
         }
 
-        input:not([type='checkbox']), select, .collapse {
+        input:not([type='checkbox']), select, .collapse, textarea {
             border-radius: 4px;
             border: 2px solid #dee2e3;
             padding: 5px 10px;

@@ -116,11 +116,15 @@ class MinorController extends Controller
     {
 //        $minor = Minor::all()->where("id", $id)->where("is_published", 1)->first();
         $minor = Minor::all()->where("id", $id)->first();
-        $reviews = $minor->reviews();
-        $user_id = Auth::id();
+        if (isset($minor)) {
+            $reviews = $minor->reviews();
+            $user_id = Auth::id();
 
-        if (isset($minor)) return view('minors/minor', compact('minor', 'reviews', 'user_id'));
-        else return "Minor niet gevonden";
+            return view('minors/minor', compact('minor', 'reviews', 'user_id'));
+        } else {
+            return "Minor niet gevonden";
+        }
+
     }
 
     public function InsertReview(Request $request, $id)
@@ -136,7 +140,7 @@ class MinorController extends Controller
             'created_at' => now(), 'updated_at' => now()
         ]);
 
-        return redirect()->back()->with('flash_message', 'Uw review is geplaatst!');
+        return redirect()->back()->with('flash_message', __('minors.review_placed'));
     }
 
     public function DeleteReview(Request $request, $id)

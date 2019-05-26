@@ -134,11 +134,11 @@
                                                         @endfor
                                                     </div>
                                                     <b class="f-primary w-600 c-primary">
-                                                        {{$minor->averageReviews()[0]}} gemiddeld
+                                                        {{$minor->averageReviews()[0]}} {{__('minors.reviews_average')}}
                                                     </b>
                                                     <br>
                                                     <p class="f-primary">
-                                                        Inhoud & Kwaliteit
+                                                        {{__('minors.reviews_content_and_quality')}}
                                                     </p>
                                                 </div>
 
@@ -155,11 +155,11 @@
                                                         @endfor
                                                     </div>
                                                     <b class="f-primary w-600 c-primary">
-                                                        {{$minor->averageReviews()[1]}} gemiddeld
+                                                        {{$minor->averageReviews()[1]}} {{__('minors.reviews_average')}}
                                                     </b>
                                                     <br>
                                                     <p class="f-primary">
-                                                        Kwaliteit docenten
+                                                        {{__('minors.reviews_quality_teachers')}}
                                                     </p>
 
                                                 </div>
@@ -177,11 +177,11 @@
                                                         @endfor
                                                     </div>
                                                     <b class="f-primary w-600 c-primary">
-                                                        {{$minor->averageReviews()[2]}} gemiddeld
+                                                        {{$minor->averageReviews()[2]}} {{__('minors.reviews_average')}}
                                                     </b>
                                                     <br>
                                                     <p class="f-primary">
-                                                        Studeerbaarheid
+                                                        {{__('minors.reviews_studiability')}}
                                                     </p>
                                                 </div>
 
