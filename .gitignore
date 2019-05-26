@@ -1,5 +1,7 @@
 /node_modules
 /public/hot
+/public/css
+
 /public/storage
 /storage/*.key
 /vendor
@@ -23,3 +25,4 @@ yarn-error.log
 logs/
 
 .idea/
+service-account-credentials.json
