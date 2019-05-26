@@ -79,10 +79,10 @@
             <div class="item">{{__('navbar.language')}}</div>
             <div class="drop">
                 <a href="{{route('lang', 'nl')}}">
-                    <img class="item flag" src="https://cdn.wordquest.nl/flags/medium/nl.png" alt="Nederlands">
+                    <img class="item flag" src="/img/nl.png" alt="Nederlands">
                 </a>
                 <a href="{{route('lang', 'en')}}">
-                    <img class="item flag" src="https://cdn.wordquest.nl/flags/medium/fr.png" alt="English">
+                    <img class="item flag" src="/img/gb.png" alt="English">
                 </a>
             </div>
         </div>
