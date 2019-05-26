@@ -55,6 +55,11 @@ class NewsController extends Controller
         $article = Article::findOrFail($id);
         $article->fill($request->all());
 
+
+        if(!$request->has('published')){
+            $article->published = 0;
+        }
+
         if($request->hasFile('featured_image')){
             $article->featured_image = NewsController::SaveFeatured($request);
         }

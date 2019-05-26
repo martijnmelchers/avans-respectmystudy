@@ -3,11 +3,8 @@
 ?>
 
 
-
-
 <div class="news-articles">
     <div class="row justify-content-center ">
-
         @foreach ($articles as $article)
             <div class="col-xl-9 col-10 article-wrapper">
                 <div class="box no-padding article">

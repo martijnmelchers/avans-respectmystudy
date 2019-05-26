@@ -32,9 +32,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="published">Publiceer de minor meteen?</label>
+                    <label for="published">Gepubliceerd?</label>
                     <input type="checkbox" name="published"
-                           id="published" value="1">
+                           id="published" value="1" <?php if ($article->published == 1) echo "checked"; ?> >
                 </div>
 
                 <h3>Content</h3>
@@ -42,7 +42,7 @@
 
             
                 <div class="buttons mt-2">
-                    <a tabindex="-1" href="{{route('dashboard-article-edit', $article->id)}}" class="button red">Annuleren</a>
+                    <a tabindex="-1" href="{{route('dashboard-articles')}}" class="button red">Annuleren</a>
                     <input type="submit" name="submit" class="button blue" value="Opslaan">
                 </div>
             </form>

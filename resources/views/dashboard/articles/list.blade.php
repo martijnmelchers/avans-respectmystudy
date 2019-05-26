@@ -24,8 +24,8 @@
                         <div class="inner">
                                 
                                 <h4>{{$article->title}}</h4>
-                                <h5>{{strip_tags($article->excerpt(10))}}.</h5>
-                                <h5><small>{{$article->published}}</small></h5>
+                                <h5>{{$article->created_at}}</h5>
+                                <h5><small>{{$article->published ? "Gepubliceerd" : "Ongepubliceerd"}}</small></h5>
                         </div>
                     </a>
 
