@@ -1,0 +1,13 @@
+.c {
+    &-primary, &-default {
+        color: $font-color-primary;
+    }
+
+    &-secondary {
+        color: $font-color-secondary;
+    }
+
+    &-black {
+        color: black;
+    }
+}

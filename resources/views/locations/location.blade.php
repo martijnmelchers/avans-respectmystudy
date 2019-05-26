@@ -1,29 +1,32 @@
 @extends('layouts/default')
 
-
 @section("title", "Locatie $location->name")
 
+
+
 @section('content')
-    <div class="content">
-        <div class="wrapper wrap">
-            <article>
-                <h1>{{$location->name}}</h1>
-            </article>
+    <div class="row content justify-content-center">
+        <div class="box col-10">
 
-            <div class="buttons">
-                <a href="/" class="button">Home</a>
-                <a href="{{route('minors')}}" class="button">Alle minors</a>
+            <h1>{{$location->name}}</h1>
+
+            <div class="buttons row">
+                <a href="/" class="button blue col">Home</a>
+                <a href="{{route('minors')}}" class="button blue col">Alle minors</a>
             </div>
+        </div>
 
-            <article>
-                <h3>Alle minors die op {{$location->name}} worden gegeven</h3>
-            </article>
-            <div class="buttons">
+        <div class="box margin col-10">
+            <h3>Alle minors die op {{$location->name}} worden gegeven</h3>
+
+            <div class="row buttons">
                 @foreach ($location->minors as $minor)
-                    <a href="{{route('minor', $minor->id)}}">{{$minor->name}}</a>
+                    <a class="button red" href="{{route('minor', $minor->id)}}">{{$minor->name}}</a>
                 @endforeach
             </div>
+        </div>
 
+        <div class="col-10 buttons mb-2">
             <a href="{{route('organisation', $location->organisation->id)}}" class="button blue">{{$location->organisation->name}}</a>
         </div>
     </div>

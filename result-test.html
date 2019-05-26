@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Test Documentation</title>
+        <style>
+            body {
+                text-rendering: optimizeLegibility;
+                font-variant-ligatures: common-ligatures;
+                font-kerning: normal;
+                margin-left: 2em;
+            }
+
+            body > ul > li {
+                font-family: Source Serif Pro, PT Sans, Trebuchet MS, Helvetica, Arial;
+                font-size: 2em;
+            }
+
+            h2 {
+                font-family: Tahoma, Helvetica, Arial;
+                font-size: 3em;
+            }
+
+            ul {
+                list-style: none;
+                margin-bottom: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <h2 id="Tests\Feature\ArticleTest">Feature\Article</h2>
+        <ul>
+            <li style="color: #555753;">✓ View article</li>
+        </ul>
+        <h2 id="Tests\Feature\DashboardArticleTest">Feature\DashboardArticle</h2>
+        <ul>
+            <li style="color: #555753;">✓ Article view</li>
+            <li style="color: #555753;">✓ Article list</li>
+        </ul>
+        <h2 id="Tests\Feature\DashboardLocationTest">Feature\DashboardLocation</h2>
+        <ul>
+            <li style="color: #555753;">✓ Location page</li>
+            <li style="color: #555753;">✓ Location view</li>
+        </ul>
+        <h2 id="Tests\Feature\DashboardMinorTest">Feature\DashboardMinor</h2>
+        <ul>
+            <li style="color: #555753;">✓ Minor page</li>
+            <li style="color: #555753;">✓ Minor view redirect nonexisting</li>
+            <li style="color: #555753;">✓ Minor view existing</li>
+            <li style="color: #555753;">✓ Minor edit view</li>
+            <li style="color: #ef2929;">❌ Minor edit post</li>
+        </ul>
+        <h2 id="Tests\Feature\DashboardTest">Feature\Dashboard</h2>
+        <ul>
+            <li style="color: #ef2929;">❌ Redirect dashboard</li>
+            <li style="color: #555753;">✓ No redirect dashboard</li>
+        </ul>
+        <h2 id="Tests\Feature\UserTest">Feature\User</h2>
+        <ul>
+            <li style="color: #555753;">✓ View user</li>
+        </ul>
+        <h2 id="Tests\Feature\ImportTest">Feature\Import</h2>
+        <ul>
+            <li style="color: #ef2929;">❌ Redirect</li>
+            <li style="color: #555753;">✓ Admin no redirect</li>
+            <li style="color: #555753;">✓ Organisation import</li>
+            <li style="color: #555753;">✓ Location import</li>
+            <li style="color: #555753;">✓ Minor import</li>
+            <li style="color: #555753;">✓ Contact persons import</li>
+            <li style="color: #555753;">✓ Contact group import</li>
+        </ul>
+    </body>
+</html>

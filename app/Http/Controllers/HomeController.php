@@ -13,6 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        $this->setLocale();
         $this->middleware('auth');
     }
 
@@ -23,7 +24,6 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-
         return view('home');
     }
 }

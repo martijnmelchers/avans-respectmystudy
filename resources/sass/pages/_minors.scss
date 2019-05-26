@@ -1,0 +1,196 @@
+@import '../variables';
+
+
+.minor {
+    margin-bottom: 40px;
+
+    .no-reviews {
+        i {
+            color: $primary-red;
+            display: inline;
+            font-size: 24px;
+            padding-right: 5px;
+        }
+
+        h3 {
+            color: $primary-red;
+            display: inline-block;
+            width: fit-content;
+            border-bottom: 2px solid;
+            margin-bottom: 5px;
+        }
+
+        p {
+            color: $primary-red;
+            font-size: 17px;
+        }
+    }
+
+    .stars {
+        margin-top: 5px;
+
+        .star {
+            width: 18%;
+            font-size: 26px;
+            color: #FFE74B;
+        }
+
+        .review .star {
+            color: #fff01a;
+            font-size: 17px;
+        }
+
+        b, p {
+            font-size: 16px;
+        }
+
+        p {
+            text-align: center;
+        }
+    }
+}
+
+.stars {
+    .star {
+        width: 18%;
+        font-size: 26px;
+        color: #FFE74B;
+    }
+
+    b, p {
+        font-size: 16px;
+    }
+}
+
+.rating {
+    border: none;
+}
+
+.rating > input {
+    display: none;
+}
+
+.rating > label:before {
+    margin: 5px;
+    font-size: 1.25em;
+    font-family: "Font Awesome 5 free";
+    display: inline-block;
+    content: "\f005";
+}
+
+.rating > .half:before {
+    content: "\f089";
+    position: absolute;
+}
+
+.rating > label {
+    color: #ddd;
+    float: right;
+}
+
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: #FFD700;
+}
+
+.box {
+    margin-bottom: 20px;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label {
+    color: #FFED85;
+}
+
+.rating b {
+    display: block;
+}
+
+.text-stretch {
+    text-align: justify;
+}
+
+.text-small {
+    font-size: 15px;
+}
+
+.text-lined {
+    font-size: 16px;
+    border-bottom: 2px solid rgb(236, 240, 241);
+    padding-bottom: 20px;
+}
+
+.text-error {
+    font-size: 15px;
+    color: $primary-red;
+}
+
+.organisation_img {
+    width: 90%;
+    max-width: 95px;
+    margin: 0 auto;
+    display: block;
+}
+
+.info-gray {
+    color: rgb(132, 132, 132);
+    font-size: 12px;
+}
+
+.row.buttons {
+    margin-bottom: 20px;
+
+    .col:last-child {
+        padding-right: 0;
+    }
+
+    .col:first-child {
+        padding-left: 0;
+    }
+}
+
+.bar {
+    width: 80%;
+    min-height: 22px;
+    position: relative;
+    background: white;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    padding: 2px;
+    overflow: hidden;
+
+    .inner {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        background: #F64646;
+        -webkit-transition: width 0.2s;
+        -moz-transition: width 0.2s;
+        -ms-transition: width 0.2s;
+        -o-transition: width 0.2s;
+        transition: width 0.2s;
+        z-index: 1;
+    }
+
+    .text {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        color: black;;
+    }
+}
+
+.review-detail:not(:last-child) {
+    margin-bottom: 20px;
+}

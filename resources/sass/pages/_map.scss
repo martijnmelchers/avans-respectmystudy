@@ -1,0 +1,45 @@
+.nav {
+  z-index: 10000;
+}
+
+.map {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+}
+
+.content {
+  top: 40px;
+  height: calc(100% - 40px);
+}
+
+.content.wide {
+  width: 100%;
+  left: 0;
+}
+
+.sidebar {
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+}
+
+.leaflet-container .leaflet-control-mouseposition {
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 5px #bbb;
+  padding: 0 5px;
+  margin:0;
+  color: #333;
+  font: 11px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+@media all and (max-width: 800px){
+  .sidebar {
+    top: 40px;
+    margin: 0 20px;
+  }
+}

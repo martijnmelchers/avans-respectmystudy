@@ -11,9 +11,6 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
-        // Delete all roles
-        DB::table('roles')->delete();
-
         DB::table('roles')->insert([
             'id' => 1,
             'role_name' => "default",
@@ -24,6 +21,19 @@ class RoleTableSeeder extends Seeder
             'id' => 2,
             'role_name' => "admin",
             'role_description' => 'administrator rol',
+        ]);
+
+        DB::table('roles')->insert([
+            'id' => 4,
+            'role_name' => "Student",
+            'role_description' => 'Student rol',
+        ]);
+
+    
+        DB::table('roles')->insert([
+            'id' => 5,
+            'role_name' => "Bedrijf",
+            'role_description' => 'Bedrijf rol',
         ]);
     }
 }

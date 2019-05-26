@@ -46,6 +46,21 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // Check out Error Handling #render for more information
+        // render method is responsible for converting a given exception into an HTTP response
+        // Catch AthenticationException and redirect back to somewhere else...
+        if($exception instanceof AuthenticationException){
+            $guard = array_get($exception->guards(), 0);
+            switch($guard){
+                case 'company':
+                    return redirect(route('company-login'));
+                    break;
+                default:
+                    return redirect(route('login'));
+                    break;
+            }
+        }
+
         return parent::render($request, $exception);
     }
 }

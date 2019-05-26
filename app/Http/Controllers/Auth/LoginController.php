@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/account';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -34,6 +34,9 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        $this->setLocale();
         $this->middleware('guest')->except('logout');
+        //$this->middleware('company')->except('logout');
     }
+
 }

@@ -116,15 +116,34 @@ class MinorController extends Controller
     {
 //        $minor = Minor::all()->where("id", $id)->where("is_published", 1)->first();
         $minor = Minor::all()->where("id", $id)->first();
-        $reviews = $minor->reviews();
-        $user_id = Auth::id();
+        if (isset($minor)) {
+            $reviews = $minor->reviews();
+            $user_id = Auth::id();
 
-        if (isset($minor)) return view('minors/minor', compact('minor', 'reviews', 'user_id'));
-        else return "Minor niet gevonden";
+            return view('minors/minor', compact('minor', 'reviews', 'user_id'));
+        } else {
+            return "Minor niet gevonden";
+        }
+
     }
 
     public function InsertReview(Request $request, $id)
     {
+        $messages = [
+            'required' => 'The :attribute field is required.',
+            'max' => 'The :attribute fields maximum amount characters are exceeded.',
+            'min' => 'The :attribute fields minimum amount characters are required.'
+        ];
+        $rules = [
+            'title' => 'required|max:50',
+            'rating_1' => 'required|min:1',
+            'rating_2' => 'required|min:1',
+            'rating_3' => 'required|min:1',
+            'message' => 'required|max:500',
+        ];
+
+        $this->validate($request, $rules, $messages);
+
         Review::create([
             'description' => $request->get('title'),
             'minor_id' => $id,
@@ -136,7 +155,7 @@ class MinorController extends Controller
             'created_at' => now(), 'updated_at' => now()
         ]);
 
-        return redirect()->back()->with('flash_message', 'Uw review is geplaatst!');
+        return redirect()->back()->with('flash_message', __('minors.review_placed'));
     }
 
     public function DeleteReview(Request $request, $id)
