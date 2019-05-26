@@ -33,15 +33,9 @@
 
     </div>
 
-<<<<<<< HEAD
     <div class="row buttons stretch">
         <div class="button">
             <a href="{{route('dashboard')}}" style="width: 100%;" class="button blue">Home</a>
-=======
-        <div class="row buttons">
-            <a href="{{route('dashboard')}}" class="button blue">Home</a>
-            <a href="{{route('import')}}" class="button blue">Gebruikers importeren</a>
->>>>>>> feature/scss-and-bootstrap
         </div>
     </div>
 @endsection
