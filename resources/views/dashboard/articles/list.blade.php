@@ -6,13 +6,13 @@
         <div class="row">
             <div class="col-12 box heading">
             <h1>Nieuws</h1>
-            <h3>Filter nieuws</h3>
+            <!-- <h3>Filter nieuws</h3>
                 <form method="get">
                     <div class="form-group">
                         <label for="name">Naam</label>
                     </div>
-                    <input type="submit" value="Zoeken" class="button blue small">
-                </form>
+                    <input type="submit" value="Zoeken" class="button blue small"> 
+                </form> -->
             </div>
 
         @if (sizeof($articles) > 0)
@@ -40,13 +40,9 @@
 
         </div>
 
-        <div class="row">
-            <div class="col-6">
+        <div class="row buttons">
                 <a href="{{route('dashboard')}}" class="button blue">Home</a>
-            </div>
-            <div class="col-6">
                 <a href="{{route('dashboard-article-new')}}" class="button blue">Nieuwsartikel aanmaken</a>
-            </div>
         </div>
 @endsection
 

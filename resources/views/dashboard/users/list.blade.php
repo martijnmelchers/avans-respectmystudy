@@ -6,13 +6,13 @@
         <div class="row">
             <div class="col-12 box">
             <h1>Gebruikers</h1>
-            <h3>Filter Gebruikers</h3>
+            <!-- <h3>Filter Gebruikers</h3>
                 <form method="get">
                     <div class="form-group">
                         <label for="name">Naam</label>
                     </div>
-                    <input type="submit" value="Zoeken" class="button blue small">
-                </form>
+                     <input type="submit" value="Zoeken" class="button blue small"> 
+                </form> -->
             </div>
 
         @if (sizeof($users) > 0)
@@ -33,13 +33,8 @@
 
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <a href="{{route('dashboard')}}" style="width: 100%;" class="button blue">Home</a>
-            </div>
-
-            <div class="col-md-6">
-                <a href="{{route('import')}}" style="width: 100%;" class="button blue">Gebruikers importeren</a>
-            </div>
+        <div class="row buttons">
+            <a href="{{route('dashboard')}}" class="button blue">Home</a>
+            <a href="{{route('import')}}" class="button blue">Gebruikers importeren</a>
         </div>
 @endsection
