@@ -1,15 +1,13 @@
-@extends('layouts.app')
+@extends('layouts/default')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">SurfNet koppeling</div>
-                    <div class="card-body">
-                        Wajow je bent een bedrijf
-                    </div>
-                </div>
+    <div class="row content justify-content-center">
+        <div class="col-10">
+            <div class="col box">
+                <article>
+                    <h1>Bedrijf registratie</h1>
+                    <h3>U bent al geregistreerd als een bedrijf</h3>
+                </article>
             </div>
         </div>
     </div>

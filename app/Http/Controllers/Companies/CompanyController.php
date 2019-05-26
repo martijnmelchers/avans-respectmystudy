@@ -25,9 +25,17 @@ class CompanyController extends Controller
 
     public function register(Request $request)
     {
-//        $role_id = Role::where('role_name', '=', 'Bedrijf')->pluck('id');
-        $this->validate($request, ['company_name' => 'required|max:45',
-             'location' => 'required', 'company_description' => 'required']);
+        $messages = [
+            'required' => 'The :attribute field is required.',
+            'max' => 'The :attribute fields maximum amount characters are exceeded.'
+        ];
+        $rules = [
+            'company_name' => 'required|max:45',
+            'location' => 'required',
+            'company_description' => 'required'
+        ];
+
+        $this->validate($request, $rules, $messages);
 
         Company::create([
             'user_id' => Auth::user()->id,

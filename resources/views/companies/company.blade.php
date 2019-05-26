@@ -1,7 +1,7 @@
 @extends('layouts/default')
 
 @section('content')
-    <div class="row content justify-content-center minor">
+    <div class="row content justify-content-center">
         <div class="col-10">
             <div class="col box">
                 <article>

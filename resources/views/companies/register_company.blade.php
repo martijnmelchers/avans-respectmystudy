@@ -2,6 +2,12 @@
 
 @section('content')
     <div class="row content justify-content-center minor">
+        <div class="col-10 box">
+            <article>
+                <h1>Bedrijf registratie</h1>
+                <h3>Vul onderstaand formulier in om als bedrijf te registreren</h3>
+            </article>
+        </div>
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
