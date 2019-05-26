@@ -5,4 +5,5 @@ return[
     ],
 
     'confirmed' => ':attribute komt niet overeen.',
+    'required' => 'Het :attribute veld is vereist.'
 ];

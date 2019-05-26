@@ -10,7 +10,7 @@
     <div class="row content justify-content-center ">
             <div class="box col-8 col-xl-4">
                 <h2 class="mb-4 text-center text-uppercase">{{ __('login.login') }}</h2>
-                    <form method="POST" action="{{ route('login') }}">
+                    <form id="loginForm" method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('login.email') }}</label>

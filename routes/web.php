@@ -44,6 +44,7 @@ Route::get('/organisations/{id}', 'OrganisationController@Organisation')->name('
 Route::get('/locations', "LocationController@list")->name('locations');
 Route::get('/location/{id}', 'LocationController@Location')->name('location');
 
+Route::get('/article/{id}','NewsController@Article')->name('article');
 
 //
 // Dashboard
@@ -89,6 +90,15 @@ Route::middleware([])->group(function(){
     Route::get('/dashboard/users', 'Dashboard\UserController@Users')->name('dashboard-users');
     Route::get('/dashboard/users/{id}', 'Dashboard\UserController@User')->name('dashboard-user');
     Route::post('/dashboard/users/{id}', 'Dashboard\UserController@Edit')->name('dashboard-user-edit');
+
+    Route::get('/dashboard/articles', 'Dashboard\NewsController@Articles')->name('dashboard-articles');
+    Route::get('/dashboard/articles/{id}', 'Dashboard\NewsController@Article')->name('dashboard-article');
+    Route::post('/dashboard/articles/{id}', 'Dashboard\NewsController@Edit')->name('dashboard-article-edit');
+    Route::post('/dashboard/article/create', 'Dashboard\NewsController@Create')->name('dashboard-article-create');
+    Route::get('/dashboard/article/create', 'Dashboard\NewsController@New')->name('dashboard-article-new');
+    Route::get('/dashboard/article/{id}', 'Dashboard\NewsController@Delete')->name('dashboard-article-delete');
+
+
 
     // Dashboard importing
     Route::get('/dashboard/import', function() {

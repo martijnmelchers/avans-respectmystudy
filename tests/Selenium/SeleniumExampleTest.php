@@ -14,7 +14,7 @@ class SeleniumExampleTest extends SeleniumTest
     {
         // This is a sample code you can change as per your current scenario
         $this->visit('/')
-             ->see('Laravel')
+             ->see('Vind de perfecte minor')
              ->hold(3);
     }
 }

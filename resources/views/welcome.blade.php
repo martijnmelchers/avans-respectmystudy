@@ -176,52 +176,9 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-center news-articles mb-4">
-        <div class="col-xl-9 col-10 article-wrapper">
-            <div class="box no-padding article">
-                <div class="row">
-                    <div class="col-4 article-image">
-                        <img src="svg/404.svg"/>
-                    </div>
-                    <div class="col-8 article-content">
-                        <h1 class="w-700">Studentenwoningen worden steeds duurder</h1>
-                        <h6 class="w-300">Geschreven door: Juliet de boer | Geplaatst op 5 april 2019</h6>
-                        <p class="intro-content c-primary f-primary w-400">
-                            Voorbeeld!
-                        </p>
-                        <div class="article-actions text-right">
-                            <a href="/" class="button blue">{{__('home.buttons.readfurtherbutton')}}</a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-9 col-10 article-wrapper">
-            <div class="box no-padding article">
-                <div class="row">
-                    <div class="col-4 article-image">
-                        <img src="svg/404.svg"/>
-                    </div>
-                    <div class="col-8 article-content">
-                        <h1 class="w-700">Respectmystudy beste site van het jaar</h1>
-                        <h6 class="w-300">Geschreven door: Juliet de boer | Geplaatst op 1 april 2019</h6>
-                        <p class="intro-content c-primary f-primary w-400">
-                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                            tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-                            takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-                            consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                            dolore magna…
-                        </p>
-                        <div class="article-actions text-right">
-                            <a href="/" class="button blue">{{__('home.buttons.readfurtherbutton')}}</a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
+    
+    @component('articles.components.newsblock')
+    @endcomponent
 @endsection
 @section('head')
     <link href="/css/homepage.css" type="text/css" rel="stylesheet">
