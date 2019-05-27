@@ -7,4 +7,6 @@ return [
     'login' => 'Login',
     'register' => 'Register',
     'language' => 'Language',
+
+    'companies' => 'Companies',
 ];
