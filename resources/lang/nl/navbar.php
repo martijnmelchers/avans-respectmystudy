@@ -7,4 +7,6 @@ return [
     'login' => 'Inloggen',
     'register' => 'Registreren',
     'language' => 'Taal',
+
+    'companies' => 'Bedrijven',
 ];
