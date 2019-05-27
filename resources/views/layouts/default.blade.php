@@ -42,7 +42,7 @@
     <div class="nav-buttons">
         <a href="/" class="{{ Request::is('/') ? 'active' : '' }}">Home</a>
         <a href="{{route('minors')}}" class="{{ Request::is('minors') ? 'active' : '' }}">{{__('navbar.minors')}}</a>
-        <a href="{{route('companies')}}" class="{{ Request::is('companies') ? 'active' : '' }}">{{__('Companies')}}</a>
+        <a href="{{route('companies')}}" class="{{ Request::is('companies') ? 'active' : '' }}">{{__('navbar.companies')}}</a>
         <a href="{{route('map')}}" class="{{ Request::is('map') ? 'active' : '' }}">{{__('navbar.map')}}</a>
 
         <a href="{{route('organisations')}}"
@@ -79,10 +79,10 @@
             <div class="item">{{__('navbar.language')}}</div>
             <div class="drop">
                 <a class="flagwrapper" href="{{route('lang', 'nl')}}">
-                    <img class="item flag" src="https://cdn.wordquest.nl/flags/medium/nl.png" alt="Nederlands">
+                    <img class="item flag" src="/img/nl.png" alt="Nederlands">
                 </a>
                 <a class="flagwrapper" href="{{route('lang', 'en')}}">
-                    <img class="item flag" src="https://cdn.wordquest.nl/flags/medium/fr.png" alt="English">
+                    <img class="item flag" src="/img/gb.png" alt="English">
                 </a>
             </div>
         </div>
