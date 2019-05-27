@@ -28,8 +28,8 @@ Route::get('companies/login_company', 'Auth\CompanyLoginController@showLoginForm
 Route::post('companies/login_company', 'Auth\CompanyLoginController@login')->name('company-login-submit');
 
 
-Route::get('/companies/companies', 'Companies\CompanyController@companyList')->name('companies');
-Route::get('/companies/company/{id}', 'Companies\CompanyController@company')->name('company');
+Route::get('/companies/', 'Companies\CompanyController@companyList')->name('companies');
+Route::get('/company/{id}', 'Companies\CompanyController@company')->name('company');
 
 Auth::routes();
 
