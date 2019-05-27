@@ -78,10 +78,10 @@
         <div class="dropdown">
             <div class="item">{{__('navbar.language')}}</div>
             <div class="drop">
-                <a href="{{route('lang', 'nl')}}">
+                <a class="flagwrapper" href="{{route('lang', 'nl')}}">
                     <img class="item flag" src="https://cdn.wordquest.nl/flags/medium/nl.png" alt="Nederlands">
                 </a>
-                <a href="{{route('lang', 'en')}}">
+                <a class="flagwrapper" href="{{route('lang', 'en')}}">
                     <img class="item flag" src="https://cdn.wordquest.nl/flags/medium/fr.png" alt="English">
                 </a>
             </div>

@@ -28,20 +28,20 @@
     .nav-buttons {
         display: flex;
         justify-content: space-between;
-        padding: 14px 10px 14px 0;
+        padding: 10px 10px 10px 0;
         font-size: 15px;
 
         a, .item {
             margin: 0 7px;
             cursor: pointer;
             font-weight: 500;
-            font-size: 17px;
+            font-size: 16px;
             width: fit-content;
 
             &.active {
                 border-bottom: 2px solid $primary-red;
                 font-weight: bold;
-                padding-bottom: 3px;
+                padding-bottom: 2px;
             }
         }
     }
@@ -62,6 +62,10 @@
             border-radius: 3px;
             padding: 2px;
 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
             -webkit-transition: top 0.2s, opacity 0.2s, visibility 0.2s;
             -moz-transition: top 0.2s, opacity 0.2s, visibility 0.2s;
             -ms-transition: top 0.2s, opacity 0.2s, visibility 0.2s;
@@ -70,6 +74,10 @@
             visibility: hidden;
             opacity: 0;
             top: 90%;
+
+            .flagwrapper {
+                margin: 2px auto;
+            }
 
             &::after {
                 display: block;
@@ -98,7 +106,7 @@
         }
     }
 
-    @media all and (max-width: 900px) {
+    @media all and (max-width: 1040px) {
         -webkit-transition: height 0.6s, max-heigth 0.6s;
         -moz-transition: height 0.6s, max-heigth 0.6s;
         -ms-transition: height 0.6s, max-heigth 0.6s;
@@ -120,7 +128,7 @@
             top: 60px;
             background: #f5f5f5;
             width: 100%;
-            font-size: 17px;
+            font-size: 16px;
             padding: 20px;
             justify-content: flex-start;
         }
