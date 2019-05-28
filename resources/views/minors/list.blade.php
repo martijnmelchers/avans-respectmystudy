@@ -125,9 +125,9 @@
                                                 </div>
 
                                             </div>
-                                            <div class="row stars">
+                                            <div class="row stars col-xl">
 
-                                                <div class="col-4 text-center">
+                                                <div class="text-center">
                                                     <div class="mb-2">
                                                         @for ($i = 0; $i < 5; $i++)
                                                             @if ($minor->averageReviews()[0] > $i)
@@ -147,7 +147,7 @@
                                                 </div>
 
 
-                                                <div class="col-4 text-center">
+                                                <div class="text-center">
                                                     <div class="mb-2">
 
                                                         @for ($i = 0; $i < 5; $i++)
@@ -169,7 +169,7 @@
                                                 </div>
 
 
-                                                <div class="col-4 text-center">
+                                                <div class="text-center">
                                                     <div class="mb-2">
 
                                                         @for ($i = 0; $i < 5; $i++)
