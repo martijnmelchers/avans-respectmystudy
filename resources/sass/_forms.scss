@@ -8,6 +8,10 @@ form, .form {
             color: $font-color-primary;
             font-weight: 500;
             margin-bottom: 5px;
+
+            &.inline-block {
+                display: inline-block;
+            }
         }
 
         input:not([type='checkbox']), select, .collapse, textarea {
