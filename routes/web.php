@@ -133,6 +133,7 @@ Route::middleware([])->group(function(){
     Route::get('/import/locations', 'ImportController@Locations');
     Route::get('/import/contactpersons', 'ImportController@ContactPersons');
     Route::get('/import/contactgroups', 'ImportController@ContactGroups');
+    Route::get('/import/tags', 'ImportController@Tags');
 
     Route::get('/dashboard/dashboard_assessable', 'DashboardminorsController@Minors_to_assess')->name('assessable');
 
