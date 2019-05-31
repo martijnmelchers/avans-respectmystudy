@@ -14,9 +14,8 @@ class ArticleAddAuthor extends Migration
     public function up()
     {
         Schema::table('article', function(Blueprint $table){
-            $table->unsignedInteger('author_id');
+            $table->unsignedInteger('author_id')->nullable();
             $table->foreign('author_id')->references('id')->on('users');
-
         });
 
     }
@@ -28,6 +27,8 @@ class ArticleAddAuthor extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('article', function(Blueprint $table) {
+            $table->dropColumn('author_id');
+        });
     }
 }
