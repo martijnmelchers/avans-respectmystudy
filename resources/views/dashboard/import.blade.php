@@ -29,6 +29,7 @@
                 <div class="button blue" onclick="importSchools()">Importeer Organisaties</div>
                 <div class="button blue" onclick="importPersons()">Importeer Contactpersonen</div>
                 <div class="button blue" onclick="importGroups()">Importeer Contactgroepen</div>
+                <div class="button blue" onclick="importTags()">Importeer Tags</div>
             </div>
         </div>
 
