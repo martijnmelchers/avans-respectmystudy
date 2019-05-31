@@ -26,13 +26,14 @@ class MinorController extends Controller
         if (isset($_GET['page']) && intval($_GET['page']) !== null) $page = intval($_GET['page']);
 
         $minors = Minor::all()
+            ->groupBy('id')
             ->toArray();
 
         $selected_minors = $compatible_minors = [];
 
         // Sort new minor list array by name
         usort($minors, function ($a, $b) {
-            return $a['name'] <=> $b['name'];
+            return $a[0]['name'] <=> $b[0]['name'];
         });
 
         $skip = 0;
@@ -41,7 +42,7 @@ class MinorController extends Controller
         foreach ($minors as $m) {
 
             // Select the model of the minor
-            $minor = Minor::where('id', $m['id'])->first();
+            $minor = Minor::where('id', $m[0]['id'])->first();
             $add_minor = true;
 
             // Check if the name matches the search
@@ -65,6 +66,21 @@ class MinorController extends Controller
                     $add_minor = false;
             }
 
+            // Check if is_published was set
+            if (isset($is_published) && $is_published != "") {
+                // Minor has to have a published version
+                if ($is_published == "yes") {
+                    if (!$minor->published_version()) {
+                        $add_minor = false;
+                    }
+                    // Minor can't be published
+                } else if ($is_published == "no") {
+                    if ($minor->published_version() !== null) {
+                        $add_minor = false;
+                    }
+                }
+            }
+
             // Check if the array matches search criteria
             if ($add_minor) {
                 // Add the array to the complete list of matching minors
@@ -83,9 +99,14 @@ class MinorController extends Controller
         // Calculate the amount of pages
         $pages = sizeof($compatible_minors) / $per_page;
 
-        return view('dashboard/minors/list', ['minors' => $selected_minors,
-            'search' => ['name' => $minor_name,
-                'is_published' => $is_published], "page" => $page,
+        return view('dashboard/minors/list', [
+            'minors' => $selected_minors,
+            'compatible_minors' => $compatible_minors,
+            'search' => [
+                'name' => $minor_name,
+                'is_published' => $is_published
+            ],
+            "page" => $page,
             "pages" => $pages,
             "request" => $request,
             "tags" => Tag::orderBy('tag')->get(),
@@ -93,8 +114,7 @@ class MinorController extends Controller
         ]);
     }
 
-    public
-    function Minor($id)
+    public function Minor($id)
     {
         if (isset($_GET['v']))
             $minor = Minor::where('id', $id)->where('version', $_GET['v'])->first();

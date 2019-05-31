@@ -6,6 +6,7 @@
     <div class="row">
         <div class="col-12 box margin">
             <h1>Minoren</h1>
+            <p>{{sizeof($compatible_minors)}} minoren gevonden</p>
 
             <h6>Filter minoren</h6>
             <form method="get">
@@ -56,7 +57,7 @@
                         <h4>{{$minor->name}}</h4>
                         <div class="description">
                             <p>Versie {{$minor->version}}</p>
-                            <p>Gepubliceerd {{$minor->is_published ? "Ja" : "Nee"}}</p>
+                            <p>Gepubliceerd {{$minor->published_version() !== null ? "Ja" : "Nee"}}</p>
                             <p>{{$minor->contactGroup ? $minor->contactGroup->name : "Geen contactpersoon"}}</p>
                             <p>{{$minor->tags->count() . " tags"}}</p>
                         </div>

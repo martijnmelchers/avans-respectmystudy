@@ -54,7 +54,7 @@ class Minor extends Model
 
     public function published_version()
     {
-        return Minor::find($this->id)->where('is_published', 1)->first();
+        return Minor::where("id", $this->id)->where('is_published', 1)->first();
     }
 
     // Return contact persons
