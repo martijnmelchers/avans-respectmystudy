@@ -28,6 +28,23 @@
                     </select>
                 </div>
 
+                <div class="form-group">
+                    <label>Tags</label>
+                    <div class="collapse">
+                        <div class="title">{{sizeof($selected_tags)}} {{__('minors.selected')}}</div>
+                        <div class="drop">
+                            @foreach($tags as $tag)
+                                <div class="form-group">
+                                    <input name="tags[]"
+                                           <?php if (in_array($tag->id, $selected_tags)) echo "checked"; ?> type="checkbox"
+                                           id="{{$tag->id}}" value="{{$tag->id}}">
+                                    <label class="inline-block" for="{{$tag->id}}">{{$tag->tag}}</label>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
                 <input type="submit" value="Zoeken" class="button blue small">
             </form>
         </div>
@@ -41,6 +58,7 @@
                             <p>Versie {{$minor->version}}</p>
                             <p>Gepubliceerd {{$minor->is_published ? "Ja" : "Nee"}}</p>
                             <p>{{$minor->contactGroup ? $minor->contactGroup->name : "Geen contactpersoon"}}</p>
+                            <p>{{$minor->tags->count() . " tags"}}</p>
                         </div>
                     </a>
                 @endforeach
