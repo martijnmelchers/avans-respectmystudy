@@ -7,6 +7,7 @@ use App\ContactPerson;
 use App\Location;
 use App\Minor;
 use App\Organisation;
+use App\Tag;
 
 class ImportController extends Controller
 {
@@ -166,6 +167,27 @@ class ImportController extends Controller
                             $messages[] = "Contactpersoon $r->id toegevoegd!";
                         } else {
                             $errors[] = "Contactpersoon $r->id niet gevonden!";
+                        }
+                    }
+                }
+            }
+
+            // Bind tags/choicethemes (KOM calls them choicethemes, we call them tags)
+            if (isset($r->choicethemes)) {
+                $minor = Minor::all()->where("id", $r->id)->first();
+
+                if (isset($minor)) {
+                    $minor->tags()->detach();
+
+                    foreach ($r->choicethemes as $choicetheme) {
+                        $tag = Tag::where("id", $choicetheme)->first();
+
+                        if (isset($tag)) {
+                            $minor->tags()->attach($tag);
+                            $minor->save();
+                            $messages[] = "Tag $tag->tag toegevoegd!";
+                        } else {
+                            $errors[] = "Tag $r->id niet gevonden!";
                         }
                     }
                 }
@@ -399,6 +421,47 @@ class ImportController extends Controller
         $php_result->messages = $messages;
         $php_result->errors = $errors;
 
+        return response()->json($php_result, 200, [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
+            ->header('Content-Type', 'text/json');
+    }
+
+    public function Tags()
+    {
+        $messages = $errors = [];
+
+        $page = (isset($_GET['page']) && $_GET['page'] > 0 ? "?page=" . $_GET['page'] : "");
+        $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
+        $php_result = getCurl("https://www.kiesopmaat.nl/api/public/choicetheme/$page", ["Authorization: Token $kiesopmaat_token"]);
+
+        // Get KIESOPMAAT error
+        if (isset($php_result->detail)) {
+            return response()->json($php_result);
+        }
+
+
+        foreach ($php_result->results as $r) {
+            $tag = Tag::where("id", $r->id)->first();
+
+            if (isset($tag)) {
+                $tag->update([
+                    'name' => $r->name
+                ]);
+
+                if (!$tag->save())
+                    $errors[] = "Er ging iets mis bij het updaten van $r->name";
+            } else {
+                $tag = new Tag([
+                    'id' => $r->id,
+                    'tag' => $r->name
+                ]);
+
+                if (!$tag->save())
+                    $errors[] = "Er ging iets mis bij het toevoegen van $r->name";
+            }
+        }
+
+        $php_result->errors = $errors;
+        $php_result->messages = $messages;
         return response()->json($php_result, 200, [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
             ->header('Content-Type', 'text/json');
     }
