@@ -60,6 +60,19 @@
         </div>
 
         <div class="col-12 box margin">
+            <h3>Tags</h3>
+            @if ($minor->tags->count() > 0)
+                <ul>
+                    @foreach ($minor->tags as $tag)
+                        <li><a href="{{route('dashboard-minors', ['tags'=>[$tag->id]])}}">{{$tag->tag}}</a></li>
+                    @endforeach
+                </ul>
+            @else
+                <p>Deze minor heeft geen tags</p>
+            @endif
+        </div>
+
+        <div class="col-12 box margin">
             <h3>Contact</h3>
             @if (isset($minor->contactGroup))
                 <p>Het contactpersoon voor deze minor is <b>{{$minor->contactGroup->name}}</b>, te bereiken op
@@ -85,7 +98,8 @@
                         <li>{{$contactperson->firstname}}
                             {{$contactperson->middlename}}
                             {{$contactperson->lastname}}
-                            <b>{{(!empty($contactperson->email) ? $contactperson->email : "Geen email ingesteld")}}</b></li>
+                            <b>{{(!empty($contactperson->email) ? $contactperson->email : "Geen email ingesteld")}}</b>
+                        </li>
                     @endforeach
                 </ul>
             @else
