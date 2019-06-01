@@ -10,7 +10,7 @@
 
 
     <div class="row content">
-        <div class="col-xl-2 mb-4">
+        <div class="col-xl-3 mb-4">
             <div class="box">
                 <h3 class="text-center text-uppercase w-700 f-primary">{{__('minors.filter')}}</h3>
                 <p class="text-center w-500 f-primary c-primary">{{$total_minor_amount == 0 ? __('minors.none_found') : "{$total_minor_amount} " . __('minors.minors_found')  }}</p>
@@ -37,7 +37,8 @@
                                         <input name="organisations[]"
                                                <?php if (in_array($organisation['id'], $selected_organisations)) echo "checked"; ?> type="checkbox"
                                                id="{{$organisation->id}}" value="{{$organisation->id}}">
-                                        <label class="inline-block" for="{{$organisation->id}}">{{$organisation->name}}</label>
+                                        <label class="inline-block"
+                                               for="{{$organisation->id}}">{{$organisation->name}}</label>
                                     </div>
                                 @endforeach
                             </div>
@@ -241,7 +242,9 @@
                         </div>
                     </div>
                 @else
-                    <p>{{__('minors.none_found')}}</p>
+                    <div class="col-12 box">
+                        <p>{{__('minors.none_found')}}</p>
+                    </div>
                 @endif
             </div>
         </div>

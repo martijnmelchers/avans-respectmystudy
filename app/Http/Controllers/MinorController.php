@@ -86,10 +86,10 @@ class MinorController extends Controller
                 foreach ($selected_tags as $tag) {
                     if ($minor->tags->contains($tag))
                         $found_tag = true;
-
-                    if ($found_tag)
-                        $all_minors[] = $minor;
                 }
+
+                if ($found_tag)
+                    $all_minors[] = $minor;
             }
         }
 
