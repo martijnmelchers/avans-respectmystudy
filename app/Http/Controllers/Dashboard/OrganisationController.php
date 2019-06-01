@@ -32,16 +32,28 @@ class OrganisationController extends Controller
         return view('dashboard/organisations/edit', ['organisation' => Organisation::where('id', $id)->first()]);
     }
 
-    public function EditPost($id)
+    public function EditPost($id, Request $request)
     {
         Organisation::where("id", $id)
             ->update([
                 "name" => Input::get("name"),
+                "organisation_image" => Input::get("organisation_image"),
                 "abbreviation" => Input::get("abbrev"),
                 "type" => Input::get("type"),
                 "participates" => Input::get("participates") !== null
             ]);
 
+        $organisation = Organisation::findOrFail($id);
+        $organisation->fill($request->all());
+
+        if($request->hasFile('featured_image')){
+            $organisation->featured_image = OrganisationController::SaveFeatured($request);
+        }
+
         return redirect()->route('dashboard-organisation', ["id" => $id]);
+    }
+
+    private static function SaveFeatured(Request $request){
+        return $request->file('featured_image')->store('public');
     }
 }

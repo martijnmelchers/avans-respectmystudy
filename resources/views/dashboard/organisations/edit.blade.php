@@ -15,6 +15,11 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="featured_image">Afbeelding organisatie</label>
+                    <input type="file" name="organisation_image" id="organisation_image">
+                </div>
+
+                <div class="form-group">
                     <label for="abbrev">Afkorting</label>
                     <input type="text" name="abbrev" id="abbrev" value="{{$organisation->abbreviation}}">
                 </div>
