@@ -8,6 +8,7 @@ return [
     'organisation' => 'Organisation',
     'selected' => 'selected',
     'language' => 'Language',
+    'tags' => 'Tags',
     'sort' => 'Sort',
     'no_sort' => 'No order',
     'none_found' => 'No minors found',

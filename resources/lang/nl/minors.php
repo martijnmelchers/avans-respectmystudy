@@ -8,6 +8,7 @@ return [
     'organisation' => 'Organisatie',
     'selected' => 'geselecteerd',
     'language' => 'Talen',
+    'tags' => 'Tags',
     'sort' => 'Sorteren',
     'no_sort' => 'Geen volgorde',
     'none_found' => 'Geen minors gevonden',

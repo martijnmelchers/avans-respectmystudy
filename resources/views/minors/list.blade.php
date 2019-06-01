@@ -37,7 +37,7 @@
                                         <input name="organisations[]"
                                                <?php if (in_array($organisation['id'], $selected_organisations)) echo "checked"; ?> type="checkbox"
                                                id="{{$organisation->id}}" value="{{$organisation->id}}">
-                                        <label for="{{$organisation->id}}">{{$organisation->name}}</label>
+                                        <label class="inline-block" for="{{$organisation->id}}">{{$organisation->name}}</label>
                                     </div>
                                 @endforeach
                             </div>
@@ -55,7 +55,25 @@
                                         <input name="languages[]"
                                                <?php if (in_array($language, $selected_languages)) echo "checked"; ?> type="checkbox"
                                                id="{{$language}}" value="{{$language}}">
-                                        <label for="{{$language}}">{{$language}}</label>
+                                        <label class="inline-block" for="{{$language}}">{{$language}}</label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>{{__('minors.tags')}}</label>
+                        <div class="collapse">
+                            <div class="title">{{sizeof($selected_tags)}} {{__('minors.selected')}}</div>
+                            <div class="drop">
+                                @foreach($tags as $tag)
+                                    <div class="formline">
+                                        <input name="tags[]"
+                                               <?php if (in_array($tag->id, $selected_tags)) echo "checked"; ?> type="checkbox"
+                                               id="{{$tag->id}}" value="{{$tag->id}}">
+                                        <label class="inline-block" for="{{$tag->id}}">{{$tag->tag}}</label>
                                     </div>
                                 @endforeach
                             </div>
@@ -197,9 +215,6 @@
                                                 <h3 class="w-700 text-uppercase">
                                                     {{__('minors.no_reviews')}}
                                                 </h3>
-                                                <p>
-                                                    content
-                                                </p>
                                             </div>
                                         @endif
                                     </div>
