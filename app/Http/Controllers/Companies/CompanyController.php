@@ -30,13 +30,13 @@ class CompanyController extends Controller
             'required' => 'The :attribute field is required.',
             'max' => 'The :attribute fields maximum amount characters are exceeded.'
         ];
+
         $rules = [
             'company_name' => 'required|max:45',
             'location' => 'required',
             'company_description' => 'required',
             'websitelink' => 'required',
-            'environmental_goals' => 'required',
-            'company_image' => 'required'
+            'environmental_goals' => 'required'
         ];
 
         $this->validate($request, $rules, $messages);
@@ -49,10 +49,11 @@ class CompanyController extends Controller
             'location' => $request->get('location'),
             'company_website' => $request->get('websitelink'),
             'environmental_goals' => $request->get('environmental_goals'),
-            'company_image' => $request->get('company_image')
+            'company_image' => $request->file('company_image')->store('public')
             ]);
 
         return redirect('/');
+
     }
 
     public function companyList(){

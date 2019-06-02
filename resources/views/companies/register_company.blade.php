@@ -18,7 +18,7 @@
         </div>
     @endif
         <div class="col-10">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <input class="titlefield" type="text" name="company_name" placeholder="Bedrijfsnaam">
@@ -42,7 +42,7 @@
                               type="message"></textarea>
                 </div>
                 <div class="form-group">
-                    <input class="titlefield" type="file" name="company_picture" placeholder="">
+                    <input class="titlefield" type="file" name="company_image" size="100">
                 </div>
                 <div class="form-group">
                     <input class="button-blue" type="submit" value="Registreer">
