@@ -1,5 +1,4 @@
-@extends('layouts/default')
-
+@extends('layouts/dashboard')
 @section("title", "Minor")
 
 @section('head')

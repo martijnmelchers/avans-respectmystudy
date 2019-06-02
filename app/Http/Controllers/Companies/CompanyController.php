@@ -32,7 +32,10 @@ class CompanyController extends Controller
         $rules = [
             'company_name' => 'required|max:45',
             'location' => 'required',
-            'company_description' => 'required'
+            'company_description' => 'required',
+            'websitelink' => 'required',
+            'environmental_goals' => 'required',
+            'company_image' => 'required'
         ];
 
         $this->validate($request, $rules, $messages);
@@ -42,10 +45,13 @@ class CompanyController extends Controller
             'company_name' => $request->get('company_name'),
             'company_description' => $request->get('company_description'),
             'extra_information' => $request->get('extra_information'),
-            'location' => $request->get('location')]);
+            'location' => $request->get('location'),
+            'company_website' => $request->get('websitelink'),
+            'environmental_goals' => $request->get('environmental_goals'),
+            'company_image' => $request->get('company_image')
+            ]);
 
         return redirect('/');
-
     }
 
     public function companyList(){

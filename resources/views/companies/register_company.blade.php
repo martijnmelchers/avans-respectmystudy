@@ -35,6 +35,16 @@
                               type="message"></textarea>
                 </div>
                 <div class="form-group">
+                    <input class="titlefield" type="text" name="websitelink" placeholder="Websitelink">
+                </div>
+                <div class="form-group">
+                    <textarea name="environmental_goals" required placeholder="Milieu ambities..."
+                              type="message"></textarea>
+                </div>
+                <div class="form-group">
+                    <input class="titlefield" type="file" name="company_picture" placeholder="">
+                </div>
+                <div class="form-group">
                     <input class="button-blue" type="submit" value="Registreer">
                 </div>
             </form>
