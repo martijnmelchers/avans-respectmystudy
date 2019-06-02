@@ -2,9 +2,11 @@
 
 return [
     'minors' => 'Minors',
-    'map' => 'Map',
+    'map' => 'Kaart',
     'organisations' => 'Organisaties',
     'login' => 'Inloggen',
     'register' => 'Registreren',
     'language' => 'Taal',
+
+    'companies' => 'Bedrijven',
 ];

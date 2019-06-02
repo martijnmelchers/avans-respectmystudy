@@ -63,12 +63,6 @@ function importProgrammes(page = 1, progress = 0) {
         document.getElementsByClassName("text")[0].innerHTML = "Minors importeren";
         document.getElementsByClassName("inner")[0].style.width = ((100 * progress) / total) + "%";
 
-        if (o.errors != null && o.errors.length > 0) {
-            o.errors.forEach(function (e) {
-                addError(e);
-            });
-        }
-
         if (o.next != null) {
             importProgrammes(page + 1, progress);
         }
@@ -89,12 +83,6 @@ function importPersons(page = 1, progress = 0) {
 
         document.getElementsByClassName("text")[0].innerHTML = total + " Contactpersonen importeren";
         document.getElementsByClassName("inner")[0].style.width = ((100 * progress) / total) + "%";
-
-        if (o.errors != null && o.errors.length > 0) {
-            o.errors.forEach(function (e) {
-                addError(e);
-            });
-        }
 
         if (o.next != null) {
             importPersons(page + 1, progress);

@@ -22,11 +22,11 @@
                 <h3>Aantal organisaties</h3>
                 <h1>{{$organisation_amount}}</h1>
             </a>
-            <a class="item" href="">
+            <a class="item">
                 <h3>Aantal contactpersonen</h3>
                 <h1>{{$contactpersons_amount}}</h1>
             </a>
-            <a class="item" href="">
+            <a class="item" href="{{route("dashboard-contactgroups")}}">
                 <h3>Aantal contactgroepen</h3>
                 <h1>{{$contactgroups_amount}}</h1>
             </a>

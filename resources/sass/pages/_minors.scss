@@ -7,7 +7,7 @@
     .no-reviews {
         i {
             color: $primary-red;
-            display:inline;
+            display: inline;
             font-size: 24px;
             padding-right: 5px;
         }
@@ -42,9 +42,6 @@
 
         b, p {
             font-size: 16px;
-        }
-
-        p {
             text-align: center;
         }
     }
@@ -118,9 +115,9 @@
 }
 
 .text-lined {
-    border-top: 2px solid rgb(236, 240, 241);
+    font-size: 16px;
     border-bottom: 2px solid rgb(236, 240, 241);
-    padding: 5px 0;
+    padding-bottom: 20px;
 }
 
 .text-error {
@@ -165,30 +162,30 @@
     border: 2px solid rgba(0, 0, 0, 0.1);
     padding: 2px;
     overflow: hidden;
-}
 
-.bar .inner {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    background: #F64646;
-    -webkit-transition: width 0.2s;
-    -moz-transition: width 0.2s;
-    -ms-transition: width 0.2s;
-    -o-transition: width 0.2s;
-    transition: width 0.2s;
-    z-index: 1;
-}
+    .inner {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        background: #F64646;
+        -webkit-transition: width 0.2s;
+        -moz-transition: width 0.2s;
+        -ms-transition: width 0.2s;
+        -o-transition: width 0.2s;
+        transition: width 0.2s;
+        z-index: 1;
+    }
 
-.bar .text {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 2;
-    width: 100%;
-    height: 100%;
-    color: black;;
+    .text {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        color: black;;
+    }
 }
 
 .review-detail:not(:last-child) {

@@ -90,17 +90,21 @@
                                     <div class="col-10">
                                         <div>
                                             <h4 class="w-700 text-uppercase">{{$minor->name}}</h4>
-                                            <p class="text-small text-lined">{{Strip_tags(substr($minor->subject, 0, 550))}}
-                                                ...</p>
+                                            <p class="text-small text-lined f-secondary c-secondary">
+                                                {{Strip_tags(substr($minor->subject, 0, 550))}}...
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="col-2">
                                         <img class="organisation_img"
                                              src="https://wordquest.nl/media/avatars/PixelAstronaut.gif" alt="">
-                                        <h3 class="points text-center"><span class="ec">{{$minor->ects}}</span> EC</h3>
+                                        <h3 class="points text-center f-primary w-600">
+                                            <span class="c-black">{{$minor->ects}},0</span>
+                                            <span class="c-secondary">EC</span>
+                                        </h3>
                                     </div>
                                 </div>
-
+                                <br>
                                 <div class="row info-gray">
                                     <div class="col-4">
                                         <p class="mb-1"><b>{{__('minors.education_period')}}</b></p>
@@ -114,7 +118,7 @@
                                                     <h6 class="w-700">{{__('minors.student_rating')}}</h6>
                                                 </div>
                                                 <div class="col-xl-4">
-                                                    <div class="amount">
+                                                    <div class="label float-right">
                                                         <i class="fas fa-comments"></i>&nbsp
                                                         {{ $minor->averageReviews()[3]}} reviews
                                                     </div>

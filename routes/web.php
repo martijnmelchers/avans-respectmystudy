@@ -28,8 +28,8 @@ Route::get('companies/login_company', 'Auth\CompanyLoginController@showLoginForm
 Route::post('companies/login_company', 'Auth\CompanyLoginController@login')->name('company-login-submit');
 
 
-Route::get('/companies/companies', 'Companies\CompanyController@companyList')->name('companies');
-Route::get('/companies/company/{id}', 'Companies\CompanyController@company')->name('company');
+Route::get('/companies/', 'Companies\CompanyController@companyList')->name('companies');
+Route::get('/company/{id}', 'Companies\CompanyController@company')->name('company');
 
 Auth::routes();
 
@@ -56,6 +56,7 @@ Route::get('/organisations/{id}', 'OrganisationController@Organisation')->name('
 Route::get('/locations', "LocationController@list")->name('locations');
 Route::get('/location/{id}', 'LocationController@Location')->name('location');
 
+Route::get('/article/{id}','NewsController@Article')->name('article');
 
 //
 // Dashboard
@@ -95,12 +96,30 @@ Route::middleware([])->group(function(){
     // Specific organisation
     Route::get('/dashboard/organisations/{id}', 'Dashboard\OrganisationController@Organisation')->name('dashboard-organisation');
 
+    // Edit organisation
+    Route::get('/dashboard/organisations/{id}/edit', 'Dashboard\OrganisationController@Edit')->name('dashboard-organisation-edit');
+    Route::post('/dashboard/organisations/{id}/edit', 'Dashboard\OrganisationController@EditPost')->name('dashboard-organisation-edit');
+
+
+    // Contact groups
+    Route::get('/dashboard/contactgroups', 'Dashboard\ContactGroupController@ContactGroups')->name('dashboard-contactgroups');
+    Route::get('/dashboard/contactgroup/{id}', 'Dashboard\ContactGroupController@ContactGroup')->name('dashboard-contactgroup');
+
     // Reviews
     Route::get('/dashboard/reviews', 'DashboardController@Reviews')->name('dashboard-reviews');
     // Users
     Route::get('/dashboard/users', 'Dashboard\UserController@Users')->name('dashboard-users');
     Route::get('/dashboard/users/{id}', 'Dashboard\UserController@User')->name('dashboard-user');
     Route::post('/dashboard/users/{id}', 'Dashboard\UserController@Edit')->name('dashboard-user-edit');
+
+    Route::get('/dashboard/articles', 'Dashboard\NewsController@Articles')->name('dashboard-articles');
+    Route::get('/dashboard/articles/{id}', 'Dashboard\NewsController@Article')->name('dashboard-article');
+    Route::post('/dashboard/articles/{id}', 'Dashboard\NewsController@Edit')->name('dashboard-article-edit');
+    Route::post('/dashboard/article/create', 'Dashboard\NewsController@Create')->name('dashboard-article-create');
+    Route::get('/dashboard/article/create', 'Dashboard\NewsController@New')->name('dashboard-article-new');
+    Route::get('/dashboard/article/{id}', 'Dashboard\NewsController@Delete')->name('dashboard-article-delete');
+
+
 
     // Dashboard importing
     Route::get('/dashboard/import', function() {

@@ -3,9 +3,9 @@
 @section('content')
 
     <div class="row content justify-content-center">
-        <div class="box col-5">
+        <div class="box col-xl-5 col-8">
                 <h2 class="mb-4 text-center text-uppercase">{{ __('register.register') }}</h2>
-                    <form method="POST" action="{{ route('register') }}">
+                    <form id="registerForm" method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -58,7 +58,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="role" class="col-md-4 col-form-label text-md-right">Role</label>
+                            <label for="role" class="col-md-4 col-form-label text-md-right">Soort account</label>
 
                             <div class="col-md-6">
                                 <label><input type="radio" id="student" name="role" value="4"/> Student </label>

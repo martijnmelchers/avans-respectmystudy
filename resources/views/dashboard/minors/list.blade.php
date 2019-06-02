@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-12 box">
+        <div class="col-12 box margin">
             <h1>Minoren</h1>
 
             <h6>Filter minoren</h6>
