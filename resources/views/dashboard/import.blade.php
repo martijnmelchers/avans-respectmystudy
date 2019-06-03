@@ -23,7 +23,11 @@
 
             </div>
 
-            <div class="buttons">
+            <div class="buttons stretch">
+                <div class="button blue" onclick="importAll()">Importeer alles</div>
+            </div>
+
+            <div class="buttons stretch small">
                 <div class="button blue" onclick="importProgrammes()">Importeer minors</div>
                 <div class="button blue" onclick="importLocations()">Importeer Locaties</div>
                 <div class="button blue" onclick="importSchools()">Importeer Organisaties</div>
