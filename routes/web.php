@@ -82,7 +82,7 @@ Route::middleware([])->group(function(){
 
     // Create new minor
     Route::get('/dashboard/minors/create', 'Dashboard\MinorController@Create')->name('dashboard-minor-create');
-    Route::post('/dashboard/minors/create', 'Dashboard\MinorController@CreatePost')->name('dashboard-minor-create');
+    Route::post('/dashboard/minors/create', 'Dashboard\MinorController@CreatePost');
 
     // Location list
     Route::get('/dashboard/locations', 'Dashboard\LocationController@Locations')->name('dashboard-locations');
