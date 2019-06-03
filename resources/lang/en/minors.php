@@ -34,6 +34,7 @@ return [
     'minor_location' => 'Locations where this minor is given:',
     'minor_location_info' => 'Click on a location to see more information.',
     'minor_no_locations' => 'We have not found any locations for this minor.',
+    'minor_language' => 'Deze minor wordt gegeven in het ',
 
     'new_review' => 'Add a new review',
 

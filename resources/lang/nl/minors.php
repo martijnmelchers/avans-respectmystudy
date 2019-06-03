@@ -15,9 +15,9 @@ return [
 
     'more_info' => 'Meer info',
 
-    'education_period'  => 'Onderwijsperiodes',
-    'no_education_period'=>'Geen onderwijsperiode',
-    'no_registration_date'=>'Geen inschrijfdatum',
+    'education_period' => 'Onderwijsperiodes',
+    'no_education_period' => 'Geen onderwijsperiode',
+    'no_registration_date' => 'Geen inschrijfdatum',
     'student_rating' => 'Beoordelingen door studenten',
     'no_reviews' => 'Nog geen reviews',
     'reviews_average' => 'Gemiddeld',
@@ -34,6 +34,7 @@ return [
     'minor_location' => 'Locaties waar deze minor wordt gegeven:',
     'minor_location_info' => 'Klik op een locatie om er meer over te zien.',
     'minor_no_locations' => 'We hebben geen locaties gevonden waar deze minor wordt gegeven.',
+    'minor_language' => 'Deze minor wordt gegeven in het ',
 
     'new_review' => 'Voeg een nieuwe review toe',
 
