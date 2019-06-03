@@ -6,6 +6,7 @@ use App\Location;
 use App\Organisation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
 use Illuminate\Support\Facades\Input;
 
 class OrganisationController extends Controller
@@ -34,26 +35,27 @@ class OrganisationController extends Controller
 
     public function EditPost($id, Request $request)
     {
-        Organisation::where("id", $id)
-            ->update([
-                "name" => Input::get("name"),
-                "organisation_image" => Input::get("organisation_image"),
-                "abbreviation" => Input::get("abbrev"),
-                "type" => Input::get("type"),
-                "participates" => Input::get("participates") !== null
-            ]);
-
         $organisation = Organisation::findOrFail($id);
         $organisation->fill($request->all());
 
-        if($request->hasFile('featured_image')){
-            $organisation->featured_image = OrganisationController::SaveFeatured($request);
+        $organisation
+            ->update([
+                "name" => Input::get("name"),
+                "abbreviation" => Input::get("abbrev"),
+                "type" => Input::get("type"),
+                "participates" => Input::get("participates") !== null,
+            ]);
+
+        if($request->hasFile('organisation_image')){
+            $organisation->organisation_image = OrganisationController::SaveFeatured($request);
         }
+
+        $organisation->save();
 
         return redirect()->route('dashboard-organisation', ["id" => $id]);
     }
 
     private static function SaveFeatured(Request $request){
-        return $request->file('featured_image')->store('public');
+        return $request->file('organisation_image')->store('public');
     }
 }
