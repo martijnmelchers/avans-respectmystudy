@@ -39,7 +39,7 @@ class OrganisationController extends Controller
         $organisation->fill($request->all());
 
         if($request->hasFile('organisation_image')){
-            $organisation->organisation_image = OrganisationController::SaveFeatured($request);
+            $organisation->organisation_image = OrganisationController::SaveImage($request);
         }
 
         $organisation->save();
@@ -47,7 +47,7 @@ class OrganisationController extends Controller
         return redirect()->route('dashboard-organisation', ["id" => $id]);
     }
 
-    private static function SaveFeatured(Request $request){
+    private static function SaveImage(Request $request){
         return $request->file('organisation_image')->store('public');
     }
 }
