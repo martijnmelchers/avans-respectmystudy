@@ -18,11 +18,14 @@ Route::get('/surf/login', 'SurfController@linkSurf')->middleware(['auth']);
 
 Route::get('/account', 'AccountController@index')->middleware(['auth']);
 Route::get('/account/linked', 'AccountController@linked');
-Route::get('/account/company', 'AccountController@index');
+Route::get('/account/company', 'AccountController@index')->name('account-company');
 
 Route::get('companies/register_company', 'Companies\CompanyController@showRegister')->name('register-company');
 Route::post('/account', 'Companies\CompanyController@register')->name('register-company-action1');
 Route::post('/companies/register_company', 'Companies\CompanyController@register')->name('register-company-action2');
+
+Route::get('/companies/edit/{id}', 'Companies\CompanyController@showEditCompany')->name('show-edit-company');
+Route::post('/companies/edit/{id}', 'Companies\CompanyController@editCompany')->name('edit-company-action');
 
 Route::get('companies/login_company', 'Auth\CompanyLoginController@showLoginForm')->name('company-login');
 Route::post('companies/login_company', 'Auth\CompanyLoginController@login')->name('company-login-submit');

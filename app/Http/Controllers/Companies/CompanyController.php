@@ -5,6 +5,7 @@ use App\Company;
 use App\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Hash;
 use \Monolog\Handler;
 use Illuminate\Support\Facades\Input;
@@ -53,7 +54,26 @@ class CompanyController extends Controller
             ]);
 
         return redirect('/');
+    }
 
+    private static function SaveFeatured(Request $request){
+        return $request->file('company_image')->store('public');
+    }
+
+    public function editCompany($id, Request $request){
+        $company = Company::where('user_id', $id)->first();
+        $company->fill($request->all());
+        if($request->hasFile('company_image')){
+            $company->company_image = CompanyController::SaveFeatured($request);
+        }
+        $company->save();
+
+        return redirect(Route('account-company', $company));
+    }
+    public function showEditCompany($id){
+        $company = Company::where('user_id', $id)->first();
+
+        return view('companies/edit', compact('company'));
     }
 
     public function companyList(){
