@@ -38,14 +38,6 @@ class OrganisationController extends Controller
         $organisation = Organisation::findOrFail($id);
         $organisation->fill($request->all());
 
-        $organisation
-            ->update([
-                "name" => Input::get("name"),
-                "abbreviation" => Input::get("abbrev"),
-                "type" => Input::get("type"),
-                "participates" => Input::get("participates") !== null,
-            ]);
-
         if($request->hasFile('organisation_image')){
             $organisation->organisation_image = OrganisationController::SaveFeatured($request);
         }
