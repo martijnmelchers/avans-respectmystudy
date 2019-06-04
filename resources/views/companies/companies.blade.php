@@ -5,12 +5,12 @@
 @section('content')
     <div class="row content justify-content-center">
         <div class="col-10">
-            <article>
+            <div class="box">
                 <h1>Alle bedrijven</h1>
                 <p>Hieronder staan alle bedrijven die bij ons geregistreerd zijn</p>
-            </article>
+            </div>
 
-            <div class="list stretch">
+            <div class="blocks">
                 @foreach ($companies as $c)
                     <a class="item" href="{{route('company', $c->id)}}">
                         <h3>{{$c->company_name}}</h3>
