@@ -27,6 +27,13 @@ class OrganisationController extends Controller
         return view('dashboard/organisations/organisation', ['organisation' => Organisation::where('id', $id)->first()]);
     }
 
+    public function Delete($id)
+    {
+        Location::where("organisation_id", $id)->delete();
+        Organisation::destroy($id);
+        return redirect()->route('dashboard-organisations');
+    }
+
     public function Edit($id)
     {
         return view('dashboard/organisations/edit', ['organisation' => Organisation::where('id', $id)->first()]);

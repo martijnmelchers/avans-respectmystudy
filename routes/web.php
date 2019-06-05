@@ -96,6 +96,9 @@ Route::middleware([])->group(function(){
     // Specific organisation
     Route::get('/dashboard/organisations/{id}', 'Dashboard\OrganisationController@Organisation')->name('dashboard-organisation');
 
+    // Delete organisation
+    Route::delete('/dashboard/organisations/{id}', 'Dashboard\OrganisationController@Delete')->name('dashboard-organisation-delete');
+
     // Edit organisation
     Route::get('/dashboard/organisations/{id}/edit', 'Dashboard\OrganisationController@Edit')->name('dashboard-organisation-edit');
     Route::post('/dashboard/organisations/{id}/edit', 'Dashboard\OrganisationController@EditPost')->name('dashboard-organisation-edit');
