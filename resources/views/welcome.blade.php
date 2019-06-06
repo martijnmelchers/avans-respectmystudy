@@ -55,11 +55,6 @@
                 <div class="col-12">
                     <p class="c-secondary f-primary">
                         {{__('home.infopointcontent1')}}
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        {{__('home.infopointcontent1')}}
                     </p>
                 </div>
             </div>
@@ -84,11 +79,6 @@
                 <div class="col-12">
                     <p class="c-secondary f-primary">
                         {{__('home.infopointcontent2')}}
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        {{__('home.infopointcontent2')}}
                     </p>
                 </div>
             </div>
@@ -112,11 +102,6 @@
             <div class="row highlight-content">
                 <div class="col-12">
                     <p class="c-secondary f-primary">
-                        {{__('home.infopointcontent3')}}
-                        <br>
-                        <br>
-                        <br>
-                        <br>
                         {{__('home.infopointcontent3')}}
                     </p>
                 </div>
@@ -144,23 +129,14 @@
         </div>
     </div>
     <div class="row highlighted-minors justify-content-center">
-        <div class="col-xl-3 col-10">
-            <div class="box shadow">
-                Content
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-10">
-            <div class="box shadow">
-                Content
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-10">
-            <div class="box shadow">
-                Content
-            </div>
-        </div>
+        @foreach ($featured_minors as $minor)
+            <a href="{{route('minor', $minor->id)}}" class="col-xl-3 col-10">
+                <div class="box shadow">
+                    <h5>{{$minor->name}}</h5>
+                    <p>{{Strip_tags(substr($minor->subject, 0, 100))}}...</p>
+                </div>
+            </a>
+        @endforeach
     </div>
 
     <div class="row highlighted-minors justify-content-center">
@@ -176,7 +152,7 @@
             </div>
         </div>
     </div>
-    
+
     @component('articles.components.newsblock')
     @endcomponent
 @endsection
