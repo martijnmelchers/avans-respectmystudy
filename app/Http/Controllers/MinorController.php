@@ -127,7 +127,7 @@ class MinorController extends Controller
             "selected_tags" => $selected_tags,
 
             "total_minor_amount" => $total_minor_amount,
-            "orderby" => $orderby,
+            "orderby" => $orderby
         ]);
     }
 
