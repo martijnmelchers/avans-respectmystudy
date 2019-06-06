@@ -27,6 +27,10 @@ class UpdateCompaniesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('companies', function (Blueprint $table) {
+            $table->removeColumn('company_website');
+            $table->removeColumn('environmental_goals');
+            $table->removeColumn('company_image');
+        });
     }
 }

@@ -28,6 +28,8 @@ class ArticleAddAuthor extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('article', function(Blueprint $table){
+            $table->removeColumn('author_id');
+        });
     }
 }
