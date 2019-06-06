@@ -44,7 +44,7 @@
         <div class="col-xl-3 col-10">
             <div class="row highlight-header">
                 <div class="col-xl-auto col-auto">
-                    <i class="fas fa-tasks fa-6x"></i>
+                    <i class="fas fa-globe-europe fa-6x"></i>
                 </div>
                 <div class="col-xl-auto col-auto">
                     <h1> {{__('home.infopoin1ttitle1')}}</h1>
@@ -92,7 +92,7 @@
         <div class="col-xl-3 col-10">
             <div class="row highlight-header">
                 <div class="col-xl-auto col-auto">
-                    <i class="fas fa-filter fa-6x"></i>
+                    <i class="fas fa-user-friends fa-6x"></i>
                 </div>
                 <div class="col-xl-auto col-auto">
                     <h1> {{__('home.infopoint3ttitle1')}}</h1>

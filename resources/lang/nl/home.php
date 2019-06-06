@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => 'Vind de perfecte minor',
+    'title' => 'Vind jouw perfecte minor!',
     'description' => 'Tekst vak 1',
 
     'search' => [
