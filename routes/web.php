@@ -103,6 +103,10 @@ Route::middleware([])->group(function(){
     Route::get('/dashboard/organisations/{id}/edit', 'Dashboard\OrganisationController@Edit')->name('dashboard-organisation-edit');
     Route::post('/dashboard/organisations/{id}/edit', 'Dashboard\OrganisationController@EditPost')->name('dashboard-organisation-edit');
 
+    // Companies
+    Route::get('/dashboard/companies', 'Dashboard\CompanyController@List')->name('dashboard-companies');
+    Route::get('/dashboard/companies/{id}', 'Dashboard\CompanyController@Read')->name('dashboard-company');
+    Route::get('/dashboard/companies/{id}/approve', 'Dashboard\CompanyController@Approve')->name('dashboard-company-approve');
 
     // Contact groups
     Route::get('/dashboard/contactgroups', 'Dashboard\ContactGroupController@ContactGroups')->name('dashboard-contactgroups');
