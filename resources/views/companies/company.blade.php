@@ -20,16 +20,22 @@
             </div>
         </div>
 
-        <div class="col-10" >
+        <div class="col-10">
             <div class="col-12 box">
                 <div class="mb-4">
                     <h3>Beschrijving</h3>
                     <p>{{$c->company_description}}</p>
                 </div>
 
-                <div class="mb-4"></div>
-                <h3>Extra informatie</h3>
-                <p>{{$c->extra_information}}</p>
+                <div class="mb-4">
+                    <h3>Extra informatie</h3>
+                    <p>{{$c->extra_information}}</p>
+                </div>
+
+                <div>
+                    <h3>Klimaatdoelen</h3>
+                    <p>{{$c->environmental_goals}}</p>
+                </div>
             </div>
         </div>
     </div>

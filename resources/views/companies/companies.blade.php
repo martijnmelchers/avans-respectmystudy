@@ -9,7 +9,9 @@
                 <h1>Alle bedrijven</h1>
                 <p>Hieronder staan alle bedrijven die bij ons geregistreerd zijn</p>
             </div>
+        </div>
 
+        <div class="col-10 mt-2">
             <div class="blocks">
                 @foreach ($companies as $c)
                     <a class="item" href="{{route('company', $c->id)}}">

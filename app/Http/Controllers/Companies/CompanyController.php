@@ -77,7 +77,7 @@ class CompanyController extends Controller
     }
 
     public function companyList(){
-        $companies = Company::All();
+        $companies = Company::where('approved_on', '!=', 'null')->get();
 
         return view('companies/companies', compact('companies' ));
     }
