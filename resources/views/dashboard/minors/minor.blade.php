@@ -39,8 +39,12 @@
         <div class="buttons">
             <a class="button blue" href="{{route('dashboard-minors')}}">Alle minoren</a>
             <a class="button blue" href="{{route('dashboard-minor-versions', $minor->id)}}">Alle versies bekijken</a>
-            <a class="button blue" href="{{route('dashboard-organisation', $minor->organisation->id)}}" class="">
-                Meer over {{$minor->organisation->name}}</a>
+            @if ($minor->organisation != null)
+                <a class="button blue" href="{{route('dashboard-organisation', $minor->organisation->id)}}" class="">
+                    Meer over {{$minor->organisation->name}}</a>
+            @else
+                <div class="button blue disabled">Deze minor heeft geen organisatie</div>
+            @endif
             <a class="button blue" href="{{route('dashboard-minor-edit', ["id"=>$minor->id, "v"=>$minor->version])}}">Editen</a>
         </div>
 
@@ -85,7 +89,8 @@
                         <li>{{$contactperson->firstname}}
                             {{$contactperson->middlename}}
                             {{$contactperson->lastname}}
-                            <b>{{(!empty($contactperson->email) ? $contactperson->email : "Geen email ingesteld")}}</b></li>
+                            <b>{{(!empty($contactperson->email) ? $contactperson->email : "Geen email ingesteld")}}</b>
+                        </li>
                     @endforeach
                 </ul>
             @else

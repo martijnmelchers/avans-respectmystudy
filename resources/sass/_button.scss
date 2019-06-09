@@ -17,6 +17,11 @@
         padding: 5px 20px;
     }
 
+    &.disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
     &.red {
         background-color: $primary-red;
 

@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Minor;
 use Illuminate\Http\Request;
 
 class MainpageController extends Controller
 {
-    function __construct()
-    {
-        $this->setLocale();
-        // $this->middleware('guest');
-    }
-
     public function index() {
-        return view('welcome');
+        $featured_minors = Minor::inRandomOrder()->limit(3)->get();
+
+        return view('welcome', compact('featured_minors'));
     }
 }
