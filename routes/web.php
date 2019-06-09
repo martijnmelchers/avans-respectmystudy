@@ -38,7 +38,7 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth']);
 // Minors
 Route::get('/minors', 'MinorController@List')->name('minors');
 Route::get('/minor/{id}', 'MinorController@Minor')->name('minor');
-// TODO review controller
+
 Route::post('/minor/{id}', 'MinorController@InsertReview')->name('minor')->middleware(['auth']);
 Route::delete('/minor/{id}', 'MinorController@DeleteReview')->name('review')->middleware(['auth']);
 
@@ -60,7 +60,7 @@ Route::get('/article/{id}','NewsController@Article')->name('article');
 
 //
 // Dashboard
-Route::middleware([])->group(function(){
+Route::middleware(['admin'])->group(function(){
     // Home
     Route::get('/dashboard', 'DashboardController@Home')->name('dashboard');
 
