@@ -90,6 +90,10 @@ Route::middleware(['admin'])->group(function(){
     // Specific location
     Route::get('/dashboard/location/{id}', 'Dashboard\LocationController@Location')->name('dashboard-location');
 
+    //Edit location
+    Route::get('/dashboard/locations/{id}/edit', 'Dashboard\LocationController@Edit')->name('dashboard-location-edit');
+    Route::post('/dashboard/locations/{id}/edit', 'Dashboard\LocationController@EditPost')->name('dashboard-location-edit');
+
     // Organisation list
     Route::get('/dashboard/organisations', 'Dashboard\OrganisationController@Organisations')->name('dashboard-organisations');
 

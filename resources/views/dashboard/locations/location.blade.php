@@ -22,6 +22,7 @@
 
         <div class="buttons mt-2">
             <a class="button blue" href="{{route('dashboard-locations')}}">Alle locaties</a>
+            <a class="button blue" href="{{route('dashboard-location-edit', $location->id)}}">Editen</a>
             <a class="button blue" href="{{route('dashboard-organisation', $location->organisation->id)}}">Meer
                 over {{$location->organisation->name}}</a>
         </div>
