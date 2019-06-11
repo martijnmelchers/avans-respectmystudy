@@ -62,10 +62,41 @@ class CompanyController extends Controller
 
     public function editCompany($id, Request $request){
         $company = Company::where('user_id', $id)->first();
-        $company->fill($request->all());
+
+        if(!empty($request->get('company_name'))){
+           $company->update([
+               'company_name' => $request->get('company_name')
+               ]);
+        }
+        if(!empty($request->get('location'))){
+           $company->update([
+               'location' => $request->get('location')
+               ]);
+        }
+        if(!empty($request->get('company_description'))){
+           $company->update([
+               'company_description' => $request->get('company_description')
+               ]);
+        }
+        if(!empty($request->get('extra_information'))){
+           $company->update([
+               'extra_information' => $request->get('extra_information')
+               ]);
+        }
+        if(!empty($request->get('websitelink'))){
+           $company->update([
+               'company_website' => $request->get('websitelink')
+               ]);
+        }
+        if(!empty($request->get('environmental_goals'))){
+           $company->update([
+               'environmental_goals' => $request->get('environmental_goals')
+               ]);
+        }
         if($request->hasFile('company_image')){
             $company->company_image = CompanyController::SaveFeatured($request);
         }
+
         $company->save();
 
         return redirect(Route('account-company', $company));

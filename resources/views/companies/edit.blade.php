@@ -4,8 +4,8 @@
     <div class="row content justify-content-center minor">
         <div class="col-10 box">
             <div class="mb-4" >
-                <h1>Bedrijf registratie</h1>
-                <h3>Vul onderstaand formulier in om als bedrijf te registreren</h3>
+                <h1>Bedrijf editen</h1>
+                <h3>Vul onderstaand formulier in om uw bedrijfsinformatie te editen</h3>
             </div>
             <div class="col">
                 <form method="post" enctype="multipart/form-data">
