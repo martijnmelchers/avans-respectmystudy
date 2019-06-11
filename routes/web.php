@@ -41,7 +41,7 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth']);
 // Minors
 Route::get('/minors', 'MinorController@List')->name('minors');
 Route::get('/minor/{id}', 'MinorController@Minor')->name('minor');
-// TODO review controller
+
 Route::post('/minor/{id}', 'MinorController@InsertReview')->name('minor')->middleware(['auth']);
 Route::delete('/minor/{id}', 'MinorController@DeleteReview')->name('review')->middleware(['auth']);
 
@@ -63,7 +63,7 @@ Route::get('/article/{id}','NewsController@Article')->name('article');
 
 //
 // Dashboard
-Route::middleware([])->group(function(){
+Route::middleware(['admin'])->group(function(){
     // Home
     Route::get('/dashboard', 'DashboardController@Home')->name('dashboard');
 
@@ -85,7 +85,7 @@ Route::middleware([])->group(function(){
 
     // Create new minor
     Route::get('/dashboard/minors/create', 'Dashboard\MinorController@Create')->name('dashboard-minor-create');
-    Route::post('/dashboard/minors/create', 'Dashboard\MinorController@CreatePost')->name('dashboard-minor-create');
+    Route::post('/dashboard/minors/create', 'Dashboard\MinorController@CreatePost');
 
     // Location list
     Route::get('/dashboard/locations', 'Dashboard\LocationController@Locations')->name('dashboard-locations');
@@ -98,6 +98,9 @@ Route::middleware([])->group(function(){
 
     // Specific organisation
     Route::get('/dashboard/organisations/{id}', 'Dashboard\OrganisationController@Organisation')->name('dashboard-organisation');
+
+    // Delete organisation
+    Route::delete('/dashboard/organisations/{id}', 'Dashboard\OrganisationController@Delete')->name('dashboard-organisation-delete');
 
     // Edit organisation
     Route::get('/dashboard/organisations/{id}/edit', 'Dashboard\OrganisationController@Edit')->name('dashboard-organisation-edit');
