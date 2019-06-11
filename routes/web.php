@@ -58,6 +58,8 @@ Route::get('/location/{id}', 'LocationController@Location')->name('location');
 
 Route::get('/article/{id}','NewsController@Article')->name('article');
 
+Route::get('/mail/{id}', 'NotificationController@SendRegistrationMail')->name('registration-mail');
+
 //
 // Dashboard
 Route::middleware(['admin'])->group(function(){
@@ -106,8 +108,7 @@ Route::middleware(['admin'])->group(function(){
     // Edit organisation
     Route::get('/dashboard/organisations/{id}/edit', 'Dashboard\OrganisationController@Edit')->name('dashboard-organisation-edit');
     Route::post('/dashboard/organisations/{id}/edit', 'Dashboard\OrganisationController@EditPost')->name('dashboard-organisation-edit');
-
-
+    
     // Contact groups
     Route::get('/dashboard/contactgroups', 'Dashboard\ContactGroupController@ContactGroups')->name('dashboard-contactgroups');
     Route::get('/dashboard/contactgroup/{id}', 'Dashboard\ContactGroupController@ContactGroup')->name('dashboard-contactgroup');
@@ -125,8 +126,6 @@ Route::middleware(['admin'])->group(function(){
     Route::post('/dashboard/article/create', 'Dashboard\NewsController@Create')->name('dashboard-article-create');
     Route::get('/dashboard/article/create', 'Dashboard\NewsController@New')->name('dashboard-article-new');
     Route::get('/dashboard/article/{id}', 'Dashboard\NewsController@Delete')->name('dashboard-article-delete');
-
-    Route::get('/mail/{id}', 'NotificationController@SendRegistrationMail')->name('registration-mail');
 
     // Dashboard importing
     Route::get('/dashboard/import', function() {
