@@ -9,32 +9,32 @@
             </div>
             <div class="col">
                 <form method="post" enctype="multipart/form-data">
-                    {{ csrf_field() }}
+                    @csrf
                     <div class="form-group">
-                        <input type="text" name="company_name" placeholder="{{$company->company_name}}">
+                        <input type="text" name="company_name" value="{{$company->company_name}}">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="location" placeholder="{{$company->location}}">
+                        <input type="text" name="location" value="{{$company->location}}">
                     </div>
                     <div class="form-group">
-                    <textarea name="company_description" placeholder="{{$company->company_description}}"
-                              type="message"></textarea>
+                    <textarea name="company_description"
+                              type="message">{{$company->company_description}}</textarea>
                     </div>
                     <div class="form-group">
-                    <textarea name="extra_information" placeholder="{{$company->extra_information}}"
-                              type="message"></textarea>
+                    <textarea name="extra_information"
+                              type="message">{{$company->extra_information}}</textarea>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="websitelink" placeholder="{{$company->company_website}}">
+                        <input type="text" name="websitelink" value="{{$company->company_website}}">
                     </div>
                     <div class="form-group">
-                    <textarea name="environmental_goals" placeholder="{{$company->environmental_goals}}"
-                              type="message"></textarea>
+                    <textarea name="environmental_goals" value=""
+                              type="message">{{$company->environmental_goals}}</textarea>
                     </div>
                     <div class="form-group">
-                        <input type="file" name="company_image" placeholder="{{$company->company_image}}">
+                        <input type="file" name="company_image" value="{{$company->company_image}}">
                     </div>
-                    <input class="button blue" type="submit" value="Registreer">
+                    <input class="button blue" type="submit" value="Opslaan">
                 </form>
             </div>
         </div>
