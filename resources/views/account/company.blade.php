@@ -8,27 +8,27 @@
         <div class="col-10 box row">
                 <div class="col-6">
                     <div class="mb-4">
-                        <h1>Bedrijfsnaam:</h1>
+                        <h1>{{__('companies.company_name')}}:</h1>
                         <h1>{{$company->company_name}}</h1>
                     </div>
                     <div class="mb-4">
-                        <h6>Beschrijving bedrijf:</h6>
+                        <h6>{{__('companies.company_description')}}:</h6>
                         <h6>{{$company->company_description}}</h6>
                     </div>
                     <div class="mb-4">
-                        <h6>Extra informatie:</h6>
+                        <h6>{{__('companies.additional_information')}}:</h6>
                         <h6>{{$company->extra_information}}</h6>
                     </div>
                     <div class="mb-4">
-                        <h6>Locatie:</h6>
+                        <h6>{{__('companies.location')}}:</h6>
                         <h6>{{$company->location}}</h6>
                     </div>
                     <div class="mb-4">
-                        <h6>Website:</h6>
+                        <h6>{{__('companies.website')}}:</h6>
                         <h6>{{$company->company_website}}</h6>
                     </div>
                     <div class="mb-4">
-                        <h6>Milieu doelen:</h6>
+                        <h6>{{__('companies.environmental_goals')}}:</h6>
                         <p>{{$company->environmental_goals}}</p>
                     </div>
                 </div>

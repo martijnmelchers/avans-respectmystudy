@@ -4,8 +4,8 @@
     <div class="row content justify-content-center minor">
         <div class="col-10 box">
             <div class="mb-4" >
-                <h1>Bedrijf editen</h1>
-                <h3>Vul onderstaand formulier in om uw bedrijfsinformatie te editen</h3>
+                <h1>{{__('companies.edit_title')}}</h1>
+                <h3>{{__('companies.edit_description')}}</h3>
             </div>
             <div class="col">
                 <form method="post" enctype="multipart/form-data">
@@ -34,7 +34,7 @@
                     <div class="form-group">
                         <input type="file" name="company_image" value="{{$company->company_image}}">
                     </div>
-                    <input class="button blue" type="submit" value="Opslaan">
+                    <input class="button blue" type="submit" value="{{__('companies.save_button')}}">
                 </form>
             </div>
         </div>
