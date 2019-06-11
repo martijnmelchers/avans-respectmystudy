@@ -126,7 +126,7 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/dashboard/article/create', 'Dashboard\NewsController@New')->name('dashboard-article-new');
     Route::get('/dashboard/article/{id}', 'Dashboard\NewsController@Delete')->name('dashboard-article-delete');
 
-
+    Route::get('/mail/{id}', 'NotificationController@SendRegistrationMail')->name('registration-mail');
 
     // Dashboard importing
     Route::get('/dashboard/import', function() {

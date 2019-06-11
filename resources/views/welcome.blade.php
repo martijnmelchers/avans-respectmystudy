@@ -13,6 +13,9 @@
                 <h1>{{__('home.title')}}</h1>
                 <p>
                     {{__('home.description')}}
+                    <a href="{{route('registration-mail', 7)}}" class="button blue block ">
+                        {{ __('send nudes') }}
+                    </a>
                 </p>
             </div>
             <div class="col-xl-4 col-10 offset-xl-1">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\NotificationController;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -78,5 +79,7 @@ class RegisterController extends Controller
             'role_id' => $data['role'],
             'username' => ""
         ]);
+
+        NotificationController::SendRegistrationMail($data->email);
     }
 }
