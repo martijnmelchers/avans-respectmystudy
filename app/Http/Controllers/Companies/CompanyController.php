@@ -25,8 +25,7 @@ class CompanyController extends Controller
         return view('/companies/register_company');
     }
 
-    public function register(Request $request)
-    {
+    public function validation(Request $request){
         $messages = [
             'required' => 'The :attribute field is required.',
             'max' => 'The :attribute fields maximum amount characters are exceeded.'
@@ -34,15 +33,21 @@ class CompanyController extends Controller
 
         $rules = [
             'company_name' => 'required|max:45',
-            'location' => 'required',
-            'company_description' => 'required',
-            'websitelink' => 'required',
-            'environmental_goals' => 'required'
+            'location' => 'required|max:45',
+            'company_description' => 'required|max:1000',
+            'extra_information' => 'required|max:1000',
+            'websitelink' => 'required|max:100',
+            'environmental_goals' => 'required|max:500'
         ];
 
         $this->validate($request, $rules, $messages);
+    }
 
-        Company::create([
+    public function register(Request $request)
+    {
+        CompanyController::validation($request);
+
+        $company = Company::create([
             'user_id' => Auth::user()->id,
             'company_name' => $request->get('company_name'),
             'company_description' => $request->get('company_description'),
@@ -50,8 +55,11 @@ class CompanyController extends Controller
             'location' => $request->get('location'),
             'company_website' => $request->get('websitelink'),
             'environmental_goals' => $request->get('environmental_goals'),
-            'company_image' => $request->file('company_image')->store('public')
             ]);
+
+        if($request->hasFile('company_image')){
+            $company->company_image = CompanyController::SaveFeatured($request);
+        }
 
         return redirect('/');
     }
@@ -62,6 +70,8 @@ class CompanyController extends Controller
 
     public function editCompany($id, Request $request){
         $company = Company::where('user_id', $id)->first();
+
+        CompanyController::validation($request);
 
         if(!empty($request->get('company_name'))){
            $company->update([

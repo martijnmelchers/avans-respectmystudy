@@ -17,18 +17,18 @@
                         <input type="text" name="location" placeholder="Hoofdlocatie">
                     </div>
                     <div class="form-group">
-                    <textarea name="company_description" required placeholder="Geef hier informatie over uw bedrijf"
+                    <textarea name="company_description"  placeholder="Geef hier informatie over uw bedrijf"
                               type="message"></textarea>
                     </div>
                     <div class="form-group">
-                    <textarea name="extra_information" required placeholder="Leuke extra informatie over uw bedrijf"
+                    <textarea name="extra_information"  placeholder="Leuke extra informatie over uw bedrijf"
                               type="message"></textarea>
                     </div>
                     <div class="form-group">
                         <input type="text" name="websitelink" placeholder="Websitelink">
                     </div>
                     <div class="form-group">
-                    <textarea name="environmental_goals" required placeholder="Milieu ambities..."
+                    <textarea name="environmental_goals"  placeholder="Milieu ambities..."
                               type="message"></textarea>
                     </div>
                     <div class="form-group">
