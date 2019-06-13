@@ -17,10 +17,9 @@ class AccountController extends Controller
         $company =  Company::All()->where('user_id','=', $user_id)->first();
         if ($isCompany){
             if ($company == null){
-                return view('companies/register_company');
+                return redirect('companies/register_company');
             }
             else{
-                header( "refresh:5;url=/account" );
                 return view('account.company', compact('company'));
             }
         }
@@ -41,9 +40,5 @@ class AccountController extends Controller
         }
         header( "refresh:5;url=/account" );
         return view('account.linked', compact('linked'));
-    }
-
-    public function companyRegistered(){
-
     }
 }
