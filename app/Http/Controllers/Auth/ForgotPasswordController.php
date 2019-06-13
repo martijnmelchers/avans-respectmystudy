@@ -27,7 +27,7 @@ class ForgotPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->setLocale();
+        parent::__construct();
         $this->middleware('guest');
     }
 }
