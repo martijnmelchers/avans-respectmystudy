@@ -34,7 +34,7 @@
                 <h3>{{__('organisations.all_minors')}}  {{$organisation->name}}</h3>
             </div>
             @if (sizeof($organisation->minors) > 0)
-                <div class="buttons small">
+                <div class="col-10 buttons small">
                     @foreach ($organisation->minors as $minor)
                         <a class="button red col-auto" href="/location/{{$minor->id}}">{{$minor->name}}</a>
                     @endforeach

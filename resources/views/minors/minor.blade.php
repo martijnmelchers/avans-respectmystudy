@@ -237,10 +237,11 @@
                                         @endif
                                     @endfor
                                 </span>
-                                <b>{{__('minors.review_quality')}}</b>
-                                <span class="description">{{$r->grade_quality}} {{__('minors.review_stars')}}</span>
-                            </p>
-                            <p class="d-flex flex-column">
+                            <b class="text-center">{{__('minors.review_quality')}}</b>
+                            <span class="description">{{$r->grade_quality}} {{__('minors.review_stars')}}</span>
+                        </p>
+                        <p class="d-flex flex-column">
+                        
                                 <span class="d-flex flex-row justify-content-center">
                                     @for($i=0; $i<5; $i++)
                                         @if($i < $r->grade_studiability)
@@ -250,10 +251,12 @@
                                         @endif
                                     @endfor
                                 </span>
-                                <b>{{__('minors.review_studiability')}}</b>
-                                <span class="description">{{$r->grade_studiability}} {{__('minors.review_stars')}}</span>
-                            </p>
-                            <p class="d-flex flex-column">
+                                
+                            <b class="text-center">{{__('minors.review_studiability')}}</b>
+                            <span class="description">{{$r->grade_studiability}} {{__('minors.review_stars')}}</span>
+                        </p>
+                        <p class="d-flex flex-column">
+                        
                                 <span class="d-flex flex-row justify-content-center">
                                     @for($i=0; $i<5; $i++)
                                         @if($i < $r->grade_content)
@@ -263,11 +266,11 @@
                                         @endif
                                     @endfor
                                 </span>
-                                <b>{{__('minors.review_content')}}</b>
-                                <span class="description">{{$r->grade_content}} {{__('minors.review_stars')}}</span>
-                            </p>
-                        </div>
-                        <h6>{{__('minors.review_published_on')}}{{$r->created_at}}</h6>
+                                
+                            <b class="text-center">{{__('minors.review_content')}}</b>
+                            <span class="description">{{$r->grade_content}} {{__('minors.review_stars')}}</span>
+                        </p>
+                        
                     </div>
                 @endforeach
             </div>

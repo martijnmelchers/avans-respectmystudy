@@ -83,7 +83,7 @@
             <div class="row">
                 @if (sizeof($minors) > 0)
                     @foreach ($minors as $minor)
-                        <div class="box minor">
+                        <div class="box minor col-12">
                             <a href="minor/{{$minor->id}}">
 
                                 <div class="row justify-content-between">
@@ -96,8 +96,12 @@
                                         </div>
                                     </div>
                                     <div class="col-2">
+                                        @if($organisation::findOrFail($minor->organisation_id)->organisation_image != null)
                                         <img class="organisation_img"
-                                             src="https://wordquest.nl/media/avatars/PixelAstronaut.gif" alt="">
+                                             src="{{Storage::url($organisation::findOrFail($minor->organisation_id)->organisation_image)}}"/>
+                                        @else
+
+                                        @endif
                                         <h3 class="points text-center f-primary w-600">
                                             <span class="c-black">{{$minor->ects}},0</span>
                                             <span class="c-secondary">EC</span>
@@ -127,9 +131,9 @@
                                                 </div>
 
                                             </div>
-                                            <div class="row stars">
+                                            <div class="row stars col-xl">
 
-                                                <div class="col-4 text-center">
+                                                <div class="text-center">
                                                     <div class="mb-2">
                                                         @for ($i = 0; $i < 5; $i++)
                                                             @if ($minor->averageReviews()[0] > $i)
@@ -149,7 +153,7 @@
                                                 </div>
 
 
-                                                <div class="col-4 text-center">
+                                                <div class="text-center">
                                                     <div class="mb-2">
 
                                                         @for ($i = 0; $i < 5; $i++)
@@ -171,7 +175,7 @@
                                                 </div>
 
 
-                                                <div class="col-4 text-center">
+                                                <div class="text-center">
                                                     <div class="mb-2">
 
                                                         @for ($i = 0; $i < 5; $i++)
@@ -211,7 +215,7 @@
 
                     @endforeach
 
-                    <div class="pagenav">
+                    <div class="pagenav col-12">
                         <div class="text">Pagina</div>
                         <div class="pages">
                             @if ($page > 0)

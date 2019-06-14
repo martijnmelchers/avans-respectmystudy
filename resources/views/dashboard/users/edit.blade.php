@@ -10,7 +10,7 @@
 
 @section('content')
         <div class="row">
-            <div class="col-12 box">
+            <div class="col-12 box mb-2">
             @if(sizeof($errors) > 0)
                 @foreach ($errors->all() as $error)
                     <div class="alert red">{{ $error }}</div>

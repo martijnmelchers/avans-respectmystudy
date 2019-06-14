@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ArticleAddAuthor extends Migration
+class UpdateOrganisationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class ArticleAddAuthor extends Migration
      */
     public function up()
     {
-        Schema::table('article', function(Blueprint $table){
-            $table->unsignedInteger('author_id');
-            $table->foreign('author_id')->references('id')->on('users');
-
+        Schema::table('organisations', function (Blueprint $table) {
+            $table->text('organisation_image')->null();
         });
-
     }
 
     /**
@@ -28,8 +25,8 @@ class ArticleAddAuthor extends Migration
      */
     public function down()
     {
-        Schema::table('article', function(Blueprint $table){
-            $table->removeColumn('author_id');
+        Schema::table('organisations', function (Blueprint $table) {
+            $table->removeColumn('organisation_image');
         });
     }
 }
