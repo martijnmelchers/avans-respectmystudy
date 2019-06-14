@@ -55,6 +55,10 @@ Route::get('/map', 'MapController@Map')->name('map');
 Route::get('/organisations', "OrganisationController@list")->name('organisations');
 Route::get('/organisations/{id}', 'OrganisationController@Organisation')->name('organisation');
 
+// Studenten
+Route::get('/students', 'StudentController@list')->name('students');
+Route::get('/students/{id}', 'StudentController@student')->name('student');
+
 // Locaties
 Route::get('/locations', "LocationController@list")->name('locations');
 Route::get('/location/{id}', 'LocationController@Location')->name('location');

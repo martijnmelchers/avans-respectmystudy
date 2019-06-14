@@ -9,4 +9,5 @@ return [
     'language' => 'Language',
 
     'companies' => 'Companies',
+    'students' => 'Students'
 ];

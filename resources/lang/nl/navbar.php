@@ -9,4 +9,5 @@ return [
     'language' => 'Taal',
 
     'companies' => 'Bedrijven',
+    'students' => 'Studenten'
 ];

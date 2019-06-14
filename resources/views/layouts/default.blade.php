@@ -47,6 +47,8 @@
 
         <a href="{{route('organisations')}}"
            class="{{ Request::is('organisations') ? 'active' : '' }}">{{__('navbar.organisations')}}</a>
+        <a href="{{route('students')}}"
+           class="{{ Request::is('students') ? 'active' : '' }}">{{__('navbar.students')}}</a>
 
         {{--Gray stripe--}}
         <div class="divider"></div>

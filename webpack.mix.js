@@ -16,5 +16,6 @@ mix.sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/pages/_minors.scss', 'public/css/minors.css')
     .sass('resources/sass/pages/_map.scss', 'public/css/map.css')
     .sass('resources/sass/pages/_organisations.scss', 'public/css/organisations.css')
+    .sass('resources/sass/pages/_students.scss', 'public/css/students.css')
     .sass('resources/sass/pages/_articles.scss', 'public/css/articles.css');
 
