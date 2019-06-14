@@ -56,8 +56,9 @@
                 </div>
             @else
                 <div class="col-12 box">
-                    <h3>{{__('minors.minor_educationperiods')}}</h3>
-                    <p>{{__('minors.minor_no_educationperiods')}}</p>
+                    <h3>{{__('minors.educationperiod.periods')}}</h3>
+                    <p>{{__('minors.educationperiod.no_periods')}}</p>
+
                 </div>
             @endif
         </div>
