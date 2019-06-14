@@ -36,6 +36,14 @@ return [
     'minor_no_locations' => 'We have not found any locations for this minor.',
     'minor_language' => 'Deze minor wordt gegeven in het ',
 
+    'educationperiod' => [
+        'periods' => 'Periods when this minor is given:',
+        'no_periods' => 'We don \'t have any info about periods.',
+        'info' => 'Between these data this minor is given.',
+        'from' => 'From',
+        'until' => 'Until'
+    ],
+
     'new_review' => 'Add a new review',
 
     'review_quality' => 'Quality',

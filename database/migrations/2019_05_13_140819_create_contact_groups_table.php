@@ -15,7 +15,7 @@ class CreateContactGroupsTable extends Migration
     {
         Schema::create('contact_groups', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->string("organisation_id");
+            $table->string("organisation_id")->nullable();
 
             $table->string("name");
             $table->string("description");

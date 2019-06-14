@@ -36,6 +36,14 @@ return [
     'minor_no_locations' => 'We hebben geen locaties gevonden waar deze minor wordt gegeven.',
     'minor_language' => 'Deze minor wordt gegeven in het ',
 
+    'educationperiod' => [
+        'periods' => 'Periodes wanneer deze minor wordt gegeven:',
+        'no_periods' => 'We hebben geen info over wanneer deze minor wordt gegeven.',
+        'info' => 'Tussen deze data wordt deze minor gegeven.',
+        'from' => 'Van',
+        'until' => 'Tot'
+    ],
+
     'new_review' => 'Voeg een nieuwe review toe',
 
     'review_quality' => 'Kwaliteit',
@@ -60,7 +68,7 @@ return [
     'review_minor_rating' => 'Rating',
 
     'buttons' => [
-        'search_button' => 'Zoeken',
-        'post_button' => 'Plaats review',
-    ],
+    'search_button' => 'Zoeken',
+    'post_button' => 'Plaats review',
+],
 ];

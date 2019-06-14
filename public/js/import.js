@@ -4,8 +4,20 @@ $(window).ready(function () {
 });
 
 var errors = [];
+let importing = false;
 
-function importSchools(page = 1, progress = 0) {
+function importAll() {
+    if (importing) {
+        alert("je bent al aan het importeren");
+        return;
+    }
+
+    importing = true;
+    $(".button").addClass("disabled");
+    importSchools(1, 0, true);
+}
+
+function importSchools(page = 1, progress = 0, auto = false) {
     $.getJSON("/import/organizations/?page=" + page, function (o) {
         console.log(o);
         console.log("Pagina " + page + "; Progress: " + progress);
@@ -20,14 +32,17 @@ function importSchools(page = 1, progress = 0) {
         document.getElementsByClassName("inner")[0].style.width = ((100 * progress) / total) + "%";
 
         if (o.next != null) {
-            importSchools(page + 1, progress);
+            importSchools(page + 1, progress, auto);
         } else {
             document.getElementsByClassName("text")[0].innerHTML = "Scholen geïmporteerd";
+
+            if (auto)
+                importLocations(1, 0, auto);
         }
     });
 }
 
-function importLocations(page = 1, progress = 0) {
+function importLocations(page = 1, progress = 0, auto = false) {
     $.getJSON("/import/locations/?page=" + page, function (o) {
         console.log(o);
 
@@ -43,12 +58,15 @@ function importLocations(page = 1, progress = 0) {
         document.getElementsByClassName("inner")[0].style.width = ((100 * progress) / total) + "%";
 
         if (o.next != null) {
-            importLocations(page + 1, progress);
+            importLocations(page + 1, progress, auto);
+        } else {
+            if (auto)
+                importGroups(1, 0, true);
         }
     });
 }
 
-function importProgrammes(page = 1, progress = 0) {
+function importProgrammes(page = 1, progress = 0, auto) {
     $.getJSON("/import/minors/?page=" + page, function (o) {
         console.log(o);
 
@@ -64,12 +82,18 @@ function importProgrammes(page = 1, progress = 0) {
         document.getElementsByClassName("inner")[0].style.width = ((100 * progress) / total) + "%";
 
         if (o.next != null) {
-            importProgrammes(page + 1, progress);
+            importProgrammes(page + 1, progress, auto);
+        } else {
+            if (auto) {
+                $(".button").removeClass("disabled");
+                importing = false;
+                alert("Alles is geimporteerd!");
+            }
         }
     });
 }
 
-function importPersons(page = 1, progress = 0) {
+function importPersons(page = 1, progress = 0, auto = false) {
     $.getJSON("/import/contactpersons/?page=" + page, function (o) {
         console.log(o);
 
@@ -85,12 +109,15 @@ function importPersons(page = 1, progress = 0) {
         document.getElementsByClassName("inner")[0].style.width = ((100 * progress) / total) + "%";
 
         if (o.next != null) {
-            importPersons(page + 1, progress);
+            importPersons(page + 1, progress, auto);
+        } else {
+            if (auto)
+                importPeriods(1, 0, auto);
         }
     });
 }
 
-function importGroups(page = 1, progress = 0) {
+function importGroups(page = 1, progress = 0, auto = false) {
     $.getJSON("/import/contactgroups/?page=" + page, function (o) {
         console.log(o);
 
@@ -110,7 +137,38 @@ function importGroups(page = 1, progress = 0) {
         }
 
         if (o.next != null) {
-            importGroups(page + 1, progress);
+            importGroups(page + 1, progress, auto);
+        } else {
+            if (auto)
+                importPersons(1, 0, true);
+        }
+    });
+}
+
+function importPeriods(page = 1, progress = 0, auto = false) {
+    $.getJSON("/import/periods/?page=" + page, function (o) {
+        console.log(o);
+
+        total = o.count;
+        progress += o.results.length;
+
+        if (o.errors != null)
+            addErrors(o.errors);
+
+        document.getElementsByClassName("text")[0].innerHTML = total + " Periodes importeren";
+        document.getElementsByClassName("inner")[0].style.width = ((100 * progress) / total) + "%";
+
+        if (o.errors != null && o.errors.length > 0) {
+            o.errors.forEach(function (e) {
+                addError(e);
+            });
+        }
+
+        if (o.next != null) {
+            importPeriods(page + 1, progress, auto);
+        } else {
+            if (auto)
+                importProgrammes(1, 0, true);
         }
     });
 }

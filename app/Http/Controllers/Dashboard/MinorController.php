@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Minor;
 use App\Tag;
+use App\Organisation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -132,13 +133,38 @@ class MinorController extends Controller
     public
     function Create()
     {
-        return view('dashboard/minors/create', ['minor' => new Minor()]);
+        return view('dashboard/minors/create', [
+            'organisations' => Organisation::orderBy('name')->get()
+        ]);
     }
-
-    public
-    function CreatePost()
+  
+    public function CreatePost(Request $request)
     {
-        return view('dashboard/minors/create', ['minor' => new Minor()]);
+        // Validate the inputs
+        $request->validate([
+            'name' => 'required|max:255|min:10',
+            'ects' => 'integer|min:0|max:30',
+            'contacthours' => 'integer|min:0',
+            'educationtype' => 'min:0|max:45',
+            'language' => 'required|max:45',
+            'subject' => 'required|min:0',
+            'goals' => 'required|min:0',
+            'requirements' => 'required|min:0'
+        ]);
+
+        // Generate a new, not-used ID for the minor
+        $random_int = 0;
+        while (Minor::where('id', $random_int)->first() != null) {
+            $random_int = random_int(10000, 10000000);
+        }
+
+        // Create a new minor based on the fillable attributes of minors
+        $minor = new Minor();
+        $data = $request->only($minor->getFillable());
+        $data['id'] = $random_int;
+        $minor->fill($data)->save();
+
+        return redirect(route('dashboard-minor', $random_int));
     }
 
     public

@@ -41,7 +41,10 @@
                         class="far fa-thumbs-up"></i>Reviews</a>
             <a href="{{route('dashboard-users')}}" class="{{ Request::path() == 'dashboard/users' ? 'active' : '' }}"><i
                         class="far fas fa-user"></i>Gebruikers</a>
-            <a href="{{route('dashboard-articles')}}" class="{{ Request::path() == 'dashboard/articles' ? 'active' : '' }}"><i
+            <a href="{{route('dashboard-companies')}}" class="{{ Request::path() == 'dashboard/companies' ? 'active' : '' }}">
+                <i class="fas fa-building"></i>Bedrijven</a>
+            <a href="{{route('dashboard-articles')}}"
+               class="{{ Request::path() == 'dashboard/articles' ? 'active' : '' }}"><i
                         class="fas fa-newspaper"></i>Nieuws</a>
             <a href="{{route('import')}}" class="{{ Request::path() == 'dashboard/import' ? 'active' : '' }}"><i
                         class="fa fa-download"></i>Importeren</a>

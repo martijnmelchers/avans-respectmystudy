@@ -60,6 +60,7 @@
                             <p>Gepubliceerd {{$minor->published_version() !== null ? "Ja" : "Nee"}}</p>
                             <p>{{$minor->contactGroup ? $minor->contactGroup->name : "Geen contactpersoon"}}</p>
                             <p>{{$minor->tags->count() . " tags"}}</p>
+                            <p>{{$minor->educationPeriods->count() }} periodes</p>
                         </div>
                     </a>
                 @endforeach
@@ -89,7 +90,8 @@
 
         <div class="buttons mb-2">
             <a class="button blue" href="{{route('dashboard')}}">Home</a>
-            <a class="button blue" href="{{route('import')}}">minoren importeren</a>
+            <a class="button blue" href="{{route('import')}}">Minoren importeren</a>
+            <a class="button blue" href="{{route('dashboard-minor-create')}}">Minor aanmaken</a>
         </div>
     </div>
 @endsection

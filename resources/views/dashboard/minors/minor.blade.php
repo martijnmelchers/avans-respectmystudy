@@ -39,8 +39,12 @@
         <div class="buttons">
             <a class="button blue" href="{{route('dashboard-minors')}}">Alle minoren</a>
             <a class="button blue" href="{{route('dashboard-minor-versions', $minor->id)}}">Alle versies bekijken</a>
-            <a class="button blue" href="{{route('dashboard-organisation', $minor->organisation->id)}}" class="">
-                Meer over {{$minor->organisation->name}}</a>
+            @if ($minor->organisation != null)
+                <a class="button blue" href="{{route('dashboard-organisation', $minor->organisation->id)}}" class="">
+                    Meer over {{$minor->organisation->name}}</a>
+            @else
+                <div class="button blue disabled">Deze minor heeft geen organisatie</div>
+            @endif
             <a class="button blue" href="{{route('dashboard-minor-edit', ["id"=>$minor->id, "v"=>$minor->version])}}">Editen</a>
         </div>
 
@@ -69,6 +73,20 @@
                 </ul>
             @else
                 <p>Deze minor heeft geen tags</p>
+        </div>
+        
+        <div class="col-12 box margin">
+            <h3>Periodes</h3>
+            @if ($minor->educationPeriods->count() > 0)
+                @foreach ($minor->educationPeriods as $periods)
+                    <h6>{{$periods->name}}</h6>
+                    <ul class="list">
+                        <li>Van {{$periods->start}}</li>
+                        <li>Tot {{$periods->end}}</li>
+                    </ul>
+                @endforeach
+            @else
+                <p>Deze minor heeft geen periodes</p>
             @endif
         </div>
 

@@ -18,7 +18,7 @@
             <div class="col-xl-4 col-10 offset-xl-1">
                 <div class="box shadow">
                     <h1> {{__('home.search.part1')}}
-                        <b>{{\App\Minor::count()}}</b> {{__('home.search.part2')}}</h1>
+                        <b>{{\App\Minor::where('is_published', 1)->count()}}</b> {{__('home.search.part2')}}</h1>
                     <form method="get" autocomplete="off" action="minors">
                         <div class="formline">
                             <input name="name" placeholder=" {{__('home.search_placeholder')}}"
@@ -44,7 +44,7 @@
         <div class="col-xl-3 col-10">
             <div class="row highlight-header">
                 <div class="col-xl-auto col-auto">
-                    <i class="fas fa-tasks fa-6x"></i>
+                    <i class="fas fa-globe-europe fa-6x"></i>
                 </div>
                 <div class="col-xl-auto col-auto">
                     <h1> {{__('home.infopoin1ttitle1')}}</h1>
@@ -54,11 +54,6 @@
             <div class="row highlight-content">
                 <div class="col-12">
                     <p class="c-secondary f-primary">
-                        {{__('home.infopointcontent1')}}
-                        <br>
-                        <br>
-                        <br>
-                        <br>
                         {{__('home.infopointcontent1')}}
                     </p>
                 </div>
@@ -84,11 +79,6 @@
                 <div class="col-12">
                     <p class="c-secondary f-primary">
                         {{__('home.infopointcontent2')}}
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        {{__('home.infopointcontent2')}}
                     </p>
                 </div>
             </div>
@@ -102,7 +92,7 @@
         <div class="col-xl-3 col-10">
             <div class="row highlight-header">
                 <div class="col-xl-auto col-auto">
-                    <i class="fas fa-filter fa-6x"></i>
+                    <i class="fas fa-user-friends fa-6x"></i>
                 </div>
                 <div class="col-xl-auto col-auto">
                     <h1> {{__('home.infopoint3ttitle1')}}</h1>
@@ -112,11 +102,6 @@
             <div class="row highlight-content">
                 <div class="col-12">
                     <p class="c-secondary f-primary">
-                        {{__('home.infopointcontent3')}}
-                        <br>
-                        <br>
-                        <br>
-                        <br>
                         {{__('home.infopointcontent3')}}
                     </p>
                 </div>
@@ -144,23 +129,14 @@
         </div>
     </div>
     <div class="row highlighted-minors justify-content-center">
-        <div class="col-xl-3 col-10">
-            <div class="box shadow">
-                Content
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-10">
-            <div class="box shadow">
-                Content
-            </div>
-        </div>
-
-        <div class="col-xl-3 col-10">
-            <div class="box shadow">
-                Content
-            </div>
-        </div>
+        @foreach ($featured_minors as $minor)
+            <a href="{{route('minor', $minor->id)}}" class="col-xl-3 col-10">
+                <div class="box shadow">
+                    <h5>{{$minor->name}}</h5>
+                    <p>{{Strip_tags(substr($minor->subject, 0, 100))}}...</p>
+                </div>
+            </a>
+        @endforeach
     </div>
 
     <div class="row highlighted-minors justify-content-center">
@@ -176,7 +152,7 @@
             </div>
         </div>
     </div>
-    
+
     @component('articles.components.newsblock')
     @endcomponent
 @endsection

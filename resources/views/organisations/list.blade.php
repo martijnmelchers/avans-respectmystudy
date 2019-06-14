@@ -14,7 +14,7 @@
                     <p>{{__('organisations.organisations_description')}}</p>
                 </article>
 
-                <div class="list stretch">
+                <div class="blocks">
                     @foreach ($organisations as $organisation)
                         <a class="item" href="{{route('organisation', $organisation->id)}}">{{$organisation->name}}</a>
                     @endforeach

@@ -1,5 +1,4 @@
-@extends('layouts/default')
-
+@extends('layouts/dashboard')
 @section("title", "Minor")
 
 @section('head')
@@ -75,7 +74,7 @@
                     <textarea name="message" required placeholder="{{__('minors.review_content_placeholder')}}"
                               type="message"></textarea>
                 </div>
-                <div class="d-flex flex-column flex-md-row justify-content-around stars">
+                <div class="d-flex flex-column flex-md-row justify-content-around stars mb-4">
                     <div class="rating">
                         <input type="radio" id="star5_1" name="rating_1" value="5"/>
                         <label class="full"
@@ -93,7 +92,7 @@
                         <input type="radio" id="star1_1" name="rating_1" value="1"/>
                         <label class="full" for="star1_1"
                                title="Sucks big time - 1 star"></label>
-                        <b>{{__('minors.review_quality')}}</b>
+                        <b class="text-center">{{__('minors.review_quality')}}</b>
                     </div>
                     <div class="rating">
                         <input type="radio" id="star5_2" name="rating_2" value="5"/>
@@ -116,7 +115,7 @@
                         <label class="full"
                                for="star1_2"
                                title="Sucks big time - 1 star"></label>
-                        <b>{{__('minors.review_studiability')}}</b>
+                        <b class="text-center">{{__('minors.review_studiability')}}</b>
                     </div>
                     <div class="rating">
                         <input type="radio" id="star5_3" name="rating_3" value="5"/>
@@ -139,7 +138,7 @@
                         <label class="full"
                                for="star1_3"
                                title="Sucks big time - 1 star"></label>
-                        <b>{{__('minors.review_content')}}</b>
+                        <b class="text-center">{{__('minors.review_content')}}</b>
                     </div>
                 </div>
                 <input class="button blue" type="submit" value="{{__('minors.buttons.post_button')}}">
