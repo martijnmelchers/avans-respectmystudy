@@ -77,6 +77,16 @@ class ImportTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function testEducationPeriodImport()
+    {
+        $user = factory(User::class)->make(['role_id' => 2]);
+        $this->actingAs($user);
+
+        $response = $this->get('/import/periods');
+
+        $response->assertStatus(200);
+    }
 }
 
 // test: .\vendor\bin\phpunit

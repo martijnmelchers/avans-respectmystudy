@@ -10,6 +10,9 @@ class OrganisationController extends Controller
     {
         $organisation = Organisation::all()->where("id", $id)->first();
 
+        if ($organisation == null)
+            return redirect(route('organisations'));
+
         return view('organisations/organisation', ["organisation" => $organisation]);
     }
     public function List()

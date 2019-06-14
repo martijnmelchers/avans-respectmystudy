@@ -3,7 +3,7 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\Company::class, function (Faker $faker) {
-    $users = \App\Users::pluck('id')->toArray();
+    $users = \App\User::pluck('id')->toArray();
     return [
         'id' => rand(0, 100),
         'user_id' => $faker->randomElement($users),
