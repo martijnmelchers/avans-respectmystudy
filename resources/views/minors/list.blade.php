@@ -108,8 +108,10 @@
                                 <div class="row info-gray">
                                     <div class="col-4">
                                         <p class="mb-1"><b>{{__('minors.education_period')}}</b></p>
-                                        <p class="mb-1"><i class="far fa-calendar-alt"></i> Geen onderwijsperiode</p>
-                                        <p><i class="far fa-edit"></i> Geen inschrijfdatum</p>
+                                        <p class="mb-1"><i class="far fa-calendar-alt"></i>
+                                            {{$minor->nextPeriod() ? date("Y-m-d", strtotime($minor->nextPeriod()->start)) : "Geen onderwijsperiode"}}
+                                        </p>
+                                        {{--<p><i class="far fa-edit"></i> Geen inschrijfdatum</p>--}}
                                     </div>
                                     <div class="col-8">
                                         @if (sizeof($minor->averageReviews()) > 0)
