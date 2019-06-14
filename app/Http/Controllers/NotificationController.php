@@ -12,8 +12,8 @@ class NotificationController extends Controller
         $user = User::findOrFail($id);
 
         Mail::send('emails.registration', ['user' => $user], function ($m) use ($user) {
-            $m->from('hello@app.com', 'RespectMyStudy');
-
+            $m->from('noreply@RespectMyStudy.nl');
+            $m->subject('RespectMyStudy');
             $m->to($user->email, $user->name)->subject('Welkom bij RespectMyStudy!');
         });
     }
