@@ -25,7 +25,7 @@ class OrganisationTest extends TestCase
 
     public function testOrganisation()
     {
-        factory(Organisation::class)->make();
+        $organisation = factory(Organisation::class)->create();
         $response = $this->get('/organisations/' . Organisation::first()->id);
 
         $response->assertStatus(200);
