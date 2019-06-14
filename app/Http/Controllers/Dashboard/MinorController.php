@@ -129,7 +129,7 @@ class MinorController extends Controller
         $request->validate([
             'name' => 'required|max:255|min:10',
             'ects' => 'integer|min:0|max:30',
-            'contacthours' => 'integer:min:0',
+            'contacthours' => 'integer|min:0',
             'educationtype' => 'min:0|max:45',
             'language' => 'required|max:45',
             'subject' => 'required|min:0',

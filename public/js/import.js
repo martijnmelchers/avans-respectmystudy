@@ -112,7 +112,7 @@ function importPersons(page = 1, progress = 0, auto = false) {
             importPersons(page + 1, progress, auto);
         } else {
             if (auto)
-                importProgrammes(1, 0, auto);
+                importPeriods(1, 0, auto);
         }
     });
 }
@@ -141,6 +141,34 @@ function importGroups(page = 1, progress = 0, auto = false) {
         } else {
             if (auto)
                 importPersons(1, 0, true);
+        }
+    });
+}
+
+function importPeriods(page = 1, progress = 0, auto = false) {
+    $.getJSON("/import/periods/?page=" + page, function (o) {
+        console.log(o);
+
+        total = o.count;
+        progress += o.results.length;
+
+        if (o.errors != null)
+            addErrors(o.errors);
+
+        document.getElementsByClassName("text")[0].innerHTML = total + " Periodes importeren";
+        document.getElementsByClassName("inner")[0].style.width = ((100 * progress) / total) + "%";
+
+        if (o.errors != null && o.errors.length > 0) {
+            o.errors.forEach(function (e) {
+                addError(e);
+            });
+        }
+
+        if (o.next != null) {
+            importPeriods(page + 1, progress, auto);
+        } else {
+            if (auto)
+                importProgrammes(1, 0, true);
         }
     });
 }

@@ -41,6 +41,7 @@
                             <p>Versie {{$minor->version}}</p>
                             <p>Gepubliceerd {{$minor->is_published ? "Ja" : "Nee"}}</p>
                             <p>{{$minor->contactGroup ? $minor->contactGroup->name : "Geen contactpersoon"}}</p>
+                            <p>{{$minor->educationPeriods->count() }} periodes</p>
                         </div>
                     </a>
                 @endforeach

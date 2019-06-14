@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ContactGroup;
 use App\ContactPerson;
+use App\EducationPeriod;
 use App\Location;
 use App\Minor;
 use App\Organisation;
@@ -140,7 +141,7 @@ class ImportController extends Controller
             if (isset($r->contact)) {
                 $contact_group = ContactGroup::where("id", $r->contact)->first();
 
-                if (isset($contact_group)) {
+                if (isset($contact_group) && Minor::find($r->id) != null) {
                     $minor = Minor::where("id", $r->id)->first();
                     $minor->contact_group_id = $r->contact;
                     $minor->save();
@@ -166,6 +167,27 @@ class ImportController extends Controller
                             $messages[] = "Contactpersoon $r->id toegevoegd!";
                         } else {
                             $errors[] = "Contactpersoon $r->id niet gevonden!";
+                        }
+                    }
+                }
+            }
+
+            // Bind education periods
+            if (isset($r->educationperiods)) {
+                $minor = Minor::all()->where("id", $r->id)->first();
+
+                if (isset($minor)) {
+                    $minor->educationPeriods()->detach();
+
+                    foreach ($r->educationperiods as $ep) {
+                        $period = EducationPeriod::where("id", $ep)->first();
+
+                        if (isset($period)) {
+                            $minor->educationPeriods()->attach($ep);
+                            $minor->save();
+                            $messages[] = "Periode $r->id toegevoegd!";
+                        } else {
+                            $errors[] = "Periode $r->id niet gevonden!";
                         }
                     }
                 }
@@ -267,7 +289,7 @@ class ImportController extends Controller
                 $postalcode = str_replace(" ", "", $location->visitingzip);
 
                 // Get the google maps API key from the config
-                $key = env("GOOGLEMAPS_API_KEY", null);
+//                $key = env("GOOGLEMAPS_API_KEY", null);
 
                 if (isset($key)) {
                     $google_php_result = getCurl("https://maps.googleapis.com/maps/api/geocode/json?address=$address%20$postalcode&key=$key");
@@ -286,7 +308,7 @@ class ImportController extends Controller
                         $messages[] = $google_php_result->error_message;
                     }
                 } else {
-                    $errors[] = "Er is geen google maps API key ingesteld, dus de locaties kunnen niet automatisch een lengte- en breedtegraad krijgen.";
+                    $messages[] = "Er is geen google maps API key ingesteld, dus de locaties kunnen niet automatisch een lengte- en breedtegraad krijgen.";
                 }
             }
         }
@@ -321,7 +343,19 @@ class ImportController extends Controller
 
                 // Check if the organisation exists
                 if (!isset($organisation)) {
-                    $errors[] = "{$r->firstname} {$r->middlename} {$r->lastname} kon niet worden toegevoegd omdat de organisatie {$r->ownedby_organisation} niet bestaat";
+                    // Add the contact person
+                    $contactperson = new ContactPerson([
+                        "id" => $r->id,
+                        "firstname" => $r->firstname,
+                        "middlename" => $r->middlename,
+                        "lastname" => $r->lastname,
+                        "email" => $r->email
+                    ]);
+
+                    if (!$contactperson->save())
+                        $errors[] = "{$r->firstname} {$r->middlename} {$r->lastname} kon niet worden toegevoegd";
+                    else
+                        $messages[] = "{$r->firstname} {$r->middlename} {$r->lastname} is toegevoegd zonder organisatie, omdat organisatie {$r->ownedby_organisation} niet bestaat";
                 } else {
                     // Add the contact person
                     $contactperson = new ContactPerson([
@@ -378,7 +412,19 @@ class ImportController extends Controller
 
                 // Check if the organisation exists
                 if (!isset($organisation)) {
-                    $errors[] = "$r->name ($r->id) kan niet worden toegevoegd omdat de organisatie ($r->ownedby_organisation) niet bestaat";
+                    $messages[] = "$r->name ($r->id) wordt zonder organisatie toegevoegd, omdat de organisatie ($r->ownedby_organisation) niet bestaat";
+
+                    $contactgroup = new ContactGroup([
+                        'id' => $r->id,
+                        'name' => $r->name,
+                        'description' => $r->description,
+                        'email' => $r->email,
+                        'postaladdress' => $r->postaladdress,
+                        'telephone' => $r->telephone
+                    ]);
+
+                    if (!$contactgroup->save())
+                        $errors[] = "Er ging iets mis bij het toevoegen van $r->name";
                 } else {
                     $contactgroup = new ContactGroup([
                         'id' => $r->id,
@@ -391,6 +437,76 @@ class ImportController extends Controller
                     ]);
 
                     if (!$contactgroup->save())
+                        $errors[] = "Er ging iets mis bij het toevoegen van $r->name";
+                }
+            }
+        }
+
+        $php_result->messages = $messages;
+        $php_result->errors = $errors;
+
+        return response()->json($php_result, 200, [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
+            ->header('Content-Type', 'text/json');
+    }
+
+    public function Periodes()
+    {
+        $messages = $errors = [];
+
+        $page = (isset($_GET['page']) && $_GET['page'] > 0 ? "?page=" . $_GET['page'] : "");
+        $kiesopmaat_token = env('KIESOPMAAT_TOKEN');
+        $php_result = getCurl("https://www.kiesopmaat.nl/api/public/educationperiod/$page", ["Authorization: Token $kiesopmaat_token"]);
+
+        // Get KIESOPMAAT error
+        if (isset($php_result->detail)) {
+            return response()->json($php_result);
+        }
+
+        foreach ($php_result->results as $r) {
+            $period = EducationPeriod::where("id", $r->id)->first();
+
+            if (isset($period)) {
+                $period->update([
+                    'organisation_id' => $r->ownedby_organisation,
+                    'name' => $r->name,
+                    'start' => $r->startdate,
+                    'end' => $r->enddate,
+                    'enroll_start' => $r->enroll_startdate,
+                    'enroll_end' => $r->enroll_enddate
+                ]);
+
+                if (!$period->save())
+                    $errors[] = "Er ging iets mis bij het updaten van $r->name";
+            } else {
+                $organisation = Organisation::where("id", $r->ownedby_organisation)->first();
+
+                // Check if the organisation exists
+                if (!isset($organisation)) {
+                    $period = new EducationPeriod([
+                        'id' => $r->id,
+                        'name' => $r->name,
+                        'start' => $r->startdate,
+                        'end' => $r->enddate,
+                        'enroll_start' => $r->enroll_startdate,
+                        'enroll_end' => $r->enroll_enddate
+                    ]);
+
+                    if (!$period->save())
+                        $errors[] = "Er ging iets mis bij het toevoegen van $r->name";
+                    else
+                        $messages[] = "$r->name ($r->id) is toegevoegd zonder organisatie, omdat de organisatie ($r->ownedby_organisation) niet bestaat";
+                } else {
+                    $period = new EducationPeriod([
+                        'id' => $r->id,
+                        'organisation_id' => $r->ownedby_organisation,
+                        'name' => $r->name,
+                        'start' => $r->startdate,
+                        'end' => $r->enddate,
+                        'enroll_start' => $r->enroll_startdate,
+                        'enroll_end' => $r->enroll_enddate
+                    ]);
+
+                    if (!$period->save())
                         $errors[] = "Er ging iets mis bij het toevoegen van $r->name";
                 }
             }

@@ -13,8 +13,6 @@ class Minor extends Model
         "id",
         "version",
         "name",
-        "phonenumber",
-        "email",
         "kiesopmaat",
         "ects",
         "subject",
@@ -60,6 +58,24 @@ class Minor extends Model
     // Return contact group
     public function contactGroup() {
         return $this->belongsTo('App\ContactGroup');
+    }
+
+    // Return education periods
+    public function educationPeriods() {
+        return $this->belongsToMany('App\EducationPeriod', 'minors_educationperiods');
+    }
+
+    // Return first education period
+    public function nextPeriod() {
+//        $periods = $this->educationPeriods();
+//        $period = null;
+//
+//        foreach ($periods as $p) {
+//            if (strtotime($p->start) > time())
+//                $period = $p;
+//        }
+
+        return $this->educationPeriods()->where('start', '>', date('Y-m-d'))->first();
     }
   
     // Return reviews

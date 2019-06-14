@@ -15,10 +15,15 @@ class CreateEducationPeriodsTable extends Migration
     {
         Schema::create('education_periods', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', '45');
-            $table->dateTime('begin');
+            $table->string('name');
+            $table->dateTime('start');
             $table->dateTime('end');
+            $table->dateTime('enroll_start');
+            $table->dateTime('enroll_end');
+            $table->string('organisation_id', 10)->nullable();
             $table->timestamps();
+
+            $table->foreign('organisation_id')->references('id')->on('organisations');
         });
     }
 
