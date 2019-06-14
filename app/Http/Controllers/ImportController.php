@@ -194,7 +194,7 @@ class ImportController extends Controller
                 }
             }
 
-          // Bind education periods
+            // Bind education periods
             if (isset($r->educationperiods)) {
                 $minor = Minor::all()->where("id", $r->id)->first();
 
@@ -470,8 +470,6 @@ class ImportController extends Controller
         return response()->json($php_result, 200, [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
             ->header('Content-Type', 'text/json');
     }
-  
-  
 
     public function Tags()
     {
@@ -513,9 +511,6 @@ class ImportController extends Controller
         return response()->json($php_result, 200, [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
             ->header('Content-Type', 'text/json');
     }
-}
-
-
 
     public function Periodes()
     {
@@ -586,6 +581,7 @@ class ImportController extends Controller
         return response()->json($php_result, 200, [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
             ->header('Content-Type', 'text/json');
     }
+}
 
 /**
  * @param $url string The url to visit

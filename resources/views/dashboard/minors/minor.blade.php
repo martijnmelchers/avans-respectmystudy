@@ -73,8 +73,9 @@
                 </ul>
             @else
                 <p>Deze minor heeft geen tags</p>
+            @endif
         </div>
-        
+
         <div class="col-12 box margin">
             <h3>Periodes</h3>
             @if ($minor->educationPeriods->count() > 0)
