@@ -24,6 +24,7 @@
                         <p>{{$attr->surf_value}}</p>
                     @endforeach
                 </div>
+                <a href="/surf/unlink" class="button red">Unlink surf</a>
             @endif
         </div>
     </div>
