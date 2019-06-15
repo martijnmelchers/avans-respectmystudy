@@ -34,6 +34,7 @@
                 <div class="button blue m-1" onclick="importProgrammes()">Importeer Minors</div>
                 <div class="button blue m-1" onclick="importGroups()">Importeer Contactgroepen</div>
                 <div class="button blue m-1" onclick="importPersons()">Importeer Contactpersonen</div>
+                <div class="button blue" onclick="importTags()">Importeer Tags</div>
             </div>
         </div>
 

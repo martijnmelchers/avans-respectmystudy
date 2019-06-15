@@ -8,6 +8,7 @@ return [
     'organisation' => 'Organisatie',
     'selected' => 'geselecteerd',
     'language' => 'Talen',
+    'tags' => 'Tags',
     'sort' => 'Sorteren',
     'no_sort' => 'Geen volgorde',
     'none_found' => 'Geen minors gevonden',
@@ -33,6 +34,7 @@ return [
     'minor_location' => 'Locaties waar deze minor wordt gegeven:',
     'minor_location_info' => 'Klik op een locatie om er meer over te zien.',
     'minor_no_locations' => 'We hebben geen locaties gevonden waar deze minor wordt gegeven.',
+    'minor_language' => 'Deze minor wordt gegeven in het ',
 
     'educationperiod' => [
         'periods' => 'Periodes wanneer deze minor wordt gegeven:',

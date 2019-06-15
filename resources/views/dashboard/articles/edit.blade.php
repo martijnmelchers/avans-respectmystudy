@@ -40,22 +40,32 @@
                 <h3>Content</h3>
                 <textarea class="summernote" name="content">{!! $article->content !!}</textarea>
 
-            
+
                 <div class="buttons mt-2">
                     <a tabindex="-1" href="{{route('dashboard-articles')}}" class="button red">Annuleren</a>
                     <input type="submit" name="submit" class="button blue" value="Opslaan">
                 </div>
             </form>
 
-                <div class="buttons mt-2">
-                    <a href="{{route('dashboard-article-delete', $article->id)}}" class="button red" data-method="get" data-token="{{csrf_token()}}" data-confirm="Are you sure?">Verwijderen</a>
-                </div>
+            <div class="buttons mt-2">
+                <a href="{{route('dashboard-article-delete', $article->id)}}" class="button red" data-method="get"
+                   data-token="{{csrf_token()}}" data-confirm="Are you sure?">Verwijderen</a>
+            </div>
         </div>
     </div>
 
     <script>
         $(document).ready(function () {
-            $('.summernote').summernote({lang: 'nl-NL'});
+            $('.summernote').summernote({
+                lang: 'nl-NL',
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['fontsize', ['fontsize']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']]
+                ]
+            });
         });
     </script>
 @endsection

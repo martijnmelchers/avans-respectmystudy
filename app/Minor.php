@@ -37,29 +37,37 @@ class Minor extends Model
     {
         parent::__construct($attributes);
     }
-  
+
     // Return organisation
     public function organisation()
     {
         return $this->belongsTo('App\Organisation');
     }
-  
+
     // Return locaties
     public function locations()
     {
         return $this->belongsToMany('App\Location', 'minors_locations');
     }
 
+    public function published_version()
+    {
+        return Minor::where("id", $this->id)->where('is_published', 1)->first();
+    }
+
     // Return contact persons
-    public function contactPersons() {
+    public function contactPersons()
+    {
         return $this->belongsToMany('App\ContactPerson', 'minors_contact_persons');
     }
 
     // Return contact group
-    public function contactGroup() {
+    public function contactGroup()
+    {
         return $this->belongsTo('App\ContactGroup');
     }
 
+  
     // Return education periods
     public function educationPeriods() {
         return $this->belongsToMany('App\EducationPeriod', 'minors_educationperiods');
@@ -101,20 +109,28 @@ class Minor extends Model
     }
 
     // Return all versions
-    public function versions() {
+    public function versions()
+    {
         return Minor::all()->where("id", $this->id);
     }
 
     // Return all versions
-    public function version_count() {
+    public function version_count()
+    {
         return Minor::all()->where("id", $this->id)->count();
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'minors_tags');
     }
 
     /**
      * @param $minor Minor - The minor to check against
      * @return bool
      */
-    public function isSame($minor) {
+    public function isSame($minor)
+    {
         if ($minor->name != $this->name)
             return false;
 
@@ -145,15 +161,13 @@ class Minor extends Model
             ->toArray();
         $assessors = User::whereIn('role_id', $h_assessor_id)->pluck('id')->toArray();
         $reviewable = false;
-        if ($reviews->count() == 0){
+        if ($reviews->count() == 0) {
             $reviewable = true;
         }
-        foreach ($reviews as $review)
-        {
-            if (in_array($review->user_id, $assessors))
-            {
+        foreach ($reviews as $review) {
+            if (in_array($review->user_id, $assessors)) {
                 $reviewable = false;
-            }else{
+            } else {
                 $reviewable = true;
             }
         }
@@ -187,8 +201,8 @@ class Minor extends Model
             $avg_studiability = 0;
 
             $avg_content = number_format(round($reviews->avg("grade_quality"), 1), 1, ",", ".");
-            $avg_teachers =  number_format(round($reviews->avg("grade_content"), 1), 1, ",", ".");
-            $avg_studiability =  number_format(round($reviews->avg("grade_studiability"), 1), 1, ",", ".");
+            $avg_teachers = number_format(round($reviews->avg("grade_content"), 1), 1, ",", ".");
+            $avg_studiability = number_format(round($reviews->avg("grade_studiability"), 1), 1, ",", ".");
 
             return [$avg_content, $avg_teachers, $avg_studiability, sizeof($reviews)];
         } else {
