@@ -109,7 +109,7 @@
                                     <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: 'Trebuchet MS', Tahoma, sans-serif"><![endif]-->
                                     <div style="color:#555555;font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;line-height:120%;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
                                         <div style="font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; font-size: 12px; line-height: 14px; color: #555555;">
-                                            <p style="font-size: 12px; line-height: 28px; margin: 0;"><span style="font-size: 24px;">Welkom!</span></p>
+                                            <p style="font-size: 12px; line-height: 28px; margin: 0;"><span style="font-size: 24px;">Review verwijderd</span></p>
                                         </div>
                                     </div>
                                     <!--[if mso]></td></tr></table><![endif]-->
@@ -119,8 +119,11 @@
                                             <p style="font-size: 14px; line-height: 21px; text-align: left; margin: 0;">
                                                 Beste {{($user->name)}},
                                                 <br><br/>
-                                                Je hebt zojuist een account aangemaakt bij RespectMyStudy.
-                                                We wensen je veel plezier en succes bij het vinden van een minor.
+                                                Je review: {{($review->description)}} is verwijderd.
+                                                Waarom is mijn review verwijderd?
+                                                <br><br/>
+                                                Een review wordt verwijderd wanneer geconstateerd is dat de inhoud niet overeenkomt met de voorwaarden
+                                                van RespectMyStudy.
                                                 <br><br/>
                                                 Het RespectMyStudy Team.
                                             </p>
