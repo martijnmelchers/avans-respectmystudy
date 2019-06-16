@@ -52,7 +52,7 @@
                     <h3>{{__('minors.minor_location')}}</h3>
                     <p>{{__('minors.minor_location_info')}}</p>
                 </div>
-                <div class="buttons stretch mb-4">
+                <div class="buttons stretch">
                     @foreach ($minor->locations as $location)
                         <a class="button blue" href="{{route('location', $location->id)}}">{{$location->name}}</a>
                     @endforeach
@@ -63,13 +63,15 @@
                     <p>{{__('minors.minor_no_locations')}}</p>
                 </div>
             @endif
+        </div>
 
+        <div class="col-10">
             @if ($minor->educationPeriods->count() > 0)
                 <div class="col-12 box">
                     <h3>{{__('minors.educationperiod.periods')}}</h3>
                     <p>{{__('minors.educationperiod.info')}}</p>
 
-                    @foreach ($minor->educationPeriods as $period)
+                    @foreach ($minor->educationPeriods->where('start', '>', date('Y-m-d')) as $period)
                         <h6 class="mt-3">{{$period->name}}</h6>
                         <p>{{__('minors.educationperiod.from')}} {{date("m-d-Y", strtotime($period->start))}}</p>
                         <p>{{__('minors.educationperiod.until')}} {{date("m-d-Y", strtotime($period->end))}}</p>
@@ -79,24 +81,6 @@
                 <div class="col-12 box">
                     <h3>{{__('minors.educationperiod.periods')}}</h3>
                     <p>{{__('minors.educationperiod.no_periods')}}</p>
-                </div>
-            @endif
-        </div>
-
-        <div class="col-10">
-            @if ($minor->locations->count() > 0)
-                <div class="col-12 box">
-                    <h3>{{__('minors.minor_location')}}</h3>
-                    <p class="mb-3">{{__('minors.minor_location_info')}}</p>
-
-                    @foreach ($minor->locations as $location)
-                        <a class="button blue" href="{{route('location', $location->id)}}">{{$location->name}}</a>
-                    @endforeach
-                </div>
-            @else
-                <div class="col-12 box">
-                    <h3>{{__('minors.minor_location')}}</h3>
-                    <p>{{__('minors.minor_no_locations')}}</p>
                 </div>
             @endif
         </div>
@@ -200,19 +184,7 @@
                     <input class="button blue" type="submit" value="{{__('minors.buttons.post_button')}}">
                 </form>
             </div>
-            <script>
-                function showOverlay(button) {
-                    window.currentDeleteReviewForm = button.parentElement;
-                    document.getElementById('overlay').style.display = 'flex';
-                }
 
-                function hideOverlay(cancel) {
-                    if (!cancel && window.currentDeleteReviewForm) {
-                        window.currentDeleteReviewForm.submit();
-                    }
-                    document.getElementById('overlay').style.display = 'none';
-                }
-            </script>
             <div id="overlay">
                 <div class="d-flex flex-column box overlay-container">
                     <div class="d-flex flex-row-reverse">
@@ -230,6 +202,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-12 box">
                 <h3>Reviews</h3>
                 @foreach($reviews as $r)
@@ -296,4 +269,19 @@
                     </div>
             </div>
         </div>
+
+        <script>
+            function showOverlay(button) {
+                window.currentDeleteReviewForm = button.parentElement;
+                document.getElementById('overlay').style.display = 'flex';
+            }
+
+            function hideOverlay(cancel) {
+                if (!cancel && window.currentDeleteReviewForm) {
+                    window.currentDeleteReviewForm.submit();
+                }
+                document.getElementById('overlay').style.display = 'none';
+            }
+        </script>
+    </div>
 @endsection
