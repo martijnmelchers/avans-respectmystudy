@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role_id', 'username'
+        'name', 'email', 'password', 'role_id', 'username', 'role_verified_surf'
     ];
 
     /**
@@ -27,14 +27,19 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-
-
+    public function role() {
+        return $this->belongsTo(Role::class);
+    }
+  
     public function surfUser(){
         return $this->hasOne('App\SurfUser');
     }
 
-
     public function likedMinors(){
         return $this->hasMany('App\MinorLike', 'user_id', 'id');
+    }
+
+    public function getRole(){
+        return $this->hasOne('App\Role');   
     }
 }

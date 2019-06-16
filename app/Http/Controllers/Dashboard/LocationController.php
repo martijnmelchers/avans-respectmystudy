@@ -24,4 +24,19 @@ class LocationController extends Controller
     {
         return view('dashboard/locations/location', ['location' => Location::where('id', $id)->first()]);
     }
+
+    public function Edit($id)
+    {
+        return view('dashboard/locations/edit', ['location' => Location::where('id', $id)->first()]);
+    }
+
+    public function EditPost($id, Request $request)
+    {
+        $location = Location::findOrFail($id);
+        $location->fill($request->all());
+
+        $location->save();
+
+        return redirect()->route('dashboard-location', ["id" => $id]);
+    }
 }

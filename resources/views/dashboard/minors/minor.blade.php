@@ -64,6 +64,19 @@
         </div>
 
         <div class="col-12 box margin">
+            <h3>Tags</h3>
+            @if ($minor->tags->count() > 0)
+                <ul>
+                    @foreach ($minor->tags as $tag)
+                        <li><a href="{{route('dashboard-minors', ['tags'=>[$tag->id]])}}">{{$tag->tag}}</a></li>
+                    @endforeach
+                </ul>
+            @else
+                <p>Deze minor heeft geen tags</p>
+            @endif
+        </div>
+
+        <div class="col-12 box margin">
             <h3>Periodes</h3>
             @if ($minor->educationPeriods->count() > 0)
                 @foreach ($minor->educationPeriods as $periods)
