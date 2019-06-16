@@ -258,6 +258,7 @@
                         </p>
                     </div>
                     <h6>Gepubliceerd op: {{$r->created_at}}</h6>
+                        <input class="button blue" type="submit" value="{{__('minors.buttons.post_button')}}">
                 </div>
             </a>
             @endforeach

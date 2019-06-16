@@ -51,11 +51,13 @@ class DashboardminorsController extends Controller
         else return "Minor niet gevonden";
     }
 
-    public function approveReview($id)
+    public function disapproveReview($id)
     {
-        $review = Review::where('id', '=', $id)->first();
-        $assessor_reviews = $minor->assessorReviews();
-        if (isset($minor))  return view('/dashboard/dashboard_merge_reviews', compact('minor', 'assessor_reviews'));
-        else return "Minor niet gevonden";
+        $review = Review::find($id);
+
+        $review->disapproved = true;
+        $review->save();
+
+        return redirect()->back();
     }
 }
