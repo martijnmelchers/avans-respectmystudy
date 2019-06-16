@@ -57,6 +57,19 @@ class DashboardminorsController extends Controller
 
         $review->disapproved = true;
         $review->save();
+    }
+    
+    public function QuarantineReview($id) {
+        Review::where("id", $id)->update(['admin_deleted' => true]);
+
+        // todo: send mail
+
+
+        return redirect()->back();
+    }
+
+    public function RecoverReview($id) {
+        Review::where("id", $id)->update(['admin_deleted' => false]);
 
         return redirect()->back();
     }
