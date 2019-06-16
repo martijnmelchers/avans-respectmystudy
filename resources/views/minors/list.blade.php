@@ -133,13 +133,13 @@
                                 </div>
                                 <br>
                                 <div class="row info-gray">
-                                    <div class="col-4">
+                                    <div class="col-2">
                                         <p class="mb-1"><b>{{__('minors.education_period')}}</b></p>
                                         <p class="mb-1"><i class="far fa-calendar-alt"></i>
                                             {{$minor->nextPeriod() ? Carbon\Carbon::parse($minor->nextPeriod()->start)->formatLocalized('%x') : "Geen onderwijsperiode"}}
                                         </p>
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col-10">
                                         @if (sizeof($minor->averageReviews()) > 0)
                                             <div class="row">
                                                 <div class="col-xl-8">
@@ -151,11 +151,9 @@
                                                         {{ $minor->averageReviews()[3]}} reviews
                                                     </div>
                                                 </div>
-
                                             </div>
                                             <div class="row stars col-xl">
-
-                                                <div class="text-center">
+                                                <div class="col-4 text-center">
                                                     <div class="mb-2">
                                                         @for ($i = 0; $i < 5; $i++)
                                                             @if ($minor->averageReviews()[0] > $i)
@@ -175,7 +173,7 @@
                                                 </div>
 
 
-                                                <div class="text-center">
+                                                <div class="col-4 text-center">
                                                     <div class="mb-2">
 
                                                         @for ($i = 0; $i < 5; $i++)
@@ -197,7 +195,7 @@
                                                 </div>
 
 
-                                                <div class="text-center">
+                                                <div class="col-4 text-center">
                                                     <div class="mb-2">
 
                                                         @for ($i = 0; $i < 5; $i++)
