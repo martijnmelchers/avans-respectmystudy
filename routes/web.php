@@ -10,13 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'MainPageController@index')->name('index');
 
 Route::get('/surf/login', 'SurfController@linkSurf')->middleware(['auth']);
-Route::get('/surf/unlink', 'SurfController@unlinkSurf')->middleware(['auth']);
 
 Route::get('/account', 'AccountController@index')->middleware(['auth']);
 Route::get('/account/linked', 'AccountController@linked');
@@ -24,7 +22,7 @@ Route::get('/account/company', 'AccountController@index')->name('account-company
 
 Route::get('companies/register_company', 'Companies\CompanyController@showRegister')->name('register-company');
 Route::post('/account', 'Companies\CompanyController@register')->name('register-company-action1');
-Route::get('/account/export', 'AccountController@export')->name('account-export');
+Route::get('/account/export', 'AccountController@export')->name('bro');
 Route::post('/companies/register_company', 'Companies\CompanyController@register')->name('register-company-action2');
 
 Route::get('/companies/edit/{id}', 'Companies\CompanyController@showEditCompany')->name('show-edit-company');
@@ -62,27 +60,14 @@ Route::get('/organisations/{id}', 'OrganisationController@Organisation')->name('
 Route::get('/locations', "LocationController@list")->name('locations');
 Route::get('/location/{id}', 'LocationController@Location')->name('location');
 
-Route::get('/article/{id}', 'NewsController@Article')->name('article');
+Route::get('/article/{id}','NewsController@Article')->name('article');
 
-//Mail test routes DELETE THIS
-Route::get('/mail/{id}', 'NotificationController@SendRegistrationMail')->name('registration-mail');
-Route::get('/review/{id}/id/{idreview}', 'NotificationController@SendReviewRemovedMail')->name('review-mail');
-Route::get('/company/{id}/id/{idcompany}', 'NotificationController@SendCompanyInvitation')->name('company-mail');
-
+//
 // Dashboard
-Route::middleware(['assessor'])->group(function () {
-    // Dashboard home
+Route::middleware([])->group(function(){
+    // Home
     Route::get('/dashboard', 'DashboardController@Home')->name('dashboard');
 
-    // Reviews
-    Route::get('/dashboard/reviews', 'DashboardController@Reviews')->name('dashboard-reviews');
-
-    Route::get('/dashboard/dashboard_assessable', 'DashboardminorsController@Minors_to_assess')->name('assessable');
-
-    Route::get('/dashboard/dashboard_assessed', 'DashboardminorsController@Assessed_minors')->name('assessed');
-});
-
-Route::middleware(['admin'])->group(function () {
     // Minor list
     Route::get('/dashboard/minors', 'Dashboard\MinorController@Minors')->name('dashboard-minors');
 
@@ -109,10 +94,6 @@ Route::middleware(['admin'])->group(function () {
     // Specific location
     Route::get('/dashboard/location/{id}', 'Dashboard\LocationController@Location')->name('dashboard-location');
 
-    //Edit location
-    Route::get('/dashboard/locations/{id}/edit', 'Dashboard\LocationController@Edit')->name('dashboard-location-edit');
-    Route::post('/dashboard/locations/{id}/edit', 'Dashboard\LocationController@EditPost')->name('dashboard-location-edit');
-
     // Organisation list
     Route::get('/dashboard/organisations', 'Dashboard\OrganisationController@Organisations')->name('dashboard-organisations');
 
@@ -125,7 +106,7 @@ Route::middleware(['admin'])->group(function () {
     // Edit organisation
     Route::get('/dashboard/organisations/{id}/edit', 'Dashboard\OrganisationController@Edit')->name('dashboard-organisation-edit');
     Route::post('/dashboard/organisations/{id}/edit', 'Dashboard\OrganisationController@EditPost')->name('dashboard-organisation-edit');
-    
+
     // Companies
     Route::get('/dashboard/companies', 'Dashboard\CompanyController@List')->name('dashboard-companies');
     Route::get('/dashboard/companies/{id}', 'Dashboard\CompanyController@Read')->name('dashboard-company');
@@ -135,6 +116,8 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/dashboard/contactgroups', 'Dashboard\ContactGroupController@ContactGroups')->name('dashboard-contactgroups');
     Route::get('/dashboard/contactgroup/{id}', 'Dashboard\ContactGroupController@ContactGroup')->name('dashboard-contactgroup');
 
+    // Reviews
+    Route::get('/dashboard/reviews', 'DashboardController@Reviews')->name('dashboard-reviews');
     // Users
     Route::get('/dashboard/users', 'Dashboard\UserController@Users')->name('dashboard-users');
     Route::get('/dashboard/users/{id}', 'Dashboard\UserController@User')->name('dashboard-user');
@@ -147,12 +130,14 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/dashboard/article/create', 'Dashboard\NewsController@New')->name('dashboard-article-new');
     Route::get('/dashboard/article/{id}', 'Dashboard\NewsController@Delete')->name('dashboard-article-delete');
 
+
+
     // Dashboard importing
-    Route::get('/dashboard/import', function () {
+    Route::get('/dashboard/import', function() {
         return view('dashboard/import');
     })->name('import');
 
-
+  
     // Import routes
     Route::get('/import/minors', 'ImportController@Minors');
     Route::get('/import/organizations', 'ImportController@Organisations');
@@ -162,6 +147,10 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/import/tags', 'ImportController@Tags');
     Route::get('/import/periods', 'ImportController@Periodes');
 
+    Route::get('/dashboard/dashboard_assessable', 'DashboardminorsController@Minors_to_assess')->name('assessable');
+
+    Route::get('/dashboard/dashboard_assessed', 'DashboardminorsController@Assessed_minors')->name('assessed');
+
     Route::get('/dashboard/minor/{id}/reviews', 'DashboardminorsController@Minor')->name('dashboard-minor-reviews');
 
     Route::post('dashboard/minor/{id}/reviews', 'MinorController@InsertReview')->name('dashboard-minor-reviews');
@@ -170,8 +159,11 @@ Route::middleware(['admin'])->group(function () {
 
     Route::post('dashboard/dashboard_merge_reviews/{id}', 'DashboardminorsController@InsertReview')->name('dashboard-merge');
 
+    Route::get('dashboard/review/{id}/quarantine', 'DashboardminorsController@QuarantineReview')->name('dashboard-merge');
 
-    Route::get('dashboard/analytics', function () {
+    Route::get('dashboard/review/{id}/recover', 'DashboardminorsController@RecoverReview')->name('dashboard-merge');
+
+    Route::get('dashboard/analytics', function() {
         return view('dashboard/analytics');
     })->name('dashboard-merge');
 });

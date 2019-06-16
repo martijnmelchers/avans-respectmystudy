@@ -136,7 +136,7 @@ class MinorController extends Controller
 //        $minor = Minor::all()->where("id", $id)->where("is_published", 1)->first();
         $minor = Minor::all()->where("id", $id)->first();
         if (isset($minor)) {
-            $reviews = $minor->reviews();
+            $reviews = $minor->reviews()->where('admin_deleted', '=', false);
             $user_id = Auth::id();
 
             return view('minors/minor', compact('minor', 'reviews', 'user_id'));
