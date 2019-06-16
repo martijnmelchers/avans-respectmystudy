@@ -50,4 +50,12 @@ class DashboardminorsController extends Controller
         if (isset($minor))  return view('/dashboard/dashboard_merge_reviews', compact('minor', 'assessor_reviews'));
         else return "Minor niet gevonden";
     }
+
+    public function approveReview($id)
+    {
+        $review = Review::where('id', '=', $id)->first();
+        $assessor_reviews = $minor->assessorReviews();
+        if (isset($minor))  return view('/dashboard/dashboard_merge_reviews', compact('minor', 'assessor_reviews'));
+        else return "Minor niet gevonden";
+    }
 }

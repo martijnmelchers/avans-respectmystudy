@@ -200,6 +200,7 @@
         </div>
         <div class="col-10 box">
             <h3>Reviews</h3>
+            <a href="{{route('approve-review')}}">
             @foreach($assessor_reviews as $r)
                 <div class="review_detail">
                     @if($r->user_id == $user_id)
@@ -258,6 +259,7 @@
                     </div>
                     <h6>Gepubliceerd op: {{$r->created_at}}</h6>
                 </div>
+            </a>
             @endforeach
         </div>
     </div>

@@ -163,6 +163,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/import/periods', 'ImportController@Periodes');
 
     Route::get('/dashboard/minor/{id}/reviews', 'DashboardminorsController@Minor')->name('dashboard-minor-reviews');
+    Route::get('/dashboard/minor/{id}/review/approve', 'DashboardminorsController@approveReview')->name('approve-review');
 
     Route::post('dashboard/minor/{id}/reviews', 'MinorController@InsertReview')->name('dashboard-minor-reviews');
 

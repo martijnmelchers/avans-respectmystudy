@@ -176,7 +176,7 @@ class Minor extends Model
 
     public function assessorReviews()
     {
-        $reviews = Review::all()->where('minor_id', $this->id);
+        $reviews = Review::all()->where('minor_id', $this->id)->where('disapproved', false);
         $assessors = User::where('role_id', '=', 2)->pluck('id')->toArray();
         $reviews_by_assessor = [];
         foreach ($reviews as $review) {
