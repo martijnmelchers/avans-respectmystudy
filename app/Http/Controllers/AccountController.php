@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Company;
 use App\Review;
+use App\MinorLike;
+use App\Minor;
+
 
 class AccountController extends Controller
 {
@@ -30,7 +33,14 @@ class AccountController extends Controller
         if(isset($user->surfUser)){
             $surfUser = $user->surfUser;
         }
-        return view('account.account', compact('user','surfUser'));   
+        $likedMinors = MinorLike::where('user_id', $user->id)->get();
+        
+        $minors = [];
+        foreach($likedMinors as $like){
+            $minors[] = Minor::find($like->minor_id);
+        }
+
+        return view('account.account', compact('user','surfUser', 'minors'));   
     }
 
     public function linked(){

@@ -29,6 +29,15 @@
             <a href="account/export" class="button blue">Export gegevens</a>
 
         </div>
+
+        <div class="box col-10">
+            <h2>Opgeslagen/Liked minors</h2> 
+                @foreach ($minors as $minor)
+                    <a href="">
+                        {{$minor->name}}
+                    </a>
+                @endforeach
+        </div>
     </div>
 @endsection
 @section('head')

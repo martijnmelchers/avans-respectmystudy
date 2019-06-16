@@ -6,6 +6,9 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use App\Article;
+use Illuminate\Cache\NullStore;
+use Cache;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +19,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        \Cache::extend( 'none', function( $app ) {
+            return Cache::repository( new NullStore );
+        } );
+
+
         Blade::component('articles.components.newsblock', 'newsarticles');
         Blade::component('minors.components.highlighted', 'highlightedminors');
 

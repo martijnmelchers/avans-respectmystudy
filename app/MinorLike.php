@@ -1,8 +1,9 @@
 <?php
 
 namespace App;
+use Illuminate\Database\Eloquent\Model;
 
-class MinorLik extends Model
+class MinorLike extends Model
 {
     protected $table = "minor_like";
 
@@ -10,5 +11,7 @@ class MinorLik extends Model
         'minor_id', 'user_id',
     ];
 
-
+    public function Minor(){
+        return $this->hasOne("App\Minor", "minor_id");
+    }
 }

@@ -218,10 +218,11 @@ class Minor extends Model
     public function userHasLike($delete = false){
         $user_id = Auth::user()->id;
         $like = MinorLike::where([['minor_id',"=", $this->id],['user_id', '=', $user_id]])->first();
+
         $hasLike = ($like != null);
         if($hasLike){
             if($delete)
-                $like->delete();
+                MinorLike::where([['minor_id',"=", $this->id],['user_id', '=', $user_id]])->delete();
 
             return $hasLike;
         }
