@@ -81,7 +81,6 @@
                         </div>
                     </div>
 
-
                     <div class="form-group">
                         <label for="orderby">{{__('minors.sort')}}</label>
                         <select name="orderby">
@@ -89,6 +88,11 @@
                             <option
                                 <?php if ($orderby == "name") echo "selected"; ?> value="name">{{__('minors.minor_name')}}</option>
                         </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="start_from">{{__('minors.start_from')}}</label>
+                        <input type="date" id="start_from" name="start_from" value="{{$start_from}}" placeholder="{{__('minors.start_from')}}">
                     </div>
 
                     <div class="form-group">
@@ -132,9 +136,8 @@
                                     <div class="col-4">
                                         <p class="mb-1"><b>{{__('minors.education_period')}}</b></p>
                                         <p class="mb-1"><i class="far fa-calendar-alt"></i>
-                                            {{$minor->nextPeriod() ? date("Y-m-d", strtotime($minor->nextPeriod()->start)) : "Geen onderwijsperiode"}}
+                                            {{$minor->nextPeriod() ? Carbon\Carbon::parse($minor->nextPeriod()->start)->formatLocalized('%x') : "Geen onderwijsperiode"}}
                                         </p>
-                                        {{--<p><i class="far fa-edit"></i> Geen inschrijfdatum</p>--}}
                                     </div>
                                     <div class="col-8">
                                         @if (sizeof($minor->averageReviews()) > 0)

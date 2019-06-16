@@ -15,12 +15,13 @@ class MinorController extends Controller
 {
     public function List(Route $route, Request $request)
     {
-        $search_name = $search_ects = $orderby = "";
+        $search_name = $search_ects = $orderby = $start_from = "";
         $selected_organisations = $selected_languages = $selected_tags = [];
 
         if (isset($_GET['name'])) $search_name = $_GET['name'];
         if (isset($_GET['ects'])) $search_ects = $_GET['ects'];
         if (isset($_GET['orderby'])) $orderby = $_GET['orderby'];
+        if (isset($_GET['start_from'])) $start_from = $_GET['start_from'];
 
         if (isset($_GET['organisations']) && is_array($_GET['organisations'])) $selected_organisations = $_GET['organisations'];
         if (isset($_GET['languages']) && is_array($_GET['languages'])) $selected_languages = $_GET['languages'];
@@ -93,6 +94,24 @@ class MinorController extends Controller
             }
         }
 
+        // Filter start_from date
+        if (!empty($start_from)) {
+            $selected_minors = $all_minors;
+            $all_minors = array();
+
+            foreach ($selected_minors as $minor) {
+                $after_date = false;
+
+                foreach ($minor->educationPeriods as $period) {
+                    if (strtotime($period->start) >= strtotime($start_from))
+                        $after_date = true;
+                }
+
+                if ($after_date)
+                    $all_minors[] = $minor;
+            }
+        }
+
         // Calculate the total minor amount
         $total_minor_amount = sizeof($all_minors);
 
@@ -122,6 +141,7 @@ class MinorController extends Controller
             "request" => $request,
             "name" => $search_name,
             "ects" => $search_ects,
+            "start_from" => $start_from,
 
             "tags" => Tag::all(),
             "selected_tags" => $selected_tags,
