@@ -63,7 +63,11 @@ Route::get('/location/{id}', 'LocationController@Location')->name('location');
 
 Route::get('/article/{id}','NewsController@Article')->name('article');
 
-//
+//Mail test routes DELETE THIS
+Route::get('/mail/{id}', 'NotificationController@SendRegistrationMail')->name('registration-mail');
+Route::get('/review/{id}/id/{idreview}', 'NotificationController@SendReviewRemovedMail')->name('review-mail');
+Route::get('/company/{id}/id/{idcompany}', 'NotificationController@SendCompanyInvitation')->name('company-mail');
+
 // Dashboard
 Route::middleware(['admin'])->group(function(){
     // Home
@@ -95,6 +99,10 @@ Route::middleware(['admin'])->group(function(){
     // Specific location
     Route::get('/dashboard/location/{id}', 'Dashboard\LocationController@Location')->name('dashboard-location');
 
+    //Edit location
+    Route::get('/dashboard/locations/{id}/edit', 'Dashboard\LocationController@Edit')->name('dashboard-location-edit');
+    Route::post('/dashboard/locations/{id}/edit', 'Dashboard\LocationController@EditPost')->name('dashboard-location-edit');
+
     // Organisation list
     Route::get('/dashboard/organisations', 'Dashboard\OrganisationController@Organisations')->name('dashboard-organisations');
 
@@ -107,7 +115,7 @@ Route::middleware(['admin'])->group(function(){
     // Edit organisation
     Route::get('/dashboard/organisations/{id}/edit', 'Dashboard\OrganisationController@Edit')->name('dashboard-organisation-edit');
     Route::post('/dashboard/organisations/{id}/edit', 'Dashboard\OrganisationController@EditPost')->name('dashboard-organisation-edit');
-
+    
     // Companies
     Route::get('/dashboard/companies', 'Dashboard\CompanyController@List')->name('dashboard-companies');
     Route::get('/dashboard/companies/{id}', 'Dashboard\CompanyController@Read')->name('dashboard-company');
@@ -130,8 +138,6 @@ Route::middleware(['admin'])->group(function(){
     Route::post('/dashboard/article/create', 'Dashboard\NewsController@Create')->name('dashboard-article-create');
     Route::get('/dashboard/article/create', 'Dashboard\NewsController@New')->name('dashboard-article-new');
     Route::get('/dashboard/article/{id}', 'Dashboard\NewsController@Delete')->name('dashboard-article-delete');
-
-
 
     // Dashboard importing
     Route::get('/dashboard/import', function() {
