@@ -8,6 +8,8 @@ class SurfUser extends Model
 {
 
     public $timestamps = false;
+
+    protected $primaryKey = 'surf_id';
     protected $table = "surf_user";
     /**
      * The attributes that are mass assignable.

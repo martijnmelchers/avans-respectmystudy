@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'MainPageController@index')->name('index');
 
 Route::get('/surf/login', 'SurfController@linkSurf')->middleware(['auth']);
+Route::get('/surf/unlink', 'SurfController@unlinkSurf')->middleware(['auth']);
 
 Route::get('/account', 'AccountController@index')->middleware(['auth']);
 Route::get('/account/linked', 'AccountController@linked');
