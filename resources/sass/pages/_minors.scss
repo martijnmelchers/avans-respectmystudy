@@ -42,9 +42,6 @@
 
         b, p {
             font-size: 16px;
-        }
-
-        p {
             text-align: center;
         }
     }
@@ -96,6 +93,10 @@
 
 .box {
     margin-bottom: 20px;
+
+    .button{
+        margin: 0;
+    }
 }
 
 .rating > input:checked + label:hover,
@@ -142,6 +143,10 @@
 
 .row.buttons {
     margin-bottom: 20px;
+
+    .button{
+        margin: 0;
+    }
 
     .col:last-child {
         padding-right: 0;

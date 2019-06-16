@@ -8,15 +8,16 @@ return [
     'organisation' => 'Organisatie',
     'selected' => 'geselecteerd',
     'language' => 'Talen',
+    'tags' => 'Tags',
     'sort' => 'Sorteren',
     'no_sort' => 'Geen volgorde',
     'none_found' => 'Geen minors gevonden',
 
     'more_info' => 'Meer info',
 
-    'education_period'  => 'Onderwijsperiodes',
-    'no_education_period'=>'Geen onderwijsperiode',
-    'no_registration_date'=>'Geen inschrijfdatum',
+    'education_period' => 'Onderwijsperiodes',
+    'no_education_period' => 'Geen onderwijsperiode',
+    'no_registration_date' => 'Geen inschrijfdatum',
     'student_rating' => 'Beoordelingen door studenten',
     'no_reviews' => 'Nog geen reviews',
     'reviews_average' => 'Gemiddeld',
@@ -33,6 +34,15 @@ return [
     'minor_location' => 'Locaties waar deze minor wordt gegeven:',
     'minor_location_info' => 'Klik op een locatie om er meer over te zien.',
     'minor_no_locations' => 'We hebben geen locaties gevonden waar deze minor wordt gegeven.',
+    'minor_language' => 'Deze minor wordt gegeven in het ',
+
+    'educationperiod' => [
+        'periods' => 'Periodes wanneer deze minor wordt gegeven:',
+        'no_periods' => 'We hebben geen info over wanneer deze minor wordt gegeven.',
+        'info' => 'Tussen deze data wordt deze minor gegeven.',
+        'from' => 'Van',
+        'until' => 'Tot'
+    ],
 
     'new_review' => 'Voeg een nieuwe review toe',
 
@@ -58,7 +68,7 @@ return [
     'review_minor_rating' => 'Rating',
 
     'buttons' => [
-        'search_button' => 'Zoeken',
-        'post_button' => 'Plaats review',
-    ],
+    'search_button' => 'Zoeken',
+    'post_button' => 'Plaats review',
+],
 ];

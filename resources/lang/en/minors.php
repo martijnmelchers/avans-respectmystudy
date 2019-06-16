@@ -8,6 +8,7 @@ return [
     'organisation' => 'Organisation',
     'selected' => 'selected',
     'language' => 'Language',
+    'tags' => 'Tags',
     'sort' => 'Sort',
     'no_sort' => 'No order',
     'none_found' => 'No minors found',
@@ -33,6 +34,15 @@ return [
     'minor_location' => 'Locations where this minor is given:',
     'minor_location_info' => 'Click on a location to see more information.',
     'minor_no_locations' => 'We have not found any locations for this minor.',
+    'minor_language' => 'Deze minor wordt gegeven in het ',
+
+    'educationperiod' => [
+        'periods' => 'Periods when this minor is given:',
+        'no_periods' => 'We don \'t have any info about periods.',
+        'info' => 'Between these data this minor is given.',
+        'from' => 'From',
+        'until' => 'Until'
+    ],
 
     'new_review' => 'Add a new review',
 

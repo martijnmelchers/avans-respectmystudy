@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Minor;
 use App\Organisation;
-
 use App\Review;
-
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
@@ -16,10 +15,8 @@ class MinorController extends Controller
 {
     public function List(Route $route, Request $request)
     {
-//        $minors = array(new Minor(["id" => 1, "name" => "Minor 1"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]), new Minor(["id" => 2, "name" => "Minor 2"]));
-
         $search_name = $search_ects = $orderby = "";
-        $selected_organisations = $selected_languages = array();
+        $selected_organisations = $selected_languages = $selected_tags = [];
 
         if (isset($_GET['name'])) $search_name = $_GET['name'];
         if (isset($_GET['ects'])) $search_ects = $_GET['ects'];
@@ -27,6 +24,7 @@ class MinorController extends Controller
 
         if (isset($_GET['organisations']) && is_array($_GET['organisations'])) $selected_organisations = $_GET['organisations'];
         if (isset($_GET['languages']) && is_array($_GET['languages'])) $selected_languages = $_GET['languages'];
+        if (isset($_GET['tags']) && is_array($_GET['tags'])) $selected_tags = $_GET['tags'];
 
         // Default settings
         $per_page = 10;
@@ -77,6 +75,24 @@ class MinorController extends Controller
             }
         }
 
+        // Filter tags
+        if (isset($selected_tags) && sizeof($selected_tags) > 0) {
+            $selected_minors = $all_minors;
+            $all_minors = array();
+
+            foreach ($selected_minors as $minor) {
+                $found_tag = false;
+
+                foreach ($selected_tags as $tag) {
+                    if ($minor->tags->contains($tag))
+                        $found_tag = true;
+                }
+
+                if ($found_tag)
+                    $all_minors[] = $minor;
+            }
+        }
+
         // Calculate the total minor amount
         $total_minor_amount = sizeof($all_minors);
 
@@ -84,7 +100,7 @@ class MinorController extends Controller
         $minors = array();
         for ($i = $offset * $per_page; $i < ($offset * $per_page) + $per_page; $i++) {
             if (isset($all_minors[$i]))
-            $minors[] = $all_minors[$i];
+                $minors[] = $all_minors[$i];
         }
 
         // Calculate the amount of pages
@@ -106,9 +122,12 @@ class MinorController extends Controller
             "request" => $request,
             "name" => $search_name,
             "ects" => $search_ects,
-          
+
+            "tags" => Tag::all(),
+            "selected_tags" => $selected_tags,
+
             "total_minor_amount" => $total_minor_amount,
-            "orderby" => $orderby,
+            "orderby" => $orderby
         ]);
     }
 

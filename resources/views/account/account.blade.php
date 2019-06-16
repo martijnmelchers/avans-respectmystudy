@@ -25,6 +25,9 @@
                     @endforeach
                 </div>
             @endif
+
+            <a href="account/export" class="button blue">Export gegevens</a>
+
         </div>
     </div>
 @endsection
