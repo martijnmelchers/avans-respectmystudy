@@ -32,10 +32,12 @@
             </a>
         </div>
 
-        <div class="col-12 box">
-            <h3>Statistieken</h3>
-            <div id="stocks-chart"></div>
-            {!!  Lava::render('LineChart', 'Testchart', 'stocks-chart')  !!}
-        </div>
+        @if(!empty($viewschart))
+            <div class="col-12 box">
+                <h3>Statistieken</h3>
+                <div id="stocks-chart"></div>
+                {!!  Lava::render('LineChart', 'Testchart', 'stocks-chart')  !!}
+            </div>
+        @endif
     </div>
 @endsection
