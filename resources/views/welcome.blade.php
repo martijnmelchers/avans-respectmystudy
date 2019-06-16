@@ -19,7 +19,7 @@
                         <b>{{\App\Minor::where('is_published', 1)->count()}}</b> {{__('home.search.part2')}}</h1>
                     <form method="get" autocomplete="off" action="minors">
                         <div class="formline">
-                            <input name="name" placeholder=" {{__('home.search_placeholder')}}"
+                            <input name="name" placeholder="{{__('home.search_placeholder')}}"
                                    type="text">
                         </div>
                         {{--<div class="searcharticlefilter">--}}
