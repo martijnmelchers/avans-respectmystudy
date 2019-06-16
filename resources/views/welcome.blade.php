@@ -2,20 +2,15 @@
 
 @section("title", "Home")
 
-
 @section('container_class', 'full-width')
 
 @section('content')
-
     <div class="presentation">
         <div class="row justify-content-center">
             <div class="col-xl-4 col-10 presentation-left">
                 <h1>{{__('home.title')}}</h1>
                 <p>
                     {{__('home.description')}}
-                    <a href="{{route('registration-mail', 7)}}" class="button blue block ">
-                        {{ __('send nudes') }}
-                    </a>
                 </p>
             </div>
             <div class="col-xl-4 col-10 offset-xl-1">
@@ -159,6 +154,7 @@
     @component('articles.components.newsblock')
     @endcomponent
 @endsection
+
 @section('head')
     <link href="/css/homepage.css" type="text/css" rel="stylesheet">
 @endsection
