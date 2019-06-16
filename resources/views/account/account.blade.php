@@ -27,7 +27,7 @@
                 <a href="/surf/unlink" class="button red">Unlink surf</a>
             @endif
 
-            <a href="account/export" class="button blue">Export gegevens</a>
+            <a href="{{route('account-export')}}" class="button blue">Export gegevens</a>
 
         </div>
     </div>

@@ -54,7 +54,7 @@
         @auth
             <a href="{{ url('/account') }}" class="{{ Request::is('account') ? 'active' : '' }}">Account</a>
 
-            @if(Auth::user()->role_id == 2)
+            @if(in_array(Auth::user()->role_id, [2, 6, 7]))
                 <a href="{{route('dashboard')}}">Dashboard</a>
             @endif
 
