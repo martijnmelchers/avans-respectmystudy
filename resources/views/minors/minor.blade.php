@@ -263,10 +263,9 @@
                                 <b class="text-center">{{__('minors.review_content')}}</b>
                                 <span class="description">{{$r->grade_content}} {{__('minors.review_stars')}}</span>
                             </p>
-
                         </div>
-                        @endforeach
                     </div>
+                @endforeach
             </div>
         </div>
 
