@@ -11,20 +11,79 @@
         <div class="col-10">
             <div class="col box">
                 <h1>{{$minor->name}}</h1>
-                <p>{!! $minor->subject !!}
-                </p>
+                @if ($minor->averageReviews()!== null)
+                    <div class="row stars col-xl">
+                        <div class="col-md-4 text-center">
+                            <div class="starwrapper">
+                                @for ($i = 0; $i < 5; $i++)
+                                    @if ($minor->averageReviews()[0] > $i)
+                                        <i class="fas fa-star star"></i>
+                                    @else
+                                        <i class="far fa-star star"></i>
+                                    @endif
+                                @endfor
+                            </div>
+                            <b class="f-primary w-600 c-primary">
+                                {{$minor->averageReviews()[0]}} {{__('minors.reviews_average')}}
+                            </b>
+                            <p class="f-primary">
+                                {{__('minors.reviews_content_and_quality')}}
+                            </p>
+                        </div>
+
+                        <div class="col-md-4 text-center">
+                            <div class="starwrapper">
+                                @for ($i = 0; $i < 5; $i++)
+                                    @if ($minor->averageReviews()[1] > $i)
+                                        <i class="fas fa-star star"></i>
+                                    @else
+                                        <i class="far fa-star star"></i>
+                                    @endif
+                                @endfor
+                            </div>
+                            <b class="f-primary w-600 c-primary">
+                                {{$minor->averageReviews()[1]}} {{__('minors.reviews_average')}}
+                            </b>
+                            <p class="f-primary">
+                                {{__('minors.reviews_quality_teachers')}}
+                            </p>
+                        </div>
+
+
+                        <div class="col-md-4 text-center">
+                            <div class="starwrapper">
+                                @for ($i = 0; $i < 5; $i++)
+                                    @if ($minor->averageReviews()[2] > $i)
+                                        <i class="fas fa-star star"></i>
+                                    @else
+                                        <i class="far fa-star star"></i>
+                                    @endif
+                                @endfor
+                            </div>
+                            <b class="f-primary w-600 c-primary">
+                                {{$minor->averageReviews()[2]}} {{__('minors.reviews_average')}}
+                            </b>
+                            <p class="f-primary">
+                                {{__('minors.reviews_studiability')}}
+                            </p>
+                        </div>
+                    </div>
+                @else
+                    {{__('minors.no_reviews')}}
+                @endif
             </div>
         </div>
 
         <div class="col-10">
-            <div class="box mb-0">
+            <div class="box mb-1">
+                <p>{!! $minor->subject !!}</p>
                 <ul>
                     {{__('minors.minor_language')}} <b>{{$minor->language}}</b>
                 </ul>
             </div>
         </div>
 
-        <div class="col-10">
+        <div class="col-10 mb-1">
             <div class="buttons stretch">
                 <a href="/" class="button red">Home</a>
                 <a href="{{route('minors')}}" class="button red">{{__('minors.all_minors')}}</a>
@@ -86,25 +145,26 @@
         </div>
 
         <div class="col-10">
-            <div class="col-12 box">
-                <h3>{{__('minors.new_review')}}</h3>
-                @if (Session::has('flash_message'))
-                    <div class="alert">{{ Session::get('flash_message') }}
-                        <span class="closebutton dark" onclick="this.parentElement.style.display='none';">&times;</span>
-                    </div>
-                @endif
+            @if (empty($minor->yourReview()))
+                <div class="col-12 box">
+                    <h3>{{__('minors.new_review')}}</h3>
+                    @if (Session::has('flash_message'))
+                        <div class="alert">{{ Session::get('flash_message') }}
+                            <span class="closebutton dark"
+                                  onclick="this.parentElement.style.display='none';">&times;</span>
+                        </div>
+                    @endif
 
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
-                @if (empty($minor->yourReview()))
                     <form method="post">
                         @csrf
 
@@ -185,28 +245,30 @@
                         </div>
                         <input class="button blue" type="submit" value="{{__('minors.buttons.post_button')}}">
                     </form>
-                @endif
-            </div>
+                </div>
+            @endif
+        </div>
 
-            <div id="overlay">
-                <div class="d-flex flex-column box overlay-container">
-                    <div class="d-flex flex-row-reverse">
-                        <span class="d-flex"></span>
-                        <span class="closebutton dark" onclick="hideOverlay(true)">&times;</span>
-                    </div>
-                    <div class="d-flex flex-column">
+        <div id="overlay">
+            <div class="d-flex flex-column box overlay-container">
+                <div class="d-flex flex-row-reverse">
+                    <span class="d-flex"></span>
+                    <span class="closebutton dark" onclick="hideOverlay(true)">&times;</span>
+                </div>
+                <div class="d-flex flex-column">
 
-                        <h3>{{__('minors.review_remove_warning')}}</h3>
-                        <div class="d-flex flex-row justify-content-center overlay-buttons">
-                            <div class="button red"
-                                 onclick="hideOverlay(false)">{{__('minors.review_remove')}}</div>
-                            <div class="button grey"
-                                 onclick="hideOverlay(true)">{{__('minors.review_remove_cancel')}}</div>
-                        </div>
+                    <h3>{{__('minors.review_remove_warning')}}</h3>
+                    <div class="d-flex flex-row justify-content-center overlay-buttons">
+                        <div class="button red"
+                             onclick="hideOverlay(false)">{{__('minors.review_remove')}}</div>
+                        <div class="button grey"
+                             onclick="hideOverlay(true)">{{__('minors.review_remove_cancel')}}</div>
                     </div>
                 </div>
             </div>
+        </div>
 
+        <div class="col-10">
             <div class="col-12 box">
                 <h3>Reviews</h3>
             </div>
@@ -288,5 +350,4 @@
             document.getElementById('overlay').style.display = 'none';
         }
     </script>
-    </div>
 @endsection
