@@ -19,6 +19,7 @@ class Review extends Model
         'grade_studiability',
         'grade_content',
         'comment',
+        'admin_deleted',
         'created_at',
         'updated_at'
     ];

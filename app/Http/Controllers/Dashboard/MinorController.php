@@ -126,8 +126,9 @@ class MinorController extends Controller
             return redirect(route('dashboard-minors'));
 
         $published_version = Minor::where("id", $id)->where('is_published', true)->first();
+        $reviews = $minor->reviews();
 
-        return view('dashboard/minors/minor', ['minor' => $minor, 'published_version' => $published_version, 'versions' => Minor::find($id)]);
+        return view('dashboard/minors/minor', ['minor' => $minor, 'published_version' => $published_version, 'versions' => Minor::find($id), 'reviews' => $reviews]);
     }
 
     public

@@ -35,6 +35,10 @@ class User extends Authenticatable
         return $this->hasOne('App\SurfUser');
     }
 
+    public function likedMinors(){
+        return $this->hasMany('App\MinorLike', 'user_id', 'id');
+    }
+
     public function getRole(){
         return $this->hasOne('App\Role');   
     }

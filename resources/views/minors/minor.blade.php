@@ -10,6 +10,16 @@
     <div class="row content justify-content-center minor">
         <div class="col-10">
             <div class="col box">
+                <div class="minor_like">
+                    <a href="{{route('minor-like', $minor->id)}}">
+
+                        @if($minor->userHasLike())
+                            <i class="fas fa-heart"></i>
+                        @else
+                            <i class="far fa-heart"></i>
+                        @endif
+                    </a>
+                </div>
                 <h1>{{$minor->name}}</h1>
                 @if ($minor->averageReviews()!== null)
                     <div class="row stars col-xl">
