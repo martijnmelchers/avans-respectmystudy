@@ -125,6 +125,75 @@
                 <p>Geen docenten aan deze minor gekoppeld</p>
             @endif
         </div>
-    </div>
+
+            <div class="col-12 box margin">
+                <h3>Reviews</h3>
+                @if ($reviews->count() > 0)
+                    @foreach($reviews as $r)
+                        <div class="box shadow mb-2 review-detail">
+                            @if(!$r->admin_deleted)
+                                <a href="/dashboard/review/{{$r->id}}/quarantine" class="button blue">Verwijderen</a>
+
+                            @else
+                                <a href="/dashboard/review/{{$r->id}}/recover" class="button blue">Herstellen</a>
+
+                            @endif
+                            <h5>{{__('minors.review_minor_title')}}</h5>
+                            <p>{{$r->description}}</p>
+                            <h5>{{__('minors.review_minor_comment')}}</h5>
+                            <p>{{$r->comment}}</p>
+                            <h5>{{__('minors.review_minor_rating')}}</h5>
+                            <div class="d-flex flex-column flex-md-row justify-content-around stars">
+                                <p class="d-flex flex-column">
+                                <span class="d-flex flex-row justify-content-center">
+                                    @for($i=0; $i<5; $i++)
+                                        @if($i < $r->grade_quality)
+                                            <i class="fas fa-star star"></i>
+                                        @else
+                                            <i class="far fa-star star"></i>
+                                        @endif
+                                    @endfor
+                                </span>
+                                    <b>{{__('minors.review_quality')}}</b>
+                                    <span class="description">{{$r->grade_quality}} {{__('minors.review_stars')}}</span>
+                                </p>
+                                <p class="d-flex flex-column">
+                                <span class="d-flex flex-row justify-content-center">
+                                    @for($i=0; $i<5; $i++)
+                                        @if($i < $r->grade_studiability)
+                                            <i class="fas fa-star star"></i>
+                                        @else
+                                            <i class="far fa-star star"></i>
+                                        @endif
+                                    @endfor
+                                </span>
+
+                                    <b class="text-center">{{__('minors.review_studiability')}}</b>
+                                    <span
+                                        class="description">{{$r->grade_studiability}} {{__('minors.review_stars')}}</span>
+                                </p>
+                                <p class="d-flex flex-column">
+
+                                <span class="d-flex flex-row justify-content-center">
+                                    @for($i=0; $i<5; $i++)
+                                        @if($i < $r->grade_content)
+                                            <i class="fas fa-star star"></i>
+                                        @else
+                                            <i class="far fa-star star"></i>
+                                        @endif
+                                    @endfor
+                                </span>
+
+                                    <b class="text-center">{{__('minors.review_content')}}</b>
+                                    <span class="description">{{$r->grade_content}} {{__('minors.review_stars')}}</span>
+                                </p>
+
+                            </div>
+                            @endforeach
+                            @else
+                                <p>Er zijn geen reviews op deze minor</p>
+                            @endif
+                        </div>
+            </div>
     </div>
 @endsection

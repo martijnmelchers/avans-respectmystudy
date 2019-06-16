@@ -1,6 +1,6 @@
 <?php
 return [
-    'welcome' => 'Welcome',
+    'welcome' => 'My account',
     'not_linked' => 'Not yet linked to SURF?',
     'surf_info' => 'Account information from SURF:',
     'buttons' => [

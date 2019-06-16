@@ -136,7 +136,7 @@ class MinorController extends Controller
 //        $minor = Minor::all()->where("id", $id)->where("is_published", 1)->first();
         $minor = Minor::all()->where("id", $id)->first();
         if (isset($minor)) {
-            $reviews = $minor->reviews();
+            $reviews = $minor->reviews()->where('admin_deleted', '=', false);
             $user_id = Auth::id();
 
             return view('minors/minor', compact('minor', 'reviews', 'user_id'));
@@ -188,4 +188,16 @@ class MinorController extends Controller
         return redirect()->back();
     }
 
+
+    public function Like($id){
+        $minor = Minor::findOrFail($id);
+        if(!$minor->userHasLike()){
+            $minor->like();
+        }
+        else{
+            $minor->unLike();
+        }
+
+        return \redirect(route("minor", $id));
+    }
 }

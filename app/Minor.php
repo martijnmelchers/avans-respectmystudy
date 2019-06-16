@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\MinorLike; 
+use Illuminate\Support\Facades\Auth;
 
 class Minor extends Model
 {
@@ -207,6 +209,36 @@ class Minor extends Model
             return [$avg_content, $avg_teachers, $avg_studiability, sizeof($reviews)];
         } else {
             return [];
+        }
+    }
+
+    public function like(){
+        if(!$this->userHasLike()){
+            $like = new MinorLike();
+            $like->user_id = \Auth::user()->id;
+            $like->minor_id = $this->id;
+            return $like->save();
+        }
+        return;
+    }
+
+    public function unLike(){
+        // If we have a like on this minor, remove it else do nothing.
+        $this->userHasLike(true);
+        return;
+    }
+
+    // Returns if the user has a like, and deletes it if delete is set to true
+    public function userHasLike($delete = false){
+        $user_id = Auth::user()->id;
+        $like = MinorLike::where([['minor_id',"=", $this->id],['user_id', '=', $user_id]])->first();
+
+        $hasLike = ($like != null);
+        if($hasLike){
+            if($delete)
+                MinorLike::where([['minor_id',"=", $this->id],['user_id', '=', $user_id]])->delete();
+
+            return $hasLike;
         }
     }
 }
