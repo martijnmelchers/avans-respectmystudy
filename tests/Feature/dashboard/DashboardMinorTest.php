@@ -83,7 +83,40 @@ class DashboardMinorTest extends TestCase
         $response->assertStatus(302);
     }
 
-    public function testMinorVersionsView() {
+    public function testMinorCreateView()
+    {
+        $user = factory(User::class)->make(['role_id' => 2]);
+        $this->actingAs($user);
+
+        $response = $this->get('/dashboard/minors/create');
+
+        $response->assertStatus(200);
+    }
+
+    public function testMinorCreatePost()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->make(['role_id' => 2]);
+        $this->actingAs($user);
+
+        $response = $this->post('/dashboard/minors/create', [
+            'name' => "Dit is een testminor",
+            'ects' => 15,
+            "contacthours" => 1,
+            "educationtype" => "hbo",
+            "language" => "nl",
+            "subject" => "BOE",
+            "goals" => "BOE",
+            "requirements" => "TEST"
+        ]);
+
+        $response->assertStatus(302);
+        self::assertSame("Dit is een testminor", Minor::first()->name);
+    }
+
+    public function testMinorVersionsView()
+    {
         $user = factory(User::class)->make(['role_id' => 2]);
         $this->actingAs($user);
 

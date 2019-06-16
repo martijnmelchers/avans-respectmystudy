@@ -20,8 +20,6 @@ $factory->define(App\Minor::class, function (Faker $faker) {
         'id' => rand(0, 100),
         'version' => 1,
         'name' => "WordQuest Minor",
-        'phonenumber' => $faker->phoneNumber,
-        'email' => $faker->unique()->safeEmail,
         'ects' => array('7.5', '15', '30')[rand(0, 2)],
         'subject' => $faker->realText(1000),
         'goals' => $faker->realText(500),

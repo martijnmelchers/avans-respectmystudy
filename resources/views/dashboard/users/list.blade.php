@@ -6,14 +6,17 @@
     <div class="row">
         <div class="col-12 box">
             <h1>Gebruikers</h1>
-            <!-- <h3>Filter Gebruikers</h3>
-                <form method="get">
-                    <div class="form-group">
-                        <label for="name">Naam</label>
-                    </div>
-                     <input type="submit" value="Zoeken" class="button blue small"> 
-                </form> -->
-            </div>
+
+            <h3>Filter gebruikers</h3>
+            <form method="get" style="margin: 15px auto 0 auto;">
+                <div class="form-group">
+                    <label for="name">Naam</label>
+                    <input type="text" name="name" value="{{$search['name']}}" id="name" placeholder="Naam">
+                </div>
+
+                <input type="submit" class="button blue small">
+            </form>
+        </div>
 
         @if (sizeof($users) > 0)
             <div class="blocks">
@@ -26,8 +29,8 @@
                 @endforeach
             </div>
         @else
-            <div class="col-12 box">
-                <p>Geen Gebruikers gevonden. Gebruik andere zoekcriteria</p>
+            <div class="col-12 mt-2 mb-2 box">
+                <p>Geen gebruikers gevonden</p>
             </div>
         @endif
 

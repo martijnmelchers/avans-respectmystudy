@@ -40,7 +40,7 @@
                 <h3>Content</h3>
                 <textarea class="summernote" name="content"></textarea>
 
-            
+
                 <div class="buttons mt-2">
                     <a tabindex="-1" href="{{route('dashboard-articles')}}" class="button red">Annuleren</a>
                     <input type="submit" name="submit" class="button blue" value="Opslaan">
@@ -51,7 +51,16 @@
 
     <script>
         $(document).ready(function () {
-            $('.summernote').summernote({lang: 'nl-NL'});
+            $('.summernote').summernote({
+                lang: 'nl-NL',
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['fontsize', ['fontsize']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']]
+                ]
+            });
         });
     </script>
 @endsection

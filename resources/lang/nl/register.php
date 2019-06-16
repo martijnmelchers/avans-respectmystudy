@@ -10,5 +10,8 @@ return [
 
     'buttons' => [
         'register_button' => 'Registeren',
+        'send_reset_button' => 'Stuur wachtwoord reset link',
+        'reset_button' => 'Reset wachtwoord',
+
     ],
 ];

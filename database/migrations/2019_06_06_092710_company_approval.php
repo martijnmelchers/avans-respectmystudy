@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ArticleAddAuthor extends Migration
+class CompanyApproval extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class ArticleAddAuthor extends Migration
      */
     public function up()
     {
-        Schema::table('article', function(Blueprint $table){
-            $table->unsignedInteger('author_id')->nullable();
-            $table->foreign('author_id')->references('id')->on('users');
+        Schema::table('companies', function (Blueprint $table) {
+            $table->dateTime('approved_on')->nullable();
         });
-
     }
 
     /**
@@ -27,8 +25,8 @@ class ArticleAddAuthor extends Migration
      */
     public function down()
     {
-        Schema::table('article', function(Blueprint $table) {
-            $table->dropColumn('author_id');
+        Schema::table('companies', function (Blueprint $table) {
+            $table->removeColumn('approved_on');
         });
     }
 }

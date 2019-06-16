@@ -25,6 +25,8 @@ class UpdateOrganisationsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('organisations', function (Blueprint $table) {
+            $table->removeColumn('organisation_image');
+        });
     }
 }

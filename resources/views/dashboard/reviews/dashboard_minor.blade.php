@@ -1,5 +1,4 @@
-@extends('layouts/default')
-
+@extends('layouts/dashboard')
 @section("title", "Minor")
 
 @section('head')
@@ -75,7 +74,7 @@
                     <textarea name="message" required placeholder="{{__('minors.review_content_placeholder')}}"
                               type="message"></textarea>
                 </div>
-                <div class="d-flex flex-column flex-md-row justify-content-around stars">
+                <div class="d-flex flex-column flex-md-row justify-content-around stars mb-4">
                     <div class="rating">
                         <input type="radio" id="star5_1" name="rating_1" value="5"/>
                         <label class="full"

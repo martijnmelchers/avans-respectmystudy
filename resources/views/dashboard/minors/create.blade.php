@@ -104,9 +104,16 @@
 
     <script>
         $(document).ready(function () {
-            $('.summernote').each(function () {
-                $(this).summernote({placeholder: $(this).attr('placeholder'), lang: 'nl-NL'});
-            })
+            $('.summernote').summernote({
+                lang: 'nl-NL',
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['fontsize', ['fontsize']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']]
+                ]
+            });
         });
     </script>
 @endsection

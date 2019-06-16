@@ -13,8 +13,10 @@ class UserController extends Controller
      * Gets multiple users.
      */
     public function Users(){
-        $users = User::all();
-        return view('dashboard/users/list', compact('users'));
+        $name = Input::get("name", "");
+        $users = User::where("name", "like", "%$name%")->get();
+        $search = compact('name');
+        return view('dashboard/users/list', compact('users', 'search'));
     }   
 
     /**

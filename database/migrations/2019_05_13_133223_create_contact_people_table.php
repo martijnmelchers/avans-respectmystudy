@@ -15,7 +15,7 @@ class CreateContactPeopleTable extends Migration
     {
         Schema::create('contact_people', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->string("organisation_id");
+            $table->string("organisation_id")->nullable();
 
             $table->string("firstname");
             $table->string("middlename")->nullable();
