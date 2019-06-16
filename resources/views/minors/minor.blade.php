@@ -1,3 +1,7 @@
+
+<?php
+    use Illuminate\Support\Facades\Auth;
+?>
 @extends('layouts/default')
 
 @section("title", "Minor")
@@ -10,6 +14,8 @@
     <div class="row content justify-content-center minor">
         <div class="col-10">
             <div class="col box">
+
+                @if(Auth::check())
                 <div class="minor_like">
                     <a href="{{route('minor-like', $minor->id)}}">
 
@@ -20,6 +26,7 @@
                         @endif
                     </a>
                 </div>
+                @endif
                 <h1>{{$minor->name}}</h1>
                 <p>{!! $minor->subject !!}
                 </p>
