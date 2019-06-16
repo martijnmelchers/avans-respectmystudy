@@ -32,11 +32,15 @@
 
         <div class="box col-10">
             <h2>Opgeslagen/Liked minors</h2> 
-                @foreach ($minors as $minor)
-                    <a href="">
-                        {{$minor->name}}
-                    </a>
-                @endforeach
+                <ul>   
+                    @foreach ($minors as $minor)
+                    <li>
+                        <a href="{{route('minor', $minor->id)}}">
+                                {{$minor->name}}
+                        </a>
+                    </li>
+                    @endforeach
+                </ul>
         </div>
     </div>
 @endsection
