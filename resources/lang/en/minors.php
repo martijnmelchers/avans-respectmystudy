@@ -12,6 +12,7 @@ return [
     'sort' => 'Sort',
     'no_sort' => 'No order',
     'none_found' => 'No minors found',
+    'start_from' => 'Start from',
 
     'more_info' => 'More info',
 
@@ -37,12 +38,12 @@ return [
     'minor_language' => 'Deze minor wordt gegeven in het ',
 
     'educationperiod' => [
-        'periods' => 'Periods when this minor is given:',
-        'no_periods' => 'We don \'t have any info about periods.',
-        'info' => 'Between these data this minor is given.',
-        'from' => 'From',
-        'until' => 'Until'
-    ],
+    'periods' => 'Periods when this minor is given:',
+    'no_periods' => 'We don \'t have any info about periods.',
+    'info' => 'Between these data this minor is given.',
+    'from' => 'From',
+    'until' => 'Until'
+],
 
     'new_review' => 'Add a new review',
 
@@ -68,7 +69,7 @@ return [
     'review_minor_rating' => 'Rating',
 
     'buttons' => [
-        'search_button' => 'Search',
-        'post_button' => 'Post review',
-    ],
+    'search_button' => 'Search',
+    'post_button' => 'Post review',
+],
 ];

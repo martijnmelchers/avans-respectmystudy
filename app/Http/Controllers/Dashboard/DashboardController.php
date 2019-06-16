@@ -15,24 +15,30 @@ class DashboardController extends Controller
 {
     public function Home()
     {
-        $stocksTable = Lava::DataTable();  // Lava::DataTable() if using Laravel
+        $viewschart = null;
 
-        $stocksTable->addDateColumn('Dag')
-            ->addNumberColumn('Aantal bezoeken');
+        if (!empty(env('ANALYTICS_VIEW_ID'))) {
+            $stocksTable = Lava::DataTable();  // Lava::DataTable() if using Laravel
 
-        // Get visitor info of last 2 months
-        $last_month_results = Analytics::fetchTotalVisitorsAndPageViews(Period::months(2));
+            $stocksTable->addDateColumn('Dag')
+                ->addNumberColumn('Aantal bezoeken');
 
-        // Put data in graph
-        foreach ($last_month_results as $result) {
-            $stocksTable->addRow([
-                date("Y-m-d", strtotime($result['date'])), $result['visitors']
+            // Get visitor info of last 2 months
+            $last_month_results = Analytics::fetchTotalVisitorsAndPageViews(Period::months(2));
+
+            // Put data in graph
+            foreach ($last_month_results as $result) {
+                $stocksTable->addRow([
+                    date("Y-m-d", strtotime($result['date'])), $result['visitors']
+                ]);
+            }
+
+            $chart = Lava::LineChart('Testchart', $stocksTable, [
+                'min' => 0
             ]);
-        }
 
-        $chart = Lava::LineChart('Testchart', $stocksTable, [
-            'min' => 0
-        ]);
+            $viewschart = $chart;
+        }
 
         return view('dashboard/dashboard', [
             'minor_amount' => Minor::count(),
@@ -40,6 +46,7 @@ class DashboardController extends Controller
             'organisation_amount' => Organisation::count(),
             'contactpersons_amount' => ContactPerson::count(),
             'contactgroups_amount' => ContactGroup::count(),
+            'viewschart' => $viewschart
         ]);
     }
 

@@ -83,10 +83,9 @@ class RegisterController extends Controller
             'username' => "",
         ]);
 
-        if($user != null) {
+        if($user != null && $data['role'] == 4) {
             NotificationController::SendRegistrationMail($user->id);
         }
-
         return $user;
     }
 }

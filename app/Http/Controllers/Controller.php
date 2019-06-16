@@ -30,6 +30,7 @@ class Controller extends BaseController
             $lang = $_COOKIE['lang'];
         }
 
+        setlocale(LC_ALL, $lang);
         App::setLocale($lang);
     }
 
