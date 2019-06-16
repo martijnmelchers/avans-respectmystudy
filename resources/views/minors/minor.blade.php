@@ -30,29 +30,6 @@
                 <a href="{{route('minors')}}" class="button red">{{__('minors.all_minors')}}</a>
                 <a href="{{route('organisation', $minor->organisation->id)}}"
                    class="button red">{{__('minors.all_minors_for')}} {{$minor->organisation->name}}</a>
-        <div class="col-10 row buttons">
-            <div class="col-xl">
-                <a href="/" class="button block red">Home</a>
-            </div>
-            <div class="col-xl">
-                <a href="{{route('minors')}}" class="button block red">{{__('minors.all_minors')}}</a>
-            </div>
-            <div class="col-xl">
-                <a href="{{route('organisation', $minor->organisation->id)}}"
-                   class="button block red">{{__('minors.all_minors_for')}} {{$minor->organisation->name}}</a>
-            </div>
-        </div>
-
-        <div class="col-10">
-            <div class="col-12 box">
-                <h3>{{__('minors.minor_goals')}}</h3>
-                <p>{!! $minor->goals !!}</p>
-
-                <h3>{{__('minors.minor_requirements')}}</h3>
-                <p>{!! $minor->requirements !!}</p>
-
-                <h3>{{__('minors.minor_examination')}}</h3>
-                <p>{!! $minor->examination !!}</p>
             </div>
         </div>
 
@@ -75,7 +52,7 @@
                     <h3>{{__('minors.minor_location')}}</h3>
                     <p>{{__('minors.minor_location_info')}}</p>
                 </div>
-                <div class="buttons mb-4">
+                <div class="buttons stretch mb-4">
                     @foreach ($minor->locations as $location)
                         <a class="button blue" href="{{route('location', $location->id)}}">{{$location->name}}</a>
                     @endforeach
@@ -84,6 +61,9 @@
                 <div class="col-12 box">
                     <h3>{{__('minors.minor_location')}}</h3>
                     <p>{{__('minors.minor_no_locations')}}</p>
+                </div>
+            @endif
+
             @if ($minor->educationPeriods->count() > 0)
                 <div class="col-12 box">
                     <h3>{{__('minors.educationperiod.periods')}}</h3>
@@ -291,12 +271,12 @@
                                         @endif
                                     @endfor
                                 </span>
-                                
-                            <b class="text-center">{{__('minors.review_studiability')}}</b>
-                            <span class="description">{{$r->grade_studiability}} {{__('minors.review_stars')}}</span>
-                        </p>
-                        <p class="d-flex flex-column">
-                      
+
+                                <b class="text-center">{{__('minors.review_studiability')}}</b>
+                                <span class="description">{{$r->grade_studiability}} {{__('minors.review_stars')}}</span>
+                            </p>
+                            <p class="d-flex flex-column">
+
                                 <span class="d-flex flex-row justify-content-center">
                                     @for($i=0; $i<5; $i++)
                                         @if($i < $r->grade_content)
@@ -306,14 +286,14 @@
                                         @endif
                                     @endfor
                                 </span>
-                                
-                            <b class="text-center">{{__('minors.review_content')}}</b>
-                            <span class="description">{{$r->grade_content}} {{__('minors.review_stars')}}</span>
-                        </p>
-                       
+
+                                <b class="text-center">{{__('minors.review_content')}}</b>
+                                <span class="description">{{$r->grade_content}} {{__('minors.review_stars')}}</span>
+                            </p>
+
+                        </div>
+                        @endforeach
                     </div>
-                @endforeach
             </div>
         </div>
-    </div>
 @endsection
