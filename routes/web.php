@@ -153,7 +153,6 @@ Route::middleware([])->group(function(){
     Route::get('/dashboard/dashboard_assessed', 'DashboardminorsController@Assessed_minors')->name('assessed');
 
     Route::get('/dashboard/minor/{id}/reviews', 'DashboardminorsController@Minor')->name('dashboard-minor-reviews');
-    Route::get('/dashboard/minor/{id}/reviews', 'DashboardminorsController@disapproveReview')->name('approve-review');
 
     Route::post('dashboard/minor/{id}/reviews', 'MinorController@InsertReview')->name('dashboard-minor-reviews');
 
@@ -162,6 +161,9 @@ Route::middleware([])->group(function(){
     Route::post('dashboard/dashboard_merge_reviews/{id}', 'DashboardminorsController@InsertReview')->name('dashboard-merge');
 
     Route::get('dashboard/review/{id}/quarantine', 'DashboardminorsController@QuarantineReview')->name('dashboard-merge');
+
+    Route::get('dashboard/review/{id}/disapprove', 'DashboardminorsController@disapprove')->name('dashboard-merge');
+    Route::get('dashboard/review/{id}/approve', 'DashboardminorsController@approve')->name('dashboard-merge');
 
     Route::get('dashboard/review/{id}/recover', 'DashboardminorsController@RecoverReview')->name('dashboard-merge');
 
