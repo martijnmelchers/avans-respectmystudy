@@ -22,7 +22,7 @@ Route::get('/account/company', 'AccountController@index')->name('account-company
 
 Route::get('companies/register_company', 'Companies\CompanyController@showRegister')->name('register-company');
 Route::post('/account', 'Companies\CompanyController@register')->name('register-company-action1');
-Route::get('/account/export', 'AccountController@export')->name('bro');
+Route::get('/account/export', 'AccountController@export')->name('account-name');
 Route::post('/companies/register_company', 'Companies\CompanyController@register')->name('register-company-action2');
 
 Route::get('/companies/edit/{id}', 'Companies\CompanyController@showEditCompany')->name('show-edit-company');
