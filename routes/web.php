@@ -62,13 +62,11 @@ Route::get('/location/{id}', 'LocationController@Location')->name('location');
 
 Route::get('/article/{id}','NewsController@Article')->name('article');
 
+//Mail test routes DELETE THIS
 Route::get('/mail/{id}', 'NotificationController@SendRegistrationMail')->name('registration-mail');
 Route::get('/review/{id}/id/{idreview}', 'NotificationController@SendReviewRemovedMail')->name('review-mail');
 Route::get('/company/{id}/id/{idcompany}', 'NotificationController@SendCompanyInvitation')->name('company-mail');
 
-Route::get('/mailpreview', 'NotificationController@GetPage')->name('get-page');
-
-//
 // Dashboard
 Route::middleware(['admin'])->group(function(){
     // Home
