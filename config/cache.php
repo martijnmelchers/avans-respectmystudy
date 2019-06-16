@@ -74,10 +74,6 @@ return [
             'driver' => 'redis',
             'connection' => 'cache',
         ],
-        
-        'none' => [
-            'driver' => 'null',
-        ],
 
     ],
 

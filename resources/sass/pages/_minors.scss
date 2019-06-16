@@ -199,20 +199,3 @@
 .review-detail:not(:last-child) {
     margin-bottom: 20px;
 }
-
-
-.minor_like {
-    height: 30px;
-    width: 30px;
-    position: absolute;
-    font-size: 30px;
-    right: 0px;
-    text-align: center;
-    right: 10px;
-    top: 10px;
-    cursor: pointer;
-
-    .fas{
-        color: red;
-    }
-}

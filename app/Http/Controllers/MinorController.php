@@ -188,16 +188,4 @@ class MinorController extends Controller
         return redirect()->back();
     }
 
-
-    public function Like($id){
-        $minor = Minor::findOrFail($id);
-        if(!$minor->userHasLike()){
-            $minor->like();
-        }
-        else{
-            $minor->unLike();
-        }
-
-        return \redirect(route("minor", $id));
-    }
 }
