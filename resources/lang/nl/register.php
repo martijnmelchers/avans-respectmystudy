@@ -6,7 +6,9 @@ return [
     'email' => 'Email-adres',
     'password' => 'Wachtwoord',
     'repeat_password' => 'Herhaal wachtwoord',
-
+    'account_type' => 'Soort account:',
+    'company' => 'Bedrijf',
+    'student' => 'Student',
 
     'buttons' => [
         'register_button' => 'Registeren',

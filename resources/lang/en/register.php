@@ -6,7 +6,9 @@ return [
     'email' => 'Email-address',
     'password' => 'Password',
     'repeat_password' => 'Confirm password',
-
+    'account_type' => 'Account type:',
+    'company' => 'Company',
+    'student' => 'Student',
 
     'buttons' => [
         'register_button' => 'Register',
