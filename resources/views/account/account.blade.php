@@ -24,6 +24,7 @@
                         <p>{{$attr->surf_value}}</p>
                     @endforeach
                 </div>
+                <a href="/surf/unlink" class="button red">Unlink surf</a>
             @endif
 
             <a href="{{route('account-export')}}" class="button blue">Export gegevens</a>

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\NotificationController;
 use App\User;
+use App\Notifications\TemplateEmail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -71,12 +74,19 @@ class RegisterController extends Controller
         }else if ($data['role'] == 5){
             $this->redirectTo =  '/companies/register_company';
         }
-        return User::create([
+
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role_id' => $data['role'],
-            'username' => ""
+            'username' => "",
         ]);
+
+        if($user != null) {
+            NotificationController::SendRegistrationMail($user->id);
+        }
+
+        return $user;
     }
 }

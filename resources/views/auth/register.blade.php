@@ -73,6 +73,7 @@
                                 <button type="submit" class="button blue block ">
                                     {{ __('register.buttons.register_button') }}
                                 </button>
+
                             </div>
                         </div>
                     </form>
