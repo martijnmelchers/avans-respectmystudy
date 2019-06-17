@@ -201,15 +201,17 @@
         <div class="col-10 box">
             <h3>Reviews</h3>
             @foreach($assessor_reviews as $r)
+                <a href="/dashboard/review/{{$r->id}}/disapprove" class="button blue">Afkeuren</a>
+
                 <div class="review_detail">
-                    @if($r->user_id == $user_id)
+
                         <form method="POST">
                             {{ csrf_field() }}
                             <input type="hidden" name="_method" value="DELETE"/>
                             <input type="hidden" name="review" value="{{$r->id}}"/>
                             <span class="closebutton dark" onclick="showOverlay(this)">&times;</span>
                         </form>
-                    @endif
+
                     <h5>Titel</h5>
                     <p>{{$r->description}}</p>
                     <h5>Comment</h5>

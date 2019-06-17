@@ -170,6 +170,9 @@ Route::middleware(['admin'])->group(function () {
 
     Route::get('dashboard/review/{id}/quarantine', 'DashboardminorsController@QuarantineReview')->name('dashboard-merge');
 
+    Route::get('dashboard/review/{id}/disapprove', 'DashboardminorsController@disapprove')->name('dashboard-merge');
+    Route::get('dashboard/review/{id}/approve', 'DashboardminorsController@approve')->name('dashboard-merge');
+
     Route::get('dashboard/review/{id}/recover', 'DashboardminorsController@RecoverReview')->name('dashboard-merge');
 
     Route::get('dashboard/analytics', function () {
