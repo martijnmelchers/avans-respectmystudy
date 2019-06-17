@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\MinorLike; 
+use App\MinorLike;
 use Illuminate\Support\Facades\Auth;
 
 class Minor extends Model
@@ -77,14 +77,6 @@ class Minor extends Model
 
     // Return first education period
     public function nextPeriod() {
-//        $periods = $this->educationPeriods();
-//        $period = null;
-//
-//        foreach ($periods as $p) {
-//            if (strtotime($p->start) > time())
-//                $period = $p;
-//        }
-
         return $this->educationPeriods()->where('start', '>', date('Y-m-d'))->first();
     }
   
@@ -108,6 +100,10 @@ class Minor extends Model
 
 //        return $this->hasMany(Review::class);
         return Review::all()->where("minor_id", $this->id);
+    }
+
+    public function yourReview() {
+        return Review::where('user_id', Auth::user()->id)->where('minor_id', $this->id)->first();
     }
 
     // Return all versions

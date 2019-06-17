@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UserAddRoleVerified extends Migration
+class SoftDeleteReview extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class UserAddRoleVerified extends Migration
      */
     public function up()
     {
-        Schema::table('users', function(Blueprint $table){
-            $table->boolean('role_verified_surf')->default(false);           
+        Schema::table('reviews', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
@@ -25,8 +25,8 @@ class UserAddRoleVerified extends Migration
      */
     public function down()
     {
-        Schema::table('users', function(Blueprint $table){
-            $table->removeColumn('role_verified_surf');
+        Schema::table('reviews', function(Blueprint $table){
+            $table->dropSoftDeletes();
         });
     }
 }

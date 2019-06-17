@@ -12,6 +12,7 @@ return [
     'sort' => 'Sorteren',
     'no_sort' => 'Geen volgorde',
     'none_found' => 'Geen minors gevonden',
+    'start_from' => 'Begin op',
 
     'more_info' => 'Meer info',
 

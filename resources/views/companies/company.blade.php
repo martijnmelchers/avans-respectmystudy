@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <h3>{{__('companies.extra_information')}}</h3>
+                    <h3>{{__('companies.additional_information')}}</h3>
                     <p>{{$c->extra_information}}</p>
                 </div>
 
