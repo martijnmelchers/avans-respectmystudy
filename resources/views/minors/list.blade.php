@@ -92,7 +92,8 @@
 
                     <div class="form-group">
                         <label for="start_from">{{__('minors.start_from')}}</label>
-                        <input type="date" id="start_from" name="start_from" value="{{$start_from}}" placeholder="{{__('minors.start_from')}}">
+                        <input type="date" id="start_from" name="start_from" value="{{$start_from}}"
+                               placeholder="{{__('minors.start_from')}}">
                     </div>
 
                     <div class="form-group">
@@ -119,11 +120,9 @@
                                         </div>
                                     </div>
                                     <div class="col-2">
-                                        @if($organisation::findOrFail($minor->organisation_id)->organisation_image != null)
-                                        <img class="organisation_img"
-                                             src="{{Storage::url($organisation::findOrFail($minor->organisation_id)->organisation_image)}}"/>
-                                        @else
-
+                                        @if($organisation->organisation && $organisation::find($minor->organisation_id)->organisation_image != null)
+                                            <img class="organisation_img"
+                                                 src="{{Storage::url($organisation::findOrFail($minor->organisation_id)->organisation_image)}}"/>
                                         @endif
                                         <h3 class="points text-center f-primary w-600">
                                             <span class="c-black">{{$minor->ects}},0</span>
@@ -133,13 +132,13 @@
                                 </div>
                                 <br>
                                 <div class="row info-gray">
-                                    <div class="col-2">
+                                    <div class="col-3">
                                         <p class="mb-1"><b>{{__('minors.education_period')}}</b></p>
                                         <p class="mb-1"><i class="far fa-calendar-alt"></i>
                                             {{$minor->nextPeriod() ? Carbon\Carbon::parse($minor->nextPeriod()->start)->formatLocalized('%x') : "Geen onderwijsperiode"}}
                                         </p>
                                     </div>
-                                    <div class="col-10">
+                                    <div class="col-9">
                                         @if (sizeof($minor->averageReviews()) > 0)
                                             <div class="row">
                                                 <div class="col-xl-8">
