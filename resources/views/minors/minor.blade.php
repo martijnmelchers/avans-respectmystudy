@@ -1,6 +1,5 @@
-
 <?php
-    use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
 ?>
 @extends('layouts/default')
 
@@ -16,16 +15,16 @@
             <div class="col box">
 
                 @if(Auth::check())
-                <div class="minor_like">
-                    <a href="{{route('minor-like', $minor->id)}}">
+                    <div class="minor_like">
+                        <a href="{{route('minor-like', $minor->id)}}">
 
-                        @if($minor->userHasLike())
-                            <i class="fas fa-heart"></i>
-                        @else
-                            <i class="far fa-heart"></i>
-                        @endif
-                    </a>
-                </div>
+                            @if($minor->userHasLike())
+                                <i class="fas fa-heart"></i>
+                            @else
+                                <i class="far fa-heart"></i>
+                            @endif
+                        </a>
+                    </div>
                 @endif
                 <h1>{{$minor->name}}</h1>
                 @if (!empty($minor->averageReviews()))
@@ -104,8 +103,10 @@
             <div class="buttons stretch">
                 <a href="/" class="button red">Home</a>
                 <a href="{{route('minors')}}" class="button red">{{__('minors.all_minors')}}</a>
-                <a href="{{route('organisation', $minor->organisation->id)}}"
-                   class="button red">{{__('minors.all_minors_for')}} {{$minor->organisation->name}}</a>
+                @if($minor->organisation)
+                    <a href="{{route('organisation', $minor->organisation->id)}}"
+                       class="button red">{{__('minors.all_minors_for')}} {{$minor->organisation->name}}</a>
+                @endif
             </div>
         </div>
 
@@ -260,7 +261,7 @@
                                 <b>{{__('minors.review_content')}}</b>
                             </div>
                         </div>
-                        <input class="button blue" type="submit" value="{{__('minors.buttons.post_button')}}">
+                        <input class="button blue mt-2" type="submit" value="{{__('minors.buttons.post_button')}}">
                     </form>
                 </div>
             @endif

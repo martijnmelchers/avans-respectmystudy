@@ -6,4 +6,6 @@ return [
     'buttons' => [
     'link_button' => 'Link now!',
     ],
+    'saved_minors' => 'Saved minors',
+    'no_saved_minors' => 'You\'ve not saved any minors yet.'
 ];

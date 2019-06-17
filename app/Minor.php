@@ -247,7 +247,7 @@ class Minor extends Model
     public function unLike()
     {
         // If we have a like on this minor, remove it else do nothing.
-        $this->miuserHasLike(true);
+        $this->userHasLike(true);
         return;
     }
 }
