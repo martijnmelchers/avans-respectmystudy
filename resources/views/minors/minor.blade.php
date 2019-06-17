@@ -28,7 +28,7 @@
                 </div>
                 @endif
                 <h1>{{$minor->name}}</h1>
-                @if ($minor->averageReviews()!== null)
+                @if (!empty($minor->averageReviews()))
                     <div class="row stars col-xl">
                         <div class="col-md-4 text-center">
                             <div class="starwrapper">
