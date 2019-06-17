@@ -32,12 +32,16 @@
             </a>
         </div>
 
-        @if(!empty($viewschart))
-            <div class="col-12 box">
+        <div class="col-12 box">
+            @if(!empty($viewschart))
                 <h3>Statistieken</h3>
                 <div id="stocks-chart"></div>
                 {!!  Lava::render('LineChart', 'Testchart', 'stocks-chart')  !!}
-            </div>
-        @endif
+            @else
+                <p>Je hebt geen google analytics view meegegeven, waardoor we geen grafiek kunnen laten zien.</p>
+            @endif
+            <p>Bekijk alle statistieken op <a class="underlinese" href="http://analytics.google.com">Google Analytics</a></p>
+        </div>
+
     </div>
 @endsection
