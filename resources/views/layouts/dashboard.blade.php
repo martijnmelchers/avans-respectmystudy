@@ -28,26 +28,43 @@
         <a href="{{route('index')}}" class="title">RespectMyStudy</a>
 
         <div class="nav-buttons">
-            <a href="{{route('dashboard')}}" class="{{ Request::path() == 'dashboard' ? 'active' : '' }}"><i
-                        class="fas fa-home"></i>Home</a>
-            <a href="{{route('dashboard-minors')}}" class="{{ Request::path() == 'dashboard/minors' ? 'active' : '' }}"><i
-                        class="fas fa-list"></i>Minoren</a>
-            <a href="{{route('dashboard-locations')}}"
-               class="{{ Request::path() == 'dashboard/locations' ? 'active' : '' }}"><i
-                        class="fas fa-search-location"></i>Locaties</a>
-            <a href="{{route('dashboard-organisations')}}"
-               class="{{ Request::path() == 'dashboard/organisations' ? 'active' : '' }}"><i class="fas fa-school"></i>Organisaties</a>
-            <a href="{{route('assessable')}}" class="{{ Request::path() == 'dashboard/reviews' ? 'active' : '' }}"><i
-                        class="far fa-thumbs-up"></i>Reviews</a>
-            <a href="{{route('dashboard-users')}}" class="{{ Request::path() == 'dashboard/users' ? 'active' : '' }}"><i
-                        class="far fas fa-user"></i>Gebruikers</a>
-            <a href="{{route('dashboard-companies')}}" class="{{ Request::path() == 'dashboard/companies' ? 'active' : '' }}">
-                <i class="fas fa-building"></i>Bedrijven</a>
-            <a href="{{route('dashboard-articles')}}"
-               class="{{ Request::path() == 'dashboard/articles' ? 'active' : '' }}"><i
-                        class="fas fa-newspaper"></i>Nieuws</a>
-            <a href="{{route('import')}}" class="{{ Request::path() == 'dashboard/import' ? 'active' : '' }}"><i
-                        class="fa fa-download"></i>Importeren</a>
+            @if(Auth::user()->role_id == 2)
+                <a href="{{route('dashboard')}}" class="{{ Request::path() == 'dashboard' ? 'active' : '' }}"><i
+                            class="fas fa-home"></i>Home</a>
+                <a href="{{route('dashboard-minors')}}"
+                   class="{{ Request::path() == 'dashboard/minors' ? 'active' : '' }}"><i
+                            class="fas fa-list"></i>Minoren</a>
+                <a href="{{route('dashboard-locations')}}"
+                   class="{{ Request::path() == 'dashboard/locations' ? 'active' : '' }}"><i
+                            class="fas fa-search-location"></i>Locaties</a>
+                <a href="{{route('dashboard-organisations')}}"
+                   class="{{ Request::path() == 'dashboard/organisations' ? 'active' : '' }}"><i
+                            class="fas fa-school"></i>Organisaties</a>
+                <a href="{{route('assessable')}}"
+                   class="{{ Request::path() == 'dashboard/reviews' ? 'active' : '' }}"><i
+                            class="far fa-thumbs-up"></i>Reviews</a>
+                <a href="{{route('dashboard-users')}}"
+                   class="{{ Request::path() == 'dashboard/users' ? 'active' : '' }}"><i
+                            class="far fas fa-user"></i>Gebruikers</a>
+                <a href="{{route('dashboard-companies')}}"
+                   class="{{ Request::path() == 'dashboard/companies' ? 'active' : '' }}">
+                    <i class="fas fa-building"></i>Bedrijven</a>
+                <a href="{{route('dashboard-articles')}}"
+                   class="{{ Request::path() == 'dashboard/articles' ? 'active' : '' }}"><i
+                            class="fas fa-newspaper"></i>Nieuws</a>
+                <a href="{{route('import')}}" class="{{ Request::path() == 'dashboard/import' ? 'active' : '' }}"><i
+                            class="fa fa-download"></i>Importeren</a>
+            @elseif(Auth::user()->role_id == 7)
+                <a href="{{route('assessable')}}"
+                   class="{{ Request::path() == 'dashboard/reviews' ? 'active' : '' }}"><i
+                            class="far fa-thumbs-up"></i>Reviews</a>
+            @elseif(Auth::user()->role_id == 6)
+                <a href="{{route('assessable')}}"
+                   class="{{ Request::path() == 'dashboard/reviews' ? 'active' : '' }}"><i
+                            class="far fa-thumbs-up"></i>Reviews</a>
+            @else
+                <p>BOE</p>
+            @endif
         </div>
     </div>
 

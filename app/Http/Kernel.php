@@ -46,7 +46,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
-        ],
+        ]
     ];
 
     /**
@@ -69,6 +69,8 @@ class Kernel extends HttpKernel
 
         // Custom
         'admin' => \App\Http\Middleware\Admin::class,
+        'assessor' => \App\Http\Middleware\Assessor::class,
+        'hoofdassessor' => \App\Http\Middleware\HoofdAssessor::class,
         'company' => \App\Http\Middleware\CompanyMW::class,
     ];
 

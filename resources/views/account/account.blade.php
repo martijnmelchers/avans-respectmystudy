@@ -24,10 +24,24 @@
                         <p>{{$attr->surf_value}}</p>
                     @endforeach
                 </div>
+                <a href="/surf/unlink" class="button red">Unlink surf</a>
             @endif
 
-            <a href="account/export" class="button blue">Export gegevens</a>
+            <a href="{{route('account-export')}}" class="button blue">Export gegevens</a>
 
+        </div>
+
+        <div class="box col-10">
+            <h2>Opgeslagen/Liked minors</h2> 
+                <ul>   
+                    @foreach ($minors as $minor)
+                    <li>
+                        <a href="{{route('minor', $minor->id)}}">
+                                {{$minor->name}}
+                        </a>
+                    </li>
+                    @endforeach
+                </ul>
         </div>
     </div>
 @endsection

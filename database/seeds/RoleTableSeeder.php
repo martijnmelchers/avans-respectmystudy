@@ -29,11 +29,22 @@ class RoleTableSeeder extends Seeder
             'role_description' => 'Student rol',
         ]);
 
-    
         DB::table('roles')->insert([
             'id' => 5,
             'role_name' => "Bedrijf",
             'role_description' => 'Bedrijf rol',
+        ]);
+
+        DB::table('roles')->insert([
+            'id' => 6,
+            'role_name' => "Assessor",
+            'role_description' => 'Assessor rol',
+        ]);
+
+        DB::table('roles')->insert([
+            'id' => 7,
+            'role_name' => "Hoofdassessor",
+            'role_description' => 'Hoofdassessor rol',
         ]);
     }
 }
