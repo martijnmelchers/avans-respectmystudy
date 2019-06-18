@@ -32,16 +32,20 @@
         </div>
 
         <div class="box col-10">
-            <h2>Opgeslagen/Liked minors</h2> 
-                <ul>   
+            <h2>{{__('account.saved_minors')}}</h2>
+            @if (sizeof($minors) > 0)
+                <ul>
                     @foreach ($minors as $minor)
-                    <li>
-                        <a href="{{route('minor', $minor->id)}}">
+                        <li>
+                            <a href="{{route('minor', $minor->id)}}">
                                 {{$minor->name}}
-                        </a>
-                    </li>
+                            </a>
+                        </li>
                     @endforeach
                 </ul>
+            @else
+                <p>{{__('account.no_saved_minors')}}</p>
+            @endif
         </div>
     </div>
 @endsection

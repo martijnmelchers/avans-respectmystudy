@@ -50,12 +50,19 @@ class DashboardminorsController extends Controller
         if (isset($minor))  return view('/dashboard/dashboard_merge_reviews', compact('minor', 'assessor_reviews'));
         else return "Minor niet gevonden";
     }
-
+    
     public function QuarantineReview($id) {
         Review::where("id", $id)->update(['admin_deleted' => true]);
 
         // todo: send mail
 
+        return redirect()->back();
+    }
+
+    public function Disapprove($id) {
+        Review::where("id", $id)->update(['disapproved' => true]);
+
+        // todo: send mail
 
         return redirect()->back();
     }

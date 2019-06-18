@@ -10,6 +10,9 @@ class LocationController extends Controller
     {
         $location = Location::all()->where("id", $id)->first();
 
+        if (empty($location))
+            return redirect(route('organisations'));
+
         return view('locations/location', ["location" => $location]);
     }
 }

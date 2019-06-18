@@ -23,13 +23,13 @@ class NotificationController extends Controller
     public static function SendRegistrationMail($id) {
         $user = User::findOrFail($id);
 
-        if($user != null) {
-            Mail::send('emails.registration', ['user' => $user], function ($m) use ($user) {
-                $m->from('noreply@RespectMyStudy.nl');
-                $m->subject('RespectMyStudy');
-                $m->to($user->email, $user->name)->subject('Welkom bij RespectMyStudy!');
-            });
-        }
+//        if($user != null) {
+//            Mail::send('emails.registration', ['user' => $user], function ($m) use ($user) {
+//                $m->from('noreply@RespectMyStudy.nl');
+//                $m->subject('RespectMyStudy');
+//                $m->to($user->email, $user->name)->subject('Welkom bij RespectMyStudy!');
+//            });
+//        }
     }
 
     public static function SendReviewRemovedMail($id, $idreview) {

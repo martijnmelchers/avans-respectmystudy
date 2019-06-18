@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\MinorLike; 
+use App\MinorLike;
 use Illuminate\Support\Facades\Auth;
 
 class Minor extends Model
@@ -69,26 +69,23 @@ class Minor extends Model
         return $this->belongsTo('App\ContactGroup');
     }
 
-  
+
     // Return education periods
-    public function educationPeriods() {
-        return $this->belongsToMany('App\EducationPeriod', 'minors_educationperiods');
+
+    public function nextPeriod()
+    {
+        return $this->educationPeriods()->where('start', '>', date('Y-m-d'))->first();
     }
 
     // Return first education period
-    public function nextPeriod() {
-//        $periods = $this->educationPeriods();
-//        $period = null;
-//
-//        foreach ($periods as $p) {
-//            if (strtotime($p->start) > time())
-//                $period = $p;
-//        }
 
-        return $this->educationPeriods()->where('start', '>', date('Y-m-d'))->first();
+    public function educationPeriods()
+    {
+        return $this->belongsToMany('App\EducationPeriod', 'minors_educationperiods');
     }
-  
+
     // Return reviews
+
     public function reviews()
     {
 //        $reviews = Review::all()->where('minor_id', $this->id);
@@ -108,6 +105,14 @@ class Minor extends Model
 
 //        return $this->hasMany(Review::class);
         return Review::all()->where("minor_id", $this->id);
+    }
+
+    public function yourReview()
+    {
+        if (Auth::user())
+            return Review::where('user_id', Auth::user()->id)->where('minor_id', $this->id)->first();
+        else
+            return null;
     }
 
     // Return all versions
@@ -178,7 +183,7 @@ class Minor extends Model
 
     public function assessorReviews()
     {
-        $reviews = Review::all()->where('minor_id', $this->id);
+        $reviews = Review::all()->where('minor_id', $this->id)->where('disapproved', false);
         $assessors = User::where('role_id', '=', 2)->pluck('id')->toArray();
         $reviews_by_assessor = [];
         foreach ($reviews as $review) {
@@ -212,8 +217,9 @@ class Minor extends Model
         }
     }
 
-    public function like(){
-        if(!$this->userHasLike()){
+    public function like()
+    {
+        if (!$this->userHasLike()) {
             $like = new MinorLike();
             $like->user_id = \Auth::user()->id;
             $like->minor_id = $this->id;
@@ -222,23 +228,26 @@ class Minor extends Model
         return;
     }
 
-    public function unLike(){
-        // If we have a like on this minor, remove it else do nothing.
-        $this->userHasLike(true);
-        return;
-    }
-
-    // Returns if the user has a like, and deletes it if delete is set to true
-    public function userHasLike($delete = false){
+    public function userHasLike($delete = false)
+    {
         $user_id = Auth::user()->id;
-        $like = MinorLike::where([['minor_id',"=", $this->id],['user_id', '=', $user_id]])->first();
+        $like = MinorLike::where([['minor_id', "=", $this->id], ['user_id', '=', $user_id]])->first();
 
         $hasLike = ($like != null);
-        if($hasLike){
-            if($delete)
-                MinorLike::where([['minor_id',"=", $this->id],['user_id', '=', $user_id]])->delete();
+        if ($hasLike) {
+            if ($delete)
+                MinorLike::where([['minor_id', "=", $this->id], ['user_id', '=', $user_id]])->delete();
 
             return $hasLike;
         }
+    }
+
+    // Returns if the user has a like, and deletes it if delete is set to true
+
+    public function unLike()
+    {
+        // If we have a like on this minor, remove it else do nothing.
+        $this->userHasLike(true);
+        return;
     }
 }
