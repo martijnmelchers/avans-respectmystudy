@@ -311,7 +311,7 @@ class ImportController extends Controller
                 $postalcode = str_replace(" ", "", $location->visitingzip);
 
                 // Get the google maps API key from the config
-//                $key = env("GOOGLEMAPS_API_KEY", null);
+                $key = env("GOOGLEMAPS_API_KEY", null);
 
                 if (isset($key)) {
                     $google_php_result = getCurl("https://maps.googleapis.com/maps/api/geocode/json?address=$address%20$postalcode&key=$key");
