@@ -14,9 +14,6 @@ function extractApplication()
     if ($zip->open('application.zip') === TRUE) {
         $success = $zip->extractTo(getRootDir());
         $zip->close();
-
-        // TODO uncomment
-//        unlink('application.zip');
         return $success;
     } else {
         return false;
