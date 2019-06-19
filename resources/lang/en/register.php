@@ -9,6 +9,7 @@ return [
     'account_type' => 'Account type:',
     'company' => 'Company',
     'student' => 'Student',
+    'login'=>'Log in',
 
     'buttons' => [
         'register_button' => 'Register',

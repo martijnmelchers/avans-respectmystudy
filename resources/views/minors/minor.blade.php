@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 @section('content')
     <div class="row content justify-content-center minor">
-        <div class="col-10">
+        <div class="col-md-10 col-12">
             <div class="col box">
 
                 @if(Auth::check())
@@ -90,7 +90,7 @@ use Illuminate\Support\Facades\Auth;
             </div>
         </div>
 
-        <div class="col-10">
+        <div class="col-md-10 col-12">
             <div class="box mb-1">
                 <p>{!! $minor->subject !!}</p>
                 <ul>
@@ -99,7 +99,7 @@ use Illuminate\Support\Facades\Auth;
             </div>
         </div>
 
-        <div class="col-10 mb-1">
+        <div class="col-md-10 col-12 mb-1">
             <div class="buttons stretch">
                 <a href="/" class="button red">Home</a>
                 <a href="{{route('minors')}}" class="button red">{{__('minors.all_minors')}}</a>
@@ -110,8 +110,8 @@ use Illuminate\Support\Facades\Auth;
             </div>
         </div>
 
-        <div class="col-10">
-            <div class="col-12 box">
+        <div class="col-md-10 col-12">
+            <div class="box">
                 <h3>{{__('minors.minor_goals')}}</h3>
                 <p>{!! $minor->goals !!}</p>
 
@@ -123,9 +123,9 @@ use Illuminate\Support\Facades\Auth;
             </div>
         </div>
 
-        <div class="col-10">
+        <div class="col-md-10 col-12">
             @if ($minor->locations->count() > 0)
-                <div class="col-12 box mb-0">
+                <div class="box mb-0">
                     <h3>{{__('minors.minor_location')}}</h3>
                     <p>{{__('minors.minor_location_info')}}</p>
                 </div>
@@ -135,16 +135,16 @@ use Illuminate\Support\Facades\Auth;
                     @endforeach
                 </div>
             @else
-                <div class="col-12 box">
+                <div class="box">
                     <h3>{{__('minors.minor_location')}}</h3>
                     <p>{{__('minors.minor_no_locations')}}</p>
                 </div>
             @endif
         </div>
 
-        <div class="col-10">
+        <div class="col-md-10 col-12">
             @if ($minor->educationPeriods->count() > 0)
-                <div class="col-12 box">
+                <div class="box">
                     <h3>{{__('minors.educationperiod.periods')}}</h3>
                     <p>{{__('minors.educationperiod.info')}}</p>
 
@@ -155,16 +155,16 @@ use Illuminate\Support\Facades\Auth;
                     @endforeach
                 </div>
             @else
-                <div class="col-12 box">
+                <div class="box">
                     <h3>{{__('minors.educationperiod.periods')}}</h3>
                     <p>{{__('minors.educationperiod.no_periods')}}</p>
                 </div>
             @endif
         </div>
 
-        <div class="col-10">
+        <div class="col-md-10 col-12">
             @if (empty($minor->yourReview()))
-                <div class="col-12 box">
+                <div class="box">
                     <h3>{{__('minors.new_review')}}</h3>
                     @if (Session::has('flash_message'))
                         <div class="alert">{{ Session::get('flash_message') }}
@@ -286,8 +286,8 @@ use Illuminate\Support\Facades\Auth;
             </div>
         </div>
 
-        <div class="col-10">
-            <div class="col-12 box">
+        <div class="col-md-10 col-12">
+            <div class="box">
                 <h3>Reviews</h3>
             </div>
 

@@ -103,7 +103,7 @@
             </div>
         </div>
 
-        <div class="col-xl-6 offset-xl-1">
+        <div class="col-xl-6 offset-xl-1 mr-auto ml-auto col-11">
             <div class="row">
                 @if (sizeof($minors) > 0)
                     @foreach ($minors as $minor)
@@ -111,7 +111,7 @@
                             <a href="minor/{{$minor->id}}">
 
                                 <div class="row justify-content-between">
-                                    <div class="col-10">
+                                    <div class="col-md-10">
                                         <div>
                                             <h4 class="w-700 text-uppercase">{{$minor->name}}</h4>
                                             <p class="text-small text-lined f-secondary c-secondary">
@@ -119,7 +119,7 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="col-2">
+                                    <div class="col-md- 2">
                                         @if($organisation->organisation && $organisation::find($minor->organisation_id)->organisation_image != null)
                                             <img class="organisation_img"
                                                  src="{{Storage::url($organisation::findOrFail($minor->organisation_id)->organisation_image)}}"/>
@@ -130,15 +130,14 @@
                                         </h3>
                                     </div>
                                 </div>
-                                <br>
                                 <div class="row info-gray">
-                                    <div class="col-3">
+                                    <div class="col-md-3">
                                         <p class="mb-1"><b>{{__('minors.education_period')}}</b></p>
                                         <p class="mb-1"><i class="far fa-calendar-alt"></i>
                                             {{$minor->nextPeriod() ? Carbon\Carbon::parse($minor->nextPeriod()->start)->formatLocalized('%x') : "Geen onderwijsperiode"}}
                                         </p>
                                     </div>
-                                    <div class="col-9">
+                                    <div class="col-md-9">
                                         @if (sizeof($minor->averageReviews()) > 0)
                                             <div class="row">
                                                 <div class="col-xl-8">

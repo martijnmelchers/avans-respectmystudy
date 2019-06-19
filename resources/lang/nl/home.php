@@ -2,7 +2,7 @@
 
 return [
     'title' => 'Vind jouw perfecte minor!',
-    'description' => 'Tekst vak 1',
+    'description' => 'RespectMyStudy is er voor studenten die op zoek zijn naar een minor die hun unieke studiewens respecteert. Wij zijn er om jou aan een passende minor te helpen door de kwaliteit van minoren voorop te stellen. En wat is een betere maatstaf voor het beoordelen van de kwaliteit van een minor dan de mening van studenten die de minor zelf gevolgd hebben?',
 
     'search' => [
         'part1' => 'Zoek in onze',
