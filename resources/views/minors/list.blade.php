@@ -7,8 +7,6 @@
 @endsection
 
 @section('content')
-
-
     <div class="row content">
         <div class="col-xl-3 mb-4">
             <div class="box">
@@ -109,7 +107,6 @@
                     @foreach ($minors as $minor)
                         <div class="box minor col-12">
                             <a href="minor/{{$minor->id}}">
-
                                 <div class="row justify-content-between">
                                     <div class="col-md-10">
                                         <div>
@@ -119,7 +116,7 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="col-md- 2">
+                                    <div class="col-md-2">
                                         @if($organisation->organisation && $organisation::find($minor->organisation_id)->organisation_image != null)
                                             <img class="organisation_img"
                                                  src="{{Storage::url($organisation::findOrFail($minor->organisation_id)->organisation_image)}}"/>
@@ -146,7 +143,7 @@
                                                 <div class="col-xl-4">
                                                     <div class="label float-right">
                                                         <i class="fas fa-comments"></i>&nbsp
-                                                        {{ $minor->averageReviews()[3]}} reviews
+                                                        {{ $minor->averageReviews()[3]}} {{trans_choice('minors.reviews', $minor->reviews()->count())}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -253,7 +250,5 @@
                 @endif
             </div>
         </div>
-
-
     </div>
 @endsection
