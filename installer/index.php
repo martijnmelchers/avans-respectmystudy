@@ -45,6 +45,7 @@ function createEnvFile()
     appendToEnvFile('APP_DEBUG', 'true');
     appendToEnvFile('APP_KEY', '');
 
+    appendToEnvFile('FILESYSTEM_DRIVER', 'production');
 
     appendToEnvFile('DB_CONNECTION', 'mysql');
 }
@@ -62,11 +63,6 @@ function initLaravel()
     \Illuminate\Support\Facades\Facade::clearResolvedInstances();
     \Illuminate\Support\Facades\Facade::setFacadeApplication($app);
 
-//    Illuminate\Foundation\AliasLoader::getInstance(array_merge(
-//        $app->make('config')->get('app.aliases', []),
-//        $app->make(Illuminate\Foundation\PackageManifest::class)->aliases()
-//    ))->register();
-
     $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
     return $app;
 }
@@ -78,7 +74,12 @@ function generateAppKey()
 
 function clearConfig()
 {
-    artisanCall('config:cache');
+    artisanCall('config:clear');
+}
+
+function linkStorage()
+{
+    artisanCall('storage:link');
 }
 
 function resetDb()
@@ -214,14 +215,14 @@ if (isset($_POST['action'])) {
             echo json_encode($response);
             break;
         case "finish":
+            initLaravel();
+            clearConfig();
+
             $htaccess = "<IfModule mod_rewrite.c>
                             RewriteEngine On
                             RewriteRule ^(.*)$ public/$1 [L]
                         </IfModule>";
             file_put_contents(getRootDir() . '.htaccess',  $htaccess);
-
-            initLaravel();
-            clearConfig();
 
             $status = 'success';
             $response = compact('status');
@@ -343,20 +344,20 @@ if ($stage === 'database' && strpos(file_get_contents(getRootDir() . ".env"), 'D
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="name" name="name" type="text" class="validate">
-                                    <label for="name">Database Naam</label>
+                                    <input id="db-name" name="name" type="text" class="validate">
+                                    <label for="db-name">Database Naam</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="username" name="username" type="text" class="validate">
-                                    <label for="username">Database Username</label>
+                                    <input id="db-username" name="username" type="text" class="validate">
+                                    <label for="db-username">Database Username</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="password" name="password" type="password" class="validate">
-                                    <label for="password">Database Wachtwoord</label>
+                                    <input id="db-password" name="password" type="password" class="validate">
+                                    <label for="db-password">Database Wachtwoord</label>
                                 </div>
                             </div>
                         </form>
@@ -380,20 +381,20 @@ if ($stage === 'database' && strpos(file_get_contents(getRootDir() . ".env"), 'D
                         <form id="account-form" class="col s12">
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="name" name="name" type="text" class="validate" value="admin">
-                                    <label for="name">Account Naam</label>
+                                    <input id="acc-name" name="name" type="text" class="validate" value="admin">
+                                    <label for="acc-name">Account Naam</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="email" name="email" type="text" class="validate">
-                                    <label for="email">Account Email</label>
+                                    <input id="acc-email" name="email" type="text" class="validate">
+                                    <label for="acc-email">Account Email</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <input id="password" name="password" type="password" class="validate">
-                                    <label for="password">Account Wachtwoord</label>
+                                    <input id="acc-password" name="password" type="password" class="validate">
+                                    <label for="acc-password">Account Wachtwoord</label>
                                 </div>
                             </div>
                         </form>
