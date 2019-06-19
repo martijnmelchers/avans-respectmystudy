@@ -117,7 +117,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-2">
-                                        @if($organisation->organisation && $organisation::find($minor->organisation_id)->organisation_image != null)
+                                        @if(!empty($organisation) && $organisation::find($minor->organisation_id)->organisation_image != null)
                                             <img class="organisation_img"
                                                  src="{{Storage::url($organisation::findOrFail($minor->organisation_id)->organisation_image)}}"/>
                                         @endif
