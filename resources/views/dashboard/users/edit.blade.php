@@ -9,12 +9,12 @@
 @endsection
 
 @section('content')
-        <div class="row">
-            <div class="col-12 box mb-2">
+    <div class="row">
+        <div class="col-12 box mb-2">
             @if(sizeof($errors) > 0)
                 @foreach ($errors->all() as $error)
                     <div class="alert red">{{ $error }}</div>
-                @endforeach 
+                @endforeach
             @endif
 
             <form method="post">
@@ -26,7 +26,7 @@
                     <label for="name">Naam</label>
                     <input type="text" class="form-control" name="name" id="name" value="{{$user->name}}">
                 </div>
-            
+
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input disabled type="text" class="form-control" id="email" value="{{$user->email}}">
@@ -36,26 +36,35 @@
                     <label for="username">Gebruikersnaam</label>
                     <input type="text" class="form-control" name="username" id="username" value="{{$user->username}}">
                 </div>
-            
 
+                <div class="form-group">
+                    <label for="role_id">Rol</label>
+                    {{--<input type="text" class="form-control" name="username" id="username" value="{{$user->username}}">--}}
+                    <select id="role_id" class="form-control" name="role_id">
+                        @foreach ($roles as $role)
+                            <option
+                                <?php if ($user->role_id === $role->id) echo "selected";?> value="{{$role->id}}">{{$role->role_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
 
                 <div class="buttons mt-1">
                     <input type="submit" name="submit" href="{{route('dashboard-user-edit', $user->id)}}"
                            class="button blue" value="Opslaan">
                 </div>
             </form>
-            </div>
-           
         </div>
 
-        <div class="row button_row">
-            <div class="col-md-6 col-xs-12">
-                <a href="{{route('dashboard-user', $user->id)}}" class="button blue">Annuleren</a>
-            </div>
-            <div class="col-md-6 col-xs-12">
-                <a href="{{route('dashboard-users')}}" class="button blue">Alle users</a>
-            </div>
+    </div>
+
+    <div class="row button_row">
+        <div class="col-md-6 col-xs-12">
+            <a href="{{route('dashboard-user', $user->id)}}" class="button blue">Annuleren</a>
         </div>
+        <div class="col-md-6 col-xs-12">
+            <a href="{{route('dashboard-users')}}" class="button blue">Alle users</a>
+        </div>
+    </div>
 
     <script>
         $(document).ready(function () {

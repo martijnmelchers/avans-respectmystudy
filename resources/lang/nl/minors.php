@@ -20,6 +20,7 @@ return [
     'no_education_period' => 'Geen onderwijsperiode',
     'no_registration_date' => 'Geen inschrijfdatum',
     'student_rating' => 'Beoordelingen door studenten',
+    'reviews' => 'review|reviews',
     'no_reviews' => 'Nog geen reviews',
     'reviews_average' => 'Gemiddeld',
     'reviews_content_and_quality' => 'Inhoud & Kwaliteit',
@@ -69,7 +70,7 @@ return [
     'review_minor_rating' => 'Rating',
 
     'buttons' => [
-    'search_button' => 'Zoeken',
-    'post_button' => 'Plaats review',
-],
+        'search_button' => 'Zoeken',
+        'post_button' => 'Plaats review',
+    ],
 ];

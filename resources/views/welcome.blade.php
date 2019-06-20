@@ -9,7 +9,7 @@
         <div class="row justify-content-center">
             <div class="col-xl-4 col-10 presentation-left">
                 <h1>{{__('home.title')}}</h1>
-                <p>
+                <p class="m-0">
                     {{__('home.description')}}
                 </p>
             </div>

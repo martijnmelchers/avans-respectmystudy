@@ -20,6 +20,7 @@ return [
     'no_education_period'=>'',
     'no_registration_date'=>'',
     'student_rating' => 'Assessments by students',
+    'reviews' => 'review|reviews',
     'no_reviews' => 'No reviews yet',
     'reviews_average' => 'Average',
     'reviews_content_and_quality' => 'Content & Quality',
